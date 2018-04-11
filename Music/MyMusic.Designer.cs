@@ -29,98 +29,82 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MyMusic));
-            this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
-            this.materialTabControl2 = new MaterialSkin.Controls.MaterialTabControl();
-            this.tabPageSongs = new System.Windows.Forms.TabPage();
-            this.flowLayoutPanelSongs = new System.Windows.Forms.FlowLayoutPanel();
+            this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
+            this.Songs = new System.Windows.Forms.TabPage();
+            this.panelSongs = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnShuffleAllSongs = new Bunifu.Framework.UI.BunifuFlatButton();
             this.comboBoxGenreSongs = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxSortBySongs = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPageArtist = new System.Windows.Forms.TabPage();
+            this.Artists = new System.Windows.Forms.TabPage();
             this.flowLayoutPanelArtists = new System.Windows.Forms.FlowLayoutPanel();
-            this.artist1 = new Music.Artist();
-            this.artist2 = new Music.Artist();
-            this.artist3 = new Music.Artist();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnShuufleAllArtists = new Bunifu.Framework.UI.BunifuFlatButton();
             this.comboBoxSortByArtists = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.tabPageAlbum = new System.Windows.Forms.TabPage();
+            this.Albums = new System.Windows.Forms.TabPage();
             this.flowLayoutPanelAlbum = new System.Windows.Forms.FlowLayoutPanel();
-            this.album1 = new Music.Album();
-            this.album2 = new Music.Album();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnShuffleAllAlbums = new Bunifu.Framework.UI.BunifuFlatButton();
             this.comboBoxGenreAlbums = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBoxSortByAlbums = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.playlist11 = new Music.Playlist1();
-            this.materialTabControl2.SuspendLayout();
-            this.tabPageSongs.SuspendLayout();
-            this.flowLayoutPanelSongs.SuspendLayout();
+            this.artist1 = new Music.Artist();
+            this.artist2 = new Music.Artist();
+            this.artist3 = new Music.Artist();
+            this.album1 = new Music.Album();
+            this.album2 = new Music.Album();
+            this.metroTabControl1.SuspendLayout();
+            this.Songs.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.tabPageArtist.SuspendLayout();
+            this.Artists.SuspendLayout();
             this.flowLayoutPanelArtists.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.tabPageAlbum.SuspendLayout();
+            this.Albums.SuspendLayout();
             this.flowLayoutPanelAlbum.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // materialTabSelector1
+            // metroTabControl1
             // 
-            this.materialTabSelector1.BaseTabControl = this.materialTabControl2;
-            this.materialTabSelector1.Depth = 0;
-            this.materialTabSelector1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.materialTabSelector1.Location = new System.Drawing.Point(0, 0);
-            this.materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialTabSelector1.Name = "materialTabSelector1";
-            this.materialTabSelector1.Size = new System.Drawing.Size(850, 23);
-            this.materialTabSelector1.TabIndex = 0;
-            this.materialTabSelector1.Text = "materialTabSelector1";
-            this.materialTabSelector1.Click += new System.EventHandler(this.materialTabSelector1_Click);
+            this.metroTabControl1.Controls.Add(this.Songs);
+            this.metroTabControl1.Controls.Add(this.Artists);
+            this.metroTabControl1.Controls.Add(this.Albums);
+            this.metroTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.metroTabControl1.Location = new System.Drawing.Point(0, 0);
+            this.metroTabControl1.Name = "metroTabControl1";
+            this.metroTabControl1.SelectedIndex = 0;
+            this.metroTabControl1.Size = new System.Drawing.Size(850, 474);
+            this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Orange;
+            this.metroTabControl1.TabIndex = 0;
+            this.metroTabControl1.UseCustomBackColor = true;
+            this.metroTabControl1.UseCustomForeColor = true;
+            this.metroTabControl1.UseSelectable = true;
+            this.metroTabControl1.UseStyleColors = true;
             // 
-            // materialTabControl2
+            // Songs
             // 
-            this.materialTabControl2.Controls.Add(this.tabPageSongs);
-            this.materialTabControl2.Controls.Add(this.tabPageArtist);
-            this.materialTabControl2.Controls.Add(this.tabPageAlbum);
-            this.materialTabControl2.Depth = 0;
-            this.materialTabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialTabControl2.Location = new System.Drawing.Point(0, 23);
-            this.materialTabControl2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialTabControl2.Name = "materialTabControl2";
-            this.materialTabControl2.SelectedIndex = 0;
-            this.materialTabControl2.Size = new System.Drawing.Size(850, 451);
-            this.materialTabControl2.TabIndex = 1;
-            this.materialTabControl2.SelectedIndexChanged += new System.EventHandler(this.materialTabControl2_SelectedIndexChanged);
+            this.Songs.Controls.Add(this.panelSongs);
+            this.Songs.Controls.Add(this.panel1);
+            this.Songs.Location = new System.Drawing.Point(4, 38);
+            this.Songs.Name = "Songs";
+            this.Songs.Size = new System.Drawing.Size(842, 432);
+            this.Songs.TabIndex = 0;
+            this.Songs.Text = "Songs";
             // 
-            // tabPageSongs
+            // panelSongs
             // 
-            this.tabPageSongs.AutoScroll = true;
-            this.tabPageSongs.Controls.Add(this.flowLayoutPanelSongs);
-            this.tabPageSongs.Controls.Add(this.panel1);
-            this.tabPageSongs.Location = new System.Drawing.Point(4, 22);
-            this.tabPageSongs.Name = "tabPageSongs";
-            this.tabPageSongs.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageSongs.Size = new System.Drawing.Size(842, 425);
-            this.tabPageSongs.TabIndex = 0;
-            this.tabPageSongs.Text = "Songs";
-            this.tabPageSongs.UseVisualStyleBackColor = true;
-            // 
-            // flowLayoutPanelSongs
-            // 
-            this.flowLayoutPanelSongs.BackColor = System.Drawing.Color.Transparent;
-            this.flowLayoutPanelSongs.Controls.Add(this.playlist11);
-            this.flowLayoutPanelSongs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelSongs.Location = new System.Drawing.Point(3, 45);
-            this.flowLayoutPanelSongs.Name = "flowLayoutPanelSongs";
-            this.flowLayoutPanelSongs.Size = new System.Drawing.Size(836, 377);
-            this.flowLayoutPanelSongs.TabIndex = 4;
+            this.panelSongs.AutoScroll = true;
+            this.panelSongs.BackColor = System.Drawing.Color.Transparent;
+            this.panelSongs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelSongs.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.panelSongs.Location = new System.Drawing.Point(0, 42);
+            this.panelSongs.Name = "panelSongs";
+            this.panelSongs.Size = new System.Drawing.Size(842, 390);
+            this.panelSongs.TabIndex = 6;
             // 
             // panel1
             // 
@@ -130,10 +114,10 @@
             this.panel1.Controls.Add(this.comboBoxSortBySongs);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(836, 42);
-            this.panel1.TabIndex = 3;
+            this.panel1.Size = new System.Drawing.Size(842, 42);
+            this.panel1.TabIndex = 5;
             // 
             // btnShuffleAllSongs
             // 
@@ -217,17 +201,15 @@
             this.label1.TabIndex = 44;
             this.label1.Text = "Sort by";
             // 
-            // tabPageArtist
+            // Artists
             // 
-            this.tabPageArtist.Controls.Add(this.flowLayoutPanelArtists);
-            this.tabPageArtist.Controls.Add(this.panel2);
-            this.tabPageArtist.Location = new System.Drawing.Point(4, 22);
-            this.tabPageArtist.Name = "tabPageArtist";
-            this.tabPageArtist.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageArtist.Size = new System.Drawing.Size(842, 425);
-            this.tabPageArtist.TabIndex = 1;
-            this.tabPageArtist.Text = "Artists";
-            this.tabPageArtist.UseVisualStyleBackColor = true;
+            this.Artists.Controls.Add(this.flowLayoutPanelArtists);
+            this.Artists.Controls.Add(this.panel2);
+            this.Artists.Location = new System.Drawing.Point(4, 38);
+            this.Artists.Name = "Artists";
+            this.Artists.Size = new System.Drawing.Size(842, 432);
+            this.Artists.TabIndex = 1;
+            this.Artists.Text = "Artists";
             // 
             // flowLayoutPanelArtists
             // 
@@ -236,37 +218,10 @@
             this.flowLayoutPanelArtists.Controls.Add(this.artist2);
             this.flowLayoutPanelArtists.Controls.Add(this.artist3);
             this.flowLayoutPanelArtists.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelArtists.Location = new System.Drawing.Point(3, 45);
+            this.flowLayoutPanelArtists.Location = new System.Drawing.Point(0, 42);
             this.flowLayoutPanelArtists.Name = "flowLayoutPanelArtists";
-            this.flowLayoutPanelArtists.Size = new System.Drawing.Size(836, 377);
-            this.flowLayoutPanelArtists.TabIndex = 5;
-            // 
-            // artist1
-            // 
-            this.artist1.BackColor = System.Drawing.Color.Transparent;
-            this.artist1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.artist1.Location = new System.Drawing.Point(3, 3);
-            this.artist1.Name = "artist1";
-            this.artist1.Size = new System.Drawing.Size(152, 175);
-            this.artist1.TabIndex = 0;
-            // 
-            // artist2
-            // 
-            this.artist2.BackColor = System.Drawing.Color.Transparent;
-            this.artist2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.artist2.Location = new System.Drawing.Point(161, 3);
-            this.artist2.Name = "artist2";
-            this.artist2.Size = new System.Drawing.Size(152, 175);
-            this.artist2.TabIndex = 1;
-            // 
-            // artist3
-            // 
-            this.artist3.BackColor = System.Drawing.Color.Transparent;
-            this.artist3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.artist3.Location = new System.Drawing.Point(319, 3);
-            this.artist3.Name = "artist3";
-            this.artist3.Size = new System.Drawing.Size(152, 175);
-            this.artist3.TabIndex = 2;
+            this.flowLayoutPanelArtists.Size = new System.Drawing.Size(842, 390);
+            this.flowLayoutPanelArtists.TabIndex = 7;
             // 
             // panel2
             // 
@@ -274,10 +229,10 @@
             this.panel2.Controls.Add(this.comboBoxSortByArtists);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(836, 42);
-            this.panel2.TabIndex = 4;
+            this.panel2.Size = new System.Drawing.Size(842, 42);
+            this.panel2.TabIndex = 6;
             // 
             // btnShuufleAllArtists
             // 
@@ -312,7 +267,6 @@
             this.btnShuufleAllArtists.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnShuufleAllArtists.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnShuufleAllArtists.TextFont = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShuufleAllArtists.Click += new System.EventHandler(this.bunifuFlatButton1_Click);
             // 
             // comboBoxSortByArtists
             // 
@@ -339,17 +293,15 @@
             this.label4.TabIndex = 44;
             this.label4.Text = "Sort by";
             // 
-            // tabPageAlbum
+            // Albums
             // 
-            this.tabPageAlbum.Controls.Add(this.flowLayoutPanelAlbum);
-            this.tabPageAlbum.Controls.Add(this.panel3);
-            this.tabPageAlbum.Location = new System.Drawing.Point(4, 22);
-            this.tabPageAlbum.Name = "tabPageAlbum";
-            this.tabPageAlbum.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAlbum.Size = new System.Drawing.Size(842, 425);
-            this.tabPageAlbum.TabIndex = 2;
-            this.tabPageAlbum.Text = "Albums";
-            this.tabPageAlbum.UseVisualStyleBackColor = true;
+            this.Albums.Controls.Add(this.flowLayoutPanelAlbum);
+            this.Albums.Controls.Add(this.panel3);
+            this.Albums.Location = new System.Drawing.Point(4, 38);
+            this.Albums.Name = "Albums";
+            this.Albums.Size = new System.Drawing.Size(842, 432);
+            this.Albums.TabIndex = 2;
+            this.Albums.Text = "Albums";
             // 
             // flowLayoutPanelAlbum
             // 
@@ -357,28 +309,10 @@
             this.flowLayoutPanelAlbum.Controls.Add(this.album1);
             this.flowLayoutPanelAlbum.Controls.Add(this.album2);
             this.flowLayoutPanelAlbum.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelAlbum.Location = new System.Drawing.Point(3, 45);
+            this.flowLayoutPanelAlbum.Location = new System.Drawing.Point(0, 42);
             this.flowLayoutPanelAlbum.Name = "flowLayoutPanelAlbum";
-            this.flowLayoutPanelAlbum.Size = new System.Drawing.Size(836, 377);
-            this.flowLayoutPanelAlbum.TabIndex = 5;
-            // 
-            // album1
-            // 
-            this.album1.BackColor = System.Drawing.Color.Transparent;
-            this.album1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.album1.Location = new System.Drawing.Point(3, 3);
-            this.album1.Name = "album1";
-            this.album1.Size = new System.Drawing.Size(202, 174);
-            this.album1.TabIndex = 0;
-            // 
-            // album2
-            // 
-            this.album2.BackColor = System.Drawing.Color.Transparent;
-            this.album2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.album2.Location = new System.Drawing.Point(211, 3);
-            this.album2.Name = "album2";
-            this.album2.Size = new System.Drawing.Size(202, 174);
-            this.album2.TabIndex = 1;
+            this.flowLayoutPanelAlbum.Size = new System.Drawing.Size(842, 390);
+            this.flowLayoutPanelAlbum.TabIndex = 7;
             // 
             // panel3
             // 
@@ -388,10 +322,10 @@
             this.panel3.Controls.Add(this.comboBoxSortByAlbums);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(3, 3);
+            this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(836, 42);
-            this.panel3.TabIndex = 4;
+            this.panel3.Size = new System.Drawing.Size(842, 42);
+            this.panel3.TabIndex = 6;
             // 
             // btnShuffleAllAlbums
             // 
@@ -475,33 +409,68 @@
             this.label5.TabIndex = 44;
             this.label5.Text = "Sort by";
             // 
-            // playlist11
+            // artist1
             // 
-            this.playlist11.BackColor = System.Drawing.Color.Silver;
-            this.playlist11.Location = new System.Drawing.Point(3, 3);
-            this.playlist11.Name = "playlist11";
-            this.playlist11.Size = new System.Drawing.Size(842, 60);
-            this.playlist11.TabIndex = 0;
+            this.artist1.BackColor = System.Drawing.Color.Transparent;
+            this.artist1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.artist1.Location = new System.Drawing.Point(3, 3);
+            this.artist1.Name = "artist1";
+            this.artist1.Size = new System.Drawing.Size(152, 175);
+            this.artist1.TabIndex = 0;
+            // 
+            // artist2
+            // 
+            this.artist2.BackColor = System.Drawing.Color.Transparent;
+            this.artist2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.artist2.Location = new System.Drawing.Point(161, 3);
+            this.artist2.Name = "artist2";
+            this.artist2.Size = new System.Drawing.Size(152, 175);
+            this.artist2.TabIndex = 1;
+            // 
+            // artist3
+            // 
+            this.artist3.BackColor = System.Drawing.Color.Transparent;
+            this.artist3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.artist3.Location = new System.Drawing.Point(319, 3);
+            this.artist3.Name = "artist3";
+            this.artist3.Size = new System.Drawing.Size(152, 175);
+            this.artist3.TabIndex = 2;
+            // 
+            // album1
+            // 
+            this.album1.BackColor = System.Drawing.Color.Transparent;
+            this.album1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.album1.Location = new System.Drawing.Point(3, 3);
+            this.album1.Name = "album1";
+            this.album1.Size = new System.Drawing.Size(202, 174);
+            this.album1.TabIndex = 0;
+            // 
+            // album2
+            // 
+            this.album2.BackColor = System.Drawing.Color.Transparent;
+            this.album2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.album2.Location = new System.Drawing.Point(211, 3);
+            this.album2.Name = "album2";
+            this.album2.Size = new System.Drawing.Size(202, 174);
+            this.album2.TabIndex = 1;
             // 
             // MyMusic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Controls.Add(this.materialTabControl2);
-            this.Controls.Add(this.materialTabSelector1);
+            this.Controls.Add(this.metroTabControl1);
             this.Name = "MyMusic";
             this.Size = new System.Drawing.Size(850, 474);
-            this.materialTabControl2.ResumeLayout(false);
-            this.tabPageSongs.ResumeLayout(false);
-            this.flowLayoutPanelSongs.ResumeLayout(false);
+            this.metroTabControl1.ResumeLayout(false);
+            this.Songs.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.tabPageArtist.ResumeLayout(false);
+            this.Artists.ResumeLayout(false);
             this.flowLayoutPanelArtists.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.tabPageAlbum.ResumeLayout(false);
+            this.Albums.ResumeLayout(false);
             this.flowLayoutPanelAlbum.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -510,35 +479,34 @@
         }
 
         #endregion
-        private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
-        private MaterialSkin.Controls.MaterialTabControl materialTabControl2;
-        private System.Windows.Forms.TabPage tabPageSongs;
-        private System.Windows.Forms.TabPage tabPageArtist;
-        private System.Windows.Forms.TabPage tabPageAlbum;
+
+        private MetroFramework.Controls.MetroTabControl metroTabControl1;
+        private System.Windows.Forms.TabPage Songs;
+        private System.Windows.Forms.TabPage Artists;
+        private System.Windows.Forms.TabPage Albums;
+        private System.Windows.Forms.Panel panelSongs;
         private System.Windows.Forms.Panel panel1;
+        private Bunifu.Framework.UI.BunifuFlatButton btnShuffleAllSongs;
         private System.Windows.Forms.ComboBox comboBoxGenreSongs;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBoxSortBySongs;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelArtists;
+        private Artist artist1;
+        private Artist artist2;
+        private Artist artist3;
         private System.Windows.Forms.Panel panel2;
+        private Bunifu.Framework.UI.BunifuFlatButton btnShuufleAllArtists;
         private System.Windows.Forms.ComboBox comboBoxSortByArtists;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelArtists;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelAlbum;
+        private Album album1;
+        private Album album2;
         private System.Windows.Forms.Panel panel3;
+        private Bunifu.Framework.UI.BunifuFlatButton btnShuffleAllAlbums;
         private System.Windows.Forms.ComboBox comboBoxGenreAlbums;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBoxSortByAlbums;
         private System.Windows.Forms.Label label5;
-        private Bunifu.Framework.UI.BunifuFlatButton btnShuffleAllSongs;
-        private Bunifu.Framework.UI.BunifuFlatButton btnShuufleAllArtists;
-        private Bunifu.Framework.UI.BunifuFlatButton btnShuffleAllAlbums;
-        private Artist artist1;
-        private Artist artist2;
-        private Artist artist3;
-        private Album album1;
-        private Album album2;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelSongs;
-        private Playlist1 playlist11;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Music
 {
-    partial class Playlist1
+    partial class Song2
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Playlist1));
-            this.labelSongName = new System.Windows.Forms.Label();
-            this.labelArtistName = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Song2));
             this.label1 = new System.Windows.Forms.Label();
+            this.labelArtistName = new System.Windows.Forms.Label();
+            this.labelSongName = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnForward = new Bunifu.Framework.UI.BunifuFlatButton();
             this.btnPlay = new Bunifu.Framework.UI.BunifuImageButton();
@@ -39,31 +39,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnPlay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // labelSongName
-            // 
-            this.labelSongName.AutoSize = true;
-            this.labelSongName.BackColor = System.Drawing.Color.Transparent;
-            this.labelSongName.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSongName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelSongName.Location = new System.Drawing.Point(118, 23);
-            this.labelSongName.Name = "labelSongName";
-            this.labelSongName.Size = new System.Drawing.Size(79, 18);
-            this.labelSongName.TabIndex = 55;
-            this.labelSongName.Text = "1.Attention";
-            // 
-            // labelArtistName
-            // 
-            this.labelArtistName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelArtistName.AutoEllipsis = true;
-            this.labelArtistName.BackColor = System.Drawing.Color.Transparent;
-            this.labelArtistName.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelArtistName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelArtistName.Location = new System.Drawing.Point(396, 24);
-            this.labelArtistName.Name = "labelArtistName";
-            this.labelArtistName.Size = new System.Drawing.Size(241, 16);
-            this.labelArtistName.TabIndex = 56;
-            this.labelArtistName.Text = "Charlie Puth";
             // 
             // label1
             // 
@@ -75,8 +50,33 @@
             this.label1.Location = new System.Drawing.Point(758, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 22);
-            this.label1.TabIndex = 57;
-            this.label1.Text = "03:58";
+            this.label1.TabIndex = 63;
+            this.label1.Text = "04:12";
+            // 
+            // labelArtistName
+            // 
+            this.labelArtistName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelArtistName.AutoEllipsis = true;
+            this.labelArtistName.BackColor = System.Drawing.Color.Transparent;
+            this.labelArtistName.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelArtistName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelArtistName.Location = new System.Drawing.Point(396, 24);
+            this.labelArtistName.Name = "labelArtistName";
+            this.labelArtistName.Size = new System.Drawing.Size(241, 16);
+            this.labelArtistName.TabIndex = 62;
+            this.labelArtistName.Text = "Charlie Puth vs Selena Gomez";
+            // 
+            // labelSongName
+            // 
+            this.labelSongName.AutoSize = true;
+            this.labelSongName.BackColor = System.Drawing.Color.Transparent;
+            this.labelSongName.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSongName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelSongName.Location = new System.Drawing.Point(118, 23);
+            this.labelSongName.Name = "labelSongName";
+            this.labelSongName.Size = new System.Drawing.Size(178, 18);
+            this.labelSongName.TabIndex = 61;
+            this.labelSongName.Text = "2.We Don\'t Talk Anymore\r\n";
             // 
             // label2
             // 
@@ -88,7 +88,7 @@
             this.label2.Location = new System.Drawing.Point(643, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(109, 16);
-            this.label2.TabIndex = 59;
+            this.label2.TabIndex = 66;
             this.label2.Text = "Pop";
             // 
             // btnForward
@@ -113,14 +113,14 @@
             this.btnForward.IconVisible = true;
             this.btnForward.IconZoom = 32D;
             this.btnForward.IsTab = false;
-            this.btnForward.Location = new System.Drawing.Point(808, 14);
+            this.btnForward.Location = new System.Drawing.Point(808, 15);
             this.btnForward.Name = "btnForward";
             this.btnForward.Normalcolor = System.Drawing.Color.Transparent;
             this.btnForward.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.btnForward.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
             this.btnForward.selected = false;
             this.btnForward.Size = new System.Drawing.Size(32, 32);
-            this.btnForward.TabIndex = 58;
+            this.btnForward.TabIndex = 64;
             this.btnForward.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnForward.Textcolor = System.Drawing.Color.White;
             this.btnForward.TextFont = new System.Drawing.Font("Segoe UI", 9.75F);
@@ -134,10 +134,10 @@
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(40, 40);
             this.btnPlay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnPlay.TabIndex = 54;
+            this.btnPlay.TabIndex = 60;
             this.btnPlay.TabStop = false;
             this.btnPlay.Zoom = 10;
-            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click_1);
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // pictureBox1
             // 
@@ -146,14 +146,14 @@
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(55, 55);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabIndex = 59;
             this.pictureBox1.TabStop = false;
             // 
-            // Playlist1
+            // Song2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Silver;
+            this.BackColor = System.Drawing.Color.Gainsboro;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnForward);
             this.Controls.Add(this.label1);
@@ -161,7 +161,7 @@
             this.Controls.Add(this.labelSongName);
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "Playlist1";
+            this.Name = "Song2";
             this.Size = new System.Drawing.Size(842, 60);
             ((System.ComponentModel.ISupportInitialize)(this.btnPlay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -172,12 +172,12 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private Bunifu.Framework.UI.BunifuImageButton btnPlay;
-        private System.Windows.Forms.Label labelSongName;
-        private System.Windows.Forms.Label labelArtistName;
-        private System.Windows.Forms.Label label1;
         private Bunifu.Framework.UI.BunifuFlatButton btnForward;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelArtistName;
+        private System.Windows.Forms.Label labelSongName;
+        private Bunifu.Framework.UI.BunifuImageButton btnPlay;
+        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
     }
 }

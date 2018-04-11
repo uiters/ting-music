@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace Music
 {
-    public partial class Playlist1 : UserControl
+    public partial class Song2 : UserControl
     {
         Image pause;
         Image play;
-        public Playlist1()
+        public Song2()
         {
             InitializeComponent();
             pause = Music.Properties.Resources.pause;
@@ -22,10 +22,9 @@ namespace Music
             btnPlay.Image = pause;
         }
 
-
-        private void btnPlay_Click_1(object sender, EventArgs e)
+        private void btnPlay_Click(object sender, EventArgs e)
         {
-            if (btnPlay.Image == pause)
+            if(btnPlay.Image==pause)
             {
                 btnPlay.Image = play;
             }

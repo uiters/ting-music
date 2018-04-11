@@ -39,13 +39,13 @@
             this.btnBack = new Bunifu.Framework.UI.BunifuFlatButton();
             this.btnLyric = new Bunifu.Framework.UI.BunifuFlatButton();
             this.btnVolume = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.bunifuSlider2 = new Bunifu.Framework.UI.BunifuSlider();
+            this.sliderVolumn = new Bunifu.Framework.UI.BunifuSlider();
             this.labelTimeTo = new System.Windows.Forms.Label();
-            this.labelSongName = new System.Windows.Forms.Label();
-            this.labelArtistName = new System.Windows.Forms.Label();
+            this.lblSongName = new System.Windows.Forms.Label();
+            this.lblArtistName = new System.Windows.Forms.Label();
             this.labelTimeFrom = new System.Windows.Forms.Label();
-            this.bunifuSlider1 = new Bunifu.Framework.UI.BunifuSlider();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.sliderDuration = new Bunifu.Framework.UI.BunifuSlider();
+            this.pictureBoxSong = new System.Windows.Forms.PictureBox();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnAbout = new Bunifu.Framework.UI.BunifuFlatButton();
@@ -68,11 +68,14 @@
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.bunifuDragControl2 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel = new System.Windows.Forms.Panel();
-            this.myMusic1 = new Music.MyMusic();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.myMusic = new Music.MyMusic();
+            this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.panelBottom.SuspendLayout();
             this.panelPlay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPlay)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSong)).BeginInit();
             this.panelLeft.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelHeader.SuspendLayout();
@@ -85,13 +88,13 @@
             this.panelBottom.Controls.Add(this.panelPlay);
             this.panelBottom.Controls.Add(this.btnLyric);
             this.panelBottom.Controls.Add(this.btnVolume);
-            this.panelBottom.Controls.Add(this.bunifuSlider2);
+            this.panelBottom.Controls.Add(this.sliderVolumn);
             this.panelBottom.Controls.Add(this.labelTimeTo);
-            this.panelBottom.Controls.Add(this.labelSongName);
-            this.panelBottom.Controls.Add(this.labelArtistName);
+            this.panelBottom.Controls.Add(this.lblSongName);
+            this.panelBottom.Controls.Add(this.lblArtistName);
             this.panelBottom.Controls.Add(this.labelTimeFrom);
-            this.panelBottom.Controls.Add(this.bunifuSlider1);
-            this.panelBottom.Controls.Add(this.pictureBox2);
+            this.panelBottom.Controls.Add(this.sliderDuration);
+            this.panelBottom.Controls.Add(this.pictureBoxSong);
             this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelBottom.Location = new System.Drawing.Point(0, 528);
             this.panelBottom.Name = "panelBottom";
@@ -224,6 +227,7 @@
             this.btnForward.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnForward.Textcolor = System.Drawing.Color.White;
             this.btnForward.TextFont = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnForward.Click += new System.EventHandler(this.btnForward_Click);
             // 
             // btnBack
             // 
@@ -257,6 +261,7 @@
             this.btnBack.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBack.Textcolor = System.Drawing.Color.White;
             this.btnBack.TextFont = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click_1);
             // 
             // btnLyric
             // 
@@ -327,93 +332,95 @@
             this.btnVolume.TextFont = new System.Drawing.Font("Segoe UI", 9.75F);
             this.btnVolume.Click += new System.EventHandler(this.btnVolume_Click);
             // 
-            // bunifuSlider2
+            // sliderVolumn
             // 
-            this.bunifuSlider2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bunifuSlider2.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuSlider2.BackgroudColor = System.Drawing.Color.White;
-            this.bunifuSlider2.BorderRadius = 0;
-            this.bunifuSlider2.IndicatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.bunifuSlider2.Location = new System.Drawing.Point(949, 40);
-            this.bunifuSlider2.MaximumValue = 100;
-            this.bunifuSlider2.Name = "bunifuSlider2";
-            this.bunifuSlider2.Size = new System.Drawing.Size(112, 30);
-            this.bunifuSlider2.TabIndex = 45;
-            this.bunifuSlider2.Value = 10;
+            this.sliderVolumn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.sliderVolumn.BackColor = System.Drawing.Color.Transparent;
+            this.sliderVolumn.BackgroudColor = System.Drawing.Color.White;
+            this.sliderVolumn.BorderRadius = 5;
+            this.sliderVolumn.IndicatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
+            this.sliderVolumn.Location = new System.Drawing.Point(949, 40);
+            this.sliderVolumn.MaximumValue = 100;
+            this.sliderVolumn.Name = "sliderVolumn";
+            this.sliderVolumn.Size = new System.Drawing.Size(112, 30);
+            this.sliderVolumn.TabIndex = 45;
+            this.sliderVolumn.Value = 100;
+            this.sliderVolumn.ValueChanged += new System.EventHandler(this.sliderVolumn_ValueChanged);
             // 
             // labelTimeTo
             // 
             this.labelTimeTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelTimeTo.AutoSize = true;
             this.labelTimeTo.BackColor = System.Drawing.Color.Transparent;
-            this.labelTimeTo.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTimeTo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.labelTimeTo.Location = new System.Drawing.Point(1017, 0);
+            this.labelTimeTo.Font = new System.Drawing.Font("Tahoma", 11.25F);
+            this.labelTimeTo.ForeColor = System.Drawing.Color.White;
+            this.labelTimeTo.Location = new System.Drawing.Point(1017, 2);
             this.labelTimeTo.Name = "labelTimeTo";
-            this.labelTimeTo.Size = new System.Drawing.Size(50, 21);
+            this.labelTimeTo.Size = new System.Drawing.Size(45, 18);
             this.labelTimeTo.TabIndex = 41;
             this.labelTimeTo.Text = "03:20";
             // 
-            // labelSongName
+            // lblSongName
             // 
-            this.labelSongName.AutoEllipsis = true;
-            this.labelSongName.BackColor = System.Drawing.Color.Transparent;
-            this.labelSongName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSongName.ForeColor = System.Drawing.Color.White;
-            this.labelSongName.Location = new System.Drawing.Point(105, 61);
-            this.labelSongName.Name = "labelSongName";
-            this.labelSongName.Size = new System.Drawing.Size(461, 19);
-            this.labelSongName.TabIndex = 40;
-            this.labelSongName.Text = "Attention";
+            this.lblSongName.AutoEllipsis = true;
+            this.lblSongName.BackColor = System.Drawing.Color.Transparent;
+            this.lblSongName.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSongName.ForeColor = System.Drawing.Color.White;
+            this.lblSongName.Location = new System.Drawing.Point(105, 61);
+            this.lblSongName.Name = "lblSongName";
+            this.lblSongName.Size = new System.Drawing.Size(461, 19);
+            this.lblSongName.TabIndex = 40;
+            this.lblSongName.Text = "Attention";
             // 
-            // labelArtistName
+            // lblArtistName
             // 
-            this.labelArtistName.AutoEllipsis = true;
-            this.labelArtistName.BackColor = System.Drawing.Color.Transparent;
-            this.labelArtistName.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelArtistName.ForeColor = System.Drawing.Color.White;
-            this.labelArtistName.Location = new System.Drawing.Point(105, 31);
-            this.labelArtistName.Name = "labelArtistName";
-            this.labelArtistName.Size = new System.Drawing.Size(461, 22);
-            this.labelArtistName.TabIndex = 39;
-            this.labelArtistName.Text = "Charlie Puth";
+            this.lblArtistName.AutoEllipsis = true;
+            this.lblArtistName.BackColor = System.Drawing.Color.Transparent;
+            this.lblArtistName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArtistName.ForeColor = System.Drawing.Color.White;
+            this.lblArtistName.Location = new System.Drawing.Point(105, 31);
+            this.lblArtistName.Name = "lblArtistName";
+            this.lblArtistName.Size = new System.Drawing.Size(461, 22);
+            this.lblArtistName.TabIndex = 39;
+            this.lblArtistName.Text = "Charlie Puth";
             // 
             // labelTimeFrom
             // 
             this.labelTimeFrom.AutoSize = true;
             this.labelTimeFrom.BackColor = System.Drawing.Color.Transparent;
-            this.labelTimeFrom.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTimeFrom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.labelTimeFrom.Location = new System.Drawing.Point(102, 0);
+            this.labelTimeFrom.Font = new System.Drawing.Font("Tahoma", 11.25F);
+            this.labelTimeFrom.ForeColor = System.Drawing.Color.White;
+            this.labelTimeFrom.Location = new System.Drawing.Point(102, 2);
             this.labelTimeFrom.Name = "labelTimeFrom";
-            this.labelTimeFrom.Size = new System.Drawing.Size(50, 21);
+            this.labelTimeFrom.Size = new System.Drawing.Size(45, 18);
             this.labelTimeFrom.TabIndex = 38;
             this.labelTimeFrom.Text = "00:50";
             // 
-            // bunifuSlider1
+            // sliderDuration
             // 
-            this.bunifuSlider1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.sliderDuration.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.bunifuSlider1.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuSlider1.BackgroudColor = System.Drawing.Color.White;
-            this.bunifuSlider1.BorderRadius = 0;
-            this.bunifuSlider1.IndicatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.bunifuSlider1.Location = new System.Drawing.Point(158, -1);
-            this.bunifuSlider1.MaximumValue = 100;
-            this.bunifuSlider1.Name = "bunifuSlider1";
-            this.bunifuSlider1.Size = new System.Drawing.Size(846, 30);
-            this.bunifuSlider1.TabIndex = 37;
-            this.bunifuSlider1.Value = 50;
+            this.sliderDuration.BackColor = System.Drawing.Color.Transparent;
+            this.sliderDuration.BackgroudColor = System.Drawing.Color.White;
+            this.sliderDuration.BorderRadius = 5;
+            this.sliderDuration.IndicatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
+            this.sliderDuration.Location = new System.Drawing.Point(158, -1);
+            this.sliderDuration.MaximumValue = 100;
+            this.sliderDuration.Name = "sliderDuration";
+            this.sliderDuration.Size = new System.Drawing.Size(846, 30);
+            this.sliderDuration.TabIndex = 37;
+            this.sliderDuration.Value = 0;
+            this.sliderDuration.ValueChanged += new System.EventHandler(this.sliderDuration_ValueChanged);
             // 
-            // pictureBox2
+            // pictureBoxSong
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(90, 90);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 33;
-            this.pictureBox2.TabStop = false;
+            this.pictureBoxSong.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSong.Image")));
+            this.pictureBoxSong.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxSong.Name = "pictureBoxSong";
+            this.pictureBoxSong.Size = new System.Drawing.Size(90, 90);
+            this.pictureBoxSong.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxSong.TabIndex = 33;
+            this.pictureBoxSong.TabStop = false;
             // 
             // panelLeft
             // 
@@ -923,23 +930,34 @@
             // 
             // panel
             // 
-            this.panel.Controls.Add(this.myMusic1);
+            this.panel.Controls.Add(this.myMusic);
             this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel.Location = new System.Drawing.Point(223, 54);
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(850, 474);
             this.panel.TabIndex = 29;
             // 
-            // myMusic1
+            // timer1
             // 
-            this.myMusic1.AutoSize = true;
-            this.myMusic1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.myMusic1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.myMusic1.Location = new System.Drawing.Point(0, 0);
-            this.myMusic1.Name = "myMusic1";
-            this.myMusic1.Size = new System.Drawing.Size(850, 474);
-            this.myMusic1.TabIndex = 0;
-            this.myMusic1.Load += new System.EventHandler(this.myMusic1_Load);
+            this.timer1.Interval = 10;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timer2
+            // 
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
+            // myMusic
+            // 
+            this.myMusic.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.myMusic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.myMusic.Location = new System.Drawing.Point(0, 0);
+            this.myMusic.Name = "myMusic";
+            this.myMusic.Size = new System.Drawing.Size(850, 474);
+            this.myMusic.TabIndex = 0;
+            // 
+            // timer3
+            // 
+            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
             // fMusic
             // 
@@ -955,19 +973,19 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fMusic";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Ting Music";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fMusic_FormClosing);
             this.panelBottom.ResumeLayout(false);
             this.panelBottom.PerformLayout();
             this.panelPlay.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnPlay)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSong)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.panelLeft.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
             this.panel.ResumeLayout(false);
-            this.panel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -992,13 +1010,13 @@
         private System.Windows.Forms.Panel panelBottom;
         private Bunifu.Framework.UI.BunifuFlatButton btnLyric;
         private Bunifu.Framework.UI.BunifuFlatButton btnVolume;
-        private Bunifu.Framework.UI.BunifuSlider bunifuSlider2;
+        private Bunifu.Framework.UI.BunifuSlider sliderVolumn;
         private System.Windows.Forms.Label labelTimeTo;
-        private System.Windows.Forms.Label labelSongName;
-        private System.Windows.Forms.Label labelArtistName;
+        private System.Windows.Forms.Label lblSongName;
+        private System.Windows.Forms.Label lblArtistName;
         private System.Windows.Forms.Label labelTimeFrom;
-        private Bunifu.Framework.UI.BunifuSlider bunifuSlider1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private Bunifu.Framework.UI.BunifuSlider sliderDuration;
+        private System.Windows.Forms.PictureBox pictureBoxSong;
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl2;
         private System.Windows.Forms.Panel panel;
@@ -1011,7 +1029,10 @@
         private Bunifu.Framework.UI.BunifuFlatButton btnRepeat;
         private Bunifu.Framework.UI.BunifuFlatButton btnForward;
         private Bunifu.Framework.UI.BunifuFlatButton btnBack;
-        private MyMusic myMusic1;
+        private MyMusic myMusic;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Timer timer3;
     }
 }
 

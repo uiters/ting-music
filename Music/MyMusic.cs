@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MaterialSkin;
 
 namespace Music
 {
@@ -16,30 +15,34 @@ namespace Music
         public MyMusic()
         {
             InitializeComponent();
-            btnShuffleAllAlbums.IconVisible = true;
-            btnShuufleAllArtists.IconVisible = true;
-            btnShuffleAllSongs.IconVisible = true;
-            var materialSkinManager = MaterialSkinManager.Instance;
-            //materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.Orange800, Primary.Green200, Primary.Lime700, Accent.Amber400, TextShade.WHITE);
         }
-
-        private void materialTabSelector1_Click(object sender, EventArgs e)
+        public Song song
         {
-
+            set
+            {
+                panelSongs.Controls.Add(value);
+                value.Dock = DockStyle.Top;
+            }
         }
-
-        private void bunifuFlatButton1_Click(object sender, EventArgs e)
+        public List<Song> listSong
         {
-
+            get
+            {
+                List<Song> listSong = new List<Song>();
+                foreach (Control item in panelSongs.Controls)
+                {
+                    listSong.Add(item as Song);
+                }
+                return listSong;
+            }
         }
-
-        private void materialTabControl2_SelectedIndexChanged(object sender, EventArgs e)
+        public Control ScrollControl
         {
-
+            set
+            {
+                panelSongs.ScrollControlIntoView(value);
+            }
         }
 
-       
     }
 }
