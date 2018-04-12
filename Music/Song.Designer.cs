@@ -142,7 +142,6 @@
             // 
             // pictureBoxSong
             // 
-            this.pictureBoxSong.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSong.Image")));
             this.pictureBoxSong.Location = new System.Drawing.Point(3, 3);
             this.pictureBoxSong.Name = "pictureBoxSong";
             this.pictureBoxSong.Size = new System.Drawing.Size(55, 55);
@@ -162,6 +161,7 @@
             this.Controls.Add(this.lblSongName);
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.pictureBoxSong);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "Song";
             this.Size = new System.Drawing.Size(842, 60);
             ((System.ComponentModel.ISupportInitialize)(this.btnPlay)).EndInit();

@@ -93,6 +93,12 @@
     <Compile Include="MyMusic.Designer.cs">
       <DependentUpon>MyMusic.cs</DependentUpon>
     </Compile>
+    <Compile Include="NowPlaying.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NowPlaying.Designer.cs">
+      <DependentUpon>NowPlaying.cs</DependentUpon>
+    </Compile>
     <Compile Include="Song.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -118,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyMusic.resx">
       <DependentUpon>MyMusic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NowPlaying.resx">
+      <DependentUpon>NowPlaying.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Song.resx">
       <DependentUpon>Song.cs</DependentUpon>

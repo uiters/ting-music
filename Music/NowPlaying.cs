@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Music
 {
-    public partial class MyMusic : UserControl
+    public partial class NowPlaying : UserControl
     {
-        public MyMusic()
+        public NowPlaying()
         {
             InitializeComponent();
         }
@@ -21,7 +21,7 @@ namespace Music
             set
             {
                 panelSongs.Controls.Add(value);
-                value.Dock = DockStyle.Top;
+                //value.Dock = DockStyle.Top;
             }
         }
         public List<Song> listSong
@@ -46,6 +46,24 @@ namespace Music
         public void Clear()
         {
             panelSongs.Controls.Clear();
+        }
+        public List<Control> listControl
+        {
+            get
+            {
+                List<Control> listcontrol = new List<Control>();
+                foreach (Control item in panelSongs.Controls)
+                {
+                    listcontrol.Add(item);
+                }
+                return listcontrol;
+            }
+        }
+        public event EventHandler Panel_SizeChanged;
+
+        private void panelSongs_SizeChanged(object sender, EventArgs e)
+        {
+            if (Panel_SizeChanged != null) Panel_SizeChanged(this, e);
         }
     }
 }

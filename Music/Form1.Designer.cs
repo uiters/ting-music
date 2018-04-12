@@ -68,9 +68,10 @@
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.bunifuDragControl2 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel = new System.Windows.Forms.Panel();
+            this.nowPlaying = new Music.NowPlaying();
+            this.myMusic = new Music.MyMusic();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.myMusic = new Music.MyMusic();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.panelBottom.SuspendLayout();
             this.panelPlay.SuspendLayout();
@@ -905,12 +906,11 @@
             // 
             this.labelTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelTitle.AutoSize = true;
             this.labelTitle.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTitle.ForeColor = System.Drawing.Color.White;
             this.labelTitle.Location = new System.Drawing.Point(23, 16);
             this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(88, 23);
+            this.labelTitle.Size = new System.Drawing.Size(173, 23);
             this.labelTitle.TabIndex = 34;
             this.labelTitle.Text = "My music";
             // 
@@ -930,6 +930,7 @@
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.nowPlaying);
             this.panel.Controls.Add(this.myMusic);
             this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel.Location = new System.Drawing.Point(223, 54);
@@ -937,14 +938,14 @@
             this.panel.Size = new System.Drawing.Size(850, 474);
             this.panel.TabIndex = 29;
             // 
-            // timer1
+            // nowPlaying
             // 
-            this.timer1.Interval = 10;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // timer2
-            // 
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            this.nowPlaying.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.nowPlaying.Location = new System.Drawing.Point(0, 0);
+            this.nowPlaying.Name = "nowPlaying";
+            this.nowPlaying.Size = new System.Drawing.Size(850, 474);
+            this.nowPlaying.TabIndex = 1;
+            this.nowPlaying.Panel_SizeChanged += new System.EventHandler(this.nowPlaying_Panel_SizeChanged);
             // 
             // myMusic
             // 
@@ -954,6 +955,15 @@
             this.myMusic.Name = "myMusic";
             this.myMusic.Size = new System.Drawing.Size(850, 474);
             this.myMusic.TabIndex = 0;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 10;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timer2
+            // 
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // timer3
             // 
@@ -984,7 +994,6 @@
             this.panelLeft.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panelHeader.ResumeLayout(false);
-            this.panelHeader.PerformLayout();
             this.panel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1033,6 +1042,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Timer timer3;
+        private NowPlaying nowPlaying;
     }
 }
 

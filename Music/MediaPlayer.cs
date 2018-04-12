@@ -24,14 +24,24 @@ namespace Music
         {
             //update thêm list path
             string path = @"C:\Users\NguyễnDuyCương\Music";
-            string[] listFiles = Directory.GetFiles(path, "*.mp3");
-            foreach (var item in listFiles)
+            string[] listFile = Directory.GetFiles(path, "*.mp3");
+            foreach (var item in listFile)
             {
                 MediaFile file = new MediaFile(item);
                 IWMPMedia media= player.newMedia(file.FilePath);
                 playlist.appendItem(media);
             }
-            return listFiles;
+            return listFile;
+        }
+        public List<string> LoadCurrentPlaylist(IWMPPlaylist currentPlaylist)
+        {
+            List<string> listFile = new List<string>();
+            for (int i = 0; i < currentPlaylist.count; i++)
+            {
+                IWMPMedia media = currentPlaylist.Item[i];
+                listFile.Add(media.sourceURL);
+            }
+            return listFile;
         }
         public Image LoadImageSong(string filePath)
         {
