@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MyMusic));
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.Songs = new System.Windows.Forms.TabPage();
-            this.panelSongs = new System.Windows.Forms.Panel();
+            this.panelSongs = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnShuffleAllSongs = new Bunifu.Framework.UI.BunifuFlatButton();
             this.comboBoxGenreSongs = new System.Windows.Forms.ComboBox();
@@ -98,13 +98,14 @@
             // panelSongs
             // 
             this.panelSongs.AutoScroll = true;
-            this.panelSongs.BackColor = System.Drawing.Color.Transparent;
+            this.panelSongs.AutoSize = true;
             this.panelSongs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelSongs.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.panelSongs.Location = new System.Drawing.Point(0, 42);
+            this.panelSongs.Margin = new System.Windows.Forms.Padding(0);
             this.panelSongs.Name = "panelSongs";
             this.panelSongs.Size = new System.Drawing.Size(842, 390);
             this.panelSongs.TabIndex = 6;
+
             // 
             // panel1
             // 
@@ -470,6 +471,7 @@
             this.Size = new System.Drawing.Size(850, 474);
             this.metroTabControl1.ResumeLayout(false);
             this.Songs.ResumeLayout(false);
+            this.Songs.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.Artists.ResumeLayout(false);
@@ -490,7 +492,6 @@
         private System.Windows.Forms.TabPage Songs;
         private System.Windows.Forms.TabPage Artists;
         private System.Windows.Forms.TabPage Albums;
-        private System.Windows.Forms.Panel panelSongs;
         private System.Windows.Forms.Panel panel1;
         private Bunifu.Framework.UI.BunifuFlatButton btnShuffleAllSongs;
         private System.Windows.Forms.ComboBox comboBoxGenreSongs;
@@ -514,5 +515,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBoxSortByAlbums;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.FlowLayoutPanel panelSongs;
     }
 }
