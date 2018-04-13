@@ -160,12 +160,15 @@
             this.comboBoxGenreSongs.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.comboBoxGenreSongs.FormattingEnabled = true;
             this.comboBoxGenreSongs.Items.AddRange(new object[] {
+            "ALL",
             "Pop",
-            "Rock"});
+            "Rock",
+            "Other"});
             this.comboBoxGenreSongs.Location = new System.Drawing.Point(398, 10);
             this.comboBoxGenreSongs.Name = "comboBoxGenreSongs";
             this.comboBoxGenreSongs.Size = new System.Drawing.Size(107, 25);
             this.comboBoxGenreSongs.TabIndex = 47;
+            this.comboBoxGenreSongs.SelectedValueChanged += new System.EventHandler(this.comboBoxGenreSongs_SelectedValueChanged);
             // 
             // label2
             // 
@@ -184,6 +187,7 @@
             this.comboBoxSortBySongs.FormattingEnabled = true;
             this.comboBoxSortBySongs.Items.AddRange(new object[] {
             "A-Z",
+            "Z-A",
             "Date added",
             "Artist",
             "Album"});
@@ -191,6 +195,7 @@
             this.comboBoxSortBySongs.Name = "comboBoxSortBySongs";
             this.comboBoxSortBySongs.Size = new System.Drawing.Size(107, 25);
             this.comboBoxSortBySongs.TabIndex = 45;
+            this.comboBoxSortBySongs.SelectedIndexChanged += new System.EventHandler(this.comboBoxSortBySongs_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -303,6 +308,7 @@
             this.comboBoxSortByArtists.FormattingEnabled = true;
             this.comboBoxSortByArtists.Items.AddRange(new object[] {
             "A-Z",
+            "Z-A",
             "Date added",
             "Artist",
             "Album"});

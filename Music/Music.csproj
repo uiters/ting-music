@@ -111,15 +111,10 @@
     <Compile Include="Song.Designer.cs">
       <DependentUpon>Song.cs</DependentUpon>
     </Compile>
-    <Compile Include="Song2.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Song2.Designer.cs">
-      <DependentUpon>Song2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SongInfo.cs" />
+    <Compile Include="UISort.cs" />
     <EmbeddedResource Include="Album.resx">
       <DependentUpon>Album.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,9 +135,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Song.resx">
       <DependentUpon>Song.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Song2.resx">
-      <DependentUpon>Song2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
