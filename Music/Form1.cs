@@ -155,6 +155,7 @@ namespace Music
             lyrics.LyricsText = SongInfo.Instance.Lyrics(path);
             lyrics.ArtistName = SongInfo.Instance.Artist(path);
             lyrics.SongName = SongInfo.Instance.Song(path);
+
             //timer4.Start();
         }
         public void LoadNowPlaying()
@@ -195,16 +196,20 @@ namespace Music
         {
             BunifuFlatButton btn = sender as BunifuFlatButton;
             btn.Normalcolor = Color.FromArgb(239, 108, 1);
-            if(panelLeft.Width == 55)
-            btn.Width = 40;
+            //if (panelLeft.Width == 55)
+            //    btn.Width = 40;
+            //else
+            //    btn.Width = 205;
             foreach (Control item in panel1.Controls)
             {
                 if (item.Name != btn.Name && item.BackColor != Color.Transparent)
                 {
                     BunifuFlatButton btn1 = item as BunifuFlatButton;
                     btn1.Normalcolor = Color.Transparent;
-                    if (panelLeft.Width == 55)
-                        item.Width = 205;
+                    //if (panelLeft.Width == 55)
+                    //    item.Width = 205;
+                    //else
+                    //    item.Width = 40;
                 }
             }
         }
@@ -378,19 +383,22 @@ namespace Music
 
         private void fMusic_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MediaPlayer.Instance.RemovePlaylist(playlistLocalFile);
+            //MediaPlayer.Instance.RemovePlaylist(playlistLocalFile);
+            MediaPlayer.Instance.DeletePlaylist();
         }
 
         private void btnForward_Click(object sender, EventArgs e)
         {
             MediaPlayer.Instance.Next();
             LoadCurrentMedia();
+            LoadLyrics();
         }
 
         private void btnBack_Click_1(object sender, EventArgs e)
         {
             MediaPlayer.Instance.Previous();
             LoadCurrentMedia();
+            LoadLyrics();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -406,8 +414,11 @@ namespace Music
         {
             //IWMPMedia media = MediaPlayer.Instance.GetCurrentMedia();
             //int result = (int)media.duration - (int)MediaPlayer.Instance.GetCurrentPosition();
-            if ((int)MediaPlayer.Instance.GetCurrentPosition()==0)
+            if ((int)MediaPlayer.Instance.GetCurrentPosition() == 0)
+            {
                 LoadCurrentMedia();
+                LoadLyrics();
+            }
         }
 
         private void sliderDuration_ValueChanged(object sender, EventArgs e)

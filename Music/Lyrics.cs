@@ -60,6 +60,7 @@ namespace Music
                 lblLyrics.Text = value;
             }
         }
+       
         public event EventHandler btnBack_click;
 
         private void btnBack_Click(object sender, EventArgs e)

@@ -32,19 +32,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Lyrics));
             this.panelLeft = new System.Windows.Forms.Panel();
             this.btnBack = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.pictureBoxSong = new System.Windows.Forms.PictureBox();
             this.lblSongName = new System.Windows.Forms.Label();
             this.lblArtistName = new System.Windows.Forms.Label();
+            this.pictureBoxSong = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelRight = new System.Windows.Forms.Panel();
             this.lblLyrics = new System.Windows.Forms.Label();
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bunifuElipse2 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSong)).BeginInit();
-            this.panelRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panelRight.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelLeft
@@ -57,7 +57,7 @@
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.Location = new System.Drawing.Point(0, 0);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(425, 474);
+            this.panelLeft.Size = new System.Drawing.Size(381, 474);
             this.panelLeft.TabIndex = 0;
             // 
             // btnBack
@@ -82,7 +82,7 @@
             this.btnBack.IconVisible = true;
             this.btnBack.IconZoom = 30D;
             this.btnBack.IsTab = false;
-            this.btnBack.Location = new System.Drawing.Point(4, 5);
+            this.btnBack.Location = new System.Drawing.Point(4, 3);
             this.btnBack.Name = "btnBack";
             this.btnBack.Normalcolor = System.Drawing.Color.Transparent;
             this.btnBack.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
@@ -95,16 +95,6 @@
             this.btnBack.TextFont = new System.Drawing.Font("Segoe UI", 9.75F);
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // pictureBoxSong
-            // 
-            this.pictureBoxSong.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSong.Image")));
-            this.pictureBoxSong.Location = new System.Drawing.Point(62, 118);
-            this.pictureBoxSong.Name = "pictureBoxSong";
-            this.pictureBoxSong.Size = new System.Drawing.Size(300, 300);
-            this.pictureBoxSong.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxSong.TabIndex = 43;
-            this.pictureBoxSong.TabStop = false;
-            // 
             // lblSongName
             // 
             this.lblSongName.AutoEllipsis = true;
@@ -113,7 +103,7 @@
             this.lblSongName.ForeColor = System.Drawing.Color.White;
             this.lblSongName.Location = new System.Drawing.Point(0, 45);
             this.lblSongName.Name = "lblSongName";
-            this.lblSongName.Size = new System.Drawing.Size(425, 19);
+            this.lblSongName.Size = new System.Drawing.Size(381, 19);
             this.lblSongName.TabIndex = 42;
             this.lblSongName.Text = "Attention";
             this.lblSongName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -124,32 +114,52 @@
             this.lblArtistName.BackColor = System.Drawing.Color.Transparent;
             this.lblArtistName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArtistName.ForeColor = System.Drawing.Color.White;
-            this.lblArtistName.Location = new System.Drawing.Point(27, 11);
+            this.lblArtistName.Location = new System.Drawing.Point(28, 11);
             this.lblArtistName.Name = "lblArtistName";
-            this.lblArtistName.Size = new System.Drawing.Size(373, 22);
+            this.lblArtistName.Size = new System.Drawing.Size(324, 22);
             this.lblArtistName.TabIndex = 41;
             this.lblArtistName.Text = "Charlie Puth";
             this.lblArtistName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // pictureBoxSong
+            // 
+            this.pictureBoxSong.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSong.Image")));
+            this.pictureBoxSong.Location = new System.Drawing.Point(41, 117);
+            this.pictureBoxSong.Name = "pictureBoxSong";
+            this.pictureBoxSong.Size = new System.Drawing.Size(300, 300);
+            this.pictureBoxSong.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxSong.TabIndex = 43;
+            this.pictureBoxSong.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(31, 107);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(320, 320);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 55;
+            this.pictureBox1.TabStop = false;
             // 
             // panelRight
             // 
             this.panelRight.AutoScroll = true;
             this.panelRight.Controls.Add(this.lblLyrics);
             this.panelRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRight.Location = new System.Drawing.Point(425, 0);
+            this.panelRight.Location = new System.Drawing.Point(381, 0);
             this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(425, 474);
+            this.panelRight.Size = new System.Drawing.Size(469, 474);
             this.panelRight.TabIndex = 1;
             // 
             // lblLyrics
             // 
-            this.lblLyrics.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblLyrics.AutoSize = true;
             this.lblLyrics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblLyrics.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLyrics.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLyrics.ForeColor = System.Drawing.Color.White;
-            this.lblLyrics.Location = new System.Drawing.Point(0, 0);
+            this.lblLyrics.Location = new System.Drawing.Point(2, 12);
             this.lblLyrics.Name = "lblLyrics";
-            this.lblLyrics.Size = new System.Drawing.Size(425, 474);
+            this.lblLyrics.Size = new System.Drawing.Size(47, 17);
             this.lblLyrics.TabIndex = 0;
             this.lblLyrics.Text = "ndc07";
             this.lblLyrics.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -163,16 +173,6 @@
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(52, 108);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(320, 320);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 55;
-            this.pictureBox1.TabStop = false;
             // 
             // bunifuElipse2
             // 
@@ -190,8 +190,9 @@
             this.Size = new System.Drawing.Size(850, 474);
             this.panelLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSong)).EndInit();
-            this.panelRight.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelRight.ResumeLayout(false);
+            this.panelRight.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -151,5 +151,19 @@ namespace Music
         {
             player.playlistCollection.remove(playlist);
         }
+        public void DeletePlaylist()
+        {
+            //IWMPPlaylistArray plCollection = player.playlistCollection.getByName("LocalFile");
+            //if (plCollection.count > 0)
+            //{
+            //    IWMPPlaylist pl = plCollection.Item(0);
+            //    player.playlistCollection.remove(pl);
+            //}
+            for (int i = 0; i < player.currentPlaylist.count; i++)
+            {
+                IWMPMedia med = player.currentPlaylist.get_Item(i);
+                player.currentPlaylist.removeItem(med);
+            }
+        }
     }
 }
