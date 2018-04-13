@@ -14,6 +14,7 @@ namespace Music
     {
         Image pause;
         Image play;
+        private string path;
         public Song()
         {
             InitializeComponent();
@@ -101,6 +102,9 @@ namespace Music
                 lblTotalTime.Tag = value;
             }
         }
+
+        public string Path { get => path; set => path = value; }
+
         private void btnPlay_Click_1(object sender, EventArgs e)
         {
             if(ButtonPlay_Click!=null)

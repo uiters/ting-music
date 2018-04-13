@@ -16,15 +16,18 @@ namespace Music
         static MediaPlayer instance;
         WindowsMediaPlayer player = new WindowsMediaPlayer();
 
-        internal static MediaPlayer Instance {
-            get { if (instance == null) instance = new MediaPlayer();return instance; }
-            private set => instance = value; }
+        public static MediaPlayer Instance
+        {
+            get { if (instance == null) instance = new MediaPlayer(); return instance; }
+            private set => instance = value;
+        }
 
         public string[] LoadLocalFile(IWMPPlaylist playlist)
         {
             //update thêm list path
-            string path = @"C:\Users\NguyễnDuyCương\Music";
+            string path = @"G:\the nho\Zing MP3";
             string[] listFile = Directory.GetFiles(path, "*.mp3");
+            
             foreach (var item in listFile)
             {
                 MediaFile file = new MediaFile(item);
@@ -35,6 +38,7 @@ namespace Music
         }
         public List<string> LoadCurrentPlaylist(IWMPPlaylist currentPlaylist)
         {
+            
             List<string> listFile = new List<string>();
             for (int i = 0; i < currentPlaylist.count; i++)
             {
@@ -146,9 +150,7 @@ namespace Music
         }
         public void Shuffle()
         {
-            if (player.settings.getMode("shuffle") == false)
-                player.settings.setMode("shuffle", true);
-            else player.settings.setMode("shuffle", false);
+            player.settings.setMode("shuffle", !player.settings.getMode("shuffle"));
         }
         public void Repeat()
         {
