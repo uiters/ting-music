@@ -21,7 +21,6 @@ namespace Music
             set
             {
                 panelSongs.Controls.Add(value);
-                value.Dock = DockStyle.Top;
             }
         }
         public List<Song> listSong
@@ -47,5 +46,17 @@ namespace Music
         {
             panelSongs.Controls.Clear();
         }
+        public List<Control> listControl
+        {
+            get
+            {
+                List<Control> listcontrol = new List<Control>();
+                foreach (Control item in panelSongs.Controls)
+                {
+                    listcontrol.Add(item);
+                }
+                return listcontrol;
+            }
+        }  
     }
 }

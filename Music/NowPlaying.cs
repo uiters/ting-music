@@ -21,7 +21,6 @@ namespace Music
             set
             {
                 panelSongs.Controls.Add(value);
-                //value.Dock = DockStyle.Top;
             }
         }
         public List<Song> listSong
@@ -59,11 +58,6 @@ namespace Music
                 return listcontrol;
             }
         }
-        public event EventHandler Panel_SizeChanged;
-
-        private void panelSongs_SizeChanged(object sender, EventArgs e)
-        {
-            if (Panel_SizeChanged != null) Panel_SizeChanged(this, e);
-        }
+       
     }
 }

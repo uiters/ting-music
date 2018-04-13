@@ -43,41 +43,6 @@ namespace Music
             }
             return listFile;
         }
-        public Image LoadImageSong(string filePath)
-        {
-            Image image;
-            TagLib.File file = TagLib.File.Create(filePath);
-            var mStream = new MemoryStream();
-            var firstPicture = file.Tag.Pictures.FirstOrDefault();
-            if (firstPicture != null && firstPicture.Data.Data.Length!=0)
-            {
-                byte[] pData = firstPicture.Data.Data;
-                mStream.Write(pData, 0, Convert.ToInt32(pData.Length));
-                var bm = new Bitmap(mStream,false);
-                mStream.Dispose();
-                image = bm;
-            }
-            else
-            {
-                image = new Bitmap(Application.StartupPath+ "\\icon_song.jpg");
-                //image = new Bitmap(@"C:\Users\NguyễnDuyCương\Desktop\icon_song.jpg");
-            }
-            return image;
-        }
-        public string LoadLyrics(string filePath)
-        {
-            TagLib.File file = TagLib.File.Create(filePath);
-            return file.Tag.Lyrics;
-        }
-        public List<string> LoadInfoSong(string filePath)
-        {
-            List<string> listInfo = new List<string>();
-            TagLib.File file = TagLib.File.Create(filePath);
-            listInfo.Add(file.Tag.Title);
-            listInfo.Add(file.Tag.FirstArtist);
-            listInfo.Add(file.Tag.FirstGenre);
-            return listInfo;
-        }
         public void CreatePlaylist(string name)
         {
             IWMPPlaylist playlist = player.playlistCollection.newPlaylist(name+"_TingMusic");

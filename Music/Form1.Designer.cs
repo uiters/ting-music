@@ -68,11 +68,13 @@
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.bunifuDragControl2 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel = new System.Windows.Forms.Panel();
-            this.nowPlaying = new Music.NowPlaying();
-            this.myMusic = new Music.MyMusic();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.timer4 = new System.Windows.Forms.Timer(this.components);
+            this.lyrics = new Music.Lyrics();
+            this.myMusic = new Music.MyMusic();
+            this.nowPlaying = new Music.NowPlaying();
             this.panelBottom.SuspendLayout();
             this.panelPlay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPlay)).BeginInit();
@@ -297,6 +299,7 @@
             this.btnLyric.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLyric.Textcolor = System.Drawing.Color.White;
             this.btnLyric.TextFont = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnLyric.Click += new System.EventHandler(this.btnLyric_Click);
             // 
             // btnVolume
             // 
@@ -930,31 +933,15 @@
             // 
             // panel
             // 
-            this.panel.Controls.Add(this.nowPlaying);
+            this.panel.Controls.Add(this.lyrics);
             this.panel.Controls.Add(this.myMusic);
+            this.panel.Controls.Add(this.nowPlaying);
             this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel.Location = new System.Drawing.Point(223, 54);
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(850, 474);
             this.panel.TabIndex = 29;
-            // 
-            // nowPlaying
-            // 
-            this.nowPlaying.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.nowPlaying.Location = new System.Drawing.Point(0, 0);
-            this.nowPlaying.Name = "nowPlaying";
-            this.nowPlaying.Size = new System.Drawing.Size(850, 474);
-            this.nowPlaying.TabIndex = 1;
-            this.nowPlaying.Panel_SizeChanged += new System.EventHandler(this.nowPlaying_Panel_SizeChanged);
-            // 
-            // myMusic
-            // 
-            this.myMusic.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.myMusic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.myMusic.Location = new System.Drawing.Point(0, 0);
-            this.myMusic.Name = "myMusic";
-            this.myMusic.Size = new System.Drawing.Size(850, 474);
-            this.myMusic.TabIndex = 0;
+            this.panel.SizeChanged += new System.EventHandler(this.panel_SizeChanged);
             // 
             // timer1
             // 
@@ -968,6 +955,42 @@
             // timer3
             // 
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
+            // 
+            // timer4
+            // 
+            this.timer4.Interval = 500;
+            this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
+            // 
+            // lyrics
+            // 
+            this.lyrics.ArtistName = "Charlie Puth";
+            this.lyrics.BackColor = System.Drawing.Color.DimGray;
+            this.lyrics.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lyrics.Location = new System.Drawing.Point(0, 0);
+            this.lyrics.LyricsText = "ndc07";
+            this.lyrics.Name = "lyrics";
+            this.lyrics.Size = new System.Drawing.Size(850, 474);
+            this.lyrics.SongImage = ((System.Drawing.Image)(resources.GetObject("lyrics.SongImage")));
+            this.lyrics.SongName = "Attention";
+            this.lyrics.TabIndex = 2;
+            this.lyrics.btnBack_click += new System.EventHandler(this.lyrics_btnBack_click);
+            // 
+            // myMusic
+            // 
+            this.myMusic.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.myMusic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.myMusic.Location = new System.Drawing.Point(0, 0);
+            this.myMusic.Name = "myMusic";
+            this.myMusic.Size = new System.Drawing.Size(850, 474);
+            this.myMusic.TabIndex = 0;
+            // 
+            // nowPlaying
+            // 
+            this.nowPlaying.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.nowPlaying.Location = new System.Drawing.Point(0, 0);
+            this.nowPlaying.Name = "nowPlaying";
+            this.nowPlaying.Size = new System.Drawing.Size(850, 474);
+            this.nowPlaying.TabIndex = 1;
             // 
             // fMusic
             // 
@@ -1043,6 +1066,8 @@
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Timer timer3;
         private NowPlaying nowPlaying;
+        private Lyrics lyrics;
+        private System.Windows.Forms.Timer timer4;
     }
 }
 
