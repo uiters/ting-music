@@ -34,11 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panelSongs = new System.Windows.Forms.FlowLayoutPanel();
             this.btnNewPlaylist = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.myplaylist1 = new Music.Myplaylist();
-            this.myplaylist2 = new Music.Myplaylist();
-            this.myplaylist3 = new Music.Myplaylist();
             this.panel1.SuspendLayout();
-            this.panelSongs.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -80,9 +76,7 @@
             // 
             // panelSongs
             // 
-            this.panelSongs.Controls.Add(this.myplaylist1);
-            this.panelSongs.Controls.Add(this.myplaylist2);
-            this.panelSongs.Controls.Add(this.myplaylist3);
+            this.panelSongs.AutoScroll = true;
             this.panelSongs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSongs.Location = new System.Drawing.Point(0, 42);
             this.panelSongs.Name = "panelSongs";
@@ -124,36 +118,6 @@
             this.btnNewPlaylist.TextFont = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewPlaylist.Click += new System.EventHandler(this.btnNewPlaylist_Click);
             // 
-            // myplaylist1
-            // 
-            this.myplaylist1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.myplaylist1.Location = new System.Drawing.Point(3, 3);
-            this.myplaylist1.Name = "myplaylist1";
-            this.myplaylist1.PlaylistImage = ((System.Drawing.Image)(resources.GetObject("myplaylist1.PlaylistImage")));
-            this.myplaylist1.PlaylistName = "Attention\r\n";
-            this.myplaylist1.Size = new System.Drawing.Size(220, 209);
-            this.myplaylist1.TabIndex = 0;
-            // 
-            // myplaylist2
-            // 
-            this.myplaylist2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.myplaylist2.Location = new System.Drawing.Point(229, 3);
-            this.myplaylist2.Name = "myplaylist2";
-            this.myplaylist2.PlaylistImage = ((System.Drawing.Image)(resources.GetObject("myplaylist2.PlaylistImage")));
-            this.myplaylist2.PlaylistName = "ndc07";
-            this.myplaylist2.Size = new System.Drawing.Size(220, 209);
-            this.myplaylist2.TabIndex = 1;
-            // 
-            // myplaylist3
-            // 
-            this.myplaylist3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.myplaylist3.Location = new System.Drawing.Point(455, 3);
-            this.myplaylist3.Name = "myplaylist3";
-            this.myplaylist3.PlaylistImage = ((System.Drawing.Image)(resources.GetObject("myplaylist3.PlaylistImage")));
-            this.myplaylist3.PlaylistName = "ndc07";
-            this.myplaylist3.Size = new System.Drawing.Size(220, 209);
-            this.myplaylist3.TabIndex = 2;
-            // 
             // Playlist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -164,7 +128,6 @@
             this.Size = new System.Drawing.Size(850, 474);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panelSongs.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -176,8 +139,5 @@
         private System.Windows.Forms.ComboBox comboBoxSortBySongs;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FlowLayoutPanel panelSongs;
-        private Myplaylist myplaylist1;
-        private Myplaylist myplaylist2;
-        private Myplaylist myplaylist3;
     }
 }

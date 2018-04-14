@@ -152,6 +152,22 @@ namespace Music
         {
             player.playlistCollection.remove(playlist);
         }
+        public List<string> LoadListPlaylist()
+        {
+            //Demo thooi
+            List<string> listMedia = new List<string>();
+            IWMPPlaylistArray playlistArray = player.playlistCollection.getAll();
+            for (int i = 0; i < playlistArray.count; i++)
+            {
+                if (playlistArray.Item(i).name.Contains("_TingMusic"))
+                {
+                    string media = playlistArray.Item(i).name.Split('_')[0];
+                    listMedia.Add(media);
+                }
+                
+            }
+            return listMedia;
+        }
         public void DeletePlaylist()
         {
             //IWMPPlaylistArray plCollection = player.playlistCollection.getByName("LocalFile");

@@ -186,6 +186,16 @@ namespace Music
             }
             LoadCurrentMedia();
         }
+        public void LoadListPlaylist()
+        {
+            List<string> listPlaylist = MediaPlayer.Instance.LoadListPlaylist();
+            foreach (var item in listPlaylist)
+            {
+                Myplaylist myplaylist = new Myplaylist();
+                myplaylist.PlaylistName = item;
+                playlist.myplaylist = myplaylist;
+            }
+        }
         public string ConvertToMinute(double Second)
         {
             int minute = (int)Second / 60;
@@ -266,6 +276,8 @@ namespace Music
         private void btnPlayList_Click_1(object sender, EventArgs e)
         {
             labelTitle.Text = "Playlist";
+            LoadListPlaylist();
+
             playlist.BringToFront();
             ChangeNormalColorOnPanel1(sender);
         }
@@ -490,6 +502,7 @@ namespace Music
             fNewPlaylist fNewPlaylist = new fNewPlaylist();
             fNewPlaylist.ShowDialog();
             MediaPlayer.Instance.CreatePlaylist(fNewPlaylist.playlistName);
+            LoadListPlaylist();
         }
     }
 }

@@ -28,10 +28,10 @@ namespace Music
         {
             if(txbNewPlaylist.Text!=string.Empty)
             playlistName = txbNewPlaylist.Text;
-            else
-            {
+            //else
+            //{
 
-            }
+            //}
 
             this.Close();
         }
