@@ -13,12 +13,12 @@ namespace Music
     
     class MediaPlayer
     {
-        static MediaPlayer instance;
+        static MediaPlayer instance = new MediaPlayer();
         WindowsMediaPlayer player = new WindowsMediaPlayer();
 
-        public static MediaPlayer Instance
+        public static MediaPlayer Instance 
         {
-            get { if (instance == null) instance = new MediaPlayer(); return instance; }
+            get { return instance; }
             private set => instance = value;
         }
 
@@ -37,7 +37,7 @@ namespace Music
             return listFile;
         }
         public List<string> LoadCurrentPlaylist(IWMPPlaylist currentPlaylist)
-        { 
+        {
             List<string> listFile = new List<string>();
             for (int i = 0; i < currentPlaylist.count; i++)
             {
@@ -46,9 +46,10 @@ namespace Music
             }
             return listFile;
         }
-        public void CreatePlaylist(string name)
+        public IWMPPlaylist CreatePlaylist(string name)
         {
             IWMPPlaylist playlist = player.playlistCollection.newPlaylist(name+"_TingMusic");
+            return playlist;
         }
         public IWMPPlaylist CreatePlaylistForLocalFile()
         {
@@ -145,7 +146,7 @@ namespace Music
         }
         public void PlayMediaFromPlaylist(IWMPPlaylist playlist, int index)
         {
-            IWMPMedia med = player.currentPlaylist.get_Item(index);
+            IWMPMedia med = playlist.Item[index];
             player.controls.playItem(med);
         }
         public void RemovePlaylist(IWMPPlaylist playlist)
