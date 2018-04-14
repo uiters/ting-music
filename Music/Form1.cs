@@ -75,7 +75,7 @@ namespace Music
                 Song song = new Song();
                 song.index = i;
                 song.ButtonPlay_Click += Song_ButtonPlay_Click;
-
+                song.Path = file.FilePath;
                 song.ImageSong= SongInfo.Instance.LoadImageSong(file.FilePath);
 
                 if (i % 2 == 0)
@@ -168,6 +168,7 @@ namespace Music
                           //playlistLocalFile.appendItem(media);
                           Song song = new Song();
                           song.index = i;
+                          song.Path = file.FilePath;
                           song.ButtonPlay_Click += Song_ButtonPlay_Click;
                           song.ImageSong = SongInfo.Instance.LoadImageSong(file.FilePath);
                           if (i % 2 == 0)
@@ -264,6 +265,8 @@ namespace Music
 
         private void btnPlayList_Click_1(object sender, EventArgs e)
         {
+            labelTitle.Text = "Playlist";
+            playlist.BringToFront();
             ChangeNormalColorOnPanel1(sender);
         }
 
@@ -412,9 +415,7 @@ namespace Music
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            //IWMPMedia media = MediaPlayer.Instance.GetCurrentMedia();
-            //int result = (int)media.duration - (int)MediaPlayer.Instance.GetCurrentPosition();
-            if ((int)MediaPlayer.Instance.GetCurrentPosition() == 0)
+            if ((int)MediaPlayer.Instance.GetCurrentPosition() == 0 && MediaPlayer.Instance.GetPlayState() == "wmppsPlaying")
             {
                 LoadCurrentMedia();
                 LoadLyrics();
@@ -482,6 +483,13 @@ namespace Music
         private void timer4_Tick(object sender, EventArgs e)
         {
             lyrics.SongImage = rotateImage(new Bitmap(lyrics.SongImage),1);
+        }
+
+        private void playlist_NewPlaylist_Click(object sender, EventArgs e)
+        {
+            fNewPlaylist fNewPlaylist = new fNewPlaylist();
+            fNewPlaylist.ShowDialog();
+            MediaPlayer.Instance.CreatePlaylist(fNewPlaylist.playlistName);
         }
     }
 }

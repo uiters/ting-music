@@ -79,6 +79,12 @@
     <Compile Include="Artist.Designer.cs">
       <DependentUpon>Artist.cs</DependentUpon>
     </Compile>
+    <Compile Include="fNewPlaylist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fNewPlaylist.Designer.cs">
+      <DependentUpon>fNewPlaylist.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,11 +105,23 @@
     <Compile Include="MyMusic.Designer.cs">
       <DependentUpon>MyMusic.cs</DependentUpon>
     </Compile>
+    <Compile Include="Myplaylist.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Myplaylist.Designer.cs">
+      <DependentUpon>Myplaylist.cs</DependentUpon>
+    </Compile>
     <Compile Include="NowPlaying.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="NowPlaying.Designer.cs">
       <DependentUpon>NowPlaying.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Playlist.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Playlist.Designer.cs">
+      <DependentUpon>Playlist.cs</DependentUpon>
     </Compile>
     <Compile Include="Song.cs">
       <SubType>UserControl</SubType>
@@ -121,6 +139,9 @@
     <EmbeddedResource Include="Artist.resx">
       <DependentUpon>Artist.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="fNewPlaylist.resx">
+      <DependentUpon>fNewPlaylist.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,8 +151,14 @@
     <EmbeddedResource Include="MyMusic.resx">
       <DependentUpon>MyMusic.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Myplaylist.resx">
+      <DependentUpon>Myplaylist.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NowPlaying.resx">
       <DependentUpon>NowPlaying.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Playlist.resx">
+      <DependentUpon>Playlist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Song.resx">
       <DependentUpon>Song.cs</DependentUpon>
@@ -186,6 +213,12 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\myPlaylist.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\myMusic.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

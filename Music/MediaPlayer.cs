@@ -25,7 +25,7 @@ namespace Music
         public string[] LoadLocalFile(IWMPPlaylist playlist)
         {
             //update thêm list path
-            string path = @"G:\the nho\Zing MP3";
+            string path = @"C:\Users\NguyễnDuyCương\Music";
             string[] listFile = Directory.GetFiles(path, "*.mp3");
             
             foreach (var item in listFile)
@@ -37,8 +37,7 @@ namespace Music
             return listFile;
         }
         public List<string> LoadCurrentPlaylist(IWMPPlaylist currentPlaylist)
-        {
-            
+        { 
             List<string> listFile = new List<string>();
             for (int i = 0; i < currentPlaylist.count; i++)
             {
