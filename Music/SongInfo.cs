@@ -63,7 +63,7 @@ namespace Music
             }
             else
             {
-                image = new Bitmap(System.Windows.Forms.Application.StartupPath + "\\icon_song.jpg");
+                image = new Bitmap(Music.Properties.Resources.myMusic);
             }
             return image;
         }

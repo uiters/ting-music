@@ -25,7 +25,7 @@ namespace Music
         public string[] LoadLocalFile(IWMPPlaylist playlist)
         {
             //update thêm list path
-            string path = @"G:\the nho\Zing MP3";
+            string path = @"C:\Users\NguyễnDuyCương\Music";
             string[] listFile = Directory.GetFiles(path, "*.mp3");
             
             foreach (var item in listFile)
@@ -152,6 +152,22 @@ namespace Music
         public void RemovePlaylist(IWMPPlaylist playlist)
         {
             player.playlistCollection.remove(playlist);
+        }
+        public List<string> LoadListPlaylist()
+        {
+            //Demo thooi
+            List<string> listMedia = new List<string>();
+            IWMPPlaylistArray playlistArray = player.playlistCollection.getAll();
+            for (int i = 0; i < playlistArray.count; i++)
+            {
+                if (playlistArray.Item(i).name.Contains("_TingMusic"))
+                {
+                    string media = playlistArray.Item(i).name.Split('_')[0];
+                    listMedia.Add(media);
+                }
+                
+            }
+            return listMedia;
         }
         public void DeletePlaylist()
         {

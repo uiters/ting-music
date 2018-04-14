@@ -76,6 +76,7 @@ namespace Music
                 song.index = i++;
                 song.Path = file.FilePath;
                 song.ButtonPlay_Click += Song_ButtonPlay_Click;
+
                 song.ImageSong = SongInfo.Instance.LoadImageSong(file.FilePath);
                 song.SongName = SongInfo.Instance.Song(file.FilePath);
                 song.ArtistName = SongInfo.Instance.Artist(file.FilePath);
@@ -158,6 +159,7 @@ namespace Music
             int i = 0;
             foreach (var item in listFile)
             {
+
                 MediaFile file = new MediaFile(item);
                 IWMPMedia media = MediaPlayer.Instance.CreateMedia(file.FilePath);
 
@@ -180,6 +182,16 @@ namespace Music
             }
             LoadCurrentMedia();
             GC.Collect();
+        }
+        public void LoadListPlaylist()
+        {
+            List<string> listPlaylist = MediaPlayer.Instance.LoadListPlaylist();
+            foreach (var item in listPlaylist)
+            {
+                Myplaylist myplaylist = new Myplaylist();
+                myplaylist.PlaylistName = item;
+                playlist.myplaylist = myplaylist;
+            }
         }
         public string ConvertToMinute(double Second)
         {
@@ -259,6 +271,10 @@ namespace Music
 
         private void btnPlayList_Click_1(object sender, EventArgs e)
         {
+            labelTitle.Text = "Playlist";
+            LoadListPlaylist();
+
+            playlist.BringToFront();
             ChangeNormalColorOnPanel1(sender);
         }
 
@@ -407,9 +423,7 @@ namespace Music
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            //IWMPMedia media = MediaPlayer.Instance.GetCurrentMedia();
-            //int result = (int)media.duration - (int)MediaPlayer.Instance.GetCurrentPosition();
-            if ((int)MediaPlayer.Instance.GetCurrentPosition() == 0)
+            if ((int)MediaPlayer.Instance.GetCurrentPosition() == 0 && MediaPlayer.Instance.GetPlayState() == "wmppsPlaying")
             {
                 LoadCurrentMedia();
                 LoadLyrics();
@@ -477,6 +491,14 @@ namespace Music
         private void timer4_Tick(object sender, EventArgs e)
         {
             lyrics.SongImage = rotateImage(new Bitmap(lyrics.SongImage), 1);
+        }
+
+        private void playlist_NewPlaylist_Click(object sender, EventArgs e)
+        {
+            fNewPlaylist fNewPlaylist = new fNewPlaylist();
+            fNewPlaylist.ShowDialog();
+            MediaPlayer.Instance.CreatePlaylist(fNewPlaylist.playlistName);
+            LoadListPlaylist();
         }
     }
 }

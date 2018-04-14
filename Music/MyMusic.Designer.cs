@@ -105,7 +105,6 @@
             this.panelSongs.Name = "panelSongs";
             this.panelSongs.Size = new System.Drawing.Size(842, 390);
             this.panelSongs.TabIndex = 6;
-
             // 
             // panel1
             // 
@@ -138,7 +137,7 @@
             this.btnShuffleAllSongs.IconMarginRight = 0;
             this.btnShuffleAllSongs.IconRightVisible = false;
             this.btnShuffleAllSongs.IconRightZoom = 0D;
-            this.btnShuffleAllSongs.IconVisible = false;
+            this.btnShuffleAllSongs.IconVisible = true;
             this.btnShuffleAllSongs.IconZoom = 30D;
             this.btnShuffleAllSongs.IsTab = false;
             this.btnShuffleAllSongs.Location = new System.Drawing.Point(10, 7);

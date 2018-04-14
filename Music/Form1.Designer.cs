@@ -72,6 +72,7 @@
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.timer4 = new System.Windows.Forms.Timer(this.components);
+            this.playlist = new Music.Playlist();
             this.lyrics = new Music.Lyrics();
             this.myMusic = new Music.MyMusic();
             this.nowPlaying = new Music.NowPlaying();
@@ -933,6 +934,7 @@
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.playlist);
             this.panel.Controls.Add(this.lyrics);
             this.panel.Controls.Add(this.myMusic);
             this.panel.Controls.Add(this.nowPlaying);
@@ -960,6 +962,15 @@
             // 
             this.timer4.Interval = 500;
             this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
+            // 
+            // playlist
+            // 
+            this.playlist.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.playlist.Location = new System.Drawing.Point(0, 0);
+            this.playlist.Name = "playlist";
+            this.playlist.Size = new System.Drawing.Size(850, 474);
+            this.playlist.TabIndex = 3;
+            this.playlist.NewPlaylist_Click += new System.EventHandler(this.playlist_NewPlaylist_Click);
             // 
             // lyrics
             // 
@@ -1068,6 +1079,7 @@
         private NowPlaying nowPlaying;
         private Lyrics lyrics;
         private System.Windows.Forms.Timer timer4;
+        private Playlist playlist;
     }
 }
 
