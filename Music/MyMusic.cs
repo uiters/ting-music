@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Music.UISort;
 using System.Threading;
+using WMPLib;
 
 namespace Music
 {
     public partial class MyMusic : UserControl
     {
+        private Thread thread;
         public MyMusic()
         {
             InitializeComponent();
@@ -43,7 +45,7 @@ namespace Music
             }
         }
 
-        private Thread thread;
+
 
         public void Clear()
         {
@@ -54,13 +56,12 @@ namespace Music
             get
             {
                 List<Control> listcontrol = new List<Control>();
-                foreach (Control item in panelSongs.Controls)
-                {
-                    listcontrol.Add(item);
-                }
+                listcontrol.AddRange(panelSongs.Controls.Cast<Control>());
                 return listcontrol;
             }
-        }  
+        }
+
+
         private void comboBoxSortBySongs_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (comboBoxSortBySongs.SelectedIndex)
@@ -152,19 +153,18 @@ namespace Music
 
         void UpdatePlayList()
         {
-            //thread.Suspend();
             thread = new Thread(UpdateList);
             thread.IsBackground = true;
             thread.Start();
         }
         public void UpdateList()
         {
-            fMusic.PlaylistCurrent.clear();
+            fMusic.PlaylistLocalFile.clear();
             foreach (var item in listSong)
             {
                 fMusic.PlaylistLocalFile.appendItem(MediaPlayer.Instance.CreateMedia(item.Path));
             }
-
+            fMusic.PlaylistCurrent = fMusic.PlaylistLocalFile;
         }
     }
 }

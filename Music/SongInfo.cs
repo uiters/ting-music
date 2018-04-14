@@ -12,9 +12,9 @@ namespace Music
 {
     public class SongInfo
     {
-        private static SongInfo instance;
+        private static SongInfo instance = new SongInfo();
 
-        public static SongInfo Instance { get { if (instance == null) instance = new SongInfo();return instance; }
+        public static SongInfo Instance { get => instance; 
             private set => instance = value; }
 
         public string Title(string filePath)
@@ -25,7 +25,7 @@ namespace Music
         public string Artist(string filePath)
         {
             TagLib.File file = TagLib.File.Create(filePath);
-            return file.Tag.FirstArtist;
+            return file.Tag.FirstPerformer;
         }
         public string Song(string filePath)
         {
