@@ -1,8 +1,8 @@
 # Ting Music
-About softwave:
-+ The software play music with file mp3, flac, wav.
-+ Automatic find out lyric and show while you play music.
-+ You have create playlist and add favour music
+About software:
++ The software can play music with  mp3, flac, wav files.
++ Automatically find the lyrics and dislay it on the screen when you are listening to music.
++ You have create playlists and add to your favourite songs.
 # Project Deverlop by
 - Vi Chí Thiện - 16521169
 - Nguyễn Duy Cương - 16520147
