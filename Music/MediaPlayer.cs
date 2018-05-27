@@ -22,18 +22,17 @@ namespace Music
             private set => instance = value;
         }
 
-        public string[] LoadLocalFile(IWMPPlaylist playlist)
+        public string[] LoadLocalFile()//IWMPPlaylist playlist)
         {
             //update thêm list path
-            string path = @"C:\Users\NguyễnDuyCương\Music";
+            string path = @"G:\the nho\Zing MP3";
             string[] listFile = Directory.GetFiles(path, "*.mp3");
-            
-            foreach (var item in listFile)
-            {
-                MediaFile file = new MediaFile(item);
-                IWMPMedia media= player.newMedia(file.FilePath);
-                playlist.appendItem(media);
-            }
+            //foreach (var item in listFile)
+            //{
+            //    MediaFile file = new MediaFile(item);
+            //    IWMPMedia media = player.newMedia(item);
+            //    playlist.appendItem(media);
+            //}
             return listFile;
         }
         public List<string> LoadCurrentPlaylist(IWMPPlaylist currentPlaylist)
@@ -136,6 +135,7 @@ namespace Music
         {
             player.settings.mute = false;
         }
+
         public void SetVolumn(int volumn)
         {
             player.settings.volume = volumn;
@@ -144,10 +144,17 @@ namespace Music
         {
             return player.settings.volume;
         }
-        public void PlayMediaFromPlaylist(IWMPPlaylist playlist, int index)
+        public void PlayMediaFormPlayList(int index)
         {
-            IWMPMedia med = playlist.Item[index];
+            IWMPMedia med = player.currentPlaylist.get_Item(index);
             player.controls.playItem(med);
+        }
+        public void PlayMediaFormPlayList(IWMPPlaylist playlist, int index)
+        {
+
+            IWMPMedia med = playlist.Item[index];
+            Program.fMusicCurent.sliderDuration.MaximumValue = (int)med.duration + 1;
+            player.URL = med.sourceURL;
         }
         public void RemovePlaylist(IWMPPlaylist playlist)
         {

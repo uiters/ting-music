@@ -15,6 +15,8 @@ namespace Music
         public static ISortSongAlbum iCompareAlbum = new ISortSongAlbum();
         public static string pathSongPlay;
         public static int index = 0;
+        public static ISortRanDom iRanDom = new ISortRanDom();
+        private static Random random = new Random();
         #region Sort Songs
         public class ISortSongFromAToZ : IComparer<Song>
         {
@@ -43,6 +45,21 @@ namespace Music
             {
                 //return a.AlbumName.CompareTo(b.AlbumName);
                 return 0;
+            }
+        }
+        public class ISortRanDom : IComparer<int>
+        {
+            public int Compare(int a, int b)
+            { 
+
+                int x = random.Next(0, 102);
+                if (x % 5 == 0)
+                    return 1;
+                else
+                    if(x % 3 == 1)
+                    return 0;
+                else
+                    return -1;
             }
         }
         #endregion
@@ -76,5 +93,6 @@ namespace Music
             else
                 song.BackColor = Color.Gainsboro;
         }
+
     }
 }

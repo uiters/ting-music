@@ -19,8 +19,9 @@ namespace Music
         public MyMusic()
         {
             InitializeComponent();
-            this.DoubleBuffered = true;
+            //this.DoubleBuffered = true;
         }
+
         public Song song
         {
             set
@@ -44,7 +45,10 @@ namespace Music
                 panelSongs.ScrollControlIntoView(value);
             }
         }
-
+        public List<Song> SetTag
+        {
+            set => comboBoxGenreSongs.Tag = value;
+        }
 
 
         public void Clear()
@@ -61,26 +65,87 @@ namespace Music
             }
         }
 
-
-        private void comboBoxSortBySongs_SelectedIndexChanged(object sender, EventArgs e)
+        private void SetIndexSongs(List<Song> songs)
         {
-            switch (comboBoxSortBySongs.SelectedIndex)
-            {
-                case 0:
-                    SortFromAToZ();
-                    break;
-                case 1:
-                    SortFromZToA();
-                    break;
-                case 3:
-                    SortArtist();
-                    break;
-                default:
-                    break;
-            }
+            UISort.index = 0;
+            panelSongs.Controls.Clear();
+            songs.ForEach(SetNumberSong);
+            panelSongs.Controls.AddRange(songs.ToArray());
+            UpdatePlayList();   // update playlist      
+            GC.Collect();
         }
-        private void comboBoxGenreSongs_SelectedValueChanged(object sender, EventArgs e)
+
+        #region Sort Song
+        public void SortFromAToZ(List<Song> songs)
         {
+            songs.Sort(iCompareAToZ);
+            SetIndexSongs(songs);
+        }
+        public void SortFromZToA(List<Song> songs)
+        {
+            songs.Sort(iCompareZToA);
+            SetIndexSongs(songs);
+        }
+        public void SortArtist(List<Song> songs)
+        {
+            songs.Sort(iCompareArtist);
+            SetIndexSongs(songs);
+        }
+        public void NoneSort(List<Song> songs)
+        {
+            this.Clear();
+            UpdatePlayList();
+            panelSongs.Controls.AddRange(songs.ToArray());
+        }
+        #endregion
+
+        #region Genre Song
+        public void GenrePop()
+        {
+            List<Song> list = this.Tag as List<Song>;
+            List<Song> songs = list.FindAll(Pop);
+            comboBoxGenreSongs.Tag = songs;
+        }
+        public void GenreRock()
+        {
+            List<Song> list = this.Tag as List<Song>;
+            List<Song> songs = list.FindAll(Rock);
+            comboBoxGenreSongs.Tag = songs;
+        }
+        public void GenreOther()
+        {
+            List<Song> list = this.Tag as List<Song>;
+            List<Song> songs = list.FindAll(Other);
+            comboBoxGenreSongs.Tag = songs;
+        }
+        public void GenreAll()
+        {
+            List<Song> songs = this.Tag as List<Song>;
+            SetIndexSongs(songs);
+            comboBoxGenreSongs.Tag = songs;
+        }
+        #endregion
+
+        void UpdatePlayList()
+        {
+            thread = new Thread(UpdateList);
+            thread.IsBackground = true;
+            thread.Start();
+        }
+        private void UpdateList()
+        {
+            Program.fMusicCurent.PlaylistCurrent.clear();
+            foreach (var item in listSong)
+            {
+                Program.fMusicCurent.PlaylistCurrent.appendItem(MediaPlayer.Instance.CreateMedia(item.Path));
+            }
+            Program.fMusicCurent.UpdateCountSongs();
+        }
+
+        private void comboBoxGenreSongs_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (comboBoxGenreSongs.SelectedItem.ToString() == comboBoxGenreSongs.Text)
+                return;
             switch (comboBoxGenreSongs.SelectedIndex)
             {
                 case 1:
@@ -92,79 +157,50 @@ namespace Music
                 case 3:
                     GenreOther();
                     break;
-
                 default:
                     GenreAll();
                     break;
             }
-        }
-        private void SetIndexSongs(List<Song> songs)
-        {
-            index = 0;
-            panelSongs.Controls.Clear();
-            songs.ForEach(SetNumberSong);
-            panelSongs.Controls.AddRange(songs.ToArray());
-            UpdatePlayList();
-            GC.Collect();
-        }
-
-        #region Sort Song
-        public void SortFromAToZ()
-        {
-            List<Song> songs = listSong;
-            songs.Sort(iCompareAToZ);
-            SetIndexSongs(songs);
-        }
-        public void SortFromZToA()
-        {
-            List<Song> songs = listSong;
-            songs.Sort(iCompareZToA);
-            SetIndexSongs(songs);
-        }
-        public void SortArtist()
-        {
-            List<Song> songs = listSong;
-            songs.Sort(iCompareArtist);
-            SetIndexSongs(songs);
-        }
-        #endregion
-
-        #region Genre Song
-        public void GenrePop()
-        {
-            List<Song> songs = listSong.FindAll(Pop);
-            SetIndexSongs(songs);
-        }
-        public void GenreRock()
-        {
-            List<Song> songs = listSong.FindAll(Rock);
-            SetIndexSongs(songs);
-        }
-        public void GenreOther()
-        {
-            List<Song> songs = listSong.FindAll(Other);
-            SetIndexSongs(songs);
-        }
-        public void GenreAll()
-        {
-
-        }
-        #endregion
-
-        void UpdatePlayList()
-        {
-            thread = new Thread(UpdateList);
-            thread.IsBackground = true;
-            thread.Start();
-        }
-        public void UpdateList()
-        {
-            fMusic.PlaylistLocalFile.clear();
-            foreach (var item in listSong)
+            List<Song> songs = comboBoxGenreSongs.Tag as List<Song>;
+            switch (comboBoxSortBySongs.SelectedIndex)
             {
-                fMusic.PlaylistLocalFile.appendItem(MediaPlayer.Instance.CreateMedia(item.Path));
+                case 0:
+                    NoneSort(songs);
+                    break;
+                case 1:
+                    SortFromAToZ(songs);
+                    break;
+                case 2:
+                    SortFromZToA(songs);
+                    break;
+                case 3:
+                    SortArtist(songs);
+                    break;
+                default:
+                    break;
             }
-            fMusic.PlaylistCurrent = fMusic.PlaylistLocalFile;
+        }
+        private void comboBoxSortBySongs_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (comboBoxSortBySongs.SelectedItem.ToString() == comboBoxSortBySongs.Text)
+                return;
+            switch (comboBoxSortBySongs.SelectedIndex)
+            {
+                case 0:
+                    NoneSort(comboBoxGenreSongs.Tag as List<Song>);
+                    break;
+                case 1:
+                    SortFromAToZ(listSong);
+                    break;
+                case 2:
+                    SortFromZToA(listSong);
+                    break;
+                case 3:
+                    SortArtist(listSong);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

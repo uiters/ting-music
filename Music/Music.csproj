@@ -83,6 +83,9 @@
     <Compile Include="Artist.Designer.cs">
       <DependentUpon>Artist.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlaySong.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="fNewPlaylist.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -229,12 +232,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\myArtists.jpg" />
-
-    <ProjectReference Include="..\Lyric\Lyric.csproj">
-      <Project>{ace50da6-4a2a-4213-8f0b-cc63232f19a4}</Project>
-      <Name>Lyric</Name>
-    </ProjectReference>
-
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

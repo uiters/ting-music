@@ -68,14 +68,14 @@
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.bunifuDragControl2 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel = new System.Windows.Forms.Panel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.timer4 = new System.Windows.Forms.Timer(this.components);
             this.playlist = new Music.Playlist();
             this.lyrics = new Music.Lyrics();
             this.myMusic = new Music.MyMusic();
             this.nowPlaying = new Music.NowPlaying();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.timer4 = new System.Windows.Forms.Timer(this.components);
             this.panelBottom.SuspendLayout();
             this.panelPlay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPlay)).BeginInit();
@@ -945,24 +945,6 @@
             this.panel.TabIndex = 29;
             this.panel.SizeChanged += new System.EventHandler(this.panel_SizeChanged);
             // 
-            // timer1
-            // 
-            this.timer1.Interval = 10;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // timer2
-            // 
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
-            // timer3
-            // 
-            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
-            // 
-            // timer4
-            // 
-            this.timer4.Interval = 500;
-            this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
-            // 
             // playlist
             // 
             this.playlist.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1002,6 +984,24 @@
             this.nowPlaying.Name = "nowPlaying";
             this.nowPlaying.Size = new System.Drawing.Size(850, 474);
             this.nowPlaying.TabIndex = 1;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 10;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timer2
+            // 
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
+            // timer3
+            // 
+            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
+            // 
+            // timer4
+            // 
+            this.timer4.Interval = 500;
+            this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
             // 
             // fMusic
             // 
@@ -1058,7 +1058,6 @@
         private System.Windows.Forms.Label lblSongName;
         private System.Windows.Forms.Label lblArtistName;
         private System.Windows.Forms.Label labelTimeFrom;
-        private Bunifu.Framework.UI.BunifuSlider sliderDuration;
         private System.Windows.Forms.PictureBox pictureBoxSong;
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl2;
@@ -1080,6 +1079,7 @@
         private Lyrics lyrics;
         private System.Windows.Forms.Timer timer4;
         private Playlist playlist;
+        public Bunifu.Framework.UI.BunifuSlider sliderDuration;
     }
 }
 

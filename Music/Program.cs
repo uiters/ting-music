@@ -8,15 +8,17 @@ namespace Music
 {
     static class Program
     {
+        public static fMusic fMusicCurent;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
-        {
+        {          
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new fMusic());
+            fMusicCurent = new fMusic();
+            Application.Run(fMusicCurent);
         }
     }
 }

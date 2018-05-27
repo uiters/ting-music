@@ -21,6 +21,7 @@ namespace Music
             pause = Music.Properties.Resources.pause;
             play = Music.Properties.Resources.play;
             btnPlay.Image = play;
+            this.DoubleBuffered = true;
         }
         public event EventHandler ButtonPlay_Click;
         public event EventHandler ButtonOption_Click;
