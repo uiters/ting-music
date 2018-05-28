@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using WMPLib;
 
 namespace Music
@@ -11,10 +10,20 @@ namespace Music
         private Action previousSong;
         private Action shuffle;
         private Action<int> playSong;
-        private int indexPlay = 0;
-        private int countSongs = 0;
-        private List<int> listIndex;
 
+        private int countSongs = 0;
+        private List<int> listIndex = new List<int>();
+        private int iOfListIndex;
+
+        private void Shuff()
+        {
+            iOfListIndex = 0;
+            listIndex.Clear();
+            for (int i = 0; i < songsCurrent.Count; i++)
+                listIndex.Add(i);
+            listIndex.Sort(UISort.iRanDom.Compare);
+            GC.Collect();
+        }
         private int CountSongs
         {
             get => countSongs;
@@ -31,11 +40,10 @@ namespace Music
         }
         public void UpdateCountSongs()
         {
-            CountSongs = playlistCurrent.count;
+            CountSongs = songsCurrent.Count;
         }
         private void InitializePlaySong()
         {
-            listIndex = new List<int>();
             nextSong = NextSong;
             previousSong = PreviousSong;
             shuffle = ShuffleOff;
@@ -43,39 +51,69 @@ namespace Music
         }
         private void NextSong()
         {
-            indexPlay = indexPlay < CountSongs - 1 ? indexPlay + 1 : 0; // if(indexPlay >= countSongs) indexplay = 0; else indexplay ++;
-            if (MediaPlayer.Instance.GetPlayState() != "wmppsPlaying")
-                PlayOrStopSong(playlistCurrent, indexPlay, false);
-            else
-                PlayOrStopSong(playlistCurrent, indexPlay, true);
-
+            //indexPlay = indexPlay < CountSongs - 1 ? indexPlay + 1 : 0; // if(indexPlay >= countSongs) indexplay = 0; else indexplay ++;
+            //if (MediaPlayer.Instance.GetPlayState() != "wmppsPlaying")
+            //    PlayOrStopSong(playlistCurrent, indexPlay, false);
+            //else
+            //    PlayOrStopSong(playlistCurrent, indexPlay, true);
+            switch (btnShuffle.Tag as string)
+            {
+                case "On":
+                    if(iOfListIndex + 1 >= listIndex.Count)
+                    {
+                        indexNow = listIndex[0];
+                        iOfListIndex = 0;
+                    }else
+                    {
+                        indexNow = listIndex[++iOfListIndex];
+                    }
+                    break;
+                default:
+                    indexNow = (indexNow + 1 >= songsCurrent.Count) ? 0 : indexNow + 1;
+                    break;
+            }
         }
         private void PreviousSong()
         {
-            indexPlay = indexPlay > 0 ? indexPlay - 1 : CountSongs -1;
-            if (MediaPlayer.Instance.GetPlayState() != "wmppsPlaying")
-                PlayOrStopSong(playlistCurrent, indexPlay, false);
-            else
-                PlayOrStopSong(playlistCurrent, indexPlay, true);
+            //indexPlay = indexPlay > 0 ? indexPlay - 1 : CountSongs -1;
+            //if (MediaPlayer.Instance.GetPlayState() != "wmppsPlaying")
+            //    PlayOrStopSong(playlistCurrent, indexPlay, false);
+            //else
+            //    PlayOrStopSong(playlistCurrent, indexPlay, true);.            int tag = (int)btnShuffle.Tag;
+            switch (btnShuffle.Tag as string)
+            {
+                case "On":
+                    if (iOfListIndex -1 < 0)
+                    {
+                        iOfListIndex = listIndex.Count - 1;
+                        indexNow = listIndex[iOfListIndex];
 
-
-
+                    }
+                    else
+                    {
+                        indexNow = listIndex[--iOfListIndex];
+                    }
+                    break;
+                default:
+                    indexNow = (indexNow - 1 < 0) ? songsCurrent.Count - 1 : indexNow - 1;
+                    break;
+            }
         }
         private void NextSongShuffle()
         {
-            indexPlay = indexPlay < CountSongs - 1 ? indexPlay + 1 : 0; // if(indexPlay >= countSongs) indexplay = 0; else indexplay ++;
-            if (MediaPlayer.Instance.GetPlayState() == "wmppsPaused")
-                PlayOrStopSong(playlistCurrent, listIndex[indexPlay], false);
-            else
-                PlayOrStopSong(playlistCurrent, listIndex[indexPlay], true);
+            //indexPlay = indexPlay < CountSongs - 1 ? indexPlay + 1 : 0; // if(indexPlay >= countSongs) indexplay = 0; else indexplay ++;
+            //if (MediaPlayer.Instance.GetPlayState() == "wmppsPaused")
+            //    PlayOrStopSong(playlistCurrent, listIndex[indexPlay], false);
+            //else
+            //    PlayOrStopSong(playlistCurrent, listIndex[indexPlay], true);
         }
         private void PreviousSongShuffle()
         {
-            indexPlay = indexPlay > 0 ? indexPlay - 1 : CountSongs - 1;
-            if (MediaPlayer.Instance.GetPlayState() == "wmppsPaused")
-                PlayOrStopSong(playlistCurrent, listIndex[indexPlay], false);
-            else
-                PlayOrStopSong(playlistCurrent, listIndex[indexPlay], true);
+            //indexPlay = indexPlay > 0 ? indexPlay - 1 : CountSongs - 1;
+            //if (MediaPlayer.Instance.GetPlayState() == "wmppsPaused")
+            //    PlayOrStopSong(playlistCurrent, listIndex[indexPlay], false);
+            //else
+            //    PlayOrStopSong(playlistCurrent, listIndex[indexPlay], true);
         }
         private void ShuffleOff()
         {
@@ -92,7 +130,7 @@ namespace Music
         }
         private void PlaySong(int index)
         {
-            MediaPlayer.Instance.PlayMediaFormPlayList(PlaylistCurrent, index);
+            //MediaPlayer.Instance.PlayMediaFormPlayList(PlaylistCurrent, index);
         }
         private void PlayOrStopSong(IWMPPlaylist playlist, int index, bool play)
         {

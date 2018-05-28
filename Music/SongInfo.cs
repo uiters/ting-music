@@ -1,71 +1,127 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
-using System.Windows.Forms;
 
 namespace Music
 {
     public class SongInfo
     {
-        private static SongInfo instance = new SongInfo();
+        #region constructor      
+        private readonly Image imageDefault = Properties.Resources.myMusic;
+        internal SongInfo(string filePath) { this.file = TagLib.File.Create(filePath); }
+        internal SongInfo() {  }
+        #endregion
 
-        public static SongInfo Instance { get => instance; 
-            private set => instance = value; }
+        #region Properties
+        private TagLib.File file;
 
-        public string Title(string filePath)
+        public string Title { get => file.Tag.Title; }
+        public string Artist { get => file.Tag.FirstPerformer; }
+        public string Song { get => file.Tag.Title; }
+        public string Album { get => file.Tag.Album; }
+        public string Genrne { get => file.Tag.FirstGenre; }
+        public string Lyrics { get => file.Tag.Lyrics; }
+        public System.Drawing.Image LoadImageSong
         {
-            TagLib.File file = TagLib.File.Create(filePath);
-            return file.Tag.Title;
-        }
-        public string Artist(string filePath)
-        {
-            TagLib.File file = TagLib.File.Create(filePath);
-            return file.Tag.FirstPerformer;
-        }
-        public string Song(string filePath)
-        {
-            TagLib.File file = TagLib.File.Create(filePath);
-            return file.Tag.Title;
-        }
-        public string Album(string filePath)
-        {
-            TagLib.File file = TagLib.File.Create(filePath);
-            return file.Tag.Album;
-        }
-        public string Genrne(string filePath)
-        {
-            TagLib.File file = TagLib.File.Create(filePath);
-            return file.Tag.FirstGenre;
-        }
-        public string Lyrics(string filePath)
-        {
-            TagLib.File file = TagLib.File.Create(filePath);
-            return file.Tag.Lyrics;
-        }
-        public System.Drawing.Image LoadImageSong(string filePath)
-        {
-            System.Drawing.Image image;
-            TagLib.File file = TagLib.File.Create(filePath);
-            var mStream = new MemoryStream();
-            var firstPicture = file.Tag.Pictures.FirstOrDefault();
-            if (firstPicture != null && firstPicture.Data.Data.Length != 0)
+            get
             {
-                byte[] pData = firstPicture.Data.Data;
-                mStream.Write(pData, 0, Convert.ToInt32(pData.Length));
-                var bm = new Bitmap(mStream, false);
-                mStream.Dispose();
-                image = bm;
+                TagLib.IPicture firstPicture = file.Tag.Pictures.FirstOrDefault();
+                System.Drawing.Image image;
+
+                if (firstPicture != null && firstPicture.Data.Data.Length != 0)
+                {
+                    var mStream = new MemoryStream();
+                    byte[] pData = firstPicture.Data.Data;
+                    mStream.Write(pData, 0, Convert.ToInt32(pData.Length));
+                    image = System.Drawing.Image.FromStream(mStream);
+                    mStream.Dispose();
+                }
+                else
+                {
+                    image = imageDefault;// 
+                }
+                return image;
             }
-            else
-            {
-                image = new Bitmap(Music.Properties.Resources.myMusic);
-            }
-            return image;
         }
+        public double Duration
+        {
+            get=> file.Properties.Duration.TotalSeconds;
+        }
+        #endregion
+
+        #region Method
+        internal void SetPath(string filePath)
+        {
+            if (file != null)
+                file.Dispose();
+            this.file = TagLib.File.Create(filePath);
+        }
+
+        #endregion
+
+        #region Method Static
+        internal static string GetTitle(string filePath)
+        {
+            using (TagLib.File file = TagLib.File.Create(filePath))
+                return file.Tag.Title;
+        }
+        internal static string GetArtist(string filePath)
+        {
+            using (TagLib.File file = TagLib.File.Create(filePath))
+                return file.Tag.FirstPerformer;
+        }
+        internal static string GetSong(string filePath)
+        {
+            using (TagLib.File file = TagLib.File.Create(filePath))
+                return file.Tag.Title;
+        }
+        internal static string GetAlbum(string filePath)
+        {
+            using (TagLib.File file = TagLib.File.Create(filePath))
+                return file.Tag.Album;
+        }
+        internal static string GetGenrne(string filePath)
+        {
+            using (TagLib.File file = TagLib.File.Create(filePath))
+                return file.Tag.FirstGenre;
+        }
+        internal static string GetLyrics(string filePath)
+        {
+            using (TagLib.File file = TagLib.File.Create(filePath))
+                return file.Tag.Lyrics;
+        }
+        internal static System.Drawing.Image GetLoadImageSong(string filePath)
+        {
+            using (TagLib.File file = TagLib.File.Create(filePath))
+            {
+                TagLib.IPicture firstPicture = file.Tag.Pictures.FirstOrDefault();
+                System.Drawing.Image image;
+
+                if (firstPicture != null && firstPicture.Data.Data.Length != 0)
+                {
+                    var mStream = new MemoryStream();
+                    byte[] pData = firstPicture.Data.Data;
+                    mStream.Write(pData, 0, Convert.ToInt32(pData.Length));
+                    var bm = new Bitmap(mStream, false);
+                    mStream.Dispose();
+                    image = bm;
+                }
+                else
+                {
+                    image = Music.Properties.Resources.myMusic;
+                }
+                return image;
+            }
+        }
+        #endregion
+
+        #region Destructor
+        ~SongInfo()
+        {
+            if(file != null)
+                file.Dispose();
+        }
+        #endregion
     }
 }

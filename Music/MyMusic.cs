@@ -22,12 +22,13 @@ namespace Music
             //this.DoubleBuffered = true;
         }
 
-        public Song song
+        public void AddSong(Song value)
         {
-            set
-            {
-                panelSongs.Controls.Add(value);
-            }
+            panelSongs.Controls.Add(value);
+        }
+        public void AddSongs(Song[] value)
+        {
+            panelSongs.Controls.AddRange(value);
         }
         public List<Song> listSong
         {
@@ -134,12 +135,12 @@ namespace Music
         }
         private void UpdateList()
         {
-            Program.fMusicCurent.PlaylistCurrent.clear();
-            foreach (var item in listSong)
-            {
-                Program.fMusicCurent.PlaylistCurrent.appendItem(MediaPlayer.Instance.CreateMedia(item.Path));
-            }
-            Program.fMusicCurent.UpdateCountSongs();
+            //Program.fMusicCurent.PlaylistCurrent.clear();
+            //foreach (var item in listSong)
+            //{
+            //    Program.fMusicCurent.PlaylistCurrent.appendItem(MediaPlayer.Instance.CreateMedia(item.Path));
+            //}
+            //Program.fMusicCurent.UpdateCountSongs();
         }
 
         private void comboBoxGenreSongs_SelectionChangeCommitted(object sender, EventArgs e)

@@ -12,16 +12,18 @@ namespace Music
 {
     public partial class NowPlaying : UserControl
     {
+
         public NowPlaying()
         {
             InitializeComponent();
         }
-        public Song song
+        public void AddSong(Song value)
         {
-            set
-            {
-                panelSongs.Controls.Add(value);
-            }
+            panelSongs.Controls.Add(value);
+        }
+        public void AddSongs(Song[] value)
+        {
+            panelSongs.Controls.AddRange(value);
         }
         public List<Song> listSong
         {

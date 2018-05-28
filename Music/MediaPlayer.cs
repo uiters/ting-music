@@ -21,65 +21,9 @@ namespace Music
             get { return instance; }
             private set => instance = value;
         }
+        public WindowsMediaPlayer Player { get => player; }
 
-        public string[] LoadLocalFile()//IWMPPlaylist playlist)
-        {
-            //update thêm list path
-            string path = @"G:\the nho\Zing MP3";
-            string[] listFile = Directory.GetFiles(path, "*.mp3");
-            //foreach (var item in listFile)
-            //{
-            //    MediaFile file = new MediaFile(item);
-            //    IWMPMedia media = player.newMedia(item);
-            //    playlist.appendItem(media);
-            //}
-            return listFile;
-        }
-        public List<string> LoadCurrentPlaylist(IWMPPlaylist currentPlaylist)
-        {
-            List<string> listFile = new List<string>();
-            for (int i = 0; i < currentPlaylist.count; i++)
-            {
-                IWMPMedia media = currentPlaylist.Item[i];
-                listFile.Add(media.sourceURL);
-            }
-            return listFile;
-        }
-        public IWMPPlaylist CreatePlaylist(string name)
-        {
-            IWMPPlaylist playlist = player.playlistCollection.newPlaylist(name+"_TingMusic");
-            return playlist;
-        }
-        public IWMPPlaylist CreatePlaylistForLocalFile()
-        {
-            return player.playlistCollection.newPlaylist("LocalFile");
-        }
-        public IWMPMedia CreateMedia(string path)
-        {
-            return player.newMedia(path);
-        }
-        public void AddMediaToPlaylist(string[] listFile, IWMPPlaylist playlist)
-        {
-            IWMPMedia media;
-            foreach (string item in listFile)
-            {
-                media = player.newMedia(item);
-                playlist.appendItem(media);
-            }
-        }
-        public void SelectCurrentPlaylist(IWMPPlaylist playlist)
-        {
-            player.currentPlaylist = playlist;
-            Stop();
-        }
-        public IWMPMedia GetCurrentMedia()
-        {
-            return player.currentMedia;
-        }
-        public void SetCurrentMedia(IWMPMedia media)
-        {
-            player.currentMedia = media;
-        }
+        #region Method
         public double GetCurrentPosition()
         {
             return player.controls.currentPosition;
@@ -88,6 +32,14 @@ namespace Music
         {
             player.controls.currentPosition = value;
         }
+        public void SetVolumn(int volumn)
+        {
+            player.settings.volume = volumn;
+        }
+        public int GetVolumn()
+        {
+            return player.settings.volume;
+        }
         public string GetPlayState()
         {
             return player.playState.ToString();
@@ -95,6 +47,10 @@ namespace Music
         public void Play()
         {
             player.controls.play();
+        }
+        public void Play(string path)
+        {
+            player.URL = path;
         }
         public void Pause()
         {
@@ -135,15 +91,63 @@ namespace Music
         {
             player.settings.mute = false;
         }
+        #endregion
 
-        public void SetVolumn(int volumn)
+        public string[] LoadLocalFile()//IWMPPlaylist playlist)
         {
-            player.settings.volume = volumn;
+            //string path = @"E:\test";
+            string path = @"G:\the nho\Zing MP3";
+            string[] listFile = Directory.GetFiles(path, "*.mp3");
+            return listFile;
         }
-        public int GetVolumn()
+        public List<string> LoadCurrentPlaylist(IWMPPlaylist currentPlaylist)
         {
-            return player.settings.volume;
+            List<string> listFile = new List<string>();
+            for (int i = 0; i < currentPlaylist.count; i++)
+            {
+                IWMPMedia media = currentPlaylist.Item[i];
+                listFile.Add(media.sourceURL);
+            }
+            return listFile;
         }
+        public IWMPPlaylist CreatePlaylist(string name)
+        {
+            IWMPPlaylist playlist = player.playlistCollection.newPlaylist(name+"_TingMusic");
+            return playlist;
+        }
+        public IWMPMedia CreateMedia(string path)
+        {
+            return player.newMedia(path);
+        }
+        public void AddMediaToPlaylist(string[] listFile, IWMPPlaylist playlist)
+        {
+            IWMPMedia media;
+            foreach (string item in listFile)
+            {
+                media = player.newMedia(item);
+                playlist.appendItem(media);
+            }
+        }
+        public void SelectCurrentPlaylist(IWMPPlaylist playlist)
+        {
+            player.currentPlaylist = playlist;
+            Stop();
+        }
+        public IWMPMedia GetCurrentMedia()
+        {
+            return player.currentMedia;
+        }
+        public void SetCurrentMedia(IWMPMedia media)
+        {
+            player.currentMedia = media;
+        }
+
+        public void PlayUrl(string url)
+        {
+            player.URL = url;
+        }
+
+
         public void PlayMediaFormPlayList(int index)
         {
             IWMPMedia med = player.currentPlaylist.get_Item(index);
@@ -153,7 +157,7 @@ namespace Music
         {
 
             IWMPMedia med = playlist.Item[index];
-            Program.fMusicCurent.sliderDuration.MaximumValue = (int)med.duration + 1;
+            //Program.fMusicCurent.sliderDuration.MaximumValue = (int)med.duration + 1;
             player.URL = med.sourceURL;
         }
         public void RemovePlaylist(IWMPPlaylist playlist)
