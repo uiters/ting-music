@@ -8,10 +8,25 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Music</RootNamespace>
     <AssemblyName>Music</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -22,6 +37,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -127,6 +143,12 @@
     <Compile Include="Playlist.Designer.cs">
       <DependentUpon>Playlist.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlaylistDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PlaylistDetail.Designer.cs">
+      <DependentUpon>PlaylistDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Song.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -164,6 +186,9 @@
     <EmbeddedResource Include="Playlist.resx">
       <DependentUpon>Playlist.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PlaylistDetail.resx">
+      <DependentUpon>PlaylistDetail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Song.resx">
       <DependentUpon>Song.cs</DependentUpon>
     </EmbeddedResource>
@@ -200,13 +225,26 @@
     <None Include="Resources\play.png" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="AxWMPLib">
-      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
-      <VersionMajor>1</VersionMajor>
+    <None Include="Resources\myPlaylist.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\myMusic.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\myAlbum.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\myArtists.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
       <VersionMinor>0</VersionMinor>
       <Lcid>0</Lcid>
-      <WrapperTool>aximp</WrapperTool>
+      <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
     <COMReference Include="WMPLib">
       <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
@@ -219,22 +257,16 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\myPlaylist.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\myMusic.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\myAlbum.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\myArtists.jpg" />
-
-    <ProjectReference Include="..\Lyric\Lyric.csproj">
-      <Project>{ace50da6-4a2a-4213-8f0b-cc63232f19a4}</Project>
-      <Name>Lyric</Name>
-    </ProjectReference>
-
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

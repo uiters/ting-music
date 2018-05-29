@@ -20,6 +20,9 @@ namespace Music
         {
             InitializeComponent();
             this.DoubleBuffered = true;
+            btnShuffleAllAlbums.IconVisible = true;
+            btnShuffleAllSongs.IconVisible = true;
+            btnShuufleAllArtists.IconVisible = true;
         }
         public Song song
         {

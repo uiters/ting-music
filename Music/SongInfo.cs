@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 using System.Windows.Forms;
+using WMPLib;
 
 namespace Music
 {
@@ -25,7 +26,7 @@ namespace Music
         public string Artist(string filePath)
         {
             TagLib.File file = TagLib.File.Create(filePath);
-            return file.Tag.FirstPerformer;
+            return file.Tag.Artists[0];
         }
         public string Song(string filePath)
         {
@@ -65,7 +66,22 @@ namespace Music
             {
                 image = new Bitmap(Music.Properties.Resources.myMusic);
             }
+            GC.Collect();
             return image;
+        }
+        public System.Drawing.Image LoadImagePlaylist(IWMPPlaylist playlist)
+        {
+            System.Drawing.Image imagePlaylist= new Bitmap(Music.Properties.Resources.myPlaylist); ;
+            System.Drawing.Image image = new Bitmap(Music.Properties.Resources.myMusic);
+            for (int i = 0; i < playlist.count; i++)
+            {
+                imagePlaylist = LoadImageSong(playlist.Item[i].sourceURL);
+                if (imagePlaylist.PixelFormat != image.PixelFormat)
+                    break;
+            }
+            if (imagePlaylist.PixelFormat == image.PixelFormat)
+                imagePlaylist = new Bitmap(Music.Properties.Resources.myPlaylist);
+            return imagePlaylist;
         }
     }
 }

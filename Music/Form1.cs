@@ -24,7 +24,8 @@ namespace Music
         Image repeat_one;
         Image volume_off;
         Image volume_up;
-
+        delegate void Func();
+        Func func;
         public static IWMPPlaylist PlaylistLocalFile { get => playlistLocalFile; set => playlistLocalFile = value; }
         public static IWMPPlaylist PlaylistCurrent { get => playlistCurrent; set => playlistCurrent = value; }
 
@@ -32,7 +33,9 @@ namespace Music
         {
             InitializeComponent();
             LoadData();
+            func = open;
         }
+
         public void LoadData()
         {
             #region loadGUI
@@ -119,25 +122,42 @@ namespace Music
             labelTimeTo.Text = ConvertToMinute(duration);
 
             UISort.pathSongPlay = path;
-            if (status == 0)
+          
+            switch (status)
             {
-                Song song = myMusic.listSong.FindAll(UISort.FindSongNamePlay)[0];
-                if (MediaPlayer.Instance.GetPlayState() == "wmppsPlaying")
-                    song.ImageButton = Music.Properties.Resources.pause;
-                else
-                if (MediaPlayer.Instance.GetPlayState() == "wmppsPaused")
-                    song.ImageButton = Music.Properties.Resources.play;
-                myMusic.ScrollControl = song;
-            }
-            if (status == 2)
-            {
-                Song song = nowPlaying.listSong.FindAll(UISort.FindSongNamePlay)[0];
-                if (MediaPlayer.Instance.GetPlayState() == "wmppsPlaying")
-                    song.ImageButton = Music.Properties.Resources.pause;
-                else
-                if (MediaPlayer.Instance.GetPlayState() == "wmppsPaused")
-                    song.ImageButton = Music.Properties.Resources.play;
-                myMusic.ScrollControl = song;
+                case 0:
+                    {
+                        Song song = myMusic.listSong.FindAll(UISort.FindSongNamePlay)[0];
+                        if (MediaPlayer.Instance.GetPlayState() == "wmppsPlaying")
+                            song.ImageButton = Music.Properties.Resources.pause;
+                        else
+                        if (MediaPlayer.Instance.GetPlayState() == "wmppsPaused")
+                            song.ImageButton = Music.Properties.Resources.play;
+                        myMusic.ScrollControl = song;
+                        break;
+                    }
+                case 2:
+                    {
+                        Song song = nowPlaying.listSong.FindAll(UISort.FindSongNamePlay)[0];
+                        if (MediaPlayer.Instance.GetPlayState() == "wmppsPlaying")
+                            song.ImageButton = Music.Properties.Resources.pause;
+                        else
+                        if (MediaPlayer.Instance.GetPlayState() == "wmppsPaused")
+                            song.ImageButton = Music.Properties.Resources.play;
+                        nowPlaying.ScrollControl = song;
+                        break;
+                    }
+                case 3:
+                    {
+                        Song song = playlistDetail.listSong.FindAll(UISort.FindSongNamePlay)[0];
+                        if (MediaPlayer.Instance.GetPlayState() == "wmppsPlaying")
+                            song.ImageButton = Music.Properties.Resources.pause;
+                        else
+                        if (MediaPlayer.Instance.GetPlayState() == "wmppsPaused")
+                            song.ImageButton = Music.Properties.Resources.play;
+                        playlistDetail.ScrollControl = song;
+                        break;
+                    }
             }
             GC.Collect();
         }
@@ -146,10 +166,12 @@ namespace Music
             IWMPMedia media = MediaPlayer.Instance.GetCurrentMedia();
             string path = media.sourceURL;
             lyrics.SongImage = SongInfo.Instance.LoadImageSong(path);
-            lyrics.LyricsText = SongInfo.Instance.Lyrics(path);
             lyrics.ArtistName = SongInfo.Instance.Artist(path);
             lyrics.SongName = SongInfo.Instance.Song(path);
 
+            lyrics.LyricsText = SongInfo.Instance.Lyrics(path);
+            //if (lyrics.LyricsText == string.Empty)
+            //    lyrics.LyricsText=(string)Lyric.LyricSong.Instance.GetLyric(lyrics.ArtistName, lyrics.SongName)?? "";
             //timer4.Start();
         }
         public void LoadNowPlaying()
@@ -159,7 +181,6 @@ namespace Music
             int i = 0;
             foreach (var item in listFile)
             {
-
                 MediaFile file = new MediaFile(item);
                 IWMPMedia media = MediaPlayer.Instance.CreateMedia(file.FilePath);
 
@@ -185,14 +206,64 @@ namespace Music
         }
         public void LoadListPlaylist()
         {
-            List<string> listPlaylist = MediaPlayer.Instance.LoadListPlaylist();
+            playlist.Clear();
+            List<IWMPPlaylist> listPlaylist = MediaPlayer.Instance.LoadListPlaylist();
             foreach (var item in listPlaylist)
             {
                 Myplaylist myplaylist = new Myplaylist();
-                myplaylist.PlaylistName = item;
+                myplaylist.Tag = item;
+                myplaylist.BtnImage_Click += Myplaylist_BtnImage_Click;
+                myplaylist.PlaylistName = item.name.Split('_')[0];
+                myplaylist.PlaylistImage = SongInfo.Instance.LoadImagePlaylist(item);
                 playlist.myplaylist = myplaylist;
             }
         }
+
+        private void Myplaylist_BtnImage_Click(object sender, EventArgs e)
+        {
+            Myplaylist myplaylist = sender as Myplaylist;
+            playlistDetail.PlaylistImage = myplaylist.PlaylistImage;
+            playlistDetail.PlaylistName = myplaylist.PlaylistName;
+
+            playlistDetail.Clear();
+            List<string> listFile = MediaPlayer.Instance.LoadCurrentPlaylist(myplaylist.Tag as IWMPPlaylist);
+            int i = 0;
+            if(listFile.Count>0)
+            foreach (var item in listFile)
+            {
+
+                MediaFile file = new MediaFile(item);
+                IWMPMedia media = MediaPlayer.Instance.CreateMedia(file.FilePath);
+
+                Song song = new Song();
+                song.index = i++;
+                song.ButtonPlay_Click += Song_ButtonPlay_Click;
+                song.ImageSong = SongInfo.Instance.LoadImageSong(file.FilePath);
+                song.Path = file.FilePath;
+                song.SongName = SongInfo.Instance.Song(file.FilePath);
+                song.ArtistName = SongInfo.Instance.Artist(file.FilePath);
+                song.CategoryName = SongInfo.Instance.Genrne(file.FilePath);
+                song.TotalTime = ConvertToMinute(media.duration);
+                media.name = song.SongName;
+
+                if (i % 2 == 0)
+                    song.BackColor = Color.Silver;
+                else
+                    song.BackColor = Color.Gainsboro;
+                playlistDetail.song = song;
+            }
+            foreach (Control item in playlistDetail.listControl)
+            {
+                item.Width = panel.Width - 20;
+            }
+            MediaPlayer.Instance.SelectCurrentPlaylist(myplaylist.Tag as IWMPPlaylist);
+            
+            LoadCurrentMedia();
+            GC.Collect();
+
+            playlistDetail.BringToFront();
+        }
+
         public string ConvertToMinute(double Second)
         {
             int minute = (int)Second / 60;
@@ -244,7 +315,6 @@ namespace Music
             labelTitle.Text = "My music";
             ChangeNormalColorOnPanel1(sender);
             myMusic.BringToFront();
-            //LoadLocalFile();
             foreach (Control item in myMusic.listControl)
             {
                 item.Width = panel.Width - 25;
@@ -253,6 +323,7 @@ namespace Music
 
         private void btnRecentPlays_Click_1(object sender, EventArgs e)
         {
+            status = 1;
             nowPlaying.Clear();
             ChangeNormalColorOnPanel1(sender);
         }
@@ -265,15 +336,15 @@ namespace Music
             LoadNowPlaying();
             foreach (Control item in nowPlaying.listControl)
             {
-                item.Width = panel.Width - 12;
+                item.Width = panel.Width - 20;
             }
         }
 
         private void btnPlayList_Click_1(object sender, EventArgs e)
         {
+            status = 3;
             labelTitle.Text = "Playlist";
             LoadListPlaylist();
-
             playlist.BringToFront();
             ChangeNormalColorOnPanel1(sender);
         }
@@ -395,7 +466,7 @@ namespace Music
         {
 
             //MediaPlayer.Instance.RemovePlaylist(playlistLocalFile);
-            MediaPlayer.Instance.DeletePlaylist();
+            MediaPlayer.Instance.DeleteLocalFile();
         }
 
         private void btnForward_Click(object sender, EventArgs e)
@@ -460,19 +531,33 @@ namespace Music
             }
             foreach (Control item in nowPlaying.listControl)
             {
-                item.Width = panel.Width - 12;
+                item.Width = panel.Width - 20;
+            }
+            foreach (Control item in playlistDetail.listControl)
+            {
+                item.Width = panel.Width - 20;
             }
         }
-
-        private void btnLyric_Click(object sender, EventArgs e)
+        void open()
         {
             LoadLyrics();
             lyrics.BringToFront();
+            func = close;
+        }
+        void close()
+        {
+            lyrics.SendToBack();
+            func = open;
+        }
+        private void btnLyric_Click(object sender, EventArgs e)
+        {
+            func();
         }
 
         private void lyrics_btnBack_click(object sender, EventArgs e)
         {
             lyrics.SendToBack();
+            func = open;
             timer4.Stop();
         }
         public Bitmap rotateImage(Bitmap bitmap, float angle)

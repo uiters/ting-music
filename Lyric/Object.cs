@@ -30,8 +30,8 @@
         public Artist artist { get; set; }
         public Track track { get; set; }
         public Copyright copyright { get; set; }
-        public int probability { get; set; }
-        public int similarity { get; set; }
+        public string probability { get; set; }
+        public string similarity { get; set; }
     }
     internal class Root
     {

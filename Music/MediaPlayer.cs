@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Music.Properties;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -15,6 +16,7 @@ namespace Music
     {
         static MediaPlayer instance = new MediaPlayer();
         WindowsMediaPlayer player = new WindowsMediaPlayer();
+        
 
         public static MediaPlayer Instance 
         {
@@ -24,8 +26,9 @@ namespace Music
 
         public string[] LoadLocalFile(IWMPPlaylist playlist)
         {
+
             //update thêm list path
-            string path = @"C:\Users\NguyễnDuyCương\Music";
+            string path = @"C:\Users\ndc07\Music";
             string[] listFile = Directory.GetFiles(path, "*.mp3");
             
             foreach (var item in listFile)
@@ -144,44 +147,48 @@ namespace Music
         {
             return player.settings.volume;
         }
+        //public void PlayMediaFromPlaylist(IWMPPlaylist playlist, int index)
+        //{
+        //    IWMPMedia med = playlist.Item[index];
+        //    player.controls.playItem(med);
+        //}
         public void PlayMediaFromPlaylist(IWMPPlaylist playlist, int index)
         {
-            IWMPMedia med = playlist.Item[index];
+            IWMPMedia med = player.currentPlaylist.get_Item(index);
             player.controls.playItem(med);
         }
         public void RemovePlaylist(IWMPPlaylist playlist)
         {
             player.playlistCollection.remove(playlist);
         }
-        public List<string> LoadListPlaylist()
+        public List<IWMPPlaylist> LoadListPlaylist()
         {
-            //Demo thooi
-            List<string> listMedia = new List<string>();
+           // player.versionInfo;
+          
+            List<IWMPPlaylist> listPlaylist = new List<IWMPPlaylist>();
             IWMPPlaylistArray playlistArray = player.playlistCollection.getAll();
-            for (int i = 0; i < playlistArray.count; i++)
-            {
-                if (playlistArray.Item(i).name.Contains("_TingMusic"))
+            if (playlistArray.count > 0)
+                for (int i = 0; i < playlistArray.count; i++)
                 {
-                    string media = playlistArray.Item(i).name.Split('_')[0];
-                    listMedia.Add(media);
+                    if (playlistArray.Item(i).name.Contains("_TingMusic"))
+                    {
+                        IWMPPlaylist playlist = playlistArray.Item(i);
+                        listPlaylist.Add(playlist);
+                    }
                 }
-                
-            }
-            return listMedia;
+            return listPlaylist;
         }
-        public void DeletePlaylist()
+        public void DeleteLocalFile()
         {
-            //IWMPPlaylistArray plCollection = player.playlistCollection.getByName("LocalFile");
-            //if (plCollection.count > 0)
-            //{
-            //    IWMPPlaylist pl = plCollection.Item(0);
-            //    player.playlistCollection.remove(pl);
-            //}
-            for (int i = 0; i < player.currentPlaylist.count; i++)
-            {
-                IWMPMedia med = player.currentPlaylist.get_Item(i);
-                player.currentPlaylist.removeItem(med);
-            }
+            File.Delete(@"C:\Users\ndc07\Music\Playlists\LocalFile.wpl");
+        }
+        public void DeletePlaylist(IWMPPlaylist playlist)
+        {
+            string path = @"C:\Users\ndc07\Music\Playlists\" + playlist.name + ".wpl";
+        }
+        public void RenamePlayList(IWMPPlaylist playlist, string newName)
+        {
+
         }
     }
 }
