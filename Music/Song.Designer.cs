@@ -1,4 +1,6 @@
-﻿namespace Music
+﻿using System.Drawing;
+
+namespace Music
 {
     partial class Song
     {
@@ -124,7 +126,7 @@
             this.btnOption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOption.Textcolor = System.Drawing.Color.White;
             this.btnOption.TextFont = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.btnOption.Click += new System.EventHandler(this.btnOption_Click);
+            this.btnOption.Click += new System.EventHandler(this.btnOption_Click_1);
             // 
             // btnPlay
             // 
@@ -138,7 +140,7 @@
             this.btnPlay.TabIndex = 54;
             this.btnPlay.TabStop = false;
             this.btnPlay.Zoom = 10;
-            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click_1);
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // pictureBoxSong
             // 
@@ -180,5 +182,8 @@
         private System.Windows.Forms.Label lblTotalTime;
         private Bunifu.Framework.UI.BunifuFlatButton btnOption;
         private System.Windows.Forms.Label lblCategory;
+        private static readonly Image pause = fMusic.pause;
+        private static readonly Image play = fMusic.play;
+
     }
 }

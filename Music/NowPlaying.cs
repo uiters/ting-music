@@ -16,6 +16,14 @@ namespace Music
         {
             InitializeComponent();
         }
+        public void AddSong(Song value)
+        {
+            panelSongs.Controls.Add(value);
+        }
+        public void AddSongs(Song[] value)
+        {
+            panelSongs.Controls.AddRange(value);
+        }
         public Song song
         {
             set

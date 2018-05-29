@@ -149,6 +149,9 @@
     <Compile Include="PlaylistDetail.Designer.cs">
       <DependentUpon>PlaylistDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlaySong.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Song.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -1,30 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Music
 {
     public partial class Song : UserControl
     {
-        Image pause;
-        Image play;
-        private string path;
-        public Song()
+        #region Construtor
+        internal Song()
         {
             InitializeComponent();
-            pause = Music.Properties.Resources.pause;
-            play = Music.Properties.Resources.play;
             btnPlay.Image = play;
         }
-        public event EventHandler ButtonPlay_Click;
-        public event EventHandler ButtonOption_Click;
-        public string SongName
+
+        #endregion
+
+        #region Properties
+
+        private event EventHandler ButtonPlay_Click;
+        internal event EventHandler ButtonOption_Click;
+        internal double Duration { get; set; }
+        private string path;
+        internal string SongName
         {
             get
             {
@@ -35,7 +32,7 @@ namespace Music
                 lblSongName.Text = value;
             }
         }
-        public string ArtistName
+        internal string ArtistName
         {
             get
             {
@@ -47,7 +44,7 @@ namespace Music
             }
 
         }
-        public string CategoryName
+        internal string CategoryName
         {
             get
             {
@@ -58,7 +55,7 @@ namespace Music
                 lblCategory.Text = value;
             }
         }
-        public string TotalTime
+        internal string TotalTime
         {
             get
             {
@@ -69,7 +66,7 @@ namespace Music
                 lblTotalTime.Text = value;
             }
         }
-        public Image ImageSong
+        internal Image ImageSong
         {
             get
             {
@@ -80,7 +77,7 @@ namespace Music
                 pictureBoxSong.Image = value;
             }
         }
-        public Image ImageButton
+        internal Image ImageButton
         {
             get
             {
@@ -91,7 +88,7 @@ namespace Music
                 btnPlay.Image = value;
             }
         }
-        public int index
+        internal int Index
         {
             get
             {
@@ -102,27 +99,52 @@ namespace Music
                 lblTotalTime.Tag = value;
             }
         }
+        internal string Path { get => path; private set => path = value; }
+        #endregion
 
-        public string Path { get => path; set => path = value; }
-
-        private void btnPlay_Click_1(object sender, EventArgs e)
+        #region Click
+        private void btnOption_Click_1(object sender, EventArgs e)
         {
-            if(ButtonPlay_Click!=null)
-            ButtonPlay_Click(this, e);
-            //if (btnPlay.Image == pause)
-            //{
-            //    btnPlay.Image = play;
-            //}
-            //else
-            //{
-            //    btnPlay.Image = pause;
-            //}
+            if (ButtonOption_Click != null)
+                ButtonOption_Click(this, e);
         }
 
-        private void btnOption_Click(object sender, EventArgs e)
+        private void btnPlay_Click(object sender, EventArgs e)
         {
-            if(ButtonOption_Click!=null)
-            ButtonOption_Click(this, e);
+            if (ButtonPlay_Click != null)
+                ButtonPlay_Click(this, e);
         }
+
+        #endregion
+
+        #region Method Static
+        internal static Song CreateSong(MediaFile file, SongInfo info, EventHandler click, int i)
+        {
+            Song song = new Song();
+            info.SetPath(file.FilePath);
+            song.Index = i;
+            song.Path = file.FilePath;
+            info.SetPath(file.FilePath);
+            song.ImageSong = info.LoadImageSong;
+            song.SongName = info.Song;
+            song.ArtistName = info.Artist;
+            song.CategoryName = info.Genrne;
+            song.Duration = info.Duration;
+            song.TotalTime = fMusic.ConvertToMinute(song.Duration);
+            song.BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
+            song.ButtonPlay_Click += click;
+            return song;
+        }
+
+        #endregion
+
+        #region Destructor
+        ~Song()
+        {
+
+        }
+        #endregion
+
+
     }
 }

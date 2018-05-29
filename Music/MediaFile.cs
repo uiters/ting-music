@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Music
+﻿namespace Music
 {
     class MediaFile
     {
-        string fileName;
-        string filePath;
-        public MediaFile() { }
-        public MediaFile(string filePath)
+        private string filePath;
+        internal MediaFile(string filePath)
         {
-            FilePath = filePath;
-            FileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
+            this.filePath = filePath;
         }
 
-        public string FileName { get => fileName; set => fileName = value; }
-        public string FilePath { get => filePath; set => filePath = value; }
+        internal string FileName { get => filePath.Substring(filePath.LastIndexOf("\\") + 1); }
+        internal string FilePath { get => filePath; }
     }
 }

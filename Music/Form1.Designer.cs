@@ -1,4 +1,6 @@
-﻿namespace Music
+﻿using System.Drawing;
+
+namespace Music
 {
     partial class fMusic
     {
@@ -73,7 +75,7 @@
             this.lyrics = new Music.Lyrics();
             this.myMusic = new Music.MyMusic();
             this.nowPlaying = new Music.NowPlaying();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timeLine = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.timer4 = new System.Windows.Forms.Timer(this.components);
@@ -130,7 +132,7 @@
             this.btnPlay.TabIndex = 53;
             this.btnPlay.TabStop = false;
             this.btnPlay.Zoom = 10;
-            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
+            this.btnPlay.Click += new System.EventHandler(this.BtnPlay_Click);
             // 
             // btnShuffle
             // 
@@ -164,7 +166,7 @@
             this.btnShuffle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnShuffle.Textcolor = System.Drawing.Color.White;
             this.btnShuffle.TextFont = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.btnShuffle.Click += new System.EventHandler(this.btnShuffle_Click);
+            this.btnShuffle.Click += new System.EventHandler(this.BtnShuffle_Click);
             // 
             // btnRepeat
             // 
@@ -198,7 +200,7 @@
             this.btnRepeat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRepeat.Textcolor = System.Drawing.Color.White;
             this.btnRepeat.TextFont = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.btnRepeat.Click += new System.EventHandler(this.btnRepeat_Click);
+            this.btnRepeat.Click += new System.EventHandler(this.BtnRepeat_Click);
             // 
             // btnForward
             // 
@@ -232,7 +234,7 @@
             this.btnForward.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnForward.Textcolor = System.Drawing.Color.White;
             this.btnForward.TextFont = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.btnForward.Click += new System.EventHandler(this.btnForward_Click);
+            this.btnForward.Click += new System.EventHandler(this.BtnForward_Click);
             // 
             // btnBack
             // 
@@ -266,7 +268,7 @@
             this.btnBack.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBack.Textcolor = System.Drawing.Color.White;
             this.btnBack.TextFont = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click_1);
+            this.btnBack.Click += new System.EventHandler(this.BtnBack_Click);
             // 
             // btnLyric
             // 
@@ -336,7 +338,7 @@
             this.btnVolume.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVolume.Textcolor = System.Drawing.Color.White;
             this.btnVolume.TextFont = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.btnVolume.Click += new System.EventHandler(this.btnVolume_Click);
+            this.btnVolume.Click += new System.EventHandler(this.BtnVolume_Click);
             // 
             // sliderVolumn
             // 
@@ -416,7 +418,7 @@
             this.sliderDuration.Size = new System.Drawing.Size(846, 30);
             this.sliderDuration.TabIndex = 37;
             this.sliderDuration.Value = 0;
-            this.sliderDuration.ValueChanged += new System.EventHandler(this.sliderDuration_ValueChanged);
+            this.sliderDuration.ValueChanged += new System.EventHandler(this.SliderDuration_ValueChanged);
             // 
             // pictureBoxSong
             // 
@@ -997,14 +999,13 @@
             this.nowPlaying.Size = new System.Drawing.Size(850, 474);
             this.nowPlaying.TabIndex = 1;
             // 
-            // timer1
+            // timeLine
             // 
-            this.timer1.Interval = 10;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timeLine.Tick += new System.EventHandler(this.TimeLine_Tick);
             // 
             // timer2
             // 
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            this.timer2.Tick += new System.EventHandler(this.Timer2_Tick);
             // 
             // timer3
             // 
@@ -1012,7 +1013,6 @@
             // 
             // timer4
             // 
-            this.timer4.Interval = 500;
             this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
             // 
             // fMusic
@@ -1030,7 +1030,6 @@
             this.Name = "fMusic";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ting Music";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fMusic_FormClosing);
             this.panelBottom.ResumeLayout(false);
             this.panelBottom.PerformLayout();
             this.panelPlay.ResumeLayout(false);
@@ -1085,7 +1084,7 @@
         private Bunifu.Framework.UI.BunifuFlatButton btnForward;
         private Bunifu.Framework.UI.BunifuFlatButton btnBack;
         private MyMusic myMusic;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timeLine;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Timer timer3;
         private NowPlaying nowPlaying;
@@ -1093,6 +1092,13 @@
         private System.Windows.Forms.Timer timer4;
         private Playlist playlist;
         private PlaylistDetail playlistDetail;
+        internal static readonly Image pause = Properties.Resources.pause;
+        internal static readonly Image play = Properties.Resources.play;
+        private static readonly Image repeat = Properties.Resources.repeat;
+        private static readonly Image repeat_one = Properties.Resources.repeat_one;
+        private static readonly Image volume_off = Properties.Resources.volume_off;
+        private static readonly Image volume_up = Properties.Resources.volume_up;
+
     }
 }
 

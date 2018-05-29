@@ -24,12 +24,9 @@ namespace Music
             btnShuffleAllSongs.IconVisible = true;
             btnShuufleAllArtists.IconVisible = true;
         }
-        public Song song
+        public void AddSong(Song value)
         {
-            set
-            {
-                panelSongs.Controls.Add(value);
-            }
+            panelSongs.Controls.Add(value);
         }
         public List<Song> listSong
         {
@@ -162,12 +159,12 @@ namespace Music
         }
         public void UpdateList()
         {
-            fMusic.PlaylistLocalFile.clear();
-            foreach (var item in listSong)
-            {
-                fMusic.PlaylistLocalFile.appendItem(MediaPlayer.Instance.CreateMedia(item.Path));
-            }
-            fMusic.PlaylistCurrent = fMusic.PlaylistLocalFile;
+            //fMusic.PlaylistLocalFile.clear();
+            //foreach (var item in listSong)
+            //{
+            //    fMusic.PlaylistLocalFile.appendItem(MediaPlayer.Instance.CreateMedia(item.Path));
+            //}
+            //fMusic.PlaylistCurrent = fMusic.PlaylistLocalFile;
         }
     }
 }
