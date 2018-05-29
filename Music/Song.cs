@@ -19,7 +19,7 @@ namespace Music
 
         private event EventHandler ButtonPlay_Click;
         internal event EventHandler ButtonOption_Click;
-        internal double Duration { get ; set; }
+        internal double Duration { get; set; }
         private string path;
         internal string SongName
         {
@@ -103,24 +103,18 @@ namespace Music
         #endregion
 
         #region Click
-        private void BtnPlay_Click_1(object sender, EventArgs e)
-        {
-            if (ButtonPlay_Click != null)
-                ButtonPlay_Click(this, e);
-            //if (btnPlay.Image == pause)
-            //{
-            //    btnPlay.Image = play;
-            //}
-            //else
-            //{
-            //    btnPlay.Image = pause;
-            //}
-        }
-        private void BtnOption_Click(object sender, EventArgs e)
+        private void btnOption_Click_1(object sender, EventArgs e)
         {
             if (ButtonOption_Click != null)
                 ButtonOption_Click(this, e);
         }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            if (ButtonPlay_Click != null)
+                ButtonPlay_Click(this, e);
+        }
+
         #endregion
 
         #region Method Static
@@ -150,5 +144,7 @@ namespace Music
 
         }
         #endregion
+
+
     }
 }

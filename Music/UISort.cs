@@ -50,13 +50,13 @@ namespace Music
         public class ISortRanDom : IComparer<int>
         {
             public int Compare(int a, int b)
-            { 
+            {
 
                 int x = random.Next(0, 40);
                 if (x < 10)
                     return 1;
                 else
-                    if(x < 20)
+                    if (x < 20)
                     return 0;
                 else
                     return -1;
@@ -78,7 +78,7 @@ namespace Music
         }
 
         public static bool FindSongNamePlay(Song song)
-        { 
+        {
             bool ex = song.Path.Contains(pathSongPlay);
 
             if (song.ImageButton != Properties.Resources.play && !ex) // ex == true // curent play next

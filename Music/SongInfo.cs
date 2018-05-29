@@ -10,7 +10,7 @@ namespace Music
         #region constructor      
         private readonly Image imageDefault = Properties.Resources.myMusic;
         internal SongInfo(string filePath) { this.file = TagLib.File.Create(filePath); }
-        internal SongInfo() {  }
+        internal SongInfo() { }
         #endregion
 
         #region Properties
@@ -46,7 +46,7 @@ namespace Music
         }
         public double Duration
         {
-            get=> file.Properties.Duration.TotalSeconds;
+            get => file.Properties.Duration.TotalSeconds;
         }
         #endregion
 
@@ -119,7 +119,7 @@ namespace Music
         #region Destructor
         ~SongInfo()
         {
-            if(file != null)
+            if (file != null)
                 file.Dispose();
         }
         #endregion

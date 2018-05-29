@@ -10,13 +10,13 @@ using WMPLib;
 
 namespace Music
 {
-    
+
     class MediaPlayer
     {
         static MediaPlayer instance = new MediaPlayer();
         WindowsMediaPlayer player = new WindowsMediaPlayer();
 
-        public static MediaPlayer Instance 
+        public static MediaPlayer Instance
         {
             get { return instance; }
             private set => instance = value;
@@ -96,7 +96,8 @@ namespace Music
         public string[] LoadLocalFile()//IWMPPlaylist playlist)
         {
             //string path = @"E:\test";
-            string path = @"G:\the nho\Zing MP3";
+            //string path = @"G:\the nho\Zing MP3";
+            string path = @"C:\Users\ndc07\Music";
             string[] listFile = Directory.GetFiles(path, "*.mp3");
             return listFile;
         }
@@ -112,7 +113,7 @@ namespace Music
         }
         public IWMPPlaylist CreatePlaylist(string name)
         {
-            IWMPPlaylist playlist = player.playlistCollection.newPlaylist(name+"_TingMusic");
+            IWMPPlaylist playlist = player.playlistCollection.newPlaylist(name + "_TingMusic");
             return playlist;
         }
         public IWMPMedia CreateMedia(string path)
@@ -176,7 +177,7 @@ namespace Music
                     string media = playlistArray.Item(i).name.Split('_')[0];
                     listMedia.Add(media);
                 }
-                
+
             }
             return listMedia;
         }

@@ -70,11 +70,12 @@ namespace Music
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.bunifuDragControl2 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel = new System.Windows.Forms.Panel();
+            this.playlistDetail = new Music.PlaylistDetail();
             this.playlist = new Music.Playlist();
             this.lyrics = new Music.Lyrics();
             this.myMusic = new Music.MyMusic();
             this.nowPlaying = new Music.NowPlaying();
-            this.TimeLine = new System.Windows.Forms.Timer(this.components);
+            this.timeLine = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.timer4 = new System.Windows.Forms.Timer(this.components);
@@ -365,7 +366,7 @@ namespace Music
             this.labelTimeTo.Name = "labelTimeTo";
             this.labelTimeTo.Size = new System.Drawing.Size(45, 18);
             this.labelTimeTo.TabIndex = 41;
-            this.labelTimeTo.Text = "00:00";
+            this.labelTimeTo.Text = "03:20";
             // 
             // lblSongName
             // 
@@ -377,6 +378,7 @@ namespace Music
             this.lblSongName.Name = "lblSongName";
             this.lblSongName.Size = new System.Drawing.Size(461, 19);
             this.lblSongName.TabIndex = 40;
+            this.lblSongName.Text = "Attention";
             // 
             // lblArtistName
             // 
@@ -388,6 +390,7 @@ namespace Music
             this.lblArtistName.Name = "lblArtistName";
             this.lblArtistName.Size = new System.Drawing.Size(461, 22);
             this.lblArtistName.TabIndex = 39;
+            this.lblArtistName.Text = "Charlie Puth";
             // 
             // labelTimeFrom
             // 
@@ -399,7 +402,7 @@ namespace Music
             this.labelTimeFrom.Name = "labelTimeFrom";
             this.labelTimeFrom.Size = new System.Drawing.Size(45, 18);
             this.labelTimeFrom.TabIndex = 38;
-            this.labelTimeFrom.Text = "00:00";
+            this.labelTimeFrom.Text = "00:50";
             // 
             // sliderDuration
             // 
@@ -419,6 +422,7 @@ namespace Music
             // 
             // pictureBoxSong
             // 
+            this.pictureBoxSong.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSong.Image")));
             this.pictureBoxSong.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxSong.Name = "pictureBoxSong";
             this.pictureBoxSong.Size = new System.Drawing.Size(90, 90);
@@ -673,7 +677,7 @@ namespace Music
             this.btnMyMusic.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMyMusic.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
             this.btnMyMusic.TextFont = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMyMusic.Click += new System.EventHandler(this.BtnMyMusic_Click_1);
+            this.btnMyMusic.Click += new System.EventHandler(this.btnMyMusic_Click_1);
             // 
             // btnNavigationPanel
             // 
@@ -707,7 +711,7 @@ namespace Music
             this.btnNavigationPanel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNavigationPanel.Textcolor = System.Drawing.Color.White;
             this.btnNavigationPanel.TextFont = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.btnNavigationPanel.Click += new System.EventHandler(this.BtnNavigationPanel_Click_1);
+            this.btnNavigationPanel.Click += new System.EventHandler(this.btnNavigationPanel_Click_1);
             // 
             // label7
             // 
@@ -933,6 +937,7 @@ namespace Music
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.playlistDetail);
             this.panel.Controls.Add(this.playlist);
             this.panel.Controls.Add(this.lyrics);
             this.panel.Controls.Add(this.myMusic);
@@ -943,6 +948,16 @@ namespace Music
             this.panel.Size = new System.Drawing.Size(850, 474);
             this.panel.TabIndex = 29;
             this.panel.SizeChanged += new System.EventHandler(this.panel_SizeChanged);
+            // 
+            // playlistDetail
+            // 
+            this.playlistDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.playlistDetail.Location = new System.Drawing.Point(0, 0);
+            this.playlistDetail.Name = "playlistDetail";
+            this.playlistDetail.PlaylistImage = ((System.Drawing.Image)(resources.GetObject("playlistDetail.PlaylistImage")));
+            this.playlistDetail.PlaylistName = "ndc07";
+            this.playlistDetail.Size = new System.Drawing.Size(850, 474);
+            this.playlistDetail.TabIndex = 4;
             // 
             // playlist
             // 
@@ -984,9 +999,9 @@ namespace Music
             this.nowPlaying.Size = new System.Drawing.Size(850, 474);
             this.nowPlaying.TabIndex = 1;
             // 
-            // TimeLine
+            // timeLine
             // 
-            this.TimeLine.Tick += new System.EventHandler(this.TimeLine_Click);
+            this.timeLine.Tick += new System.EventHandler(this.TimeLine_Tick);
             // 
             // timer2
             // 
@@ -998,7 +1013,6 @@ namespace Music
             // 
             // timer4
             // 
-            this.timer4.Interval = 500;
             this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
             // 
             // fMusic
@@ -1016,7 +1030,6 @@ namespace Music
             this.Name = "fMusic";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ting Music";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fMusic_FormClosing);
             this.panelBottom.ResumeLayout(false);
             this.panelBottom.PerformLayout();
             this.panelPlay.ResumeLayout(false);
@@ -1056,6 +1069,7 @@ namespace Music
         private System.Windows.Forms.Label lblSongName;
         private System.Windows.Forms.Label lblArtistName;
         private System.Windows.Forms.Label labelTimeFrom;
+        private Bunifu.Framework.UI.BunifuSlider sliderDuration;
         private System.Windows.Forms.PictureBox pictureBoxSong;
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl2;
@@ -1070,20 +1084,21 @@ namespace Music
         private Bunifu.Framework.UI.BunifuFlatButton btnForward;
         private Bunifu.Framework.UI.BunifuFlatButton btnBack;
         private MyMusic myMusic;
-        private System.Windows.Forms.Timer TimeLine;
+        private System.Windows.Forms.Timer timeLine;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Timer timer3;
         private NowPlaying nowPlaying;
         private Lyrics lyrics;
         private System.Windows.Forms.Timer timer4;
         private Playlist playlist;
-        private Bunifu.Framework.UI.BunifuSlider sliderDuration;
+        private PlaylistDetail playlistDetail;
         internal static readonly Image pause = Properties.Resources.pause;
         internal static readonly Image play = Properties.Resources.play;
         private static readonly Image repeat = Properties.Resources.repeat;
         private static readonly Image repeat_one = Properties.Resources.repeat_one;
         private static readonly Image volume_off = Properties.Resources.volume_off;
         private static readonly Image volume_up = Properties.Resources.volume_up;
+
     }
 }
 

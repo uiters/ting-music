@@ -126,11 +126,12 @@ namespace Music
             this.btnOption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOption.Textcolor = System.Drawing.Color.White;
             this.btnOption.TextFont = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.btnOption.Click += new System.EventHandler(this.BtnOption_Click);
+            this.btnOption.Click += new System.EventHandler(this.btnOption_Click_1);
             // 
             // btnPlay
             // 
             this.btnPlay.BackColor = System.Drawing.Color.Transparent;
+            this.btnPlay.Image = global::Music.Properties.Resources.play;
             this.btnPlay.ImageActive = null;
             this.btnPlay.Location = new System.Drawing.Point(68, 11);
             this.btnPlay.Name = "btnPlay";
@@ -139,7 +140,7 @@ namespace Music
             this.btnPlay.TabIndex = 54;
             this.btnPlay.TabStop = false;
             this.btnPlay.Zoom = 10;
-            this.btnPlay.Click += new System.EventHandler(this.BtnPlay_Click_1);
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // pictureBoxSong
             // 
@@ -183,5 +184,6 @@ namespace Music
         private System.Windows.Forms.Label lblCategory;
         private static readonly Image pause = fMusic.pause;
         private static readonly Image play = fMusic.play;
+
     }
 }
