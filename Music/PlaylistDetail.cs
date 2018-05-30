@@ -20,6 +20,10 @@ namespace Music
         public event EventHandler AddSong_Click;
         public event EventHandler Rename_Click;
         public event EventHandler Delete_Click;
+        public void AddSong(Song value)
+        {
+            panelSongs.Controls.Add(value);
+        }
         public Image PlaylistImage
         {
             get
@@ -47,6 +51,13 @@ namespace Music
             set
             {
                 panelSongs.Controls.Add(value);
+            }
+        }
+        public int totalSong
+        {
+            set
+            {
+                lblTotalSong.Text = value.ToString()+" songs";
             }
         }
         public List<Song> listSong

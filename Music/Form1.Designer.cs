@@ -422,6 +422,7 @@ namespace Music
             // 
             // pictureBoxSong
             // 
+            this.pictureBoxSong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.pictureBoxSong.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSong.Image")));
             this.pictureBoxSong.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxSong.Name = "pictureBoxSong";
@@ -716,24 +717,24 @@ namespace Music
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Century", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label7.Location = new System.Drawing.Point(137, 20);
+            this.label7.Location = new System.Drawing.Point(154, 22);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(62, 23);
+            this.label7.Size = new System.Drawing.Size(56, 21);
             this.label7.TabIndex = 32;
             this.label7.Text = "music";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Forte", 26.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Franklin Gothic Heavy", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.label8.Location = new System.Drawing.Point(61, 9);
+            this.label8.Location = new System.Drawing.Point(51, 7);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(79, 38);
+            this.label8.Size = new System.Drawing.Size(112, 37);
             this.label8.TabIndex = 31;
-            this.label8.Text = "Ting";
+            this.label8.Text = "Apollo";
             // 
             // panelHeader
             // 

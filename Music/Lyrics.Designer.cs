@@ -89,6 +89,7 @@
             // panelRight
             // 
             this.panelRight.AutoScroll = true;
+            this.panelRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelRight.Controls.Add(this.lblLyrics);
             this.panelRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRight.Location = new System.Drawing.Point(381, 0);
@@ -161,6 +162,7 @@
             // 
             // pictureBoxSong
             // 
+            this.pictureBoxSong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBoxSong.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSong.Image")));
             this.pictureBoxSong.Location = new System.Drawing.Point(41, 117);
             this.pictureBoxSong.Name = "pictureBoxSong";
@@ -201,7 +203,6 @@
 
         private System.Windows.Forms.Panel panelLeft;
         private System.Windows.Forms.Panel panelRight;
-        private System.Windows.Forms.PictureBox pictureBoxSong;
         private System.Windows.Forms.Label lblSongName;
         private System.Windows.Forms.Label lblArtistName;
         private System.Windows.Forms.Label lblLyrics;
@@ -210,5 +211,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse2;
+        public System.Windows.Forms.PictureBox pictureBoxSong;
     }
 }

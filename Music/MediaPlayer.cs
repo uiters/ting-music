@@ -10,7 +10,6 @@ using WMPLib;
 
 namespace Music
 {
-
     class MediaPlayer
     {
         static MediaPlayer instance = new MediaPlayer();
@@ -111,11 +110,6 @@ namespace Music
             }
             return listFile;
         }
-        public IWMPPlaylist CreatePlaylist(string name)
-        {
-            IWMPPlaylist playlist = player.playlistCollection.newPlaylist(name + "_TingMusic");
-            return playlist;
-        }
         public IWMPMedia CreateMedia(string path)
         {
             return player.newMedia(path);
@@ -165,22 +159,6 @@ namespace Music
         {
             player.playlistCollection.remove(playlist);
         }
-        public List<string> LoadListPlaylist()
-        {
-            //Demo thooi
-            List<string> listMedia = new List<string>();
-            IWMPPlaylistArray playlistArray = player.playlistCollection.getAll();
-            for (int i = 0; i < playlistArray.count; i++)
-            {
-                if (playlistArray.Item(i).name.Contains("_TingMusic"))
-                {
-                    string media = playlistArray.Item(i).name.Split('_')[0];
-                    listMedia.Add(media);
-                }
-
-            }
-            return listMedia;
-        }
         public void DeletePlaylist()
         {
             //IWMPPlaylistArray plCollection = player.playlistCollection.getByName("LocalFile");
@@ -193,6 +171,120 @@ namespace Music
             {
                 IWMPMedia med = player.currentPlaylist.get_Item(i);
                 player.currentPlaylist.removeItem(med);
+            }
+        }
+        //Playlist
+        public List<string> LoadListPlaylist()
+        {
+            string path = @"C:\Users\ndc07\Music\Playlists";
+            var listFile = Directory.GetFiles(path,"*.wpl").ToList();
+            return listFile;
+        }
+        public void CreatePlaylist(string fileName, string title, List<string> listMedia = null)
+        {
+            string filePath = @"C:\Users\ndc07\Music\Playlists\" + fileName + ".wpl";
+            if(File.Exists(filePath))
+            {
+                int i = 1;
+                while (File.Exists(@"C:\Users\ndc07\Music\Playlists\" + fileName +" ("+i+").wpl"))
+                {
+                    i++;
+                }
+                filePath = @"C:\Users\ndc07\Music\Playlists\" + fileName + " (" + i + ").wpl";
+            }
+            FileStream fileStream = File.Create(filePath);
+            using (StreamWriter streamWriter = new StreamWriter(fileStream))
+            {
+                try
+                {
+                    streamWriter.WriteLine("<?wpl version=\"1.0\"?>");
+                    streamWriter.WriteLine("<smil>");
+
+                    streamWriter.WriteLine("\t<head>");
+                    streamWriter.WriteLine("\t\t<meta name=\"Generator\" content=\"Microsoft Windows Media Player-- 12.0.17134.48\"/>");
+                    streamWriter.WriteLine("\t\t<meta name=\"ItemCount\" content=\"0\"/>");
+                    streamWriter.WriteLine("\t\t<meta name=\"IsFavorite\"/>");
+                    streamWriter.WriteLine("\t\t<meta name=\"ContentPartnerListID\"/>");
+                    streamWriter.WriteLine("\t\t<meta name=\"ContentPartnerNameType\"/>");
+                    streamWriter.WriteLine("\t\t<meta name=\"ContentPartnerName\"/>");
+                    streamWriter.WriteLine("\t\t<meta name=\"Subtitle\"/>");
+                    streamWriter.WriteLine("\t\t<author/>");
+                    streamWriter.WriteLine("\t\t<title>" + title + "</title>");
+                    streamWriter.WriteLine("\t</head>");
+
+                    streamWriter.WriteLine("\t<body>");
+                    streamWriter.WriteLine("\t\t<seq>");
+
+                    if (listMedia != null)
+                        foreach (string item in listMedia)
+                            streamWriter.WriteLine("\t\t\t<media src=\"" + item + "\"/>");
+
+                    streamWriter.WriteLine("\t\t</seq>");
+                    streamWriter.WriteLine("\t</body>");
+                    streamWriter.WriteLine("</smil>");
+                }
+                catch { }
+                streamWriter.Flush();
+            }
+            fileStream.Close();
+        }
+        public List<string> ReadPlaylist(string filePath)
+        {
+            //string filePath = @"C:\Users\ndc07\Music\Playlists\" + fileName + ".wpl";
+            List<string> listMedia = new List<string>();
+            string[] lines = File.ReadAllLines(filePath);
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (lines[i].Contains("<media"))
+                {
+                    string result = lines[i].Split('"')[1];
+                    listMedia.Add(result);
+                }
+            }
+            return listMedia;
+        }
+        public string GetTitlePlaylist(string filePath)
+        {
+            string[] lines = File.ReadAllLines(filePath);
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (lines[i].Contains("<title>"))
+                {
+                    return (lines[i].Split('>')[1]).Split('<')[0];
+                }
+            }
+            return null;
+        }
+        public bool IsMediaExists(string filePath, string mediaPath)
+        {
+            List<string> listMedia = ReadPlaylist(filePath);
+            foreach (var item in listMedia)
+            {
+                if (item == mediaPath)
+                    return true;
+            }
+            return false;
+        }
+        public void AddMediaOnPlayList(string filePath, string mediaPath)
+        {
+            //Phải kiểm tra media đã tồn tại chưa?
+            if (!IsMediaExists(filePath, mediaPath))
+            {
+                //string filePath = @"C:\Users\ndc07\Music\Playlists\" + fileName + ".wpl";
+                var lines = File.ReadAllLines(filePath).ToList();
+                lines.Insert(15, "\t\t\t<media src=\"" + mediaPath + "\"/>");
+                File.WriteAllLines(filePath, lines);
+            }
+        }
+        public void RemoveMediaOnPlayList(string filePath, string mediaPath)
+        {
+            if (IsMediaExists(filePath, mediaPath))//Hơi thừa nhưng cũng nên có
+            {
+                //string filePath = @"C:\Users\ndc07\Music\Playlists\" + fileName + ".wpl";
+                var lines = File.ReadAllLines(filePath).ToList();
+                string item = "\t\t\t<media src=\"" + mediaPath + "\"/>";
+                lines.Remove(item);
+                File.WriteAllLines(filePath, lines);
             }
         }
     }

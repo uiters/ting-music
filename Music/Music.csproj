@@ -55,6 +55,15 @@
     <Reference Include="Bunifu_UI_v1.52">
       <HintPath>..\..\..\UI for Visual Studio 2017\Bunifu_UI_v1.52.dll</HintPath>
     </Reference>
+    <Reference Include="Fizzler, Version=1.1.21209.0, Culture=neutral, PublicKeyToken=4ebff4844e382110, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fizzler.1.1.0\lib\net35\Fizzler.dll</HintPath>
+    </Reference>
+    <Reference Include="Fizzler.Systems.HtmlAgilityPack, Version=1.1.21209.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fizzler.Systems.HtmlAgilityPack.1.1.1\lib\net35\Fizzler.Systems.HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.8.4.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.8.4\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialSkin">
       <HintPath>..\..\..\UI for Visual Studio 2017\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
     </Reference>
@@ -117,6 +126,7 @@
     <Compile Include="Lyrics.Designer.cs">
       <DependentUpon>Lyrics.cs</DependentUpon>
     </Compile>
+    <Compile Include="LyricSong.cs" />
     <Compile Include="MediaFile.cs" />
     <Compile Include="MediaPlayer.cs" />
     <Compile Include="MyMusic.cs">
@@ -231,9 +241,6 @@
     <None Include="Resources\myPlaylist.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\myMusic.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\myAlbum.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -270,6 +277,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\myMusic.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

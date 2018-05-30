@@ -16,10 +16,9 @@ namespace Music
     public partial class fMusic : Form
     {
         private List<Song> songsFull = new List<Song>();
-        private List<Song> songsNowPlaying = new List<Song>();
-        private List<Song> songsLocalFile = new List<Song>();
-        private List<Song> songsCurrent = new List<Song>();
+        private List<Song> songsLocalFile = new List<Song>();//
         private List<Song> songsRecent = new List<Song>();
+        private List<Song> songsNowPlaying = new List<Song>();//
         private int indexNow = -1;
         int status;
         Action func;
@@ -72,11 +71,11 @@ namespace Music
                 songsLocalFile.Add(song);
                 myMusic.AddSong(song);
             }
-            CopyList(songsLocalFile, songsCurrent);
+            CopyList(songsLocalFile, songsNowPlaying);
             if (songsLocalFile.Count > 0)
             {
                 indexNow = 0;
-                ShowInfoMeadia(songsCurrent[0]);
+                ShowInfoMeadia(songsNowPlaying[0]);
             }
             info = null;
             GC.Collect();
@@ -92,8 +91,8 @@ namespace Music
         }
         public void LoadCurrentMedia()
         {
-            if (songsCurrent.Count == 0) return;
-            Song song = songsCurrent[indexNow];
+            if (songsNowPlaying.Count == 0) return;
+            Song song = songsNowPlaying[indexNow];
 
             pictureBoxSong.Image = song.ImageSong;
             lblSongName.Text = song.SongName;
@@ -101,7 +100,7 @@ namespace Music
             labelTimeFrom.Text = "00:00";
             labelTimeTo.Text = song.TotalTime;
 
-            UISort.pathSongPlay = songsCurrent[indexNow].Path;
+            UISort.pathSongPlay = songsNowPlaying[indexNow].Path;
             try
             {
                 if (status == 0)
@@ -128,10 +127,10 @@ namespace Music
             catch
             { }
         }
+        
         public void LoadLyrics()
         {
-            IWMPMedia media = MediaPlayer.Instance.GetCurrentMedia();
-            string path = media.sourceURL;
+            string path = songsNowPlaying[indexNow].Path;
 
             SongInfo info = new SongInfo(path);
 
@@ -154,18 +153,74 @@ namespace Music
         }
         public void LoadListPlaylist()
         {
-            //playlist.Clear();
-            //List<IWMPPlaylist> listPlaylist = MediaPlayer.Instance.LoadListPlaylist();
-            //foreach (var item in listPlaylist)
-            //{
-            //    Myplaylist myplaylist = new Myplaylist();
-            //    myplaylist.Tag = item;
-            //    myplaylist.BtnImage_Click += Myplaylist_BtnImage_Click;
-            //    myplaylist.PlaylistName = item.name.Split('_')[0];
-            //    myplaylist.PlaylistImage = SongInfo.Instance.LoadImagePlaylist(item);
-            //    playlist.myplaylist = myplaylist;
-            //}
+
+            playlist.Clear();
+            List<string> listPlaylist = MediaPlayer.Instance.LoadListPlaylist();
+            foreach (var item in listPlaylist)
+            {
+                MediaFile mediaFile = new MediaFile(item);
+                Myplaylist myplaylist = new Myplaylist();
+                myplaylist.Tag = item;
+                myplaylist.BtnImage_Click += Myplaylist_BtnImage_Click1;
+
+                myplaylist.PlaylistName = MediaPlayer.Instance.GetTitlePlaylist(item);
+
+                if(MediaPlayer.Instance.ReadPlaylist(item).Count>0)
+                myplaylist.PlaylistImage = SongInfo.GetImageSong(MediaPlayer.Instance.ReadPlaylist(item)[0]);
+
+                playlist.myplaylist = myplaylist;
+            }
         }
+        public Song GetMediaExists(string mediaPath)
+        {
+            for (int j = 0; j < songsFull.Count; j++)
+            {
+                if (songsFull[j].Path == mediaPath)
+                {
+                    return songsFull[j];
+                }
+            }
+            return null;
+        }
+        public void LoadPlaylistDetails(string playlistPath)
+        {
+            List<string> listMediaPath = MediaPlayer.Instance.ReadPlaylist(playlistPath);
+
+            SongInfo info = new SongInfo();
+            int i = 0;
+            songsNowPlaying.Clear();
+            foreach (var item in listMediaPath)
+            {
+                MediaFile file = new MediaFile(item);
+
+                Song song = GetMediaExists(item);
+                if (song == null)
+                    song = Song.CreateSong(file, info, Song_ButtonPlay_Click, i);
+                else
+                    song.Index = i;
+                playlistDetail.AddSong(song);
+                songsNowPlaying.Add(song);
+                i++;
+            }
+            indexNow = 0;
+            GC.Collect();
+        }
+        private void Myplaylist_BtnImage_Click1(object sender, EventArgs e)
+        { 
+            Myplaylist myplaylist = sender as Myplaylist;
+            string playlistPath = myplaylist.Tag.ToString();
+
+            playlistDetail.PlaylistImage = myplaylist.PlaylistImage;
+            playlistDetail.PlaylistName = myplaylist.PlaylistName;
+            playlistDetail.totalSong = MediaPlayer.Instance.ReadPlaylist(playlistPath).Count;
+
+            playlistDetail.Clear();
+
+            LoadPlaylistDetails(playlistPath);
+
+            playlistDetail.BringToFront();
+        }
+
         private void CopyList(List<Song> songsA, List<Song> songsB)
         {
             songsB.Clear();
@@ -189,61 +244,17 @@ namespace Music
             Song song = sender as Song;
             if (indexNow != -1)
             {
-                Song songPlay = songsCurrent[indexNow];
+                Song songPlay = songsNowPlaying[indexNow];
                 songPlay.ImageButton = play;
             }
             indexNow = song.Index;
             song.ImageButton = pause;
             MediaPlayer.Instance.Play(song.Path);
             btnPlay.Image = pause;
-
+            RecentAdd(songsNowPlaying[indexNow]);
             ShowInfoMeadia(song);
             timeLine.Start();
             timer2.Start();
-        }
-        private void Myplaylist_BtnImage_Click(object sender, EventArgs e)
-        {
-            Myplaylist myplaylist = sender as Myplaylist;
-            playlistDetail.PlaylistImage = myplaylist.PlaylistImage;
-            playlistDetail.PlaylistName = myplaylist.PlaylistName;
-
-            playlistDetail.Clear();
-            List<string> listFile = MediaPlayer.Instance.LoadCurrentPlaylist(myplaylist.Tag as IWMPPlaylist);
-            int i = 0;
-            if (listFile.Count > 0)
-                foreach (var item in listFile)
-                {
-
-                    MediaFile file = new MediaFile(item);
-                    IWMPMedia media = MediaPlayer.Instance.CreateMedia(file.FilePath);
-
-                    //Song song = new Song();
-                    //song.index = i++;
-                    //song.ButtonPlay_Click += Song_ButtonPlay_Click;
-                    //song.ImageSong = SongInfo.Instance.LoadImageSong(file.FilePath);
-                    //song.Path = file.FilePath;
-                    //song.SongName = SongInfo.Instance.Song(file.FilePath);
-                    //song.ArtistName = SongInfo.Instance.Artist(file.FilePath);
-                    //song.CategoryName = SongInfo.Instance.Genrne(file.FilePath);
-                    //song.TotalTime = ConvertToMinute(media.duration);
-                    //media.name = song.SongName;
-
-                    //if (i % 2 == 0)
-                    //    song.BackColor = Color.Silver;
-                    //else
-                    //    song.BackColor = Color.Gainsboro;
-                    //playlistDetail.song = song;
-                }
-            foreach (Control item in playlistDetail.listControl)
-            {
-                item.Width = panel.Width - 20;
-            }
-            MediaPlayer.Instance.SelectCurrentPlaylist(myplaylist.Tag as IWMPPlaylist);
-
-            LoadCurrentMedia();
-            GC.Collect();
-
-            playlistDetail.BringToFront();
         }
         public static string ConvertToMinute(double Second)
         {
@@ -295,28 +306,44 @@ namespace Music
             labelTitle.Text = "My music";
             ChangeNormalColorOnPanel1(sender);
             myMusic.BringToFront();
-            foreach (Control item in myMusic.listControl)
+            int x = panel.Width - 25;
+            songsNowPlaying.Clear();
+            indexNow = 0;
+
+            for (int i = 0; i < songsLocalFile.Count; i++)
             {
-                item.Width = panel.Width - 25;
+                songsNowPlaying.Add(songsLocalFile[i]);
+                songsLocalFile[i].Width = x;
+                myMusic.AddSong(songsLocalFile[i]);
             }
+
         }
         private void btnRecentPlays_Click_1(object sender, EventArgs e)
         {
             status = 1;
+            nowPlaying.BringToFront();
             nowPlaying.Clear();
             ChangeNormalColorOnPanel1(sender);
+            int x = panel.Width - 20;          
+            for (int i = songsRecent.Count - 1; i >= 0; i--)
+            {
+                nowPlaying.AddSong(songsRecent[i]);
+                songsRecent[i].Width = x;
+            }
         }
         private void btnNowPlaying_Click_1(object sender, EventArgs e)
         {
             labelTitle.Text = "Now playing";
             status = 2;
             ChangeNormalColorOnPanel1(sender);
-            nowPlaying.BringToFront();
+            
             LoadNowPlaying();
-            foreach (Control item in nowPlaying.listControl)
+            int x = panel.Width - 20;
+            for (int i = 0; i < nowPlaying.listControl.Count; i++)
             {
-                item.Width = panel.Width - 20;
+                nowPlaying.listControl[i].Width = x;
             }
+            nowPlaying.BringToFront();
         }
         private void btnPlayList_Click_1(object sender, EventArgs e)
         {
@@ -405,12 +432,11 @@ namespace Music
         }
         private void BtnPlay_Click(object sender, EventArgs e)
         {
-            LoadCurrentMedia();
-
+            //LoadCurrentMedia();
             if (btnPlay.Image == pause)
             {
                 btnPlay.Image = play;
-                songsCurrent[indexNow].ImageButton = play;
+                songsNowPlaying[indexNow].ImageButton = play;
                 MediaPlayer.Instance.Pause();
                 timeLine.Stop();
                 timer2.Stop();
@@ -422,13 +448,24 @@ namespace Music
                     MediaPlayer.Instance.Play();
                 }
                 else
-                    MediaPlayer.Instance.PlayUrl(songsCurrent[indexNow].Path);
+                {
+                    RecentAdd(songsNowPlaying[indexNow]);
+                    ShowInfoMeadia(songsNowPlaying[indexNow]);
+                    MediaPlayer.Instance.PlayUrl(songsNowPlaying[indexNow].Path);
+                }
                 btnPlay.Image = pause;
-                songsCurrent[indexNow].ImageButton = pause;
-
+                songsNowPlaying[indexNow].ImageButton = pause;
                 timeLine.Start();
                 timer2.Start();
             }
+        }
+        private void RecentAdd(Song song)
+        {
+            songsRecent.Add(song);
+            if (songsRecent.Count > 50)
+                songsRecent.RemoveAt(songsRecent.Count - 1);
+
+
         }
         private void BtnVolume_Click(object sender, EventArgs e)
         {
@@ -449,27 +486,34 @@ namespace Music
         private void BtnForward_Click(object sender, EventArgs e)
         {
             if (indexNow == -1) return;
-            songsCurrent[indexNow].ImageButton = play; // song pre
-            nextSong(); // set index song next
+            songsNowPlaying[indexNow].ImageButton = play; // song pre
+            NextSong(); // set index song next
             SetSong();
             LoadLyrics();
             timer2.Start();
             timeLine.Start();
+            imageSong = new Bitmap(lyrics.SongImage);
+            RecentAdd(songsNowPlaying[indexNow]);
+
+            angles = 0;
         }
         private void BtnBack_Click(object sender, EventArgs e)
         {
             //MediaPlayer.Instance.Previous();
             if (indexNow == -1) return;
-            songsCurrent[indexNow].ImageButton = play; // song pre
-            nextSong(); // set index song next
+            songsNowPlaying[indexNow].ImageButton = play; // song pre
+            PreviousSong(); // set index song next
             SetSong();
             LoadLyrics();
             timer2.Start();
             timeLine.Start();
+            RecentAdd(songsNowPlaying[indexNow]);
+            imageSong = new Bitmap(lyrics.SongImage);
+            angles = 0;
         }
         private void SetSong()
         {
-            Song song = songsCurrent[indexNow];
+            Song song = songsNowPlaying[indexNow];
             song.ImageButton = pause; // song now
             MediaPlayer.Instance.Play(song.Path);
             ShowInfoMeadia(song);
@@ -486,6 +530,7 @@ namespace Music
             if (minus <= sliderDuration.MaximumValue)
                 sliderDuration.Value = minus;
             labelTimeFrom.Text = ConvertToMinute(MediaPlayer.Instance.GetCurrentPosition());
+            
         }
         private void Timer2_Tick(object sender, EventArgs e)
         {
@@ -493,6 +538,8 @@ namespace Music
             {
                 sliderDuration.Value = 0;
                 BtnForward_Click(null, null);
+                imageSong = new Bitmap(lyrics.SongImage);
+                angles = 0;
             }
         }
         private void timer3_Tick(object sender, EventArgs e)
@@ -508,7 +555,7 @@ namespace Music
         }
         private void timer4_Tick(object sender, EventArgs e)
         {
-            lyrics.SongImage = rotateImage(new Bitmap(lyrics.SongImage), 1);
+            lyrics.SongImage = rotateImage(1);
         }
 
         #endregion
@@ -576,34 +623,57 @@ namespace Music
         private void btnLyric_Click(object sender, EventArgs e)
         {
             func();
+            imageSong = new Bitmap(lyrics.SongImage);
+            angles = 0;
         }
-
+        Bitmap imageSong;
         private void lyrics_btnBack_click(object sender, EventArgs e)
         {
             lyrics.SendToBack();
             func = OpenLyric;
             timer4.Stop();
         }
-        public Bitmap rotateImage(Bitmap bitmap, float angle)
+        //public Bitmap rotateImage(Bitmap bitmap, float angle)
+        //{
+        //    Bitmap returnBitmap = new Bitmap(bitmap.Height, bitmap.Width);
+        //    using (Graphics graphics = Graphics.FromImage(returnBitmap))
+        //    {
+        //        graphics.TranslateTransform((float)bitmap.Width / 2, (float)bitmap.Height / 2);
+        //        graphics.RotateTransform(angle);
+        //        graphics.TranslateTransform(-(float)bitmap.Width / 2, -(float)bitmap.Height / 2);
+        //        graphics.DrawImage(bitmap,Point.Empty);
+        //    }
+        //    return returnBitmap;
+        //}
+        float angles = 0;
+        public Bitmap rotateImage( float angle)
         {
-            using (Graphics graphics = Graphics.FromImage(bitmap))
+            if (imageSong != null)
             {
-                graphics.TranslateTransform((float)bitmap.Width / 2, (float)bitmap.Height / 2);
-                graphics.RotateTransform(angle);
-                graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                graphics.TranslateTransform(-(float)bitmap.Width / 2, -(float)bitmap.Height / 2);
-                graphics.DrawImage(bitmap, Point.Empty);
-                graphics.Dispose();
-
+                Bitmap returnBitmap = new Bitmap(imageSong.Height, imageSong.Width);
+                if (angles < 360-angle)
+                {
+                    angles += angle;
+                }
+                else
+                    angles = 0;
+                using (Graphics graphics = Graphics.FromImage(returnBitmap))
+                {
+                    graphics.TranslateTransform((float)imageSong.Width / 2, (float)imageSong.Height / 2);
+                    graphics.RotateTransform(angles);
+                    graphics.TranslateTransform(-(float)imageSong.Width / 2, -(float)imageSong.Height / 2);
+                    graphics.DrawImage(imageSong, Point.Empty);
+                }
+                return returnBitmap;
             }
-            return bitmap;
+            return null;
         }
         private void playlist_NewPlaylist_Click(object sender, EventArgs e)
         {
-            fNewPlaylist fNewPlaylist = new fNewPlaylist();
-            fNewPlaylist.ShowDialog();
-            MediaPlayer.Instance.CreatePlaylist(fNewPlaylist.playlistName);
-            LoadListPlaylist();
+        //    fNewPlaylist fNewPlaylist = new fNewPlaylist();
+        //    fNewPlaylist.ShowDialog();
+        //    MediaPlayer.Instance.CreatePlaylist(fNewPlaylist.playlistName);
+        //    LoadListPlaylist();
         }
 
         #endregion
