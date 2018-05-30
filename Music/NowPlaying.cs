@@ -22,6 +22,7 @@ namespace Music
         }
         public void AddSongs(Song[] value)
         {
+            panelSongs.Controls.Clear();
             panelSongs.Controls.AddRange(value);
         }
         public Song song

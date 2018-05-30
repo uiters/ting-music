@@ -28,6 +28,11 @@ namespace Music
         {
             panelSongs.Controls.Add(value);
         }
+        public void AddSongs(Song[] value)
+        {
+            panelSongs.Controls.Clear();
+            panelSongs.Controls.AddRange(value);
+        }
         public List<Song> listSong
         {
             get
@@ -64,20 +69,7 @@ namespace Music
 
         private void comboBoxSortBySongs_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (comboBoxSortBySongs.SelectedIndex)
-            {
-                case 0:
-                    SortFromAToZ();
-                    break;
-                case 1:
-                    SortFromZToA();
-                    break;
-                case 3:
-                    SortArtist();
-                    break;
-                default:
-                    break;
-            }
+
         }
         private void comboBoxGenreSongs_SelectedValueChanged(object sender, EventArgs e)
         {
