@@ -34,9 +34,7 @@
             this.btnRename = new Bunifu.Framework.UI.BunifuFlatButton();
             this.btnAddSongs = new Bunifu.Framework.UI.BunifuFlatButton();
             this.btnPlayAll = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.label3 = new System.Windows.Forms.Label();
-            this.labelTotalTime = new System.Windows.Forms.Label();
-            this.labelTotalSong = new System.Windows.Forms.Label();
+            this.lblTotalSong = new System.Windows.Forms.Label();
             this.labelPlaylistName = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -52,9 +50,7 @@
             this.panel1.Controls.Add(this.btnRename);
             this.panel1.Controls.Add(this.btnAddSongs);
             this.panel1.Controls.Add(this.btnPlayAll);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.labelTotalTime);
-            this.panel1.Controls.Add(this.labelTotalSong);
+            this.panel1.Controls.Add(this.lblTotalSong);
             this.panel1.Controls.Add(this.labelPlaylistName);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
@@ -209,47 +205,19 @@
             this.btnPlayAll.TextFont = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPlayAll.Click += new System.EventHandler(this.btnPlayAll_Click);
             // 
-            // label3
+            // lblTotalSong
             // 
-            this.label3.AutoEllipsis = true;
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.label3.Location = new System.Drawing.Point(254, 61);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(12, 16);
-            this.label3.TabIndex = 75;
-            this.label3.Text = ".";
-            // 
-            // labelTotalTime
-            // 
-            this.labelTotalTime.AutoEllipsis = true;
-            this.labelTotalTime.AutoSize = true;
-            this.labelTotalTime.BackColor = System.Drawing.Color.Transparent;
-            this.labelTotalTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelTotalTime.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.labelTotalTime.Location = new System.Drawing.Point(281, 65);
-            this.labelTotalTime.Name = "labelTotalTime";
-            this.labelTotalTime.Size = new System.Drawing.Size(73, 14);
-            this.labelTotalTime.TabIndex = 74;
-            this.labelTotalTime.Text = "7 hrs 2 mins";
-            // 
-            // labelTotalSong
-            // 
-            this.labelTotalSong.AutoEllipsis = true;
-            this.labelTotalSong.AutoSize = true;
-            this.labelTotalSong.BackColor = System.Drawing.Color.Transparent;
-            this.labelTotalSong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelTotalSong.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalSong.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.labelTotalSong.Location = new System.Drawing.Point(180, 65);
-            this.labelTotalSong.Name = "labelTotalSong";
-            this.labelTotalSong.Size = new System.Drawing.Size(56, 14);
-            this.labelTotalSong.TabIndex = 73;
-            this.labelTotalSong.Text = "69 songs";
+            this.lblTotalSong.AutoEllipsis = true;
+            this.lblTotalSong.AutoSize = true;
+            this.lblTotalSong.BackColor = System.Drawing.Color.Transparent;
+            this.lblTotalSong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblTotalSong.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalSong.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
+            this.lblTotalSong.Location = new System.Drawing.Point(180, 73);
+            this.lblTotalSong.Name = "lblTotalSong";
+            this.lblTotalSong.Size = new System.Drawing.Size(56, 14);
+            this.lblTotalSong.TabIndex = 73;
+            this.lblTotalSong.Text = "69 songs";
             // 
             // labelPlaylistName
             // 
@@ -257,11 +225,11 @@
             this.labelPlaylistName.AutoSize = true;
             this.labelPlaylistName.BackColor = System.Drawing.Color.Transparent;
             this.labelPlaylistName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelPlaylistName.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPlaylistName.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPlaylistName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
             this.labelPlaylistName.Location = new System.Drawing.Point(177, 24);
             this.labelPlaylistName.Name = "labelPlaylistName";
-            this.labelPlaylistName.Size = new System.Drawing.Size(97, 33);
+            this.labelPlaylistName.Size = new System.Drawing.Size(104, 36);
             this.labelPlaylistName.TabIndex = 72;
             this.labelPlaylistName.Text = "ndc07";
             // 
@@ -321,9 +289,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label labelTotalTime;
-        private System.Windows.Forms.Label labelTotalSong;
+        private System.Windows.Forms.Label lblTotalSong;
         private System.Windows.Forms.Label labelPlaylistName;
         private System.Windows.Forms.FlowLayoutPanel panelSongs;
         private Bunifu.Framework.UI.BunifuFlatButton btnDelete;

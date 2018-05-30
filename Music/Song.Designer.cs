@@ -144,6 +144,8 @@ namespace Music
             // 
             // pictureBoxSong
             // 
+            this.pictureBoxSong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.pictureBoxSong.Image = global::Music.Properties.Resources.myMusic;
             this.pictureBoxSong.Location = new System.Drawing.Point(3, 3);
             this.pictureBoxSong.Name = "pictureBoxSong";
             this.pictureBoxSong.Size = new System.Drawing.Size(55, 55);

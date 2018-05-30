@@ -91,7 +91,7 @@ namespace Music
             using (TagLib.File file = TagLib.File.Create(filePath))
                 return file.Tag.Lyrics;
         }
-        internal static System.Drawing.Image GetLoadImageSong(string filePath)
+        internal static System.Drawing.Image GetImageSong(string filePath)
         {
             using (TagLib.File file = TagLib.File.Create(filePath))
             {

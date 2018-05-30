@@ -19,7 +19,7 @@ namespace Music
         {
             iOfListIndex = 0;
             listIndex.Clear();
-            for (int i = 0; i < songsCurrent.Count; i++)
+            for (int i = 0; i < songsNowPlaying.Count; i++)
                 listIndex.Add(i);
             listIndex.Sort(UISort.iRanDom.Compare);
             GC.Collect();
@@ -40,7 +40,7 @@ namespace Music
         }
         public void UpdateCountSongs()
         {
-            CountSongs = songsCurrent.Count;
+            CountSongs = songsNowPlaying.Count;
         }
         private void InitializePlaySong()
         {
@@ -69,7 +69,7 @@ namespace Music
                     }
                     break;
                 default:
-                    indexNow = (indexNow + 1 >= songsCurrent.Count) ? 0 : indexNow + 1;
+                    indexNow = (indexNow + 1 >= songsNowPlaying.Count) ? 0 : indexNow + 1;
                     break;
             }
         }
@@ -95,7 +95,7 @@ namespace Music
                     }
                     break;
                 default:
-                    indexNow = (indexNow - 1 < 0) ? songsCurrent.Count - 1 : indexNow - 1;
+                    indexNow = (indexNow - 1 < 0) ? songsNowPlaying.Count - 1 : indexNow - 1;
                     break;
             }
         }
