@@ -53,13 +53,13 @@ namespace Music
             {
 
                 int x = random.Next(0, 40);
-                if (x < 10)
+                if (x % 5 < 2)
                     return 1;
                 else
-                    if (x < 20)
-                    return 0;
-                else
+                    if (x % 11 < 7)
                     return -1;
+                else
+                    return 0;
             }
         }
         #endregion

@@ -20,6 +20,11 @@ namespace Music
         {
             panelSongs.Controls.Add(value);
         }
+        public void AddHeadSong(Song song)
+        {
+            panelSongs.Controls.Add(song);
+            panelSongs.Controls.SetChildIndex(song, 0);
+        }
         public void AddSongs(Song[] value)
         {
             panelSongs.Controls.Clear();
