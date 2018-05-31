@@ -41,7 +41,6 @@
             this.panelSongs.Name = "panelSongs";
             this.panelSongs.Size = new System.Drawing.Size(850, 474);
             this.panelSongs.TabIndex = 0;
-            
             // 
             // NowPlaying
             // 
