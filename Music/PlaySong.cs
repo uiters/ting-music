@@ -131,12 +131,6 @@ namespace Music
         private void PlaySong(int index)
         {
             //MediaPlayer.Instance.PlayMediaFormPlayList(PlaylistCurrent, index);
-        }
-        private void PlayOrStopSong(IWMPPlaylist playlist, int index, bool play)
-        {
-            MediaPlayer.Instance.PlayMediaFormPlayList(playlist, index);
-            if (play == false)
-                MediaPlayer.Instance.Stop();
-        }     
+        }  
     }
 }

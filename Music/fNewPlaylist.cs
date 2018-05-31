@@ -26,13 +26,12 @@ namespace Music
 
         private void btnNewPlaylist_Click(object sender, EventArgs e)
         {
-            if(txbNewPlaylist.Text!=string.Empty)
-            playlistName = txbNewPlaylist.Text;
-            //else
-            //{
-
-            //}
-
+            if (txbNewPlaylist.Text != string.Empty)
+                playlistName = txbNewPlaylist.Text;
+            else
+                playlistName = "Playlist";
+            MediaPlayer.Instance.CreatePlaylist(playlistName, playlistName);
+            MessageBox.Show("Create playlist successfully!", "Notification",MessageBoxButtons.OK,MessageBoxIcon.Information);
             this.Close();
         }
     }

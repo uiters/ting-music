@@ -79,6 +79,11 @@ namespace Music
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.timer4 = new System.Windows.Forms.Timer(this.components);
+            this.contextMenuStripSong = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuItemPlay = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemSelectAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemAddTo = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemProperties = new System.Windows.Forms.ToolStripMenuItem();
             this.panelBottom.SuspendLayout();
             this.panelPlay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPlay)).BeginInit();
@@ -87,11 +92,12 @@ namespace Music
             this.panel1.SuspendLayout();
             this.panelHeader.SuspendLayout();
             this.panel.SuspendLayout();
+            this.contextMenuStripSong.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelBottom
             // 
-            this.panelBottom.BackColor = System.Drawing.Color.DimGray;
+            this.panelBottom.BackColor = System.Drawing.Color.Gray;
             this.panelBottom.Controls.Add(this.panelPlay);
             this.panelBottom.Controls.Add(this.btnLyric);
             this.panelBottom.Controls.Add(this.btnVolume);
@@ -430,6 +436,7 @@ namespace Music
             this.pictureBoxSong.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxSong.TabIndex = 33;
             this.pictureBoxSong.TabStop = false;
+            this.pictureBoxSong.Click += new System.EventHandler(this.pictureBoxSong_Click);
             // 
             // panelLeft
             // 
@@ -730,7 +737,7 @@ namespace Music
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Franklin Gothic Heavy", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.label8.Location = new System.Drawing.Point(51, 7);
+            this.label8.Location = new System.Drawing.Point(51, 10);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(112, 37);
             this.label8.TabIndex = 31;
@@ -959,6 +966,8 @@ namespace Music
             this.playlistDetail.PlaylistName = "ndc07";
             this.playlistDetail.Size = new System.Drawing.Size(850, 474);
             this.playlistDetail.TabIndex = 4;
+            this.playlistDetail.Rename_Click += new System.EventHandler(this.playlistDetail_Rename_Click);
+            this.playlistDetail.Delete_Click += new System.EventHandler(this.playlistDetail_Delete_Click);
             // 
             // playlist
             // 
@@ -1016,6 +1025,49 @@ namespace Music
             // 
             this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
             // 
+            // contextMenuStripSong
+            // 
+            this.contextMenuStripSong.BackColor = System.Drawing.Color.Gainsboro;
+            this.contextMenuStripSong.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.contextMenuStripSong.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemPlay,
+            this.menuItemSelectAll,
+            this.menuItemAddTo,
+            this.menuItemProperties});
+            this.contextMenuStripSong.Name = "contextMenuStripSong";
+            this.contextMenuStripSong.Size = new System.Drawing.Size(181, 114);
+            // 
+            // menuItemPlay
+            // 
+            this.menuItemPlay.Image = ((System.Drawing.Image)(resources.GetObject("menuItemPlay.Image")));
+            this.menuItemPlay.Name = "menuItemPlay";
+            this.menuItemPlay.Size = new System.Drawing.Size(180, 22);
+            this.menuItemPlay.Text = "Play";
+            this.menuItemPlay.Click += new System.EventHandler(this.menuItemPlay_Click);
+            // 
+            // menuItemSelectAll
+            // 
+            this.menuItemSelectAll.Image = ((System.Drawing.Image)(resources.GetObject("menuItemSelectAll.Image")));
+            this.menuItemSelectAll.Name = "menuItemSelectAll";
+            this.menuItemSelectAll.Size = new System.Drawing.Size(180, 22);
+            this.menuItemSelectAll.Text = "Select all";
+            this.menuItemSelectAll.Click += new System.EventHandler(this.menuItemSelectAll_Click);
+            // 
+            // menuItemAddTo
+            // 
+            this.menuItemAddTo.Image = ((System.Drawing.Image)(resources.GetObject("menuItemAddTo.Image")));
+            this.menuItemAddTo.Name = "menuItemAddTo";
+            this.menuItemAddTo.Size = new System.Drawing.Size(180, 22);
+            this.menuItemAddTo.Text = "Add to";
+            // 
+            // menuItemProperties
+            // 
+            this.menuItemProperties.Image = ((System.Drawing.Image)(resources.GetObject("menuItemProperties.Image")));
+            this.menuItemProperties.Name = "menuItemProperties";
+            this.menuItemProperties.Size = new System.Drawing.Size(180, 22);
+            this.menuItemProperties.Text = "Properties";
+            this.menuItemProperties.Click += new System.EventHandler(this.menuItemProperties_Click);
+            // 
             // fMusic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1041,6 +1093,7 @@ namespace Music
             this.panel1.ResumeLayout(false);
             this.panelHeader.ResumeLayout(false);
             this.panel.ResumeLayout(false);
+            this.contextMenuStripSong.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1092,14 +1145,18 @@ namespace Music
         private Lyrics lyrics;
         private System.Windows.Forms.Timer timer4;
         private Playlist playlist;
-        private PlaylistDetail playlistDetail;
         internal static readonly Image pause = Properties.Resources.pause;
         internal static readonly Image play = Properties.Resources.play;
         private static readonly Image repeat = Properties.Resources.repeat;
         private static readonly Image repeat_one = Properties.Resources.repeat_one;
         private static readonly Image volume_off = Properties.Resources.volume_off;
         private static readonly Image volume_up = Properties.Resources.volume_up;
-
+        public PlaylistDetail playlistDetail;
+        private System.Windows.Forms.ToolStripMenuItem menuItemPlay;
+        private System.Windows.Forms.ToolStripMenuItem menuItemSelectAll;
+        private System.Windows.Forms.ToolStripMenuItem menuItemAddTo;
+        private System.Windows.Forms.ToolStripMenuItem menuItemProperties;
+        public System.Windows.Forms.ContextMenuStrip contextMenuStripSong;
     }
 }
 

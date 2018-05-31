@@ -100,78 +100,13 @@ namespace Music
             string[] listFile = Directory.GetFiles(path, "*.mp3");
             return listFile;
         }
-        public List<string> LoadCurrentPlaylist(IWMPPlaylist currentPlaylist)
-        {
-            List<string> listFile = new List<string>();
-            for (int i = 0; i < currentPlaylist.count; i++)
-            {
-                IWMPMedia media = currentPlaylist.Item[i];
-                listFile.Add(media.sourceURL);
-            }
-            return listFile;
-        }
-        public IWMPMedia CreateMedia(string path)
-        {
-            return player.newMedia(path);
-        }
-        public void AddMediaToPlaylist(string[] listFile, IWMPPlaylist playlist)
-        {
-            IWMPMedia media;
-            foreach (string item in listFile)
-            {
-                media = player.newMedia(item);
-                playlist.appendItem(media);
-            }
-        }
-        public void SelectCurrentPlaylist(IWMPPlaylist playlist)
-        {
-            player.currentPlaylist = playlist;
-            Stop();
-        }
         public IWMPMedia GetCurrentMedia()
         {
             return player.currentMedia;
         }
-        public void SetCurrentMedia(IWMPMedia media)
-        {
-            player.currentMedia = media;
-        }
-
         public void PlayUrl(string url)
         {
             player.URL = url;
-        }
-
-
-        public void PlayMediaFormPlayList(int index)
-        {
-            IWMPMedia med = player.currentPlaylist.get_Item(index);
-            player.controls.playItem(med);
-        }
-        public void PlayMediaFormPlayList(IWMPPlaylist playlist, int index)
-        {
-
-            IWMPMedia med = playlist.Item[index];
-            //Program.fMusicCurent.sliderDuration.MaximumValue = (int)med.duration + 1;
-            player.URL = med.sourceURL;
-        }
-        public void RemovePlaylist(IWMPPlaylist playlist)
-        {
-            player.playlistCollection.remove(playlist);
-        }
-        public void DeletePlaylist()
-        {
-            //IWMPPlaylistArray plCollection = player.playlistCollection.getByName("LocalFile");
-            //if (plCollection.count > 0)
-            //{
-            //    IWMPPlaylist pl = plCollection.Item(0);
-            //    player.playlistCollection.remove(pl);
-            //}
-            for (int i = 0; i < player.currentPlaylist.count; i++)
-            {
-                IWMPMedia med = player.currentPlaylist.get_Item(i);
-                player.currentPlaylist.removeItem(med);
-            }
         }
         //Playlist
         public List<string> LoadListPlaylist()
@@ -255,6 +190,32 @@ namespace Music
             }
             return null;
         }
+        public void RenamePlaylist(string filePath,string newTitle)
+        {          
+            //string oldTitle;
+            string[] lines = File.ReadAllLines(filePath);
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (lines[i].Contains("<title>"))
+                {
+                    //oldTitle = (lines[i].Split('>')[1]).Split('<')[0];
+                    //lines[i].Replace(oldTitle,newTitle);
+                    lines[i] = "\t\t<title>" + newTitle + "</title>";
+                    File.WriteAllLines(filePath, lines);
+                    break;
+                }
+            }
+            if (File.Exists(filePath))
+            {
+                int i = 1;
+                while (File.Exists(@"C:\Users\ndc07\Music\Playlists\" + newTitle + " (" + i + ").wpl"))
+                {
+                    i++;
+                }
+                string newFilePath = @"C:\Users\ndc07\Music\Playlists\" + newTitle + " (" + i + ").wpl";
+                File.Move(filePath, newFilePath);
+            }
+        }
         public bool IsMediaExists(string filePath, string mediaPath)
         {
             List<string> listMedia = ReadPlaylist(filePath);
@@ -286,6 +247,10 @@ namespace Music
                 lines.Remove(item);
                 File.WriteAllLines(filePath, lines);
             }
+        }
+        public void DeletePlaylist(string filePath)
+        {
+            File.Delete(filePath);
         }
     }
 }

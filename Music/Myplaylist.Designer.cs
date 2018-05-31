@@ -42,9 +42,9 @@
             this.labelPlaylistName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.labelPlaylistName.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPlaylistName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.labelPlaylistName.Location = new System.Drawing.Point(12, 186);
+            this.labelPlaylistName.Location = new System.Drawing.Point(10, 171);
             this.labelPlaylistName.Name = "labelPlaylistName";
-            this.labelPlaylistName.Size = new System.Drawing.Size(196, 16);
+            this.labelPlaylistName.Size = new System.Drawing.Size(140, 16);
             this.labelPlaylistName.TabIndex = 63;
             this.labelPlaylistName.Text = "ndc07";
             // 
@@ -53,15 +53,15 @@
             this.label1.BackColor = System.Drawing.Color.Gray;
             this.label1.Location = new System.Drawing.Point(26, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(168, 10);
+            this.label1.Size = new System.Drawing.Size(110, 10);
             this.label1.TabIndex = 65;
             // 
             // label2
             // 
-            this.label2.BackColor = System.Drawing.Color.Silver;
+            this.label2.BackColor = System.Drawing.Color.DarkGray;
             this.label2.Location = new System.Drawing.Point(41, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 10);
+            this.label2.Size = new System.Drawing.Size(80, 10);
             this.label2.TabIndex = 66;
             // 
             // btnImage
@@ -71,7 +71,7 @@
             this.btnImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImage.Location = new System.Drawing.Point(10, 29);
             this.btnImage.Name = "btnImage";
-            this.btnImage.Size = new System.Drawing.Size(200, 150);
+            this.btnImage.Size = new System.Drawing.Size(140, 140);
             this.btnImage.TabIndex = 64;
             this.btnImage.UseVisualStyleBackColor = true;
             this.btnImage.Click += new System.EventHandler(this.btnImage_Click);
@@ -80,13 +80,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.BackColor = System.Drawing.Color.LightGray;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnImage);
             this.Controls.Add(this.labelPlaylistName);
             this.Name = "Myplaylist";
-            this.Size = new System.Drawing.Size(220, 209);
+            this.Size = new System.Drawing.Size(160, 190);
             this.ResumeLayout(false);
 
         }

@@ -19,6 +19,7 @@ namespace Music
         private List<Song> songsLocalFile = new List<Song>();//
         private List<Song> songsRecent = new List<Song>();
         private List<Song> songsNowPlaying = new List<Song>();//
+
         private int indexNow = -1;
         int status;
         Action func;
@@ -29,7 +30,6 @@ namespace Music
             btnShuffle.Tag = "Off";
             btnRepeat.Tag = "Off";
             InitializePlaySong();
-
             InitializeData();
             func = OpenLyric;
         }
@@ -53,7 +53,7 @@ namespace Music
             {
                 item.Width = panel.Width - 25;
             }
-
+            
             //cần cập nhập lại playlistCurrent mỗi khi phát ở 1 playlist mới
         }
         #region Load
@@ -66,7 +66,7 @@ namespace Music
             for (int i = 0; i < listFile.Length; i++)
             {
                 MediaFile file = new MediaFile(listFile[i]);
-                Song song = Song.CreateSong(file, info, Song_ButtonPlay_Click, i);
+                Song song = Song.CreateSong(file, info, Song_ButtonPlay_Click, i,contextMenuStripSong,Song_Mouse_Click);
                 songsFull.Add(song);
                 songsLocalFile.Add(song);
                 myMusic.AddSong(song);
@@ -153,7 +153,7 @@ namespace Music
         }
         public void LoadListPlaylist()
         {
-
+            (contextMenuStripSong.Items[2] as ToolStripMenuItem).DropDownItems.Clear();
             playlist.Clear();
             List<string> listPlaylist = MediaPlayer.Instance.LoadListPlaylist();
             foreach (var item in listPlaylist)
@@ -169,6 +169,8 @@ namespace Music
                 myplaylist.PlaylistImage = SongInfo.GetImageSong(MediaPlayer.Instance.ReadPlaylist(item)[0]);
 
                 playlist.myplaylist = myplaylist;
+                //ContextMenuStrip
+                (contextMenuStripSong.Items[2] as ToolStripMenuItem).DropDownItems.Add(myplaylist.PlaylistName);
             }
         }
         public Song GetMediaExists(string mediaPath)
@@ -192,10 +194,11 @@ namespace Music
             foreach (var item in listMediaPath)
             {
                 MediaFile file = new MediaFile(item);
-
+               
                 Song song = GetMediaExists(item);
+
                 if (song == null)
-                    song = Song.CreateSong(file, info, Song_ButtonPlay_Click, i);
+                    song = Song.CreateSong(file, info, Song_ButtonPlay_Click, i,contextMenuStripSong,Song_Mouse_Click);
                 else
                     song.Index = i;
                 playlistDetail.AddSong(song);
@@ -205,11 +208,47 @@ namespace Music
             indexNow = 0;
             GC.Collect();
         }
+        public void ChangeColorListSong(Song song)
+        {
+            List<Song> songs = new List<Song>();
+            switch(status)
+            {
+                case 0:
+                    {
+                        songs = songsLocalFile;
+                        break;
+                    }
+                case 1:
+                    {
+                        songs = songsRecent;
+                        break;
+                    }
+                case 2:
+                    {
+                        songs = songsNowPlaying;
+                        break;
+                    }
+                case 3:
+                    {
+                        songs = songsNowPlaying;
+                        break;
+                    }
+            }
+            int i = 0;
+            foreach (var item in songs)
+            {
+                song.BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
+                i++;
+            }
+            song.BackColor = Color.Gray;
+        }
+        
         private void Myplaylist_BtnImage_Click1(object sender, EventArgs e)
         { 
             Myplaylist myplaylist = sender as Myplaylist;
             string playlistPath = myplaylist.Tag.ToString();
 
+            playlistDetail.Tag = playlistPath;
             playlistDetail.PlaylistImage = myplaylist.PlaylistImage;
             playlistDetail.PlaylistName = myplaylist.PlaylistName;
             playlistDetail.totalSong = MediaPlayer.Instance.ReadPlaylist(playlistPath).Count;
@@ -230,6 +269,14 @@ namespace Music
         #endregion
 
         #region Click
+        private void Song_Mouse_Click(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                Song song = sender as Song;
+                ChangeColorListSong(song);
+            }
+        }
         private void Song_ButtonPlay_Click(object sender, EventArgs e)
         {
             //Song song = sender as Song;
@@ -255,6 +302,7 @@ namespace Music
             ShowInfoMeadia(song);
             timeLine.Start();
             timer2.Start();
+            ChangeColorListSong(song);
         }
         public static string ConvertToMinute(double Second)
         {
@@ -262,7 +310,7 @@ namespace Music
             int second = (int)Second % 60;
             return minute.ToString("00") + ":" + second.ToString("00");
         }
-        public void ChangeNormalColorOnPanel1(object sender)
+        public void ChangeNormalColorOnPanelLeft(object sender)
         {
             BunifuFlatButton btn = sender as BunifuFlatButton;
             btn.Normalcolor = Color.FromArgb(239, 108, 1);
@@ -304,7 +352,7 @@ namespace Music
         {
             status = 0;
             labelTitle.Text = "My music";
-            ChangeNormalColorOnPanel1(sender);
+            ChangeNormalColorOnPanelLeft(sender);
             myMusic.BringToFront();
             int x = panel.Width - 25;
             songsNowPlaying.Clear();
@@ -323,7 +371,7 @@ namespace Music
             status = 1;
             nowPlaying.BringToFront();
             nowPlaying.Clear();
-            ChangeNormalColorOnPanel1(sender);
+            ChangeNormalColorOnPanelLeft(sender);
             int x = panel.Width - 20;          
             for (int i = songsRecent.Count - 1; i >= 0; i--)
             {
@@ -335,7 +383,7 @@ namespace Music
         {
             labelTitle.Text = "Now playing";
             status = 2;
-            ChangeNormalColorOnPanel1(sender);
+            ChangeNormalColorOnPanelLeft(sender);
             
             LoadNowPlaying();
             int x = panel.Width - 20;
@@ -351,16 +399,16 @@ namespace Music
             labelTitle.Text = "Playlist";
             LoadListPlaylist();
             playlist.BringToFront();
-            ChangeNormalColorOnPanel1(sender);
+            ChangeNormalColorOnPanelLeft(sender);
         }
         private void btnSetting_Click_1(object sender, EventArgs e)
         {
 
-            ChangeNormalColorOnPanel1(sender);
+            ChangeNormalColorOnPanelLeft(sender);
         }
         private void btnAbout_Click_1(object sender, EventArgs e)
         {
-            ChangeNormalColorOnPanel1(sender);
+            ChangeNormalColorOnPanelLeft(sender);
         }
         private void bunifuFlatButton2_Click(object sender, EventArgs e)
         {
@@ -440,6 +488,7 @@ namespace Music
                 MediaPlayer.Instance.Pause();
                 timeLine.Stop();
                 timer2.Stop();
+                timer4.Stop();
             }
             else
             {
@@ -457,6 +506,7 @@ namespace Music
                 songsNowPlaying[indexNow].ImageButton = pause;
                 timeLine.Start();
                 timer2.Start();
+                timer4.Start();
             }
         }
         private void RecentAdd(Song song)
@@ -464,8 +514,6 @@ namespace Music
             songsRecent.Add(song);
             if (songsRecent.Count > 50)
                 songsRecent.RemoveAt(songsRecent.Count - 1);
-
-
         }
         private void BtnVolume_Click(object sender, EventArgs e)
         {
@@ -670,12 +718,51 @@ namespace Music
         }
         private void playlist_NewPlaylist_Click(object sender, EventArgs e)
         {
-        //    fNewPlaylist fNewPlaylist = new fNewPlaylist();
-        //    fNewPlaylist.ShowDialog();
-        //    MediaPlayer.Instance.CreatePlaylist(fNewPlaylist.playlistName);
-        //    LoadListPlaylist();
+            fNewPlaylist fNewPlaylist = new fNewPlaylist();
+            fNewPlaylist.ShowDialog();
+            LoadListPlaylist();
         }
 
         #endregion
+
+        private void pictureBoxSong_Click(object sender, EventArgs e)
+        {
+            func();
+            imageSong = new Bitmap(lyrics.SongImage);
+            angles = 0;
+        }
+
+        private void playlistDetail_Rename_Click(object sender, EventArgs e)
+        {
+            fRenamePlaylist fRenamePlaylist = new fRenamePlaylist(playlistDetail.Tag.ToString());
+            fRenamePlaylist.ShowDialog();
+            playlistDetail.PlaylistName = fRenamePlaylist.txbNewPlaylist.Text;
+        }
+
+        private void playlistDetail_Delete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you want to delete this playlist?", "Quesition", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                MediaPlayer.Instance.DeletePlaylist(playlistDetail.Tag.ToString());
+                MessageBox.Show("Delete playlist successfully!", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                playlist.BringToFront();
+                LoadListPlaylist();
+            }
+        }
+
+        private void menuItemPlay_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuItemSelectAll_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuItemProperties_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
