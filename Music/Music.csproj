@@ -51,6 +51,9 @@
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>iconMusic.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bunifu_UI_v1.52">
       <HintPath>..\..\..\UI for Visual Studio 2017\Bunifu_UI_v1.52.dll</HintPath>
@@ -114,11 +117,23 @@
     <Compile Include="fNewPlaylist.Designer.cs">
       <DependentUpon>fNewPlaylist.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="fMusic.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="fMusic.Designer.cs">
+      <DependentUpon>fMusic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fProperties.Designer.cs">
+      <DependentUpon>fProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fRenamePlaylist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fRenamePlaylist.Designer.cs">
+      <DependentUpon>fRenamePlaylist.cs</DependentUpon>
     </Compile>
     <Compile Include="Lyrics.cs">
       <SubType>UserControl</SubType>
@@ -181,8 +196,14 @@
     <EmbeddedResource Include="fNewPlaylist.resx">
       <DependentUpon>fNewPlaylist.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="fMusic.resx">
+      <DependentUpon>fMusic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fProperties.resx">
+      <DependentUpon>fProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fRenamePlaylist.resx">
+      <DependentUpon>fRenamePlaylist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Lyrics.resx">
       <DependentUpon>Lyrics.cs</DependentUpon>
@@ -280,6 +301,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\myMusic.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="iconMusic.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

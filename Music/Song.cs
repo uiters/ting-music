@@ -19,6 +19,7 @@ namespace Music
 
         private event EventHandler ButtonPlay_Click;
         internal event EventHandler ButtonOption_Click;
+        public event MouseEventHandler Mouse_Click;
         internal double Duration { get; set; }
         private string path;
         internal string SongName
@@ -114,11 +115,10 @@ namespace Music
             if (ButtonPlay_Click != null)
                 ButtonPlay_Click(this, e);
         }
-
         #endregion
 
         #region Method Static
-        internal static Song CreateSong(MediaFile file, SongInfo info, EventHandler click, int i)
+        internal static Song CreateSong(MediaFile file, SongInfo info, EventHandler click, int i,ContextMenuStrip menuStripSong,MouseEventHandler mouseClick)
         {
             Song song = new Song();
             info.SetPath(file.FilePath);
@@ -133,6 +133,8 @@ namespace Music
             song.TotalTime = fMusic.ConvertToMinute(song.Duration);
             song.BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
             song.ButtonPlay_Click += click;
+            song.Mouse_Click += mouseClick;
+            song.ContextMenuStrip = menuStripSong;
             return song;
         }
 
@@ -143,8 +145,15 @@ namespace Music
         {
 
         }
+
+
+
         #endregion
 
-
+        private void pictureBoxSong_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (Mouse_Click != null)
+                Mouse_Click(this, e);
+        }
     }
 }

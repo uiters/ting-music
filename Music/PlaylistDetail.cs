@@ -39,11 +39,11 @@ namespace Music
         {
             get
             {
-                return labelPlaylistName.Text;
+                return lblPlaylistName.Text;
             }
             set
             {
-                labelPlaylistName.Text = value;
+                lblPlaylistName.Text = value;
             }
         }
         public Song song

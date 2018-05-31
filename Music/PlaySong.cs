@@ -62,7 +62,5 @@ namespace Music
                     break;
             }
         }
-        #endregion
-
     }
 }

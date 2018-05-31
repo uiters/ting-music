@@ -1,6 +1,6 @@
 ﻿namespace Music
 {
-    partial class fNewPlaylist
+    partial class fRenamePlaylist
     {
         /// <summary>
         /// Required designer variable.
@@ -29,15 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fNewPlaylist));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fRenamePlaylist));
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.txbNewPlaylist = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.bunifuFlatButton1 = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnNewPlaylist = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.btnRename = new Bunifu.Framework.UI.BunifuFlatButton();
             this.SuspendLayout();
             // 
             // bunifuDragControl1
@@ -59,7 +55,7 @@
             this.txbNewPlaylist.LineIdleColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
             this.txbNewPlaylist.LineMouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
             this.txbNewPlaylist.LineThickness = 3;
-            this.txbNewPlaylist.Location = new System.Drawing.Point(13, 177);
+            this.txbNewPlaylist.Location = new System.Drawing.Point(13, 15);
             this.txbNewPlaylist.Margin = new System.Windows.Forms.Padding(4);
             this.txbNewPlaylist.Name = "txbNewPlaylist";
             this.txbNewPlaylist.Size = new System.Drawing.Size(328, 44);
@@ -87,7 +83,7 @@
             this.bunifuFlatButton1.IconVisible = true;
             this.bunifuFlatButton1.IconZoom = 30D;
             this.bunifuFlatButton1.IsTab = false;
-            this.bunifuFlatButton1.Location = new System.Drawing.Point(81, 277);
+            this.bunifuFlatButton1.Location = new System.Drawing.Point(81, 115);
             this.bunifuFlatButton1.Name = "bunifuFlatButton1";
             this.bunifuFlatButton1.Normalcolor = System.Drawing.Color.Transparent;
             this.bunifuFlatButton1.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
@@ -99,86 +95,56 @@
             this.bunifuFlatButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.bunifuFlatButton1.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
             this.bunifuFlatButton1.TextFont = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold);
-            this.bunifuFlatButton1.Click += new System.EventHandler(this.bunifuFlatButton1_Click_1);
+            this.bunifuFlatButton1.Click += new System.EventHandler(this.bunifuFlatButton1_Click);
             // 
-            // pictureBox1
+            // btnRename
             // 
-            this.pictureBox1.Image = global::Music.Properties.Resources.myPlaylist;
-            this.pictureBox1.Location = new System.Drawing.Point(81, 28);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(183, 140);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 51;
-            this.pictureBox1.TabStop = false;
+            this.btnRename.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
+            this.btnRename.BackColor = System.Drawing.Color.LightGray;
+            this.btnRename.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRename.BorderRadius = 0;
+            this.btnRename.ButtonText = "Rename playlist";
+            this.btnRename.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRename.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
+            this.btnRename.Iconcolor = System.Drawing.Color.Transparent;
+            this.btnRename.Iconimage = null;
+            this.btnRename.Iconimage_right = null;
+            this.btnRename.Iconimage_right_Selected = null;
+            this.btnRename.Iconimage_Selected = null;
+            this.btnRename.IconMarginLeft = 0;
+            this.btnRename.IconMarginRight = 0;
+            this.btnRename.IconRightVisible = false;
+            this.btnRename.IconRightZoom = 0D;
+            this.btnRename.IconVisible = true;
+            this.btnRename.IconZoom = 30D;
+            this.btnRename.IsTab = false;
+            this.btnRename.Location = new System.Drawing.Point(81, 69);
+            this.btnRename.Name = "btnRename";
+            this.btnRename.Normalcolor = System.Drawing.Color.Transparent;
+            this.btnRename.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnRename.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnRename.selected = false;
+            this.btnRename.Size = new System.Drawing.Size(183, 40);
+            this.btnRename.TabIndex = 49;
+            this.btnRename.Text = "Rename playlist";
+            this.btnRename.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnRename.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.btnRename.TextFont = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btnRename.Click += new System.EventHandler(this.btnRename_Click);
             // 
-            // btnNewPlaylist
-            // 
-            this.btnNewPlaylist.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.btnNewPlaylist.BackColor = System.Drawing.Color.LightGray;
-            this.btnNewPlaylist.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnNewPlaylist.BorderRadius = 0;
-            this.btnNewPlaylist.ButtonText = "Create playlist";
-            this.btnNewPlaylist.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNewPlaylist.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.btnNewPlaylist.Iconcolor = System.Drawing.Color.Transparent;
-            this.btnNewPlaylist.Iconimage = ((System.Drawing.Image)(resources.GetObject("btnNewPlaylist.Iconimage")));
-            this.btnNewPlaylist.Iconimage_right = null;
-            this.btnNewPlaylist.Iconimage_right_Selected = null;
-            this.btnNewPlaylist.Iconimage_Selected = null;
-            this.btnNewPlaylist.IconMarginLeft = 0;
-            this.btnNewPlaylist.IconMarginRight = 0;
-            this.btnNewPlaylist.IconRightVisible = false;
-            this.btnNewPlaylist.IconRightZoom = 0D;
-            this.btnNewPlaylist.IconVisible = true;
-            this.btnNewPlaylist.IconZoom = 30D;
-            this.btnNewPlaylist.IsTab = false;
-            this.btnNewPlaylist.Location = new System.Drawing.Point(81, 231);
-            this.btnNewPlaylist.Name = "btnNewPlaylist";
-            this.btnNewPlaylist.Normalcolor = System.Drawing.Color.Transparent;
-            this.btnNewPlaylist.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnNewPlaylist.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnNewPlaylist.selected = false;
-            this.btnNewPlaylist.Size = new System.Drawing.Size(183, 40);
-            this.btnNewPlaylist.TabIndex = 49;
-            this.btnNewPlaylist.Text = "Create playlist";
-            this.btnNewPlaylist.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnNewPlaylist.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.btnNewPlaylist.TextFont = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnNewPlaylist.Click += new System.EventHandler(this.btnNewPlaylist_Click);
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.Silver;
-            this.label2.Location = new System.Drawing.Point(107, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(130, 8);
-            this.label2.TabIndex = 68;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(94, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 8);
-            this.label1.TabIndex = 67;
-            // 
-            // fNewPlaylist
+            // fRenamePlaylist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(357, 328);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
+            this.ClientSize = new System.Drawing.Size(357, 169);
             this.Controls.Add(this.bunifuFlatButton1);
-            this.Controls.Add(this.btnNewPlaylist);
+            this.Controls.Add(this.btnRename);
             this.Controls.Add(this.txbNewPlaylist);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "fNewPlaylist";
+            this.Name = "fRenamePlaylist";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fNewPlaylist";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -186,11 +152,8 @@
         #endregion
 
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
-        private Bunifu.Framework.UI.BunifuMaterialTextbox txbNewPlaylist;
-        private Bunifu.Framework.UI.BunifuFlatButton btnNewPlaylist;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private Bunifu.Framework.UI.BunifuFlatButton btnRename;
         private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        public Bunifu.Framework.UI.BunifuMaterialTextbox txbNewPlaylist;
     }
 }
