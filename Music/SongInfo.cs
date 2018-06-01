@@ -61,6 +61,26 @@ namespace Music
         #endregion
 
         #region Method Static
+
+        public static void Save(string filePath, string songTitle, string songArtist, string albumTitle, string albumArtist, string gerne, uint year)
+        {
+            using (TagLib.File file = TagLib.File.Create(filePath))
+            {
+                if (songTitle != null)
+                    file.Tag.Title = songTitle;
+                if (songArtist != null)
+                    file.Tag.Performers = new string[] { songArtist };
+                if (albumTitle != null)
+                    file.Tag.Album = albumTitle;
+                if (albumArtist != null)
+                    file.Tag.AlbumArtists = new string[] { albumArtist };
+                if (gerne != null)
+                    file.Tag.Genres =new string[] { gerne };
+                if (year > 1993)
+                    file.Tag.Year = year;
+                file.Save();
+            }
+        }
         internal static string GetTitle(string filePath)
         {
             using (TagLib.File file = TagLib.File.Create(filePath))
@@ -90,6 +110,32 @@ namespace Music
         {
             using (TagLib.File file = TagLib.File.Create(filePath))
                 return file.Tag.Lyrics;
+        }
+        internal static string GetAlbumArtist(string filePath)
+        {
+            using (TagLib.File file = TagLib.File.Create(filePath))
+                return file.Tag.FirstAlbumArtist;
+        }
+        internal static string GetYear(string filePath)
+        {
+            using (TagLib.File file = TagLib.File.Create(filePath))
+                return file.Tag.Year.ToString();
+        }
+        internal static string GetCopyright(string filePath)
+        {
+            using (TagLib.File file = TagLib.File.Create(filePath))
+                return file.Tag.Copyright;
+        }
+        public static string ConvertToMinute(double Second)
+        {
+            uint minute = (uint)Second / 60;
+            uint second = (uint)Second % 60;
+            return minute.ToString("00") + ":" + second.ToString("00");
+        }
+        internal static string GetLength(string filePath)
+        {
+            using (TagLib.File file = TagLib.File.Create(filePath))
+                return ConvertToMinute(file.Properties.Duration.TotalSeconds);
         }
         internal static System.Drawing.Image GetImageSong(string filePath)
         {

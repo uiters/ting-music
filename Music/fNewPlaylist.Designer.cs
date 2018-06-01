@@ -69,7 +69,7 @@
             // bunifuFlatButton1
             // 
             this.bunifuFlatButton1.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.bunifuFlatButton1.BackColor = System.Drawing.Color.LightGray;
+            this.bunifuFlatButton1.BackColor = System.Drawing.Color.Gainsboro;
             this.bunifuFlatButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bunifuFlatButton1.BorderRadius = 0;
             this.bunifuFlatButton1.ButtonText = "Cancel";
@@ -87,13 +87,13 @@
             this.bunifuFlatButton1.IconVisible = true;
             this.bunifuFlatButton1.IconZoom = 30D;
             this.bunifuFlatButton1.IsTab = false;
-            this.bunifuFlatButton1.Location = new System.Drawing.Point(81, 277);
+            this.bunifuFlatButton1.Location = new System.Drawing.Point(97, 273);
             this.bunifuFlatButton1.Name = "bunifuFlatButton1";
-            this.bunifuFlatButton1.Normalcolor = System.Drawing.Color.Transparent;
+            this.bunifuFlatButton1.Normalcolor = System.Drawing.Color.Gainsboro;
             this.bunifuFlatButton1.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.bunifuFlatButton1.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.bunifuFlatButton1.selected = false;
-            this.bunifuFlatButton1.Size = new System.Drawing.Size(183, 40);
+            this.bunifuFlatButton1.Size = new System.Drawing.Size(160, 35);
             this.bunifuFlatButton1.TabIndex = 50;
             this.bunifuFlatButton1.Text = "Cancel";
             this.bunifuFlatButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -114,7 +114,7 @@
             // btnNewPlaylist
             // 
             this.btnNewPlaylist.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.btnNewPlaylist.BackColor = System.Drawing.Color.LightGray;
+            this.btnNewPlaylist.BackColor = System.Drawing.Color.Gainsboro;
             this.btnNewPlaylist.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnNewPlaylist.BorderRadius = 0;
             this.btnNewPlaylist.ButtonText = "Create playlist";
@@ -132,13 +132,13 @@
             this.btnNewPlaylist.IconVisible = true;
             this.btnNewPlaylist.IconZoom = 30D;
             this.btnNewPlaylist.IsTab = false;
-            this.btnNewPlaylist.Location = new System.Drawing.Point(81, 231);
+            this.btnNewPlaylist.Location = new System.Drawing.Point(97, 231);
             this.btnNewPlaylist.Name = "btnNewPlaylist";
-            this.btnNewPlaylist.Normalcolor = System.Drawing.Color.Transparent;
+            this.btnNewPlaylist.Normalcolor = System.Drawing.Color.Gainsboro;
             this.btnNewPlaylist.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.btnNewPlaylist.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnNewPlaylist.selected = false;
-            this.btnNewPlaylist.Size = new System.Drawing.Size(183, 40);
+            this.btnNewPlaylist.Size = new System.Drawing.Size(160, 35);
             this.btnNewPlaylist.TabIndex = 49;
             this.btnNewPlaylist.Text = "Create playlist";
             this.btnNewPlaylist.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -166,7 +166,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(357, 328);
+            this.ClientSize = new System.Drawing.Size(357, 317);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);

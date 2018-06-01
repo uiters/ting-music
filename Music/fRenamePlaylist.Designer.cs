@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fRenamePlaylist));
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.txbNewPlaylist = new Bunifu.Framework.UI.BunifuMaterialTextbox();
-            this.bunifuFlatButton1 = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.btnCancel = new Bunifu.Framework.UI.BunifuFlatButton();
             this.btnRename = new Bunifu.Framework.UI.BunifuFlatButton();
             this.SuspendLayout();
             // 
@@ -49,7 +49,7 @@
             this.txbNewPlaylist.Font = new System.Drawing.Font("Century Gothic", 9.75F);
             this.txbNewPlaylist.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txbNewPlaylist.HintForeColor = System.Drawing.Color.Empty;
-            this.txbNewPlaylist.HintText = "Name this playlist";
+            this.txbNewPlaylist.HintText = "";
             this.txbNewPlaylist.isPassword = false;
             this.txbNewPlaylist.LineFocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
             this.txbNewPlaylist.LineIdleColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
@@ -62,45 +62,45 @@
             this.txbNewPlaylist.TabIndex = 0;
             this.txbNewPlaylist.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
-            // bunifuFlatButton1
+            // btnCancel
             // 
-            this.bunifuFlatButton1.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.bunifuFlatButton1.BackColor = System.Drawing.Color.LightGray;
-            this.bunifuFlatButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bunifuFlatButton1.BorderRadius = 0;
-            this.bunifuFlatButton1.ButtonText = "Cancel";
-            this.bunifuFlatButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuFlatButton1.DisabledColor = System.Drawing.Color.Gray;
-            this.bunifuFlatButton1.Iconcolor = System.Drawing.Color.Transparent;
-            this.bunifuFlatButton1.Iconimage = null;
-            this.bunifuFlatButton1.Iconimage_right = null;
-            this.bunifuFlatButton1.Iconimage_right_Selected = null;
-            this.bunifuFlatButton1.Iconimage_Selected = null;
-            this.bunifuFlatButton1.IconMarginLeft = 0;
-            this.bunifuFlatButton1.IconMarginRight = 0;
-            this.bunifuFlatButton1.IconRightVisible = false;
-            this.bunifuFlatButton1.IconRightZoom = 0D;
-            this.bunifuFlatButton1.IconVisible = true;
-            this.bunifuFlatButton1.IconZoom = 30D;
-            this.bunifuFlatButton1.IsTab = false;
-            this.bunifuFlatButton1.Location = new System.Drawing.Point(81, 115);
-            this.bunifuFlatButton1.Name = "bunifuFlatButton1";
-            this.bunifuFlatButton1.Normalcolor = System.Drawing.Color.Transparent;
-            this.bunifuFlatButton1.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.bunifuFlatButton1.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.bunifuFlatButton1.selected = false;
-            this.bunifuFlatButton1.Size = new System.Drawing.Size(183, 40);
-            this.bunifuFlatButton1.TabIndex = 50;
-            this.bunifuFlatButton1.Text = "Cancel";
-            this.bunifuFlatButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bunifuFlatButton1.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.bunifuFlatButton1.TextFont = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold);
-            this.bunifuFlatButton1.Click += new System.EventHandler(this.bunifuFlatButton1_Click);
+            this.btnCancel.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
+            this.btnCancel.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCancel.BorderRadius = 0;
+            this.btnCancel.ButtonText = "Cancel";
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.DisabledColor = System.Drawing.Color.Gray;
+            this.btnCancel.Iconcolor = System.Drawing.Color.Transparent;
+            this.btnCancel.Iconimage = null;
+            this.btnCancel.Iconimage_right = null;
+            this.btnCancel.Iconimage_right_Selected = null;
+            this.btnCancel.Iconimage_Selected = null;
+            this.btnCancel.IconMarginLeft = 0;
+            this.btnCancel.IconMarginRight = 0;
+            this.btnCancel.IconRightVisible = false;
+            this.btnCancel.IconRightZoom = 0D;
+            this.btnCancel.IconVisible = true;
+            this.btnCancel.IconZoom = 30D;
+            this.btnCancel.IsTab = false;
+            this.btnCancel.Location = new System.Drawing.Point(97, 116);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Normalcolor = System.Drawing.Color.Gainsboro;
+            this.btnCancel.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnCancel.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnCancel.selected = false;
+            this.btnCancel.Size = new System.Drawing.Size(160, 35);
+            this.btnCancel.TabIndex = 50;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnCancel.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.btnCancel.TextFont = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btnCancel.Click += new System.EventHandler(this.bunifuFlatButton1_Click);
             // 
             // btnRename
             // 
             this.btnRename.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.btnRename.BackColor = System.Drawing.Color.LightGray;
+            this.btnRename.BackColor = System.Drawing.Color.Gainsboro;
             this.btnRename.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRename.BorderRadius = 0;
             this.btnRename.ButtonText = "Rename playlist";
@@ -118,13 +118,13 @@
             this.btnRename.IconVisible = true;
             this.btnRename.IconZoom = 30D;
             this.btnRename.IsTab = false;
-            this.btnRename.Location = new System.Drawing.Point(81, 69);
+            this.btnRename.Location = new System.Drawing.Point(97, 72);
             this.btnRename.Name = "btnRename";
-            this.btnRename.Normalcolor = System.Drawing.Color.Transparent;
+            this.btnRename.Normalcolor = System.Drawing.Color.Gainsboro;
             this.btnRename.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.btnRename.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnRename.selected = false;
-            this.btnRename.Size = new System.Drawing.Size(183, 40);
+            this.btnRename.Size = new System.Drawing.Size(160, 35);
             this.btnRename.TabIndex = 49;
             this.btnRename.Text = "Rename playlist";
             this.btnRename.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -136,8 +136,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(357, 169);
-            this.Controls.Add(this.bunifuFlatButton1);
+            this.ClientSize = new System.Drawing.Size(357, 159);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnRename);
             this.Controls.Add(this.txbNewPlaylist);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -153,7 +153,7 @@
 
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
         private Bunifu.Framework.UI.BunifuFlatButton btnRename;
-        private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton1;
+        private Bunifu.Framework.UI.BunifuFlatButton btnCancel;
         public Bunifu.Framework.UI.BunifuMaterialTextbox txbNewPlaylist;
     }
 }

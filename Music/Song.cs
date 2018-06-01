@@ -135,6 +135,7 @@ namespace Music
             song.ButtonPlay_Click += click;
             song.Mouse_Click += mouseClick;
             song.ContextMenuStrip = menuStripSong;
+            
             return song;
         }
 

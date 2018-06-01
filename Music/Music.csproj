@@ -111,6 +111,12 @@
     <Compile Include="Artist.Designer.cs">
       <DependentUpon>Artist.cs</DependentUpon>
     </Compile>
+    <Compile Include="fEditInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fEditInfo.Designer.cs">
+      <DependentUpon>fEditInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="fNewPlaylist.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +183,12 @@
     <Compile Include="PlaySong.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Results.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Results.Designer.cs">
+      <DependentUpon>Results.cs</DependentUpon>
+    </Compile>
     <Compile Include="Song.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -192,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Artist.resx">
       <DependentUpon>Artist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fEditInfo.resx">
+      <DependentUpon>fEditInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fNewPlaylist.resx">
       <DependentUpon>fNewPlaylist.cs</DependentUpon>
@@ -222,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PlaylistDetail.resx">
       <DependentUpon>PlaylistDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Results.resx">
+      <DependentUpon>Results.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Song.resx">
       <DependentUpon>Song.cs</DependentUpon>

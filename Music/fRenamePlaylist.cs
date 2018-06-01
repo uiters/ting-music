@@ -17,6 +17,7 @@ namespace Music
         {
             InitializeComponent();
             PlaylistPath = playlistPath;
+            txbNewPlaylist.Text = MediaPlayer.Instance.GetTitlePlaylist(playlistPath);
         }
 
         private void bunifuFlatButton1_Click(object sender, EventArgs e)

@@ -73,8 +73,8 @@ namespace Music
             if (songsLocalFile.Count > 0)
             {
                 indexNow = 0;
-                songNow = songsNowPlaying[0];
-                ShowInfoMeadia(songNow);
+                //songNow = songsNowPlaying[0];
+                ShowInfoMeadia(songsNowPlaying[0]);
             }
             info = null;
             GC.Collect();
@@ -169,7 +169,27 @@ namespace Music
             indexNow = 0;
             GC.Collect();
         }
-        public void ChangeColorListSong(Song song)
+        public void ChangeNormalColorOnPanelLeft(object sender)
+        {
+            BunifuFlatButton btn = sender as BunifuFlatButton;
+            btn.Normalcolor = Color.FromArgb(239, 108, 1);
+            foreach (Control item in panel1.Controls)
+            {
+                if (item.Name != btn.Name && item.BackColor != Color.Transparent)
+                {
+                    BunifuFlatButton btn1 = item as BunifuFlatButton;
+                    btn1.Normalcolor = Color.Transparent;
+                }
+            }
+        }
+        public void ChangeIconListSong()
+        {
+            for (int i = 0; i < songsNowPlaying.Count; i++)
+            {
+                songsNowPlaying[i].ImageButton = play;
+            }
+        }
+        public void ChangeColorPlaySong(Song song)
         {
             List<Song> songs = songsNowPlaying;
             for (int i = 0; i < songsNowPlaying.Count; i++)
@@ -178,7 +198,27 @@ namespace Music
             }
             song.BackColor = Color.Gray;
         }
-        
+        public void ChangeColorSelectSong(Song song)
+        {
+            song.BackColor = Color.Gray;
+            System.Windows.Forms.Timer changeColorTimer = new System.Windows.Forms.Timer();
+            changeColorTimer.Interval = 200;
+            changeColorTimer.Start();
+            changeColorTimer.Tick += ChangeColorTimer_Tick;
+        }
+
+        private void ChangeColorTimer_Tick(object sender, EventArgs e)
+        {
+            for (int i = 0; i < songsNowPlaying.Count; i++)
+            {
+                songsNowPlaying[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
+            }
+            if(songNow!=null)
+            songNow.BackColor = Color.Gray;
+            System.Windows.Forms.Timer timer = sender as System.Windows.Forms.Timer;
+            timer.Stop();
+        }
+
         private void Myplaylist_BtnImage_Click1(object sender, EventArgs e)
         { 
             Myplaylist myplaylist = sender as Myplaylist;
@@ -207,11 +247,12 @@ namespace Music
         #region Click
         private void Song_Mouse_Click(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {
+            //if (e.Button == MouseButtons.Right)
+            //{
                 Song song = sender as Song;
-                ChangeColorListSong(song);
-            }
+                ChangeColorSelectSong(song);
+                contextMenuStripSong.Tag = song;
+            //}
         }
         private void Song_ButtonPlay_Click(object sender, EventArgs e)
         {
@@ -254,7 +295,7 @@ namespace Music
             ShowInfoMeadia(song);
             timeLine.Start();
             timer2.Start();
-            ChangeColorListSong(song);
+            ChangeColorPlaySong(song);
         }
         public static string ConvertToMinute(double Second)
         {
@@ -262,29 +303,7 @@ namespace Music
             int second = (int)Second % 60;
             return minute.ToString("00") + ":" + second.ToString("00");
         }
-        public void ChangeNormalColorOnPanelLeft(object sender)
-        {
-            BunifuFlatButton btn = sender as BunifuFlatButton;
-            btn.Normalcolor = Color.FromArgb(239, 108, 1);
-            //if (panelLeft.Width == 55)
-            //    btn.Width = 40;
-            //else
-            //    btn.Width = 205;
-            foreach (Control item in panel1.Controls)
-            {
-                if (item.Name != btn.Name && item.BackColor != Color.Transparent)
-                {
-                    BunifuFlatButton btn1 = item as BunifuFlatButton;
-                    btn1.Normalcolor = Color.Transparent;
-
-                    //if (panelLeft.Width == 55)
-                    //    item.Width = 205;
-                    //else
-                    //    item.Width = 40;
-
-                }
-            }
-        }
+        
         private void btnNavigationPanel_Click_1(object sender, EventArgs e)
         {
             if (panelLeft.Width == 223)
@@ -468,6 +487,7 @@ namespace Music
                 timer2.Start();
                 timer4.Start();
             }
+            ChangeColorPlaySong(songNow);
         }
         private void RecentAdd(Song song)
         {
@@ -517,6 +537,7 @@ namespace Music
             timeLine.Start();
             imageSong = new Bitmap(lyrics.SongImage);
             angles = 0;
+            ChangeColorPlaySong(songNow);
         }
         private void BtnBack_Click(object sender, EventArgs e)
         {
@@ -529,6 +550,7 @@ namespace Music
             timeLine.Start();
             imageSong = new Bitmap(lyrics.SongImage);
             angles = 0;
+            ChangeColorPlaySong(songNow);
         }
         private void SetSong()
         {
@@ -572,7 +594,7 @@ namespace Music
             {
                 int indexPre = indexNow;
                 NextSong();
-
+                ChangeColorPlaySong(songNow);
                 if ((string)btnRepeat.Tag == "Off" && indexNow < indexPre)
                 {
                     songNow.ImageButton = play;
@@ -581,6 +603,7 @@ namespace Music
                     btnPlay.Image = play;
                     timeLine.Stop();
                     timer2.Stop();
+                    
                 }
                 else
                 {
@@ -591,7 +614,10 @@ namespace Music
                 angles = 0;
                 sliderDuration.Value = 0;
 
+                
             }
+
+            
         }
         private void timer3_Tick(object sender, EventArgs e)
         { 
@@ -753,17 +779,42 @@ namespace Music
 
         private void menuItemPlay_Click(object sender, EventArgs e)
         {
-
+            ChangeIconListSong();
+            songNow = contextMenuStripSong.Tag as Song;
+            RecentAdd(songNow);
+            ShowInfoMeadia(songNow);
+            MediaPlayer.Instance.PlayUrl(songNow.Path);
+            btnPlay.Image = pause;
+            songNow.ImageButton = pause;
+            timeLine.Start();
+            timer2.Start();
+            timer4.Start();
+            ChangeColorPlaySong(songNow);
         }
 
         private void menuItemSelectAll_Click(object sender, EventArgs e)
         {
 
         }
-
+        public void LoadInfoSong(Song song)
+        {
+            song.SongName = SongInfo.GetTitle(song.Path);
+            song.ArtistName = SongInfo.GetArtist(song.Path);
+            song.CategoryName = SongInfo.GetGenrne(song.Path);
+        }
         private void menuItemProperties_Click(object sender, EventArgs e)
         {
+            Song song = contextMenuStripSong.Tag as Song;
+            fEditInfo fEditInfo = new fEditInfo(song.Path);
+            fEditInfo.ShowDialog();
+            LoadInfoSong(song);
+        }
 
+        private void menuItemProperties_Click_1(object sender, EventArgs e)
+        {
+            Song song = contextMenuStripSong.Tag as Song;
+            fProperties fProperties = new fProperties(song.Path);
+            fProperties.ShowDialog();
         }
     }
 }

@@ -108,7 +108,7 @@ namespace Music
         {
             player.URL = url;
         }
-        //Playlist
+        #region playlist
         public List<string> LoadListPlaylist()
         {
             string path = @"C:\Users\ndc07\Music\Playlists\";
@@ -252,5 +252,6 @@ namespace Music
         {
             File.Delete(filePath);
         }
+        #endregion
     }
 }
