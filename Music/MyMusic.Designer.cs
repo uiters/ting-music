@@ -176,7 +176,7 @@
             this.comboBoxGenreSongs.Size = new System.Drawing.Size(107, 25);
             this.comboBoxGenreSongs.TabIndex = 47;
             this.comboBoxGenreSongs.Text = "ALL";
-            this.comboBoxGenreSongs.SelectionChangeCommitted += new System.EventHandler(this.comboBoxGenreSongs_SelectionChangeCommitted);
+            this.comboBoxGenreSongs.SelectionChangeCommitted += new System.EventHandler(this.comboBoxGenreSongs_SelectedValueChanged);
             // 
             // label2
             // 
@@ -203,7 +203,7 @@
             this.comboBoxSortBySongs.Size = new System.Drawing.Size(107, 25);
             this.comboBoxSortBySongs.TabIndex = 45;
             this.comboBoxSortBySongs.Text = "None";
-            this.comboBoxSortBySongs.SelectionChangeCommitted += new System.EventHandler(this.comboBoxSortBySongs_SelectionChangeCommitted);
+            this.comboBoxSortBySongs.SelectionChangeCommitted += new System.EventHandler(this.comboBoxSortBySongs_SelectedIndexChanged);
             // 
             // label1
             // 
