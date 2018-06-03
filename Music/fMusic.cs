@@ -19,9 +19,12 @@ namespace Music
         private List<Song> songsNowPlaying = new List<Song>();
         private List<Song> songsLocalFile = new List<Song>();
         private List<Song> songsRecent = new List<Song>();
+        private List<Song> songsSelected = new List<Song>();
+        private List<string> listPlaylist = new List<string>();
         private Action actionOpenLyric;
         private Bitmap imageSong;
         private Song songNow = null;
+        private Song preSong = null;
         private int indexNow = -1;
         private int status;
         private float angles = 0;
@@ -116,7 +119,8 @@ namespace Music
         {
             (contextMenuStripSong.Items[2] as ToolStripMenuItem).DropDownItems.Clear();
             playlist.Clear();
-            List<string> listPlaylist = MediaPlayer.Instance.LoadListPlaylist();
+            listPlaylist.Clear();
+            listPlaylist = MediaPlayer.Instance.LoadListPlaylist();
             foreach (var item in listPlaylist)
             {
                 MediaFile mediaFile = new MediaFile(item);
@@ -126,14 +130,26 @@ namespace Music
 
                 myplaylist.PlaylistName = MediaPlayer.Instance.GetTitlePlaylist(item);
 
-                if(MediaPlayer.Instance.ReadPlaylist(item).Count>0)
-                myplaylist.PlaylistImage = SongInfo.GetImageSong(MediaPlayer.Instance.ReadPlaylist(item)[0]);
+                if (MediaPlayer.Instance.ReadPlaylist(item).Count > 0)
+                    myplaylist.PlaylistImage = SongInfo.GetImageSong(MediaPlayer.Instance.ReadPlaylist(item)[0]);
 
                 playlist.myplaylist = myplaylist;
                 //ContextMenuStrip
-                (contextMenuStripSong.Items[2] as ToolStripMenuItem).DropDownItems.Add(myplaylist.PlaylistName);
+                (contextMenuStripSong.Items[2] as ToolStripMenuItem).DropDownItems.Add(myplaylist.PlaylistName,null, MenuItem_Click);
             }
         }
+        private void MenuItem_Click(object sender,EventArgs e)
+        {
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+            string playlistTitle = menuItem.Text;
+            string playlistPath = MediaPlayer.Instance.GetPlaylistPath(playlistTitle, listPlaylist);
+            foreach (var item in songsSelected)
+            {
+                MediaPlayer.Instance.AddMediaOnPlayList(playlistPath,item.Path);
+            }
+            MessageBox.Show("Add to playlist successfully!", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         public Song GetMediaExists(string mediaPath)
         {
             for (int j = 0; j < songsFull.Count; j++)
@@ -189,16 +205,23 @@ namespace Music
                 songsNowPlaying[i].ImageButton = play;
             }
         }
-        public void ChangeColorPlaySong(Song song)
+        public void ChangeColorLeftMouseButton(Song song=null)
         {
-            List<Song> songs = songsNowPlaying;
+           
             for (int i = 0; i < songsNowPlaying.Count; i++)
             {
                 songsNowPlaying[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
             }
+            if(isCtrl||isCtrlA)
+            foreach (var item in songsSelected)
+            {
+                item.BackColor = Color.Gray;
+            }
+            if(!isCtrl)
+                if(song!=null)
             song.BackColor = Color.Gray;
         }
-        public void ChangeColorSelectSong(Song song)
+        public void ChangeColorRightMouseButton(Song song)
         {
             song.BackColor = Color.Gray;
             System.Windows.Forms.Timer changeColorTimer = new System.Windows.Forms.Timer();
@@ -213,8 +236,8 @@ namespace Music
             {
                 songsNowPlaying[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
             }
-            if(songNow!=null)
-            songNow.BackColor = Color.Gray;
+            if (songNow != null)
+                songNow.BackColor = Color.Gray;
             System.Windows.Forms.Timer timer = sender as System.Windows.Forms.Timer;
             timer.Stop();
         }
@@ -241,18 +264,49 @@ namespace Music
             songsB.Clear();
             songsB.AddRange(songsA);
         }
-
+        public bool IsExistSong(Song song)
+        {
+            foreach (var item in songsSelected)
+            {
+                if (item == song)
+                    return true;
+            }
+            return false;
+        }
         #endregion
-
+        
         #region Click
         private void Song_Mouse_Click(object sender, MouseEventArgs e)
         {
-            //if (e.Button == MouseButtons.Right)
-            //{
-                Song song = sender as Song;
-                ChangeColorSelectSong(song);
-                contextMenuStripSong.Tag = song;
-            //}
+            preSong = contextMenuStripSong.Tag as Song;
+            Song song = sender as Song;
+            if (e.Button == MouseButtons.Right)
+            {
+                if (!isCtrlA && !isCtrl)
+                    ChangeColorRightMouseButton(song);
+            }
+            if (e.Button == MouseButtons.Left)
+            {
+                if (isCtrl)
+                {
+                    if (song != preSong && preSong != null)
+                    {
+                        if (!IsExistSong(preSong))
+                            songsSelected.Add(preSong);
+                    }
+                    if (!IsExistSong(song))
+                        songsSelected.Add(song);
+                }
+                else
+                {
+                    songsSelected.Clear();
+                    if (!IsExistSong(song))
+                        songsSelected.Add(song);
+                }
+
+                ChangeColorLeftMouseButton(song);
+            }
+            contextMenuStripSong.Tag = song;
         }
         private void Song_ButtonPlay_Click(object sender, EventArgs e)
         {
@@ -295,7 +349,7 @@ namespace Music
             ShowInfoMeadia(song);
             timeLine.Start();
             timer2.Start();
-            ChangeColorPlaySong(song);
+            //ChangeColorPlaySong(song);
         }
         public static string ConvertToMinute(double Second)
         {
@@ -487,7 +541,7 @@ namespace Music
                 timer2.Start();
                 timer4.Start();
             }
-            ChangeColorPlaySong(songNow);
+            //ChangeColorPlaySong(songNow);
         }
         private void RecentAdd(Song song)
         {
@@ -537,7 +591,7 @@ namespace Music
             timeLine.Start();
             imageSong = new Bitmap(lyrics.SongImage);
             angles = 0;
-            ChangeColorPlaySong(songNow);
+            //ChangeColorPlaySong(songNow);
         }
         private void BtnBack_Click(object sender, EventArgs e)
         {
@@ -550,7 +604,7 @@ namespace Music
             timeLine.Start();
             imageSong = new Bitmap(lyrics.SongImage);
             angles = 0;
-            ChangeColorPlaySong(songNow);
+            //ChangeColorPlaySong(songNow);
         }
         private void SetSong()
         {
@@ -594,7 +648,7 @@ namespace Music
             {
                 int indexPre = indexNow;
                 NextSong();
-                ChangeColorPlaySong(songNow);
+                //ChangeColorPlaySong(songNow);
                 if ((string)btnRepeat.Tag == "Off" && indexNow < indexPre)
                 {
                     songNow.ImageButton = play;
@@ -789,12 +843,21 @@ namespace Music
             timeLine.Start();
             timer2.Start();
             timer4.Start();
-            ChangeColorPlaySong(songNow);
+            //ChangeColorPlaySong(songNow);
         }
 
         private void menuItemSelectAll_Click(object sender, EventArgs e)
         {
-
+            if (indexNow == -1) return;
+            // song pre
+            NextSong(); // set index song next
+            SetSong();
+            LoadLyrics();
+            timer2.Start();
+            timeLine.Start();
+            imageSong = new Bitmap(lyrics.SongImage);
+            angles = 0;
+            //ChangeColorPlaySong(songNow);
         }
         public void LoadInfoSong(Song song)
         {
@@ -815,6 +878,56 @@ namespace Music
             Song song = contextMenuStripSong.Tag as Song;
             fProperties fProperties = new fProperties(song.Path);
             fProperties.ShowDialog();
+        }
+
+        private void myMusic_Load(object sender, EventArgs e)
+        {
+
+        }
+        bool isCtrl = false,isCtrlA=false;
+        private void fMusic_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode==Keys.ControlKey)
+            {
+                
+                if (isCtrlA)
+                    isCtrl = false;
+                else
+                    isCtrl = true;
+            }
+            if (e.KeyCode == Keys.A )
+            {
+                isCtrlA = true;
+                isCtrl = false;
+               if (!songsSelected.Count.Equals(songsNowPlaying.Count))
+                {
+                    songsSelected.Clear();
+                    songsSelected.AddRange(songsNowPlaying);
+                    ChangeColorLeftMouseButton();
+                }
+            }
+
+            this.KeyUp += FMusic_KeyUp;
+           
+        }
+
+        private void contextMenuStripSong_Closing(object sender, ToolStripDropDownClosingEventArgs e)
+        {
+            isCtrl = isCtrlA = false;
+        }
+
+        private void FMusic_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ControlKey)
+            {
+                isCtrl = false;
+
+            }
+            if (e.KeyCode == Keys.A)
+            {
+                isCtrlA = false;
+
+            }
         }
     }
 }

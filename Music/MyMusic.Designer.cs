@@ -69,7 +69,8 @@
             this.metroTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl1.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 1;
+            this.metroTabControl1.SelectedIndex = 0;
+            this.metroTabControl1.ShowToolTips = true;
             this.metroTabControl1.Size = new System.Drawing.Size(850, 474);
             this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Orange;
             this.metroTabControl1.TabIndex = 0;
@@ -444,8 +445,6 @@
         private System.Windows.Forms.ComboBox comboBoxSortByArtists;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelAlbum;
-        private Album album1;
-        private Album album2;
         private System.Windows.Forms.Panel panel3;
         private Bunifu.Framework.UI.BunifuFlatButton btnShuffleAllAlbums;
         private System.Windows.Forms.ComboBox comboBoxGenreAlbums;

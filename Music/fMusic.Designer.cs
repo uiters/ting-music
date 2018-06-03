@@ -70,21 +70,21 @@ namespace Music
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.bunifuDragControl2 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel = new System.Windows.Forms.Panel();
+            this.myMusic = new Music.MyMusic();
+            this.nowPlaying = new Music.NowPlaying();
+            this.playlistDetail = new Music.PlaylistDetail();
+            this.playlist = new Music.Playlist();
+            this.lyrics = new Music.Lyrics();
             this.timeLine = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.timer4 = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStripSong = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuItemPlay = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemSelectAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemPlayNext = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemAddTo = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemEditInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemProperties = new System.Windows.Forms.ToolStripMenuItem();
-            this.playlistDetail = new Music.PlaylistDetail();
-            this.playlist = new Music.Playlist();
-            this.lyrics = new Music.Lyrics();
-            this.myMusic = new Music.MyMusic();
-            this.nowPlaying = new Music.NowPlaying();
             this.panelBottom.SuspendLayout();
             this.panelPlay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPlay)).BeginInit();
@@ -946,11 +946,11 @@ namespace Music
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.myMusic);
+            this.panel.Controls.Add(this.nowPlaying);
             this.panel.Controls.Add(this.playlistDetail);
             this.panel.Controls.Add(this.playlist);
             this.panel.Controls.Add(this.lyrics);
-            this.panel.Controls.Add(this.myMusic);
-            this.panel.Controls.Add(this.nowPlaying);
             this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel.Location = new System.Drawing.Point(223, 54);
             this.panel.Name = "panel";
@@ -958,73 +958,23 @@ namespace Music
             this.panel.TabIndex = 29;
             this.panel.SizeChanged += new System.EventHandler(this.panel_SizeChanged);
             // 
-            // timeLine
+            // myMusic
             // 
-            this.timeLine.Tick += new System.EventHandler(this.TimeLine_Tick);
+            this.myMusic.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.myMusic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.myMusic.Location = new System.Drawing.Point(0, 0);
+            this.myMusic.Name = "myMusic";
+            this.myMusic.Size = new System.Drawing.Size(850, 474);
+            this.myMusic.TabIndex = 0;
+            this.myMusic.Load += new System.EventHandler(this.myMusic_Load);
             // 
-            // timer2
+            // nowPlaying
             // 
-            this.timer2.Tick += new System.EventHandler(this.Timer2_Tick);
-            // 
-            // timer3
-            // 
-            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
-            // 
-            // timer4
-            // 
-            this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
-            // 
-            // contextMenuStripSong
-            // 
-            this.contextMenuStripSong.BackColor = System.Drawing.Color.Gainsboro;
-            this.contextMenuStripSong.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.contextMenuStripSong.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemPlay,
-            this.menuItemSelectAll,
-            this.menuItemAddTo,
-            this.menuItemEditInfo,
-            this.menuItemProperties});
-            this.contextMenuStripSong.Name = "contextMenuStripSong";
-            this.contextMenuStripSong.Size = new System.Drawing.Size(181, 136);
-            // 
-            // menuItemPlay
-            // 
-            this.menuItemPlay.Image = ((System.Drawing.Image)(resources.GetObject("menuItemPlay.Image")));
-            this.menuItemPlay.Name = "menuItemPlay";
-            this.menuItemPlay.Size = new System.Drawing.Size(180, 22);
-            this.menuItemPlay.Text = "Play";
-            this.menuItemPlay.Click += new System.EventHandler(this.menuItemPlay_Click);
-            // 
-            // menuItemSelectAll
-            // 
-            this.menuItemSelectAll.Image = ((System.Drawing.Image)(resources.GetObject("menuItemSelectAll.Image")));
-            this.menuItemSelectAll.Name = "menuItemSelectAll";
-            this.menuItemSelectAll.Size = new System.Drawing.Size(180, 22);
-            this.menuItemSelectAll.Text = "Select all";
-            this.menuItemSelectAll.Click += new System.EventHandler(this.menuItemSelectAll_Click);
-            // 
-            // menuItemAddTo
-            // 
-            this.menuItemAddTo.Image = ((System.Drawing.Image)(resources.GetObject("menuItemAddTo.Image")));
-            this.menuItemAddTo.Name = "menuItemAddTo";
-            this.menuItemAddTo.Size = new System.Drawing.Size(180, 22);
-            this.menuItemAddTo.Text = "Add to";
-            // 
-            // menuItemEditInfo
-            // 
-            this.menuItemEditInfo.Image = ((System.Drawing.Image)(resources.GetObject("menuItemEditInfo.Image")));
-            this.menuItemEditInfo.Name = "menuItemEditInfo";
-            this.menuItemEditInfo.Size = new System.Drawing.Size(180, 22);
-            this.menuItemEditInfo.Text = "Edit info";
-            this.menuItemEditInfo.Click += new System.EventHandler(this.menuItemProperties_Click);
-            // 
-            // menuItemProperties
-            // 
-            this.menuItemProperties.Image = ((System.Drawing.Image)(resources.GetObject("menuItemProperties.Image")));
-            this.menuItemProperties.Name = "menuItemProperties";
-            this.menuItemProperties.Size = new System.Drawing.Size(180, 22);
-            this.menuItemProperties.Text = "Properties";
-            this.menuItemProperties.Click += new System.EventHandler(this.menuItemProperties_Click_1);
+            this.nowPlaying.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.nowPlaying.Location = new System.Drawing.Point(0, 0);
+            this.nowPlaying.Name = "nowPlaying";
+            this.nowPlaying.Size = new System.Drawing.Size(850, 474);
+            this.nowPlaying.TabIndex = 1;
             // 
             // playlistDetail
             // 
@@ -1061,22 +1011,74 @@ namespace Music
             this.lyrics.TabIndex = 2;
             this.lyrics.btnBack_click += new System.EventHandler(this.lyrics_btnBack_click);
             // 
-            // myMusic
+            // timeLine
             // 
-            this.myMusic.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.myMusic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.myMusic.Location = new System.Drawing.Point(0, 0);
-            this.myMusic.Name = "myMusic";
-            this.myMusic.Size = new System.Drawing.Size(850, 474);
-            this.myMusic.TabIndex = 0;
+            this.timeLine.Tick += new System.EventHandler(this.TimeLine_Tick);
             // 
-            // nowPlaying
+            // timer2
             // 
-            this.nowPlaying.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.nowPlaying.Location = new System.Drawing.Point(0, 0);
-            this.nowPlaying.Name = "nowPlaying";
-            this.nowPlaying.Size = new System.Drawing.Size(850, 474);
-            this.nowPlaying.TabIndex = 1;
+            this.timer2.Tick += new System.EventHandler(this.Timer2_Tick);
+            // 
+            // timer3
+            // 
+            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
+            // 
+            // timer4
+            // 
+            this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
+            // 
+            // contextMenuStripSong
+            // 
+            this.contextMenuStripSong.BackColor = System.Drawing.Color.Gainsboro;
+            this.contextMenuStripSong.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.contextMenuStripSong.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemPlay,
+            this.menuItemPlayNext,
+            this.menuItemAddTo,
+            this.menuItemEditInfo,
+            this.menuItemProperties});
+            this.contextMenuStripSong.Name = "contextMenuStripSong";
+            this.contextMenuStripSong.Size = new System.Drawing.Size(181, 136);
+            this.contextMenuStripSong.Closing += new System.Windows.Forms.ToolStripDropDownClosingEventHandler(this.contextMenuStripSong_Closing);
+            // 
+            // menuItemPlay
+            // 
+            this.menuItemPlay.Image = ((System.Drawing.Image)(resources.GetObject("menuItemPlay.Image")));
+            this.menuItemPlay.Name = "menuItemPlay";
+            this.menuItemPlay.Size = new System.Drawing.Size(180, 22);
+            this.menuItemPlay.Text = "Play";
+            this.menuItemPlay.Click += new System.EventHandler(this.menuItemPlay_Click);
+            // 
+            // menuItemPlayNext
+            // 
+            this.menuItemPlayNext.Image = ((System.Drawing.Image)(resources.GetObject("menuItemPlayNext.Image")));
+            this.menuItemPlayNext.Name = "menuItemPlayNext";
+            this.menuItemPlayNext.Size = new System.Drawing.Size(180, 22);
+            this.menuItemPlayNext.Text = "Play next";
+            this.menuItemPlayNext.Click += new System.EventHandler(this.menuItemSelectAll_Click);
+            // 
+            // menuItemAddTo
+            // 
+            this.menuItemAddTo.Image = ((System.Drawing.Image)(resources.GetObject("menuItemAddTo.Image")));
+            this.menuItemAddTo.Name = "menuItemAddTo";
+            this.menuItemAddTo.Size = new System.Drawing.Size(180, 22);
+            this.menuItemAddTo.Text = "Add to";
+            // 
+            // menuItemEditInfo
+            // 
+            this.menuItemEditInfo.Image = ((System.Drawing.Image)(resources.GetObject("menuItemEditInfo.Image")));
+            this.menuItemEditInfo.Name = "menuItemEditInfo";
+            this.menuItemEditInfo.Size = new System.Drawing.Size(180, 22);
+            this.menuItemEditInfo.Text = "Edit info";
+            this.menuItemEditInfo.Click += new System.EventHandler(this.menuItemProperties_Click);
+            // 
+            // menuItemProperties
+            // 
+            this.menuItemProperties.Image = ((System.Drawing.Image)(resources.GetObject("menuItemProperties.Image")));
+            this.menuItemProperties.Name = "menuItemProperties";
+            this.menuItemProperties.Size = new System.Drawing.Size(180, 22);
+            this.menuItemProperties.Text = "Properties";
+            this.menuItemProperties.Click += new System.EventHandler(this.menuItemProperties_Click_1);
             // 
             // fMusic
             // 
@@ -1090,9 +1092,11 @@ namespace Music
             this.Controls.Add(this.panelBottom);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "fMusic";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ting Music";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fMusic_KeyDown);
             this.panelBottom.ResumeLayout(false);
             this.panelBottom.PerformLayout();
             this.panelPlay.ResumeLayout(false);
@@ -1163,7 +1167,7 @@ namespace Music
         private static readonly Image volume_up = Properties.Resources.volume_up;
         public PlaylistDetail playlistDetail;
         private System.Windows.Forms.ToolStripMenuItem menuItemPlay;
-        private System.Windows.Forms.ToolStripMenuItem menuItemSelectAll;
+        private System.Windows.Forms.ToolStripMenuItem menuItemPlayNext;
         private System.Windows.Forms.ToolStripMenuItem menuItemAddTo;
         private System.Windows.Forms.ToolStripMenuItem menuItemEditInfo;
         public System.Windows.Forms.ContextMenuStrip contextMenuStripSong;
