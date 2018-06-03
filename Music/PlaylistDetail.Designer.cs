@@ -36,8 +36,6 @@
             this.btnPlayAll = new Bunifu.Framework.UI.BunifuFlatButton();
             this.lblTotalSong = new System.Windows.Forms.Label();
             this.lblPlaylistName = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.panelSongs = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
@@ -52,8 +50,6 @@
             this.panel1.Controls.Add(this.btnPlayAll);
             this.panel1.Controls.Add(this.lblTotalSong);
             this.panel1.Controls.Add(this.lblPlaylistName);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -233,28 +229,12 @@
             this.lblPlaylistName.TabIndex = 72;
             this.lblPlaylistName.Text = "ndc07";
             // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.DarkGray;
-            this.label2.Location = new System.Drawing.Point(38, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 8);
-            this.label2.TabIndex = 71;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(25, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 8);
-            this.label1.TabIndex = 70;
-            // 
             // pictureBox
             // 
-            this.pictureBox.Image = global::Music.Properties.Resources.myPlaylist;
-            this.pictureBox.Location = new System.Drawing.Point(12, 29);
+            this.pictureBox.Image = global::Music.Properties.Resources.myMusic;
+            this.pictureBox.Location = new System.Drawing.Point(14, 16);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(140, 140);
+            this.pictureBox.Size = new System.Drawing.Size(150, 150);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox.TabIndex = 69;
             this.pictureBox.TabStop = false;
@@ -286,8 +266,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Label lblTotalSong;
         private System.Windows.Forms.FlowLayoutPanel panelSongs;

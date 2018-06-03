@@ -42,18 +42,18 @@
             this.labelAlbumName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
             this.labelAlbumName.Location = new System.Drawing.Point(3, 154);
             this.labelAlbumName.Name = "labelAlbumName";
-            this.labelAlbumName.Size = new System.Drawing.Size(196, 16);
+            this.labelAlbumName.Size = new System.Drawing.Size(147, 16);
             this.labelAlbumName.TabIndex = 61;
             this.labelAlbumName.Text = "Attention\r\n";
             // 
             // button1
             // 
-            this.button1.BackgroundImage = global::Music.Properties.Resources.myAlbum;
+            this.button1.BackgroundImage = global::Music.Properties.Resources.myMusic;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Location = new System.Drawing.Point(1, 1);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(200, 150);
+            this.button1.Size = new System.Drawing.Size(150, 150);
             this.button1.TabIndex = 62;
             this.button1.UseVisualStyleBackColor = true;
             // 
@@ -66,7 +66,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.labelAlbumName);
             this.Name = "Album";
-            this.Size = new System.Drawing.Size(202, 174);
+            this.Size = new System.Drawing.Size(153, 174);
             this.ResumeLayout(false);
 
         }

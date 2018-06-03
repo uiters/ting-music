@@ -108,7 +108,7 @@ namespace Music
         {
             player.URL = url;
         }
-        //Playlist
+        #region playlist
         public List<string> LoadListPlaylist()
         {
             string path = @"C:\Users\ndc07\Music\Playlists\";
@@ -248,9 +248,19 @@ namespace Music
                 File.WriteAllLines(filePath, lines);
             }
         }
+        public string GetPlaylistPath(string title,List<string> listPlaylist)
+        {
+            foreach (var item in listPlaylist)
+            {
+                if (MediaPlayer.Instance.GetTitlePlaylist(item) == title)
+                    return item;
+            }
+            return null;
+        }
         public void DeletePlaylist(string filePath)
         {
             File.Delete(filePath);
         }
+        #endregion
     }
 }
