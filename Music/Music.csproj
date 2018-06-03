@@ -165,6 +165,12 @@
     <Compile Include="fRenamePlaylist.Designer.cs">
       <DependentUpon>fRenamePlaylist.cs</DependentUpon>
     </Compile>
+    <Compile Include="fUpdating.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fUpdating.Designer.cs">
+      <DependentUpon>fUpdating.cs</DependentUpon>
+    </Compile>
     <Compile Include="LocalFiles.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -272,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fRenamePlaylist.resx">
       <DependentUpon>fRenamePlaylist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fUpdating.resx">
+      <DependentUpon>fUpdating.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LocalFiles.resx">
       <DependentUpon>LocalFiles.cs</DependentUpon>

@@ -16,5 +16,27 @@ namespace Music
         {
             InitializeComponent();
         }
+        public string Title
+        {
+            set
+            {
+                title.Text = value;
+            }
+            get
+            {
+                return title.Text;
+            }
+        }
+        public string TolderPath
+        {
+            set
+            {
+                folderPath.Text = value;
+            }
+            get
+            {
+                return folderPath.Text;
+            }
+        }
     }
 }

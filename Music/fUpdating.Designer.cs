@@ -1,6 +1,6 @@
 ﻿namespace Music
 {
-    partial class fLocalFiles
+    partial class fUpdating
     {
         /// <summary>
         /// Required designer variable.
@@ -29,20 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fLocalFiles));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fUpdating));
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.bunifuFlatButton1 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.bunifuDragControl2 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.bunifuDragControl3 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
-            this.addLocalFiles1 = new Music.AddLocalFiles();
-            this.localFiles1 = new Music.LocalFiles();
-            this.localFiles2 = new Music.LocalFiles();
+            this.bunifuCircleProgressbar1 = new Bunifu.Framework.UI.BunifuCircleProgressbar();
+            this.lblTime = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // bunifuDragControl1
@@ -58,53 +53,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.flowLayoutPanel1);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.lblTime);
+            this.panel1.Controls.Add(this.bunifuCircleProgressbar1);
             this.panel1.Controls.Add(this.bunifuFlatButton1);
             this.panel1.Location = new System.Drawing.Point(2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(410, 364);
+            this.panel1.Size = new System.Drawing.Size(193, 269);
             this.panel1.TabIndex = 0;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Controls.Add(this.addLocalFiles1);
-            this.flowLayoutPanel1.Controls.Add(this.localFiles1);
-            this.flowLayoutPanel1.Controls.Add(this.localFiles2);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(24, 79);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(365, 231);
-            this.flowLayoutPanel1.TabIndex = 94;
-            // 
-            // label1
-            // 
-            this.label1.AutoEllipsis = true;
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.label1.Location = new System.Drawing.Point(25, 43);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(270, 18);
-            this.label1.TabIndex = 93;
-            this.label1.Text = "Right now, we\'re watching these folders:";
-            // 
-            // label2
-            // 
-            this.label2.AutoEllipsis = true;
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.label2.Location = new System.Drawing.Point(25, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(362, 18);
-            this.label2.TabIndex = 92;
-            this.label2.Text = "Build your collection from your local music files";
             // 
             // bunifuFlatButton1
             // 
@@ -128,7 +83,7 @@
             this.bunifuFlatButton1.IconVisible = true;
             this.bunifuFlatButton1.IconZoom = 30D;
             this.bunifuFlatButton1.IsTab = false;
-            this.bunifuFlatButton1.Location = new System.Drawing.Point(227, 316);
+            this.bunifuFlatButton1.Location = new System.Drawing.Point(18, 221);
             this.bunifuFlatButton1.Name = "bunifuFlatButton1";
             this.bunifuFlatButton1.Normalcolor = System.Drawing.Color.Gainsboro;
             this.bunifuFlatButton1.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
@@ -140,69 +95,68 @@
             this.bunifuFlatButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.bunifuFlatButton1.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
             this.bunifuFlatButton1.TextFont = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold);
-            this.bunifuFlatButton1.Click += new System.EventHandler(this.bunifuFlatButton1_Click_1);
             // 
             // bunifuDragControl2
             // 
             this.bunifuDragControl2.Fixed = true;
             this.bunifuDragControl2.Horizontal = true;
-            this.bunifuDragControl2.TargetControl = this.label1;
             this.bunifuDragControl2.Vertical = true;
             // 
             // bunifuDragControl3
             // 
             this.bunifuDragControl3.Fixed = true;
             this.bunifuDragControl3.Horizontal = true;
-            this.bunifuDragControl3.TargetControl = this.label2;
             this.bunifuDragControl3.Vertical = true;
             // 
-            // addLocalFiles1
+            // bunifuCircleProgressbar1
             // 
-            this.addLocalFiles1.BackColor = System.Drawing.Color.Gainsboro;
-            this.addLocalFiles1.Location = new System.Drawing.Point(2, 2);
-            this.addLocalFiles1.Margin = new System.Windows.Forms.Padding(2);
-            this.addLocalFiles1.Name = "addLocalFiles1";
-            this.addLocalFiles1.Size = new System.Drawing.Size(361, 55);
-            this.addLocalFiles1.TabIndex = 0;
+            this.bunifuCircleProgressbar1.animated = false;
+            this.bunifuCircleProgressbar1.animationIterval = 5;
+            this.bunifuCircleProgressbar1.animationSpeed = 300;
+            this.bunifuCircleProgressbar1.BackColor = System.Drawing.Color.White;
+            this.bunifuCircleProgressbar1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuCircleProgressbar1.BackgroundImage")));
+            this.bunifuCircleProgressbar1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F);
+            this.bunifuCircleProgressbar1.ForeColor = System.Drawing.Color.SeaGreen;
+            this.bunifuCircleProgressbar1.LabelVisible = true;
+            this.bunifuCircleProgressbar1.LineProgressThickness = 8;
+            this.bunifuCircleProgressbar1.LineThickness = 5;
+            this.bunifuCircleProgressbar1.Location = new System.Drawing.Point(20, 19);
+            this.bunifuCircleProgressbar1.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
+            this.bunifuCircleProgressbar1.MaxValue = 100;
+            this.bunifuCircleProgressbar1.Name = "bunifuCircleProgressbar1";
+            this.bunifuCircleProgressbar1.ProgressBackColor = System.Drawing.Color.Gainsboro;
+            this.bunifuCircleProgressbar1.ProgressColor = System.Drawing.Color.SeaGreen;
+            this.bunifuCircleProgressbar1.Size = new System.Drawing.Size(150, 150);
+            this.bunifuCircleProgressbar1.TabIndex = 94;
+            this.bunifuCircleProgressbar1.Value = 0;
             // 
-            // localFiles1
+            // lblTime
             // 
-            this.localFiles1.BackColor = System.Drawing.Color.Gainsboro;
-            this.localFiles1.Location = new System.Drawing.Point(2, 61);
-            this.localFiles1.Margin = new System.Windows.Forms.Padding(2);
-            this.localFiles1.Name = "localFiles1";
-            this.localFiles1.Size = new System.Drawing.Size(361, 55);
-            this.localFiles1.TabIndex = 1;
-            this.localFiles1.Title = "Music";
-            this.localFiles1.TolderPath = "C:\\Users\\ndc07\\Music\"";
+            this.lblTime.AutoEllipsis = true;
+            this.lblTime.AutoSize = true;
+            this.lblTime.BackColor = System.Drawing.Color.Transparent;
+            this.lblTime.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.lblTime.Location = new System.Drawing.Point(52, 181);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(96, 18);
+            this.lblTime.TabIndex = 95;
+            this.lblTime.Text = "150MB/ 1GB";
             // 
-            // localFiles2
-            // 
-            this.localFiles2.BackColor = System.Drawing.Color.Gainsboro;
-            this.localFiles2.Location = new System.Drawing.Point(2, 120);
-            this.localFiles2.Margin = new System.Windows.Forms.Padding(2);
-            this.localFiles2.Name = "localFiles2";
-            this.localFiles2.Size = new System.Drawing.Size(361, 55);
-            this.localFiles2.TabIndex = 2;
-            this.localFiles2.Title = "Music";
-            this.localFiles2.TolderPath = "C:\\Users\\ndc07\\Music\"";
-            // 
-            // fLocalFiles
+            // fUpdating
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(414, 368);
+            this.ClientSize = new System.Drawing.Size(197, 273);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "fLocalFiles";
+            this.Name = "fUpdating";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fLocalFiles";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -211,14 +165,10 @@
 
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private AddLocalFiles addLocalFiles1;
-        private LocalFiles localFiles1;
-        private LocalFiles localFiles2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton1;
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl2;
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl3;
+        private Bunifu.Framework.UI.BunifuCircleProgressbar bunifuCircleProgressbar1;
+        private System.Windows.Forms.Label lblTime;
     }
 }

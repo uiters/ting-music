@@ -49,6 +49,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.Controls.Add(this.pictureBox1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AddLocalFiles";
             this.Size = new System.Drawing.Size(361, 55);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

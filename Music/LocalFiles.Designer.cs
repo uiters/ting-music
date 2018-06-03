@@ -80,6 +80,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.folderPath);
             this.Controls.Add(this.title);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LocalFiles";
             this.Size = new System.Drawing.Size(361, 55);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

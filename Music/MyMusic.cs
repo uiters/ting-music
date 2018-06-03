@@ -21,7 +21,7 @@ namespace Music
             InitializeComponent();
             this.DoubleBuffered = true;
             btnShuffleAllAlbums.IconVisible = true;
-            btnShuffleAllSongs.IconVisible = true;
+            //btnShuffleAllSongs.IconVisible = true;
             btnShuufleAllArtists.IconVisible = true;
         }
         public void AddSong(Song value)
@@ -71,25 +71,7 @@ namespace Music
         {
 
         }
-        private void comboBoxGenreSongs_SelectedValueChanged(object sender, EventArgs e)
-        {
-            switch (comboBoxGenreSongs.SelectedIndex)
-            {
-                case 1:
-                    GenrePop();
-                    break;
-                case 2:
-                    GenreRock();
-                    break;
-                case 3:
-                    GenreOther();
-                    break;
 
-                default:
-                    GenreAll();
-                    break;
-            }
-        }
         private void SetIndexSongs(List<Song> songs)
         {
             index = 0;
@@ -157,6 +139,11 @@ namespace Music
             //    fMusic.PlaylistLocalFile.appendItem(MediaPlayer.Instance.CreateMedia(item.Path));
             //}
             //fMusic.PlaylistCurrent = fMusic.PlaylistLocalFile;
+        }
+
+        private void comboBoxGenreSongs_SelectedValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

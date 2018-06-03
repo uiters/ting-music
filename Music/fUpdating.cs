@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace Music
 {
-    public partial class fLocalFiles : Form
+    public partial class fUpdating : Form
     {
-        public fLocalFiles()
+        public fUpdating()
         {
             InitializeComponent();
-        }
-
-        private void bunifuFlatButton1_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void bunifuFlatButton1_Click_1(object sender, EventArgs e)
-        {
-            Close();
         }
     }
 }

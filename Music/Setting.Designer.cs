@@ -33,10 +33,10 @@
             this.cbMinute = new MetroFramework.Controls.MetroComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.bunifuFlatButton2 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.btnNowPlaying = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.bunifuiOSSwitch1 = new Bunifu.Framework.UI.BunifuiOSSwitch();
+            this.btnShutDown = new Bunifu.Framework.UI.BunifuiOSSwitch();
             this.bunifuFlatButton1 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.btnMyMusic = new Bunifu.Framework.UI.BunifuFlatButton();
             this.SuspendLayout();
@@ -64,6 +64,7 @@
             // cbMinute
             // 
             this.cbMinute.BackColor = System.Drawing.Color.White;
+            this.cbMinute.Enabled = false;
             this.cbMinute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbMinute.ForeColor = System.Drawing.Color.White;
             this.cbMinute.FormattingEnabled = true;
@@ -104,25 +105,25 @@
             this.lblTime.AutoSize = true;
             this.lblTime.BackColor = System.Drawing.Color.Transparent;
             this.lblTime.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
+            this.lblTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
             this.lblTime.Location = new System.Drawing.Point(248, 182);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(44, 18);
             this.lblTime.TabIndex = 86;
             this.lblTime.Text = "15:06";
             // 
-            // label2
+            // lblStatus
             // 
-            this.label2.AutoEllipsis = true;
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.label2.Location = new System.Drawing.Point(293, 143);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(26, 17);
-            this.label2.TabIndex = 87;
-            this.label2.Text = "On";
+            this.lblStatus.AutoEllipsis = true;
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.BackColor = System.Drawing.Color.Transparent;
+            this.lblStatus.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lblStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.lblStatus.Location = new System.Drawing.Point(292, 143);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(26, 17);
+            this.lblStatus.TabIndex = 87;
+            this.lblStatus.Text = "On";
             // 
             // bunifuFlatButton2
             // 
@@ -193,20 +194,20 @@
             this.btnNowPlaying.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
             this.btnNowPlaying.TextFont = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
-            // bunifuiOSSwitch1
+            // btnShutDown
             // 
-            this.bunifuiOSSwitch1.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuiOSSwitch1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuiOSSwitch1.BackgroundImage")));
-            this.bunifuiOSSwitch1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bunifuiOSSwitch1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuiOSSwitch1.Location = new System.Drawing.Point(244, 139);
-            this.bunifuiOSSwitch1.Name = "bunifuiOSSwitch1";
-            this.bunifuiOSSwitch1.OffColor = System.Drawing.Color.Gray;
-            this.bunifuiOSSwitch1.OnColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.bunifuiOSSwitch1.Size = new System.Drawing.Size(43, 25);
-            this.bunifuiOSSwitch1.TabIndex = 38;
-            this.bunifuiOSSwitch1.Value = true;
-            this.bunifuiOSSwitch1.OnValueChange += new System.EventHandler(this.bunifuiOSSwitch1_OnValueChange);
+            this.btnShutDown.BackColor = System.Drawing.Color.Transparent;
+            this.btnShutDown.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnShutDown.BackgroundImage")));
+            this.btnShutDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnShutDown.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnShutDown.Location = new System.Drawing.Point(244, 139);
+            this.btnShutDown.Name = "btnShutDown";
+            this.btnShutDown.OffColor = System.Drawing.Color.Gray;
+            this.btnShutDown.OnColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
+            this.btnShutDown.Size = new System.Drawing.Size(43, 25);
+            this.btnShutDown.TabIndex = 38;
+            this.btnShutDown.Value = false;
+            this.btnShutDown.OnValueChange += new System.EventHandler(this.bunifuiOSSwitch1_OnValueChange);
             // 
             // bunifuFlatButton1
             // 
@@ -215,7 +216,7 @@
             this.bunifuFlatButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bunifuFlatButton1.BorderRadius = 0;
             this.bunifuFlatButton1.ButtonText = "     Shut down timer";
-            this.bunifuFlatButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuFlatButton1.Cursor = System.Windows.Forms.Cursors.Default;
             this.bunifuFlatButton1.DisabledColor = System.Drawing.Color.Transparent;
             this.bunifuFlatButton1.Enabled = false;
             this.bunifuFlatButton1.Iconcolor = System.Drawing.Color.Transparent;
@@ -250,7 +251,7 @@
             this.btnMyMusic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnMyMusic.BorderRadius = 0;
             this.btnMyMusic.ButtonText = "     Language";
-            this.btnMyMusic.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMyMusic.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnMyMusic.DisabledColor = System.Drawing.Color.Transparent;
             this.btnMyMusic.Enabled = false;
             this.btnMyMusic.Iconcolor = System.Drawing.Color.Transparent;
@@ -285,11 +286,11 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.bunifuFlatButton2);
             this.Controls.Add(this.btnNowPlaying);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cbMinute);
-            this.Controls.Add(this.bunifuiOSSwitch1);
+            this.Controls.Add(this.btnShutDown);
             this.Controls.Add(this.bunifuFlatButton1);
             this.Controls.Add(this.metroComboBox1);
             this.Controls.Add(this.btnMyMusic);
@@ -306,11 +307,11 @@
         private Bunifu.Framework.UI.BunifuFlatButton btnMyMusic;
         private MetroFramework.Controls.MetroComboBox metroComboBox1;
         private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton1;
-        private Bunifu.Framework.UI.BunifuiOSSwitch bunifuiOSSwitch1;
+        private Bunifu.Framework.UI.BunifuiOSSwitch btnShutDown;
         private MetroFramework.Controls.MetroComboBox cbMinute;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblTime;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblStatus;
         private Bunifu.Framework.UI.BunifuFlatButton btnNowPlaying;
         private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton2;
     }

@@ -24,7 +24,20 @@ namespace Music
 
         private void bunifuiOSSwitch1_OnValueChange(object sender, EventArgs e)
         {
-
+            if (btnShutDown.Value)
+            {
+                //cbMinute.Text = "15";
+                lblStatus.Text = "On";
+                cbMinute.Enabled = true;
+                lblTime.ForeColor = Color.FromArgb(239, 108, 1);
+            }
+            else
+            {
+                lblStatus.Text = "Off";
+                lblTime.Text = "00:00";
+                cbMinute.Enabled = false;
+                lblTime.ForeColor = Color.FromArgb(92, 92, 92);
+            }
         }
 
         private void bunifuFlatButton2_Click(object sender, EventArgs e)
