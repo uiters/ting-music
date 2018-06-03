@@ -198,6 +198,8 @@ namespace Music
                 MediaPlayer.Instance.AddMediaOnPlayList(playlistPath,item.Path);
             }
             MessageBox.Show("Add to playlist successfully!", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            songsSelected.Clear();
+            ChangeColorLeftMouseButton();
         }
 
         public Song GetMediaExists(string mediaPath)
@@ -233,6 +235,8 @@ namespace Music
                 i++;
             }
             indexNow = 0;
+
+
             GC.Collect();
         }
         public void ChangeNormalColorOnPanelLeft(object sender)
@@ -333,7 +337,14 @@ namespace Music
             if (e.Button == MouseButtons.Right)
             {
                 if (!isCtrlA && !isCtrl)
+                {
                     ChangeColorRightMouseButton(song);
+                    if (!IsExistSong(song))
+                    {
+                        songsSelected.Clear();
+                        songsSelected.Add(song);
+                    }
+                }
             }
             if (e.Button == MouseButtons.Left)
             {
@@ -350,10 +361,7 @@ namespace Music
                 else
                 {
                     songsSelected.Clear();
-                    if (!IsExistSong(song))
-                        songsSelected.Add(song);
                 }
-
                 ChangeColorLeftMouseButton(song);
             }
             contextMenuStripSong.Tag = song;
@@ -407,7 +415,7 @@ namespace Music
             RecentAdd(song);
             ShowInfoMeadia(song);
             timeLine.Start();
-            timer2.Start();
+            autoNextSongTimer.Start();
             //ChangeColorPlaySong(song);
         }
         public static string ConvertToMinute(double Second)
@@ -492,11 +500,14 @@ namespace Music
         }
         private void btnSetting_Click_1(object sender, EventArgs e)
         {
-
+            labelTitle.Text = "Setting";
+            setting.BringToFront();
             ChangeNormalColorOnPanelLeft(sender);
         }
         private void btnAbout_Click_1(object sender, EventArgs e)
         {
+            labelTitle.Text = "About";
+            about.BringToFront();
             ChangeNormalColorOnPanelLeft(sender);
         }
         private void bunifuFlatButton2_Click(object sender, EventArgs e)
@@ -578,8 +589,8 @@ namespace Music
 
                 MediaPlayer.Instance.Pause();
                 timeLine.Stop();
-                timer2.Stop();
-                timer4.Stop();
+                autoNextSongTimer.Stop();
+                rotateTimer.Stop();
             }
             else
             {
@@ -597,8 +608,8 @@ namespace Music
                 btnPlay.Image = pause;
                 songNow.ImageButton = pause;
                 timeLine.Start();
-                timer2.Start();
-                timer4.Start();
+                autoNextSongTimer.Start();
+                rotateTimer.Start();
             }
             //ChangeColorPlaySong(songNow);
         }
@@ -646,7 +657,7 @@ namespace Music
             NextSong(); // set index song next
             SetSong();
             LoadLyrics();
-            timer2.Start();
+            autoNextSongTimer.Start();
             timeLine.Start();
             imageSong = new Bitmap(lyrics.SongImage);
             angles = 0;
@@ -659,7 +670,7 @@ namespace Music
             PreviousSong(); // set index song next
             SetSong();
             LoadLyrics();
-            timer2.Start();
+            autoNextSongTimer.Start();
             timeLine.Start();
             imageSong = new Bitmap(lyrics.SongImage);
             angles = 0;
@@ -704,7 +715,7 @@ namespace Music
                     ShowInfoMeadia(songsNowPlaying[indexNow]);
                     btnPlay.Image = play;
                     timeLine.Stop();
-                    timer2.Stop();
+                    autoNextSongTimer.Stop();
                     
                 }
                 else
@@ -722,19 +733,20 @@ namespace Music
             
         }
         private void timer3_Tick(object sender, EventArgs e)
-        { 
-        //{
-        //    IWMPMedia media = MediaPlayer.Instance.GetCurrentMedia();
-        //    int result = (int)media.duration - (int)MediaPlayer.Instance.GetCurrentPosition();
-        //    if (result == 0)
-        //        foreach (Control item in myMusic.listSong)
-        //            if ((item as Song).SongName == media.name)
-        //                MediaPlayer.Instance.PlayMediaFromPlaylist(PlaylistCurrent, (item as Song).index);
-        //}
+        {
+            //GC.Collect();        
         }
+        int indexTimer4 = 0;
         private void timer4_Tick(object sender, EventArgs e)
         {
-            lyrics.SongImage = rotateImage(1);
+            lyrics.SongImage = rotateImage(1f);
+            if (indexTimer4 > 15)
+            {
+                GC.Collect();
+                indexTimer4 = 0;
+            }
+            else
+                indexTimer4++;
         }
 
         #endregion
@@ -777,14 +789,14 @@ namespace Music
         #region Method
         private void OpenLyric()
         {
-            timer4.Start();
+            rotateTimer.Start();
             LoadLyrics();
             lyrics.BringToFront();
             actionOpenLyric = CloseLyric;
         }
         private void CloseLyric()
         {
-            timer4.Stop();
+            rotateTimer.Stop();
             lyrics.SendToBack();
             actionOpenLyric = OpenLyric;
         }
@@ -798,7 +810,7 @@ namespace Music
         {
             lyrics.SendToBack();
             actionOpenLyric = OpenLyric;
-            timer4.Stop();
+            rotateTimer.Stop();
         }
         //public Bitmap rotateImage(Bitmap bitmap, float angle)
         //{
@@ -817,6 +829,7 @@ namespace Music
             if (imageSong != null)
             {
                 Bitmap returnBitmap = new Bitmap(imageSong.Height, imageSong.Width);
+
                 if (angles < 360-angle)
                 {
                     angles += angle;
@@ -825,12 +838,14 @@ namespace Music
                     angles = 0;
                 using (Graphics graphics = Graphics.FromImage(returnBitmap))
                 {
+
                     graphics.TranslateTransform((float)imageSong.Width / 2, (float)imageSong.Height / 2);
                     graphics.RotateTransform(angles);
                     graphics.TranslateTransform(-(float)imageSong.Width / 2, -(float)imageSong.Height / 2);
                     graphics.DrawImage(imageSong, Point.Empty);
+                    return returnBitmap;
+
                 }
-                return returnBitmap;
             }
             return null;
         }
@@ -855,6 +870,7 @@ namespace Music
             fRenamePlaylist fRenamePlaylist = new fRenamePlaylist(playlistDetail.Tag.ToString());
             fRenamePlaylist.ShowDialog();
             playlistDetail.PlaylistName = fRenamePlaylist.txbNewPlaylist.Text;
+            
         }
 
         private void playlistDetail_Delete_Click(object sender, EventArgs e)
@@ -866,21 +882,25 @@ namespace Music
                 playlist.BringToFront();
                 LoadListPlaylist();
             }
+            
         }
 
         private void menuItemPlay_Click(object sender, EventArgs e)
         {
             ChangeIconListSong();
             songNow = contextMenuStripSong.Tag as Song;
+            indexNow = songsNowPlaying.IndexOf(songNow);
             RecentAdd(songNow);
             ShowInfoMeadia(songNow);
             MediaPlayer.Instance.PlayUrl(songNow.Path);
             btnPlay.Image = pause;
             songNow.ImageButton = pause;
             timeLine.Start();
-            timer2.Start();
-            timer4.Start();
+            autoNextSongTimer.Start();
+            //timer4.Start();
             //ChangeColorPlaySong(songNow);
+            songsSelected.Clear();
+            ChangeColorLeftMouseButton();
         }
 
         private void menuItemSelectAll_Click(object sender, EventArgs e)
@@ -890,11 +910,13 @@ namespace Music
             NextSong(); // set index song next
             SetSong();
             LoadLyrics();
-            timer2.Start();
+            autoNextSongTimer.Start();
             timeLine.Start();
             imageSong = new Bitmap(lyrics.SongImage);
             angles = 0;
             //ChangeColorPlaySong(songNow);
+            songsSelected.Clear();
+            ChangeColorLeftMouseButton();
         }
         public void LoadInfoSong(Song song)
         {
@@ -908,6 +930,8 @@ namespace Music
             fEditInfo fEditInfo = new fEditInfo(song.Path);
             fEditInfo.ShowDialog();
             LoadInfoSong(song);
+            songsSelected.Clear();
+            ChangeColorLeftMouseButton();
         }
 
         private void menuItemProperties_Click_1(object sender, EventArgs e)
@@ -915,6 +939,8 @@ namespace Music
             Song song = contextMenuStripSong.Tag as Song;
             fProperties fProperties = new fProperties(song.Path);
             fProperties.ShowDialog();
+            songsSelected.Clear();
+            ChangeColorLeftMouseButton();
         }
 
         private void myMusic_Load(object sender, EventArgs e)
@@ -926,17 +952,13 @@ namespace Music
         {
             if(e.KeyCode==Keys.ControlKey)
             {
-                
-                if (isCtrlA)
-                    isCtrl = false;
-                else
-                    isCtrl = true;
+                isCtrl = isCtrlA ? false : true;      
             }
-            if (e.KeyCode == Keys.A )
+            if (e.KeyCode == Keys.A)
             {
                 isCtrlA = true;
                 isCtrl = false;
-               if (!songsSelected.Count.Equals(songsNowPlaying.Count))
+                if (songsSelected.Count != songsNowPlaying.Count)
                 {
                     songsSelected.Clear();
                     songsSelected.AddRange(songsNowPlaying);
@@ -953,17 +975,132 @@ namespace Music
             isCtrl = isCtrlA = false;
         }
 
+        private void playlistDetail_PlayAll_Click(object sender, EventArgs e)
+        {
+            ChangeIconListSong();
+            songNow = contextMenuStripSong.Tag as Song;
+            indexNow = songsNowPlaying.IndexOf(songNow);
+            RecentAdd(songNow);
+            ShowInfoMeadia(songNow);
+            MediaPlayer.Instance.PlayUrl(songNow.Path);
+            btnPlay.Image = pause;
+            songNow.ImageButton = pause;
+            timeLine.Start();
+            autoNextSongTimer.Start();
+            songsSelected.Clear();
+            ChangeColorLeftMouseButton();
+        }
+
+        private void menuItemRemove_Click(object sender, EventArgs e)
+        {
+            if(status==3)
+            {
+                string playlistTitle = playlistDetail.PlaylistName;
+                string playlistPath = MediaPlayer.Instance.GetPlaylistPath(playlistTitle, listPlaylist);
+                foreach (var item in songsSelected)
+                {
+                    if (item == songNow)
+                    {
+                        MediaPlayer.Instance.Pause();
+                        indexNow = 0;
+                    }
+                    MediaPlayer.Instance.RemoveMediaOnPlayList(playlistPath, item.Path);
+                }
+                MessageBox.Show("Remove song successfully!", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                playlistDetail.totalSong = MediaPlayer.Instance.ReadPlaylist(playlistPath).Count;
+                playlistDetail.Clear();
+                LoadPlaylistDetails(playlistPath);
+            }
+            else
+            {        
+                
+                switch(status)
+                {
+                    case 0:
+                        {
+                            foreach (var item in songsSelected)
+                            {
+                                if (item == songNow)
+                                {
+                                    MediaPlayer.Instance.Pause();
+                                    indexNow = 0;
+                                }
+                                songsLocalFile.Remove(item);
+                            }
+                            MessageBox.Show("Remove song successfully!", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            myMusic.Clear();
+                            int width = panel.Width - 25;
+
+                            for (int i = 0; i < songsLocalFile.Count; i++)
+                            {
+                                songsLocalFile[i].Width = width;
+                                songsLocalFile[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
+                                myMusic.AddSong(songsLocalFile[i]);
+                            }
+                            break;
+                        }
+                    case 1:
+                        {
+                            foreach (var item in songsSelected)
+                            {
+                                if (item == songNow)
+                                {
+                                    MediaPlayer.Instance.Pause();
+                                    indexNow = 0;
+                                }
+                                songsNowPlaying.Remove(item);
+                            }
+
+                            MessageBox.Show("Remove song successfully!", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            nowPlaying.Clear();
+
+                            int width = panel.Width - 20;
+                            for (int i = 0; i < songsRecent.Count; ++i)
+                            {
+                                songsRecent[i].Width = width;
+                                songsRecent[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
+                                nowPlaying.AddSong(songsRecent[i]);
+                            }
+                            break;
+                        }
+                    case 2:
+                        {
+                            foreach (var item in songsSelected)
+                            {
+                                if (item == songNow)
+                                {
+                                    MediaPlayer.Instance.Pause();
+                                    indexNow = 0;
+                                }
+                                songsNowPlaying.Remove(item);
+                            }
+
+                            MessageBox.Show("Remove song successfully!", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            nowPlaying.Clear();
+
+                            int width = panel.Width - 20;
+                            for (int i = 0; i < songsNowPlaying.Count; i++)
+                            {
+                                songsNowPlaying[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
+                                songsNowPlaying[i].Width = width;
+                                nowPlaying.AddSong(songsNowPlaying[i]);
+                            }
+                            break;
+                        }
+                }
+
+            }
+        }
         private void FMusic_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.ControlKey)
             {
                 isCtrl = false;
-
             }
             if (e.KeyCode == Keys.A)
             {
                 isCtrlA = false;
-
             }
         }
     }

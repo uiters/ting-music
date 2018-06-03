@@ -94,9 +94,9 @@ namespace Music
 
         public string[] LoadLocalFile()//IWMPPlaylist playlist)
         {
-           // string path = @"E:\test";
-            string path = @"G:\the nho\Zing MP3";
-           // string path = @"C:\Users\ndc07\Music";
+            //string path = @"E:\test";
+            //string path = @"G:\the nho\Zing MP3";
+            string path = @"C:\Users\ndc07\Music\Music";
             string[] listFile = Directory.GetFiles(path, "*.mp3");
             return listFile;
         }
@@ -233,7 +233,17 @@ namespace Music
             {
                 //string filePath = @"C:\Users\ndc07\Music\Playlists\" + fileName + ".wpl";
                 var lines = File.ReadAllLines(filePath).ToList();
-                lines.Insert(15, "\t\t\t<media src=\"" + mediaPath + "\"/>");
+                int i = 0;
+                foreach (var item in lines)
+                {
+                    if(item.Contains("<seq>"))
+                    {
+                        lines.Insert(i, "\t\t\t<media src=\"" + mediaPath + "\"/>");
+                        break;
+                    }
+                    i++;
+                }
+                
                 File.WriteAllLines(filePath, lines);
             }
         }
@@ -243,8 +253,15 @@ namespace Music
             {
                 //string filePath = @"C:\Users\ndc07\Music\Playlists\" + fileName + ".wpl";
                 var lines = File.ReadAllLines(filePath).ToList();
-                string item = "\t\t\t<media src=\"" + mediaPath + "\"/>";
-                lines.Remove(item);
+                //string media = "\t\t\t<media src=\"" + mediaPath + "\"/>";
+                foreach (var item in lines)
+                {
+                    if(item.Contains(mediaPath))
+                    {
+                        lines.Remove(item);
+                        break;
+                    }
+                }
                 File.WriteAllLines(filePath, lines);
             }
         }

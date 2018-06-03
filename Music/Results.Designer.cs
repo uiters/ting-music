@@ -99,10 +99,6 @@
         private System.Windows.Forms.Panel panel2;
         private Bunifu.Framework.UI.BunifuSeparator bunifuSeparator1;
         private System.Windows.Forms.Label lblSongName;
-        private Song song1;
-        private Song song2;
-        private Song song3;
-        private Song song4;
-        private Song song5;
+ 
     }
 }

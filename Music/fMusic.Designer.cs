@@ -70,21 +70,23 @@ namespace Music
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.bunifuDragControl2 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel = new System.Windows.Forms.Panel();
-            this.myMusic = new Music.MyMusic();
-            this.nowPlaying = new Music.NowPlaying();
-            this.playlistDetail = new Music.PlaylistDetail();
-            this.playlist = new Music.Playlist();
-            this.lyrics = new Music.Lyrics();
             this.timeLine = new System.Windows.Forms.Timer(this.components);
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.timer4 = new System.Windows.Forms.Timer(this.components);
+            this.autoNextSongTimer = new System.Windows.Forms.Timer(this.components);
+            this.rotateTimer = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStripSong = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuItemPlay = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemPlayNext = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemAddTo = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemEditInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemProperties = new System.Windows.Forms.ToolStripMenuItem();
+            this.about = new Music.About();
+            this.lyrics = new Music.Lyrics();
+            this.myMusic = new Music.MyMusic();
+            this.nowPlaying = new Music.NowPlaying();
+            this.playlistDetail = new Music.PlaylistDetail();
+            this.playlist = new Music.Playlist();
+            this.setting = new Music.Setting();
             this.panelBottom.SuspendLayout();
             this.panelPlay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPlay)).BeginInit();
@@ -130,7 +132,7 @@ namespace Music
             // btnPlay
             // 
             this.btnPlay.BackColor = System.Drawing.Color.Transparent;
-            this.btnPlay.Image = global::Music.Properties.Resources.pause;
+            this.btnPlay.Image = ((System.Drawing.Image)(resources.GetObject("btnPlay.Image")));
             this.btnPlay.ImageActive = null;
             this.btnPlay.Location = new System.Drawing.Point(100, 8);
             this.btnPlay.Name = "btnPlay";
@@ -185,7 +187,7 @@ namespace Music
             this.btnRepeat.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRepeat.DisabledColor = System.Drawing.Color.Gray;
             this.btnRepeat.Iconcolor = System.Drawing.Color.Transparent;
-            this.btnRepeat.Iconimage = global::Music.Properties.Resources.repeat;
+            this.btnRepeat.Iconimage = ((System.Drawing.Image)(resources.GetObject("btnRepeat.Iconimage")));
             this.btnRepeat.Iconimage_right = null;
             this.btnRepeat.Iconimage_right_Selected = null;
             this.btnRepeat.Iconimage_Selected = null;
@@ -323,7 +325,7 @@ namespace Music
             this.btnVolume.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnVolume.DisabledColor = System.Drawing.Color.Gray;
             this.btnVolume.Iconcolor = System.Drawing.Color.Transparent;
-            this.btnVolume.Iconimage = global::Music.Properties.Resources.volume_up;
+            this.btnVolume.Iconimage = ((System.Drawing.Image)(resources.GetObject("btnVolume.Iconimage")));
             this.btnVolume.Iconimage_right = null;
             this.btnVolume.Iconimage_right_Selected = null;
             this.btnVolume.Iconimage_Selected = null;
@@ -725,24 +727,24 @@ namespace Music
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label7.Location = new System.Drawing.Point(154, 22);
+            this.label7.Location = new System.Drawing.Point(135, 26);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 21);
+            this.label7.Size = new System.Drawing.Size(51, 18);
             this.label7.TabIndex = 32;
             this.label7.Text = "music";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Franklin Gothic Heavy", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Arial Rounded MT Bold", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.label8.Location = new System.Drawing.Point(51, 10);
+            this.label8.Location = new System.Drawing.Point(53, 10);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(112, 37);
+            this.label8.Size = new System.Drawing.Size(85, 37);
             this.label8.TabIndex = 31;
-            this.label8.Text = "Apollo";
+            this.label8.Text = "Ting";
             // 
             // panelHeader
             // 
@@ -946,11 +948,13 @@ namespace Music
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.setting);
+            this.panel.Controls.Add(this.about);
+            this.panel.Controls.Add(this.lyrics);
             this.panel.Controls.Add(this.myMusic);
             this.panel.Controls.Add(this.nowPlaying);
             this.panel.Controls.Add(this.playlistDetail);
             this.panel.Controls.Add(this.playlist);
-            this.panel.Controls.Add(this.lyrics);
             this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel.Location = new System.Drawing.Point(223, 54);
             this.panel.Name = "panel";
@@ -958,74 +962,18 @@ namespace Music
             this.panel.TabIndex = 29;
             this.panel.SizeChanged += new System.EventHandler(this.panel_SizeChanged);
             // 
-            // myMusic
-            // 
-            this.myMusic.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.myMusic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.myMusic.Location = new System.Drawing.Point(0, 0);
-            this.myMusic.Name = "myMusic";
-            this.myMusic.Size = new System.Drawing.Size(850, 474);
-            this.myMusic.TabIndex = 0;
-            this.myMusic.Load += new System.EventHandler(this.myMusic_Load);
-            // 
-            // nowPlaying
-            // 
-            this.nowPlaying.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.nowPlaying.Location = new System.Drawing.Point(0, 0);
-            this.nowPlaying.Name = "nowPlaying";
-            this.nowPlaying.Size = new System.Drawing.Size(850, 474);
-            this.nowPlaying.TabIndex = 1;
-            // 
-            // playlistDetail
-            // 
-            this.playlistDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.playlistDetail.Location = new System.Drawing.Point(0, 0);
-            this.playlistDetail.Name = "playlistDetail";
-            this.playlistDetail.PlaylistImage = ((System.Drawing.Image)(resources.GetObject("playlistDetail.PlaylistImage")));
-            this.playlistDetail.PlaylistName = "ndc07";
-            this.playlistDetail.Size = new System.Drawing.Size(850, 474);
-            this.playlistDetail.TabIndex = 4;
-            this.playlistDetail.Rename_Click += new System.EventHandler(this.playlistDetail_Rename_Click);
-            this.playlistDetail.Delete_Click += new System.EventHandler(this.playlistDetail_Delete_Click);
-            // 
-            // playlist
-            // 
-            this.playlist.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.playlist.Location = new System.Drawing.Point(0, 0);
-            this.playlist.Name = "playlist";
-            this.playlist.Size = new System.Drawing.Size(850, 474);
-            this.playlist.TabIndex = 3;
-            this.playlist.NewPlaylist_Click += new System.EventHandler(this.playlist_NewPlaylist_Click);
-            // 
-            // lyrics
-            // 
-            this.lyrics.ArtistName = "Charlie Puth";
-            this.lyrics.BackColor = System.Drawing.Color.DimGray;
-            this.lyrics.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lyrics.Location = new System.Drawing.Point(0, 0);
-            this.lyrics.LyricsText = "ndc07";
-            this.lyrics.Name = "lyrics";
-            this.lyrics.Size = new System.Drawing.Size(850, 474);
-            this.lyrics.SongImage = ((System.Drawing.Image)(resources.GetObject("lyrics.SongImage")));
-            this.lyrics.SongName = "Attention";
-            this.lyrics.TabIndex = 2;
-            this.lyrics.btnBack_click += new System.EventHandler(this.lyrics_btnBack_click);
-            // 
             // timeLine
             // 
             this.timeLine.Tick += new System.EventHandler(this.TimeLine_Tick);
             // 
-            // timer2
+            // autoNextSongTimer
             // 
-            this.timer2.Tick += new System.EventHandler(this.Timer2_Tick);
+            this.autoNextSongTimer.Tick += new System.EventHandler(this.Timer2_Tick);
             // 
-            // timer3
+            // rotateTimer
             // 
-            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
-            // 
-            // timer4
-            // 
-            this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
+            this.rotateTimer.Interval = 40;
+            this.rotateTimer.Tick += new System.EventHandler(this.timer4_Tick);
             // 
             // contextMenuStripSong
             // 
@@ -1035,10 +983,11 @@ namespace Music
             this.menuItemPlay,
             this.menuItemPlayNext,
             this.menuItemAddTo,
+            this.menuItemRemove,
             this.menuItemEditInfo,
             this.menuItemProperties});
             this.contextMenuStripSong.Name = "contextMenuStripSong";
-            this.contextMenuStripSong.Size = new System.Drawing.Size(140, 114);
+            this.contextMenuStripSong.Size = new System.Drawing.Size(140, 136);
             this.contextMenuStripSong.Closing += new System.Windows.Forms.ToolStripDropDownClosingEventHandler(this.contextMenuStripSong_Closing);
             // 
             // menuItemPlay
@@ -1064,6 +1013,14 @@ namespace Music
             this.menuItemAddTo.Size = new System.Drawing.Size(139, 22);
             this.menuItemAddTo.Text = "Add to";
             // 
+            // menuItemRemove
+            // 
+            this.menuItemRemove.Image = ((System.Drawing.Image)(resources.GetObject("menuItemRemove.Image")));
+            this.menuItemRemove.Name = "menuItemRemove";
+            this.menuItemRemove.Size = new System.Drawing.Size(139, 22);
+            this.menuItemRemove.Text = "Remove";
+            this.menuItemRemove.Click += new System.EventHandler(this.menuItemRemove_Click);
+            // 
             // menuItemEditInfo
             // 
             this.menuItemEditInfo.Image = ((System.Drawing.Image)(resources.GetObject("menuItemEditInfo.Image")));
@@ -1079,6 +1036,79 @@ namespace Music
             this.menuItemProperties.Size = new System.Drawing.Size(139, 22);
             this.menuItemProperties.Text = "Properties";
             this.menuItemProperties.Click += new System.EventHandler(this.menuItemProperties_Click_1);
+            // 
+            // about
+            // 
+            this.about.BackColor = System.Drawing.Color.White;
+            this.about.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.about.Location = new System.Drawing.Point(0, 0);
+            this.about.Name = "about";
+            this.about.Size = new System.Drawing.Size(850, 474);
+            this.about.TabIndex = 5;
+            // 
+            // lyrics
+            // 
+            this.lyrics.ArtistName = "Charlie Puth";
+            this.lyrics.BackColor = System.Drawing.Color.DimGray;
+            this.lyrics.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lyrics.Location = new System.Drawing.Point(0, 0);
+            this.lyrics.LyricsText = "ndc07";
+            this.lyrics.Name = "lyrics";
+            this.lyrics.Size = new System.Drawing.Size(850, 474);
+            this.lyrics.SongImage = ((System.Drawing.Image)(resources.GetObject("lyrics.SongImage")));
+            this.lyrics.SongName = "Attention";
+            this.lyrics.TabIndex = 2;
+            this.lyrics.btnBack_click += new System.EventHandler(this.lyrics_btnBack_click);
+            // 
+            // myMusic
+            // 
+            this.myMusic.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.myMusic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.myMusic.Location = new System.Drawing.Point(0, 0);
+            this.myMusic.Name = "myMusic";
+            this.myMusic.Size = new System.Drawing.Size(850, 474);
+            this.myMusic.TabIndex = 0;
+            this.myMusic.Load += new System.EventHandler(this.myMusic_Load);
+            // 
+            // nowPlaying
+            // 
+            this.nowPlaying.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.nowPlaying.Location = new System.Drawing.Point(0, 0);
+            this.nowPlaying.Name = "nowPlaying";
+            this.nowPlaying.Size = new System.Drawing.Size(850, 474);
+            this.nowPlaying.TabIndex = 1;
+            // 
+            // playlistDetail
+            // 
+            this.playlistDetail.BackColor = System.Drawing.Color.White;
+            this.playlistDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.playlistDetail.Location = new System.Drawing.Point(0, 0);
+            this.playlistDetail.Name = "playlistDetail";
+            this.playlistDetail.PlaylistImage = ((System.Drawing.Image)(resources.GetObject("playlistDetail.PlaylistImage")));
+            this.playlistDetail.PlaylistName = "ndc07";
+            this.playlistDetail.Size = new System.Drawing.Size(850, 474);
+            this.playlistDetail.TabIndex = 4;
+            this.playlistDetail.PlayAll_Click += new System.EventHandler(this.playlistDetail_PlayAll_Click);
+            this.playlistDetail.Rename_Click += new System.EventHandler(this.playlistDetail_Rename_Click);
+            this.playlistDetail.Delete_Click += new System.EventHandler(this.playlistDetail_Delete_Click);
+            // 
+            // playlist
+            // 
+            this.playlist.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.playlist.Location = new System.Drawing.Point(0, 0);
+            this.playlist.Name = "playlist";
+            this.playlist.Size = new System.Drawing.Size(850, 474);
+            this.playlist.TabIndex = 3;
+            this.playlist.NewPlaylist_Click += new System.EventHandler(this.playlist_NewPlaylist_Click);
+            // 
+            // setting
+            // 
+            this.setting.BackColor = System.Drawing.Color.White;
+            this.setting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.setting.Location = new System.Drawing.Point(0, 0);
+            this.setting.Name = "setting";
+            this.setting.Size = new System.Drawing.Size(850, 474);
+            this.setting.TabIndex = 6;
             // 
             // fMusic
             // 
@@ -1154,11 +1184,10 @@ namespace Music
         private Bunifu.Framework.UI.BunifuFlatButton btnBack;
         private MyMusic myMusic;
         private System.Windows.Forms.Timer timeLine;
-        private System.Windows.Forms.Timer timer2;
-        private System.Windows.Forms.Timer timer3;
+        private System.Windows.Forms.Timer autoNextSongTimer;
         private NowPlaying nowPlaying;
         private Lyrics lyrics;
-        private System.Windows.Forms.Timer timer4;
+        private System.Windows.Forms.Timer rotateTimer;
         private Playlist playlist;
         internal static readonly Image pause = Properties.Resources.pause;
         internal static readonly Image play = Properties.Resources.play;
@@ -1173,6 +1202,9 @@ namespace Music
         private System.Windows.Forms.ToolStripMenuItem menuItemEditInfo;
         public System.Windows.Forms.ContextMenuStrip contextMenuStripSong;
         private System.Windows.Forms.ToolStripMenuItem menuItemProperties;
+        private System.Windows.Forms.ToolStripMenuItem menuItemRemove;
+        private About about;
+        private Setting setting;
     }
 }
 

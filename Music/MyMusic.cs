@@ -31,7 +31,7 @@ namespace Music
             InitializeComponent();
             this.DoubleBuffered = true;
             btnShuffleAllAlbums.IconVisible = true;
-            btnShuffleAllSongs.IconVisible = true;
+            //btnShuffleAllSongs.IconVisible = true;
             btnShuufleAllArtists.IconVisible = true;
         }
 
@@ -149,6 +149,7 @@ namespace Music
         {
             panelAlbums.ScrollControlIntoView(value);
         }
+
 
         #endregion
 

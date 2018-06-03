@@ -117,26 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="repeat" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\repeat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="play" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="volume-off" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\volume-off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="volume-up" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\volume-up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="pause" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pause.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="repeat-one" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\repeat-one.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="myMusic" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\myMusic.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA3XAAAN1wFCKJt4AAAAB3RJ
+        TUUH4gYDEws1oYpKpgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFHSURBVFhH
+        xVcJDsIwDNvDeAAf4Nr1X94EEtgjRTRrum6jiqVIK01tN5lG24zjeBiG4c7o+/7YVAY1gh61GxF+STww
+        Pknu30FuagQ9amsD1UxoccZkAA9HPSHjs6zdDXIJp9b4tDzlTsa7TZBDuCLuWZUNE8+u6y6SshpcSw7F
+        abcYkym3m0xY4oh8VZmA0AufcH2VlEUwN8WBKGup4b7IhCW+uoqWCcRNUmbgnOREa7a0cEKmlDMT/E3m
+        otw1rUsiU9JWUlitNpWzWzwAZFZpW0scYbZqE0goxFqovniAsdvfiFpTBRkT9cUJVwMZ8RD1TIDc7yUk
+        oRBHQtytUZX/mXD9EFniiPqfYuzK78/IEi/ZTaZlZSaQ7HcgYQLC50gG136HUkN8+QBZAHIIV8T9NYGB
+        78UETnyvZspAFfEAbWIy4Hs9Hw9v43Lxy6TTtSYAAAAASUVORK5CYII=
+</value>
   </data>
 </root>
