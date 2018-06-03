@@ -94,9 +94,9 @@ namespace Music
 
         public string[] LoadLocalFile()//IWMPPlaylist playlist)
         {
-            //string path = @"E:\test";
-            //string path = @"G:\the nho\Zing MP3";
-            string path = @"C:\Users\ndc07\Music";
+           // string path = @"E:\test";
+            string path = @"G:\the nho\Zing MP3";
+           // string path = @"C:\Users\ndc07\Music";
             string[] listFile = Directory.GetFiles(path, "*.mp3");
             return listFile;
         }

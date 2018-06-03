@@ -19,6 +19,7 @@ namespace Music
             Application.SetCompatibleTextRenderingDefault(false);
             fMusicCurent = new fMusic();
             Application.Run(fMusicCurent);
+           
         }
     }
 }

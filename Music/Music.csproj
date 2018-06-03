@@ -52,7 +52,7 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>iconMusic.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\iconMusic.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bunifu_UI_v1.52">
@@ -99,18 +99,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Album.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Album.Designer.cs">
-      <DependentUpon>Album.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Artist.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Artist.Designer.cs">
-      <DependentUpon>Artist.cs</DependentUpon>
-    </Compile>
     <Compile Include="fEditInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +128,16 @@
     </Compile>
     <Compile Include="fRenamePlaylist.Designer.cs">
       <DependentUpon>fRenamePlaylist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Languge\El.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>El.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Languge\Vi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Vi.resx</DependentUpon>
     </Compile>
     <Compile Include="Lyrics.cs">
       <SubType>UserControl</SubType>
@@ -199,12 +197,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SongInfo.cs" />
     <Compile Include="UISort.cs" />
-    <EmbeddedResource Include="Album.resx">
-      <DependentUpon>Album.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Artist.resx">
-      <DependentUpon>Artist.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="Update.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <EmbeddedResource Include="fEditInfo.resx">
       <DependentUpon>fEditInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -219,6 +214,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fRenamePlaylist.resx">
       <DependentUpon>fRenamePlaylist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Languge\El.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>El.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Languge\Vi.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Vi.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Lyrics.resx">
       <DependentUpon>Lyrics.cs</DependentUpon>
@@ -321,7 +324,7 @@
     <None Include="Resources\myMusic.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="iconMusic.ico" />
+    <Content Include="Resources\iconMusic.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

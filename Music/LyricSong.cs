@@ -1,6 +1,7 @@
 ﻿
 using Fizzler.Systems.HtmlAgilityPack;
 using HtmlAgilityPack;
+using Music;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,8 @@ namespace Lyric
     public class Lyric
     {
         private static Lyric instance = new Lyric();
-        private HtmlAgilityPack.HtmlDocument document;
-        HtmlWeb html;
+        private HtmlDocument document;
+        private HtmlWeb html;
         public Lyric()
         {
             html = new HtmlWeb()
@@ -33,6 +34,8 @@ namespace Lyric
 
         public string GetLyric(string songName, string artist = null)
         {
+            if (InternetConnection.IsConnectedToInternet() == false)
+                return string.Empty;
             document = html.LoadFromBrowser("https://mp3.zing.vn/tim-kiem/bai-hat.html?q=" + songName);
             string link = null;
             try
@@ -58,14 +61,14 @@ namespace Lyric
                     if (link == null)
                     {
                         document = null;
-                        return null;
+                        return string.Empty;
                     }
 
                 }
                 var lyric = document.DocumentNode.QuerySelector(".fn-container [id] p");
                 document = null;
                 if (lyric == null)
-                    return null;
+                    return string.Empty;
                 else
                 {
                     return lyric.InnerHtml.Replace("<br>", "\n");
@@ -74,7 +77,11 @@ namespace Lyric
             catch
             {
                 document = null;
-                return null;
+                return string.Empty;
+            }
+            finally
+            {
+                GC.Collect();
             }
         }
 

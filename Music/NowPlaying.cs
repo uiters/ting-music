@@ -49,12 +49,10 @@ namespace Music
                 return listSong;
             }
         }
-        public Control ScrollControl
+
+        public void SetScrollControl(Song value)
         {
-            set
-            {
-                panelSongs.ScrollControlIntoView(value);
-            }
+            panelSongs.ScrollControlIntoView(value);
         }
         public void Clear()
         {

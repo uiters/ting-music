@@ -1038,14 +1038,14 @@ namespace Music
             this.menuItemEditInfo,
             this.menuItemProperties});
             this.contextMenuStripSong.Name = "contextMenuStripSong";
-            this.contextMenuStripSong.Size = new System.Drawing.Size(181, 136);
+            this.contextMenuStripSong.Size = new System.Drawing.Size(140, 114);
             this.contextMenuStripSong.Closing += new System.Windows.Forms.ToolStripDropDownClosingEventHandler(this.contextMenuStripSong_Closing);
             // 
             // menuItemPlay
             // 
             this.menuItemPlay.Image = ((System.Drawing.Image)(resources.GetObject("menuItemPlay.Image")));
             this.menuItemPlay.Name = "menuItemPlay";
-            this.menuItemPlay.Size = new System.Drawing.Size(180, 22);
+            this.menuItemPlay.Size = new System.Drawing.Size(139, 22);
             this.menuItemPlay.Text = "Play";
             this.menuItemPlay.Click += new System.EventHandler(this.menuItemPlay_Click);
             // 
@@ -1053,7 +1053,7 @@ namespace Music
             // 
             this.menuItemPlayNext.Image = ((System.Drawing.Image)(resources.GetObject("menuItemPlayNext.Image")));
             this.menuItemPlayNext.Name = "menuItemPlayNext";
-            this.menuItemPlayNext.Size = new System.Drawing.Size(180, 22);
+            this.menuItemPlayNext.Size = new System.Drawing.Size(139, 22);
             this.menuItemPlayNext.Text = "Play next";
             this.menuItemPlayNext.Click += new System.EventHandler(this.menuItemSelectAll_Click);
             // 
@@ -1061,14 +1061,14 @@ namespace Music
             // 
             this.menuItemAddTo.Image = ((System.Drawing.Image)(resources.GetObject("menuItemAddTo.Image")));
             this.menuItemAddTo.Name = "menuItemAddTo";
-            this.menuItemAddTo.Size = new System.Drawing.Size(180, 22);
+            this.menuItemAddTo.Size = new System.Drawing.Size(139, 22);
             this.menuItemAddTo.Text = "Add to";
             // 
             // menuItemEditInfo
             // 
             this.menuItemEditInfo.Image = ((System.Drawing.Image)(resources.GetObject("menuItemEditInfo.Image")));
             this.menuItemEditInfo.Name = "menuItemEditInfo";
-            this.menuItemEditInfo.Size = new System.Drawing.Size(180, 22);
+            this.menuItemEditInfo.Size = new System.Drawing.Size(139, 22);
             this.menuItemEditInfo.Text = "Edit info";
             this.menuItemEditInfo.Click += new System.EventHandler(this.menuItemProperties_Click);
             // 
@@ -1076,7 +1076,7 @@ namespace Music
             // 
             this.menuItemProperties.Image = ((System.Drawing.Image)(resources.GetObject("menuItemProperties.Image")));
             this.menuItemProperties.Name = "menuItemProperties";
-            this.menuItemProperties.Size = new System.Drawing.Size(180, 22);
+            this.menuItemProperties.Size = new System.Drawing.Size(139, 22);
             this.menuItemProperties.Text = "Properties";
             this.menuItemProperties.Click += new System.EventHandler(this.menuItemProperties_Click_1);
             // 
@@ -1090,6 +1090,7 @@ namespace Music
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.panelBottom);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
