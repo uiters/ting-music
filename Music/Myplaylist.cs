@@ -12,6 +12,9 @@ namespace Music
 {
     public partial class Myplaylist : UserControl
     {
+        private List<Song> songs = new List<Song>();
+        public List<Song> Songs { get => songs; }
+
         public Myplaylist()
         {
             InitializeComponent();
@@ -39,6 +42,25 @@ namespace Music
                 labelPlaylistName.Text = value;
             }
         }
+
+        public static Myplaylist CreateArtist(Song song)
+        {
+            Myplaylist artist = new Myplaylist();
+            artist.songs.Add(song);
+            artist.labelPlaylistName.Text = song.ArtistName;
+            artist.btnImage.BackgroundImage = song.ImageSong;
+            return artist;
+        }
+
+        public static Myplaylist CreateAlbum(Song song)
+        {
+            Myplaylist album = new Myplaylist();
+            album.songs.Add(song);
+            album.labelPlaylistName.Text = song.Album;
+            album.btnImage.BackgroundImage = song.ImageSong;
+            return album;
+        }
+
         private void btnImage_Click(object sender, EventArgs e)
         {
             if (BtnImage_Click != null)

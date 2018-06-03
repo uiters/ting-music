@@ -16,12 +16,64 @@ namespace Music
         #region Properties
         private TagLib.File file;
 
-        public string Title { get => file.Tag.Title; }
-        public string Artist { get => file.Tag.FirstPerformer; }
-        public string Song { get => file.Tag.Title; }
-        public string Album { get => file.Tag.Album; }
-        public string Genrne { get => file.Tag.FirstGenre; }
-        public string Lyrics { get => file.Tag.Lyrics; }
+        public string Title
+        {
+            get
+            {
+                if (file.Tag.Title is null)
+                    return null;
+                else return file.Tag.Title.Trim();
+            }
+        }
+        public string Artist
+        {
+            get
+            {
+                if (file.Tag.FirstPerformer is null)
+                    return string.Empty;
+                else
+                    return file.Tag.FirstPerformer.Trim();
+            }
+        }
+        public string Song
+        {
+            get
+            {
+                if (file.Tag.Title is null)
+                    return null;
+                else return file.Tag.Title.Trim();
+            }
+        }
+        public string Album
+        {
+            get
+            {
+                if (file.Tag.Album is null)
+                    return string.Empty;
+                else
+                    return file.Tag.Album.Trim();
+            }
+        }
+        public string Genrne
+        {
+            get
+            {
+                if (file.Tag.FirstGenre is null)
+                    return null;
+                else return
+                    file.Tag.FirstGenre.Trim();
+            }
+        }
+        public string Lyrics
+        {
+            get
+            {
+                if (file.Tag.Lyrics is null)
+                    return null;
+                else
+                    return file.Tag.Lyrics.Trim();
+            }
+        }
         public System.Drawing.Image LoadImageSong
         {
             get

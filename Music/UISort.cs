@@ -87,11 +87,11 @@ namespace Music
         //}
         public static void SetNumberSong(Song song)
         {
-            song.Index = index;
-            if (index++ % 2 == 0)
-                song.BackColor = Color.Silver;
-            else
-                song.BackColor = Color.Gainsboro;
+            //song.Index = index;
+            //if (index++ % 2 == 0)
+            //    song.BackColor = Color.Silver;
+            //else
+            //    song.BackColor = Color.Gainsboro;
         }
     }
 }

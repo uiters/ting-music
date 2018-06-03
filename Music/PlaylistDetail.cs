@@ -54,27 +54,25 @@ namespace Music
                 lblPlaylistName.Text = value;
             }
         }
-        public Song song
+        public Song Song
         {
             set
             {
                 panelSongs.Controls.Add(value);
             }
         }
-        public int totalSong
+        public int TotalSong
         {
             set
             {
                 lblTotalSong.Text = value.ToString()+" songs";
             }
         }
-        public List<Song> listSong
+        public List<Song> ListSong
         {
             get
             {
-                List<Song> songs = new List<Song>();
-                songs.AddRange(panelSongs.Controls.Cast<Song>());
-                return songs;
+                return panelSongs.Controls.Cast<Song>().ToList();
             }
         }
         public Control ScrollControl
@@ -84,16 +82,11 @@ namespace Music
                 panelSongs.ScrollControlIntoView(value);
             }
         }
-        public List<Control> listControl
+        public List<Control> GetControls
         {
             get
             {
-                List<Control> listcontrol = new List<Control>();
-                foreach (Control item in panelSongs.Controls)
-                {
-                    listcontrol.Add(item);
-                }
-                return listcontrol;
+                return panelSongs.Controls.Cast<Control>().ToList();
             }
         }
         public void Clear()

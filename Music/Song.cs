@@ -89,16 +89,9 @@ namespace Music
                 btnPlay.Image = value;
             }
         }
-        internal int Index
+        internal string Album
         {
-            get
-            {
-                return (int)lblTotalTime.Tag;
-            }
-            set
-            {
-                lblTotalTime.Tag = value;
-            }
+            get; set;
         }
         internal string Path { get => path; private set => path = value; }
         #endregion
@@ -122,7 +115,6 @@ namespace Music
         {
             Song song = new Song();
             info.SetPath(file.FilePath);
-            song.Index = i;
             song.Path = file.FilePath;
             info.SetPath(file.FilePath);
             song.ImageSong = info.LoadImageSong;
@@ -135,7 +127,7 @@ namespace Music
             song.ButtonPlay_Click += click;
             song.Mouse_Click += mouseClick;
             song.ContextMenuStrip = menuStripSong;
-            
+            song.Album = info.Album;
             return song;
         }
 

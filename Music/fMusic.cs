@@ -21,22 +21,44 @@ namespace Music
         private List<Song> songsRecent = new List<Song>();
         private List<Song> songsSelected = new List<Song>();
         private List<string> listPlaylist = new List<string>();
+        private List<Myplaylist> artists;
+        private List<Myplaylist> albums;
         private Action actionOpenLyric;
+        private Action<Song> actionScroll;
         private Bitmap imageSong;
         private Song songNow = null;
         private Song preSong = null;
         private int indexNow = -1;
         private int status;
         private float angles = 0;
-        private bool isExchange;
+        private bool isExchange = false;
+
 
         public fMusic()
         {
             InitializeComponent();
+            myMusic.Artist_Click += MyMusic_Artist_Click;
+            myMusic.Album_Click += MyMusic_Album_Click;
             btnShuffle.Tag = "Off";
             btnRepeat.Tag = "Off";
             InitializeData();
             actionOpenLyric = OpenLyric;
+        }
+
+        private void MyMusic_Album_Click(object sender, EventArgs e)
+        {
+            status = 5;
+            isExchange = true;
+            actionScroll = myMusic.SetScrollSongInAlbums;
+            myMusic.Tag = sender;
+        }
+
+        private void MyMusic_Artist_Click(object sender, EventArgs e)
+        {
+            status = 4;
+            isExchange = true;
+            actionScroll = myMusic.SetScrollSongInArtists;
+            myMusic.Tag = sender;
         }
 
         public void InitializeData()
@@ -50,7 +72,8 @@ namespace Music
             myMusic.BringToFront();
             labelTitle.Text = "My music";
             #endregion
-
+            artists = myMusic.ListArtists;
+            albums = myMusic.ListAlbums;
             status = 0;
             LoadLocalFile();            
             //cần cập nhập lại playlistCurrent mỗi khi phát ở 1 playlist mới
@@ -58,7 +81,7 @@ namespace Music
         #region Load
         public void LoadLocalFile()
         {
-            myMusic.Clear();
+            myMusic.SongsClear();
             string[] listFile = MediaPlayer.Instance.LoadLocalFile();
             int width = panel.Width - 25;
 
@@ -66,11 +89,13 @@ namespace Music
             for (int i = 0; i < listFile.Length; i++)
             {
                 MediaFile file = new MediaFile(listFile[i]);
-                Song song = Song.CreateSong(file, info, Song_ButtonPlay_Click, i,contextMenuStripSong,Song_Mouse_Click);
+                Song song = Song.CreateSong(file, info, Song_ButtonPlay_Click, i, contextMenuStripSong, Song_Mouse_Click);
                 songsFull.Add(song);
                 song.Width = width;
                 songsLocalFile.Add(song);
                 myMusic.AddSong(song);
+                myMusic.AddArtist(GetOrCreateArtist(song));
+                myMusic.AddAlbum(GetOrCreateAlbum(song));
             }
             CopyList(songsLocalFile, songsNowPlaying);
             if (songsLocalFile.Count > 0)
@@ -79,8 +104,33 @@ namespace Music
                 //songNow = songsNowPlaying[0];
                 ShowInfoMeadia(songsNowPlaying[0]);
             }
+            actionScroll = myMusic.SetScrollSongInSongs;
             info = null;
             GC.Collect();
+        }
+        private Myplaylist GetOrCreateArtist(Song song)
+        {
+            for (int i = 0; i < artists.Count; i++)
+            {
+                if (artists[i].PlaylistName == song.ArtistName)
+                {
+                    artists[i].Songs.Add(song);
+                    return artists[i];
+                }
+            }
+            return Myplaylist.CreateArtist(song);
+        }
+        private Myplaylist GetOrCreateAlbum(Song song)
+        {
+            for (int i = 0; i < albums.Count; i++)
+            {
+                if (albums[i].PlaylistName == song.Album)
+                {
+                    albums[i].Songs.Add(song);
+                    return albums[i];
+                }
+            }
+            return Myplaylist.CreateArtist(song);
         }
         private void ShowInfoMeadia(Song songNow)
         {
@@ -254,7 +304,7 @@ namespace Music
             playlistDetail.Tag = playlistPath;
             playlistDetail.PlaylistImage = myplaylist.PlaylistImage;
             playlistDetail.PlaylistName = myplaylist.PlaylistName;
-            playlistDetail.totalSong = MediaPlayer.Instance.ReadPlaylist(playlistPath).Count;
+            playlistDetail.TotalSong = MediaPlayer.Instance.ReadPlaylist(playlistPath).Count;
 
             playlistDetail.Clear();
 
@@ -336,7 +386,16 @@ namespace Music
                             PlaySongNow(song);
                             return;
                         case 3:
-                            songsNowPlaying = playlistDetail.listSong;
+                            Shuff();
+                            break;
+                        case 4:
+                            actionScroll = myMusic.SetScrollSongInArtists;
+                            songsNowPlaying = (myMusic.Tag as Myplaylist)?.Songs;
+                            Shuff();
+                            break;
+                        case 5:
+                            actionScroll = myMusic.SetScrollSongInAlbums;
+                            songsNowPlaying = (myMusic.Tag as Myplaylist)?.Songs;
                             Shuff();
                             break;
                         default:
@@ -383,17 +442,17 @@ namespace Music
             isExchange = true;
             labelTitle.Text = "My music";
             ChangeNormalColorOnPanelLeft(sender);
-            myMusic.Clear();
             int width = panel.Width - 25;
 
             for (int i = 0; i < songsLocalFile.Count; i++)
             {
                 songsLocalFile[i].Width = width;
                 songsLocalFile[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
-
-                myMusic.AddSong(songsLocalFile[i]);
+                //myMusic.AddSong(songsLocalFile[i]);
             }
-            myMusic.ScrollControl = songNow;
+            myMusic.AddSongs(songsLocalFile.ToArray());
+            actionScroll = myMusic.SetScrollSongInSongs;
+            actionScroll(songNow);
             myMusic.BringToFront();
 
         }
@@ -401,16 +460,16 @@ namespace Music
         {
             status = 1;
             isExchange = true;
-            nowPlaying.Clear();
             ChangeNormalColorOnPanelLeft(sender);
             int width = panel.Width - 20;
             for (int i = 0; i < songsRecent.Count; ++i)
             {
-                nowPlaying.AddSong(songsRecent[i]);
                 songsRecent[i].Width = width;
                 songsRecent[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
             }
-            nowPlaying.ScrollControl = songNow;
+            nowPlaying.AddSongs(songsRecent.ToArray());
+            actionScroll = nowPlaying.SetScrollControl;
+            actionScroll(songNow);
             nowPlaying.BringToFront();
         }
         private void btnNowPlaying_Click_1(object sender, EventArgs e)
@@ -419,16 +478,15 @@ namespace Music
             status = 2;
             isExchange = true;
             ChangeNormalColorOnPanelLeft(sender);
-            nowPlaying.Clear();
-
             int width = panel.Width - 20;
             for (int i = 0; i < songsNowPlaying.Count; i++)
             {
                 songsNowPlaying[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
                 songsNowPlaying[i].Width = width;
-                nowPlaying.AddSong(songsNowPlaying[i]);
             }
-            nowPlaying.ScrollControl = songNow;
+            nowPlaying.AddSongs(songsNowPlaying.ToArray());
+            actionScroll = nowPlaying.SetScrollControl;
+            actionScroll(songNow);
             nowPlaying.BringToFront();
         }
         private void btnPlayList_Click_1(object sender, EventArgs e)
@@ -437,6 +495,7 @@ namespace Music
             labelTitle.Text = "Playlist";
             LoadListPlaylist();
             playlist.BringToFront();
+            songsNowPlaying = playlistDetail.ListSong;
             ChangeNormalColorOnPanelLeft(sender);
         }
         private void btnSetting_Click_1(object sender, EventArgs e)
@@ -629,18 +688,7 @@ namespace Music
             MediaPlayer.Instance.Play(songNow.Path);
             ShowInfoMeadia(songNow);
             RecentAdd(songNow);
-            switch (status)
-            {
-                case 0:
-                    myMusic.ScrollControl = songNow;
-                    break;
-                case 3:
-                    playlistDetail.ScrollControl = songNow;
-                    break;
-                default:
-                    nowPlaying.ScrollControl = songNow;
-                    break;
-            }
+            actionScroll(songNow);
         }
         #endregion
 
@@ -714,20 +762,9 @@ namespace Music
             MediaPlayer.Instance.MuteOff();
             MediaPlayer.Instance.SetVolumn(sliderVolumn.Value);
         }
+
         private void panel_SizeChanged(object sender, EventArgs e)
         {
-            //foreach (Control item in myMusic.listControl)
-            //{
-            //    item.Width = panel.Width - 25;
-            //}
-            //foreach (Control item in nowPlaying.listControl)
-            //{
-            //    item.Width = panel.Width - 20;
-            //}
-            //foreach (Control item in playlistDetail.listControl)
-            //{
-            //    item.Width = panel.Width - 20;
-            //}
             Thread thread = new Thread(SetSize);
             thread.IsBackground = true;
             thread.Start();
@@ -738,12 +775,12 @@ namespace Music
                 panel.Invoke(new Action(SetSize));
             else
             {
-
                 int x = panel.Width - 25;
-                myMusic.listControl.ForEach((item) => { item.Width = x; });
+                songsLocalFile.ForEach((item) => { item.Width = x; });
+
                 x = panel.Width - 20;
-                nowPlaying.listControl.ForEach((item) => { item.Width = x; });
-                playlistDetail.listControl.ForEach((item) => { item.Width = x; });
+                songsNowPlaying.ForEach((item) => { item.Width = x; });
+                playlistDetail.GetControls.ForEach((item) => { item.Width = x; });
             }
         }
 

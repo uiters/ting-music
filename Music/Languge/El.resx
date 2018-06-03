@@ -117,4 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Albums" xml:space="preserve">
+    <value>Albums</value>
+  </data>
+  <data name="Artists" xml:space="preserve">
+    <value>Artists</value>
+  </data>
+  <data name="btnAbout" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="btnMyMusic" xml:space="preserve">
+    <value>My music</value>
+  </data>
+  <data name="btnNowPlaying" xml:space="preserve">
+    <value>Now playing</value>
+  </data>
+  <data name="btnPlayList" xml:space="preserve">
+    <value>Playlist</value>
+  </data>
+  <data name="btnRecentPlays" xml:space="preserve">
+    <value>Recent plays</value>
+  </data>
+  <data name="btnSetting" xml:space="preserve">
+    <value>Setting</value>
+  </data>
+  <data name="btnShuffleAllAlbums" xml:space="preserve">
+    <value>Shuffle all</value>
+  </data>
+  <data name="labelTitle" xml:space="preserve">
+    <value>My music</value>
+  </data>
+  <data name="Songs" xml:space="preserve">
+    <value>Songs</value>
+  </data>
 </root>

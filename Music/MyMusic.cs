@@ -15,7 +15,17 @@ namespace Music
 {
     public partial class MyMusic : UserControl
     {
-        private Thread thread;
+        private readonly List<Myplaylist> artists = new List<Myplaylist>();
+        private readonly List<Myplaylist> albums = new List<Myplaylist>();
+        public List<Myplaylist> ListAlbums
+        {
+            get => albums;
+        }
+        public List<Myplaylist> ListArtists
+        {
+            get => artists;
+        }
+
         public MyMusic()
         {
             InitializeComponent();
@@ -23,6 +33,15 @@ namespace Music
             btnShuffleAllAlbums.IconVisible = true;
             //btnShuffleAllSongs.IconVisible = true;
             btnShuufleAllArtists.IconVisible = true;
+        }
+
+        public event EventHandler Artist_Click;
+        public event EventHandler Album_Click;
+        
+        #region Method Songs
+        private void Songs_Enter(object sender, EventArgs e)
+        {
+
         }
         public void AddSong(Song value)
         {
@@ -33,117 +52,212 @@ namespace Music
             panelSongs.Controls.Clear();
             panelSongs.Controls.AddRange(value);
         }
-        public List<Song> listSong
+        public void SetScrollSongInSongs(Control value)
         {
-            get
-            {
-                List<Song> songs = new List<Song>();
-                songs.AddRange(panelSongs.Controls.Cast<Song>());
-                return songs;
-            }
+            panelSongs.ScrollControlIntoView(value);
         }
-        public Control ScrollControl
-        {
-            set
-            {
-                panelSongs.ScrollControlIntoView(value);
-            }
-        }
-
-
-
-        public void Clear()
+        public void SongsClear()
         {
             panelSongs.Controls.Clear();
         }
-        public List<Control> listControl
+        public List<Song> ListSongs
         {
             get
             {
-                List<Control> listcontrol = new List<Control>();
-                listcontrol.AddRange(panelSongs.Controls.Cast<Control>());
-                return listcontrol;
+                return panelSongs.Controls.Cast<Song>().ToList();
             }
         }
+        #endregion
 
 
-        private void comboBoxSortBySongs_SelectedIndexChanged(object sender, EventArgs e)
+        #region Method artists
+        private void Artists_Enter(object sender, EventArgs e)
         {
-
+            panelArtists.Controls.Clear();
+            panelArtists.Controls.AddRange(artists.ToArray());
         }
 
-        private void SetIndexSongs(List<Song> songs)
+        public void AddArtist(Myplaylist artist)
         {
-            index = 0;
-            panelSongs.Controls.Clear();
-            songs.ForEach(SetNumberSong);
-            panelSongs.Controls.AddRange(songs.ToArray());
-            UpdatePlayList();
-            GC.Collect();
+            panelArtists.Controls.Add(artist);
+            this.artists.Add(artist);
+            artist.BtnImage_Click += Artist_BtnImage_Click;
         }
+        private void Artist_BtnImage_Click(object sender, EventArgs e)
+        {
+            Myplaylist artist = sender as Myplaylist;
+            ShowSongInArtist(artist);
+            Artist_Click?.Invoke(sender, e);
 
-        #region Sort Song
-        public void SortFromAToZ()
-        {
-            List<Song> songs = listSong;
-            songs.Sort(iCompareAToZ);
-            SetIndexSongs(songs);
         }
-        public void SortFromZToA()
+        public void ShowArtits()
         {
-            List<Song> songs = listSong;
-            songs.Sort(iCompareZToA);
-            SetIndexSongs(songs);
+            panelArtists.Controls.Clear();
+            panelArtists.Controls.AddRange(artists.ToArray());
         }
-        public void SortArtist()
+        private void ShowSongInArtist(Myplaylist artist)
         {
-            List<Song> songs = listSong;
-            songs.Sort(iCompareArtist);
-            SetIndexSongs(songs);
+            panelArtists.Controls.Clear();
+            panelArtists.Controls.AddRange(artist.Songs.ToArray());
+            for (int i = 0; i < artist.Songs.Count; i++)
+            {
+                artist.Songs[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
+            }
+        }
+        public void SetScrollSongInArtists(Control value)
+        {
+            panelArtists.ScrollControlIntoView(value);
         }
         #endregion
 
-        #region Genre Song
-        public void GenrePop()
+
+        #region Method Albums
+        private void Albums_Enter(object sender, EventArgs e)
         {
-            List<Song> songs = listSong.FindAll(Pop);
-            SetIndexSongs(songs);
+            panelAlbums.Controls.Clear();
+            panelAlbums.Controls.AddRange(albums.ToArray());
         }
-        public void GenreRock()
+        public void AddAlbum(Myplaylist album)
         {
-            List<Song> songs = listSong.FindAll(Rock);
-            SetIndexSongs(songs);
+            panelAlbums.Controls.Add(album);
+            this.albums.Add(album);
+            album.BtnImage_Click += Album_BtnImage_Click;
         }
-        public void GenreOther()
+        private void Album_BtnImage_Click(object sender, EventArgs e)
         {
-            List<Song> songs = listSong.FindAll(Other);
-            SetIndexSongs(songs);
+            Myplaylist album = sender as Myplaylist;
+            ShowSongInAlbum(album);
+            Album_Click?.Invoke(sender, e);
         }
-        public void GenreAll()
+        private void ShowSongInAlbum(Myplaylist album)
         {
+            panelAlbums.Controls.Clear();
+            panelAlbums.Controls.AddRange(album.Songs.ToArray());
+            for (int i = 0; i < album.Songs.Count; i++)
+            {
+                album.Songs[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
+            }
 
         }
+        public void ShowAlbums()
+        {
+            panelAlbums.Controls.Clear();
+            panelAlbums.Controls.AddRange(albums.ToArray());
+        }
+
+        public void SetScrollSongInAlbums(Control value)
+        {
+            panelAlbums.ScrollControlIntoView(value);
+        }
+
+
         #endregion
 
-        void UpdatePlayList()
-        {
-            thread = new Thread(UpdateList);
-            thread.IsBackground = true;
-            thread.Start();
-        }
-        public void UpdateList()
-        {
-            //fMusic.PlaylistLocalFile.clear();
-            //foreach (var item in listSong)
-            //{
-            //    fMusic.PlaylistLocalFile.appendItem(MediaPlayer.Instance.CreateMedia(item.Path));
-            //}
-            //fMusic.PlaylistCurrent = fMusic.PlaylistLocalFile;
-        }
+        #region What??
+        //private Thread thread;
 
-        private void comboBoxGenreSongs_SelectedValueChanged(object sender, EventArgs e)
-        {
+        //private void comboBoxSortBySongs_SelectedIndexChanged(object sender, EventArgs e)
+        //{
 
-        }
+        //}
+        //private void comboBoxGenreSongs_SelectedValueChanged(object sender, EventArgs e)
+        //{
+        //    switch (comboBoxGenreSongs.SelectedIndex)
+        //    {
+        //        case 1:
+        //            GenrePop();
+        //            break;
+        //        case 2:
+        //            GenreRock();
+        //            break;
+        //        case 3:
+        //            GenreOther();
+        //            break;
+
+        //        default:
+        //            GenreAll();
+        //            break;
+        //    }
+        //}
+        //private void SetIndexSongs(List<Song> songs)
+        //{
+        //    index = 0;
+        //    panelSongs.Controls.Clear();
+        //    songs.ForEach(SetNumberSong);
+        //    panelSongs.Controls.AddRange(songs.ToArray());
+        //    UpdatePlayList();
+        //    GC.Collect();
+        //}
+        //public List<Song> listSong
+        //{
+        //    get
+        //    {
+        //        List<Song> songs = new List<Song>();
+        //        songs.AddRange(panelSongs.Controls.Cast<Song>());
+        //        return songs;
+        //    }
+        //}
+
+        //#region Sort Song
+        //public void SortFromAToZ()
+        //{
+        //    List<Song> songs = listSong;
+        //    songs.Sort(iCompareAToZ);
+        //    SetIndexSongs(songs);
+        //}
+        //public void SortFromZToA()
+        //{
+        //    List<Song> songs = listSong;
+        //    songs.Sort(iCompareZToA);
+        //    SetIndexSongs(songs);
+        //}
+        //public void SortArtist()
+        //{
+        //    List<Song> songs = listSong;
+        //    songs.Sort(iCompareArtist);
+        //    SetIndexSongs(songs);
+        //}
+        //#endregion
+
+        //#region Genre Song
+        //public void GenrePop()
+        //{
+        //    List<Song> songs = listSong.FindAll(Pop);
+        //    SetIndexSongs(songs);
+        //}
+        //public void GenreRock()
+        //{
+        //    List<Song> songs = listSong.FindAll(Rock);
+        //    SetIndexSongs(songs);
+        //}
+        //public void GenreOther()
+        //{
+        //    List<Song> songs = listSong.FindAll(Other);
+        //    SetIndexSongs(songs);
+        //}
+        //public void GenreAll()
+        //{
+
+        //}
+        //#endregion
+
+        //void UpdatePlayList()
+        //{
+        //    thread = new Thread(UpdateList);
+        //    thread.IsBackground = true;
+        //    thread.Start();
+        //}
+        //public void UpdateList()
+        //{
+        //    //fMusic.PlaylistLocalFile.clear();
+        //    //foreach (var item in listSong)
+        //    //{
+        //    //    fMusic.PlaylistLocalFile.appendItem(MediaPlayer.Instance.CreateMedia(item.Path));
+        //    //}
+        //    //fMusic.PlaylistCurrent = fMusic.PlaylistLocalFile;
+        //}
+        #endregion
+
+
     }
 }
