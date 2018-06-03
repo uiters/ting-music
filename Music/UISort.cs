@@ -13,7 +13,7 @@ namespace Music
         public static readonly ISortSongFromZToA iCompareZToA = new ISortSongFromZToA();
         public static readonly ISortSongArtist iCompareArtist = new ISortSongArtist();
         public static readonly ISortSongAlbum iCompareAlbum = new ISortSongAlbum();
-        public static string pathSongPlay;
+        //public static string pathSongPlay;
         public static int index = 0;
         public static readonly ISortRanDom iRanDom = new ISortRanDom();
         private static Random random = new Random();
@@ -77,14 +77,14 @@ namespace Music
             return !(song.CategoryName.ToLower().Contains("rock") || song.CategoryName.ToLower().Contains("pop"));
         }
 
-        public static bool FindSongNamePlay(Song song)
-        {
-            bool ex = song.Path.Contains(pathSongPlay);
+        //public static bool FindSongNamePlay(Song song)
+        //{
+        //    bool ex = song.Path.Contains(pathSongPlay);
 
-            if (song.ImageButton != Properties.Resources.play && !ex) // ex == true // curent play next
-                song.ImageButton = Properties.Resources.play;
-            return ex;
-        }
+        //    if (song.ImageButton != Properties.Resources.play && !ex) // ex == true // curent play next
+        //        song.ImageButton = Properties.Resources.play;
+        //    return ex;
+        //}
         public static void SetNumberSong(Song song)
         {
             song.Index = index;

@@ -35,8 +35,6 @@
             this.bunifuFlatButton1 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnNewPlaylist = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,10 +101,10 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Music.Properties.Resources.myPlaylist;
-            this.pictureBox1.Location = new System.Drawing.Point(81, 28);
+            this.pictureBox1.Image = global::Music.Properties.Resources.myMusic;
+            this.pictureBox1.Location = new System.Drawing.Point(102, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(183, 140);
+            this.pictureBox1.Size = new System.Drawing.Size(150, 150);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 51;
             this.pictureBox1.TabStop = false;
@@ -146,29 +144,11 @@
             this.btnNewPlaylist.TextFont = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnNewPlaylist.Click += new System.EventHandler(this.btnNewPlaylist_Click);
             // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.Silver;
-            this.label2.Location = new System.Drawing.Point(107, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(130, 8);
-            this.label2.TabIndex = 68;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(94, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 8);
-            this.label1.TabIndex = 67;
-            // 
             // fNewPlaylist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(357, 317);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.bunifuFlatButton1);
             this.Controls.Add(this.btnNewPlaylist);
@@ -176,6 +156,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fNewPlaylist";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fNewPlaylist";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -190,7 +171,5 @@
         private Bunifu.Framework.UI.BunifuFlatButton btnNewPlaylist;
         private System.Windows.Forms.PictureBox pictureBox1;
         private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
     }
 }

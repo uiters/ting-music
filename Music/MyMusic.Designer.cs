@@ -74,6 +74,7 @@
             this.metroTabControl1.Size = new System.Drawing.Size(850, 474);
             this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Orange;
             this.metroTabControl1.TabIndex = 0;
+            this.metroTabControl1.Theme = MetroFramework.MetroThemeStyle.Light;
             this.metroTabControl1.UseCustomBackColor = true;
             this.metroTabControl1.UseCustomForeColor = true;
             this.metroTabControl1.UseSelectable = true;
@@ -93,6 +94,7 @@
             // 
             this.panelSongs.AutoScroll = true;
             this.panelSongs.AutoSize = true;
+            this.panelSongs.BackColor = System.Drawing.Color.White;
             this.panelSongs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSongs.Location = new System.Drawing.Point(0, 42);
             this.panelSongs.Margin = new System.Windows.Forms.Padding(0);
@@ -102,6 +104,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.btnShuffleAllSongs);
             this.panel1.Controls.Add(this.comboBoxGenreSongs);
             this.panel1.Controls.Add(this.label2);
@@ -214,6 +217,7 @@
             // flowLayoutPanelArtists
             // 
             this.flowLayoutPanelArtists.AutoScroll = true;
+            this.flowLayoutPanelArtists.BackColor = System.Drawing.Color.White;
             this.flowLayoutPanelArtists.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanelArtists.Location = new System.Drawing.Point(0, 42);
             this.flowLayoutPanelArtists.Name = "flowLayoutPanelArtists";
@@ -222,6 +226,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.btnShuufleAllArtists);
             this.panel2.Controls.Add(this.comboBoxSortByArtists);
             this.panel2.Controls.Add(this.label4);
@@ -304,6 +309,7 @@
             // flowLayoutPanelAlbum
             // 
             this.flowLayoutPanelAlbum.AutoScroll = true;
+            this.flowLayoutPanelAlbum.BackColor = System.Drawing.Color.White;
             this.flowLayoutPanelAlbum.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanelAlbum.Location = new System.Drawing.Point(0, 42);
             this.flowLayoutPanelAlbum.Name = "flowLayoutPanelAlbum";
@@ -312,6 +318,7 @@
             // 
             // panel3
             // 
+            this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.Controls.Add(this.btnShuffleAllAlbums);
             this.panel3.Controls.Add(this.comboBoxGenreAlbums);
             this.panel3.Controls.Add(this.label3);
@@ -409,7 +416,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.metroTabControl1);
             this.Name = "MyMusic";
             this.Size = new System.Drawing.Size(850, 474);

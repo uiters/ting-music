@@ -99,11 +99,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddLocalFiles.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddLocalFiles.Designer.cs">
+      <DependentUpon>AddLocalFiles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Album.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Album.Designer.cs">
       <DependentUpon>Album.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AlbumDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AlbumDetails.Designer.cs">
+      <DependentUpon>AlbumDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Artist.cs">
       <SubType>UserControl</SubType>
@@ -116,6 +134,12 @@
     </Compile>
     <Compile Include="fEditInfo.Designer.cs">
       <DependentUpon>fEditInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fLocalFiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fLocalFiles.Designer.cs">
+      <DependentUpon>fLocalFiles.cs</DependentUpon>
     </Compile>
     <Compile Include="fNewPlaylist.cs">
       <SubType>Form</SubType>
@@ -140,6 +164,12 @@
     </Compile>
     <Compile Include="fRenamePlaylist.Designer.cs">
       <DependentUpon>fRenamePlaylist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LocalFiles.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LocalFiles.Designer.cs">
+      <DependentUpon>LocalFiles.cs</DependentUpon>
     </Compile>
     <Compile Include="Lyrics.cs">
       <SubType>UserControl</SubType>
@@ -183,11 +213,22 @@
     <Compile Include="PlaySong.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Results.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Results.Designer.cs">
       <DependentUpon>Results.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Setting.Designer.cs">
+      <DependentUpon>Setting.cs</DependentUpon>
     </Compile>
     <Compile Include="Song.cs">
       <SubType>UserControl</SubType>
@@ -199,14 +240,26 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SongInfo.cs" />
     <Compile Include="UISort.cs" />
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddLocalFiles.resx">
+      <DependentUpon>AddLocalFiles.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Album.resx">
       <DependentUpon>Album.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlbumDetails.resx">
+      <DependentUpon>AlbumDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Artist.resx">
       <DependentUpon>Artist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fEditInfo.resx">
       <DependentUpon>fEditInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fLocalFiles.resx">
+      <DependentUpon>fLocalFiles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fNewPlaylist.resx">
       <DependentUpon>fNewPlaylist.cs</DependentUpon>
@@ -219,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fRenamePlaylist.resx">
       <DependentUpon>fRenamePlaylist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalFiles.resx">
+      <DependentUpon>LocalFiles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Lyrics.resx">
       <DependentUpon>Lyrics.cs</DependentUpon>
@@ -241,6 +297,9 @@
     <EmbeddedResource Include="Results.resx">
       <DependentUpon>Results.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Setting.resx">
+      <DependentUpon>Setting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Song.resx">
       <DependentUpon>Song.cs</DependentUpon>
     </EmbeddedResource>
@@ -254,11 +313,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -275,15 +329,6 @@
     <None Include="Resources\repeat.png" />
     <None Include="Resources\pause.png" />
     <None Include="Resources\play.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\myPlaylist.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\myAlbum.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\myArtists.jpg" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="stdole">
@@ -318,10 +363,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\myMusic.gif" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="iconMusic.ico" />
+    <None Include="Resources\myMusic.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -35,15 +35,11 @@
             this.lblSongName = new System.Windows.Forms.Label();
             this.lblArtistName = new System.Windows.Forms.Label();
             this.pictureBoxSong = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelRight = new System.Windows.Forms.Panel();
             this.lblLyrics = new System.Windows.Forms.Label();
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.bunifuElipse2 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSong)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelRight.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +49,6 @@
             this.panelLeft.Controls.Add(this.lblSongName);
             this.panelLeft.Controls.Add(this.lblArtistName);
             this.panelLeft.Controls.Add(this.pictureBoxSong);
-            this.panelLeft.Controls.Add(this.pictureBox1);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.Location = new System.Drawing.Point(0, 0);
             this.panelLeft.Name = "panelLeft";
@@ -125,22 +120,12 @@
             // 
             this.pictureBoxSong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBoxSong.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSong.Image")));
-            this.pictureBoxSong.Location = new System.Drawing.Point(41, 117);
+            this.pictureBoxSong.Location = new System.Drawing.Point(39, 115);
             this.pictureBoxSong.Name = "pictureBoxSong";
             this.pictureBoxSong.Size = new System.Drawing.Size(300, 300);
             this.pictureBoxSong.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxSong.TabIndex = 43;
             this.pictureBoxSong.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.pictureBox1.Location = new System.Drawing.Point(37, 113);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(308, 308);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 55;
-            this.pictureBox1.TabStop = false;
             // 
             // panelRight
             // 
@@ -168,18 +153,8 @@
             // 
             // bunifuElipse1
             // 
-            this.bunifuElipse1.ElipseRadius = 340;
+            this.bunifuElipse1.ElipseRadius = 300;
             this.bunifuElipse1.TargetControl = this.pictureBoxSong;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // bunifuElipse2
-            // 
-            this.bunifuElipse2.ElipseRadius = 320;
-            this.bunifuElipse2.TargetControl = this.pictureBox1;
             // 
             // Lyrics
             // 
@@ -192,7 +167,6 @@
             this.Size = new System.Drawing.Size(850, 474);
             this.panelLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSong)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelRight.ResumeLayout(false);
             this.panelRight.PerformLayout();
             this.ResumeLayout(false);
@@ -206,11 +180,8 @@
         private System.Windows.Forms.Label lblSongName;
         private System.Windows.Forms.Label lblArtistName;
         private System.Windows.Forms.Label lblLyrics;
-        private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
         private Bunifu.Framework.UI.BunifuFlatButton btnBack;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private Bunifu.Framework.UI.BunifuElipse bunifuElipse2;
         public System.Windows.Forms.PictureBox pictureBoxSong;
+        private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
     }
 }
