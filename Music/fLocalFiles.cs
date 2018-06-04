@@ -13,9 +13,15 @@ namespace Music
 {
     public partial class fLocalFiles : Form
     {
+        public static string Folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\PlayPlist";
+        public static string Path = Folder + @"\LocalFiles.txt";
         public fLocalFiles()
         {
             InitializeComponent();
+            if (!Directory.Exists(Folder))
+                Directory.CreateDirectory(Folder);
+            if (!File.Exists(Path))
+                File.Create(Path);
             LoadLocalFiles();
         }
         public void LoadLocalFiles()
@@ -41,10 +47,14 @@ namespace Music
                 LoadLocalFiles();
             }
         }
-
+        
         public static string[] ShowLocalFiles()
         {
-            string filePath =Application.StartupPath+@"\LocalFiles.txt";
+            string filePath = Path;
+            if (!Directory.Exists(Folder))
+                Directory.CreateDirectory(Folder);
+            if (!File.Exists(Path))
+                File.Create(Path);
             return File.ReadAllLines(filePath);
         }
         public bool IsPathExists(string path, string folderPath)
@@ -59,7 +69,7 @@ namespace Music
         }
         public void  SaveLocalFiles(string path)
         {
-            string folderPath = Application.StartupPath + @"\LocalFiles.txt";
+            string folderPath =fLocalFiles.Path;
             var lines = File.ReadAllLines(folderPath).ToList();
             if (lines.Count() > 0)
             {
@@ -73,7 +83,7 @@ namespace Music
         }
         public void RemovePath(string path)
         {
-            string folderPath = Application.StartupPath + @"\LocalFiles.txt";
+            string folderPath = fLocalFiles.Path;
             var lines = File.ReadAllLines(folderPath).ToList();
             foreach (var item in lines)
             {

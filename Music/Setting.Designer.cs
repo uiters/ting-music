@@ -40,14 +40,10 @@
             this.cbMinute = new MetroFramework.Controls.MetroComboBox();
             this.btnShutDown = new Bunifu.Framework.UI.BunifuiOSSwitch();
             this.bunifuFlatButton1 = new Bunifu.Framework.UI.BunifuFlatButton();
-
             this.lblWarning = new System.Windows.Forms.Label();
-            this.panel.SuspendLayout();
-
-            this.btnMyMusic = new Bunifu.Framework.UI.BunifuFlatButton();
             this.lbStatus = new System.Windows.Forms.Label();
             this.label = new System.Windows.Forms.Label();
-
+            this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroComboBox1
@@ -138,6 +134,7 @@
             this.btnUpdates.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUpdates.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
             this.btnUpdates.TextFont = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdates.Click += new System.EventHandler(this.btnNowPlaying_Click);
             // 
             // lblLanguage
             // 
@@ -250,14 +247,7 @@
             this.cbMinute.UseCustomForeColor = true;
             this.cbMinute.UseSelectable = true;
             this.cbMinute.UseStyleColors = true;
-
             this.cbMinute.SelectedIndexChanged += new System.EventHandler(this.cbMinute_SelectedIndexChanged_1);
-
-            // 
-         
-     
-            // 
-           
             // 
             // btnShutDown
             // 
@@ -327,11 +317,11 @@
             this.lbStatus.AutoEllipsis = true;
             this.lbStatus.AutoSize = true;
             this.lbStatus.BackColor = System.Drawing.Color.Transparent;
-            this.lbStatus.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.lbStatus.Location = new System.Drawing.Point(68, 329);
+            this.lbStatus.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
+            this.lbStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
+            this.lbStatus.Location = new System.Drawing.Point(83, 340);
             this.lbStatus.Name = "lbStatus";
-            this.lbStatus.Size = new System.Drawing.Size(53, 18);
+            this.lbStatus.Size = new System.Drawing.Size(43, 16);
             this.lbStatus.TabIndex = 91;
             this.lbStatus.Text = "Status:";
             this.lbStatus.Visible = false;
@@ -341,11 +331,11 @@
             this.label.AutoEllipsis = true;
             this.label.AutoSize = true;
             this.label.BackColor = System.Drawing.Color.Transparent;
-            this.label.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.label.Location = new System.Drawing.Point(127, 329);
+            this.label.Location = new System.Drawing.Point(142, 340);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(69, 18);
+            this.label.Size = new System.Drawing.Size(57, 16);
             this.label.TabIndex = 92;
             this.label.Text = "Pedding";
             this.label.Visible = false;
@@ -355,22 +345,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-
             this.Controls.Add(this.lblWarning);
             this.Controls.Add(this.panel);
             this.Controls.Add(this.btnLocalFiles);
             this.Controls.Add(this.btnUpdates);
-
             this.Controls.Add(this.label);
             this.Controls.Add(this.lbStatus);
-         
-          
-           
-           
-          
-           
-           
-
             this.Controls.Add(this.metroComboBox1);
             this.Controls.Add(this.lblLanguage);
             this.Name = "Setting";

@@ -89,14 +89,14 @@ namespace Music
             this.menuItemEditInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemProperties = new System.Windows.Forms.ToolStripMenuItem();
 
-            this.results = new Music.Results();
-            this.setting = new Music.Setting();
-            this.about = new Music.About();
-            this.lyrics = new Music.Lyrics();
-            this.myMusic = new Music.MyMusic();
-            this.nowPlaying = new Music.NowPlaying();
-            this.playlistDetail = new Music.PlaylistDetail();
-            this.playlist = new Music.Playlist();
+            //this.results = new Music.Results();
+            //this.setting = new Music.Setting();
+            //this.about = new Music.About();
+            //this.lyrics = new Music.Lyrics();
+            //this.myMusic = new Music.MyMusic();
+            //this.nowPlaying = new Music.NowPlaying();
+            //this.playlistDetail = new Music.PlaylistDetail();
+            //this.playlist = new Music.Playlist();
 
             this.panelBottom.SuspendLayout();
             this.panelPlay.SuspendLayout();
@@ -996,7 +996,7 @@ namespace Music
             // 
             // panel
             // 
-            this.panel.Controls.Add(this.results);
+            //this.panel.Controls.Add(this.results);
             this.panel.Controls.Add(this.setting);
             this.panel.Controls.Add(this.about);
             this.panel.Controls.Add(this.lyrics);
@@ -1020,14 +1020,14 @@ namespace Music
             this.setting.Size = new System.Drawing.Size(850, 474);
             this.setting.TabIndex = 6;
             // 
-            // about
+            // /*about*/
             // 
-            this.about.BackColor = System.Drawing.Color.White;
-            this.about.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.about.Location = new System.Drawing.Point(0, 0);
-            this.about.Name = "about";
-            this.about.Size = new System.Drawing.Size(850, 474);
-            this.about.TabIndex = 5;
+            //this.about.BackColor = System.Drawing.Color.White;
+            //this.about.Dock = System.Windows.Forms.DockStyle.Fill;
+            //this.about.Location = new System.Drawing.Point(0, 0);
+            //this.about.Name = "about";
+            //this.about.Size = new System.Drawing.Size(850, 474);
+            //this.about.TabIndex = 5;
             // 
             // lyrics
             // 
@@ -1051,7 +1051,6 @@ namespace Music
             this.myMusic.Name = "myMusic";
             this.myMusic.Size = new System.Drawing.Size(850, 474);
             this.myMusic.TabIndex = 0;
-            this.myMusic.Load += new System.EventHandler(this.myMusic_Load);
             // 
             // nowPlaying
             // 
@@ -1162,12 +1161,12 @@ namespace Music
 
             // results
             // 
-            this.results.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.results.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.results.Location = new System.Drawing.Point(0, 0);
-            this.results.Name = "results";
-            this.results.Size = new System.Drawing.Size(850, 474);
-            this.results.TabIndex = 7;
+            //this.results.BackColor = System.Drawing.Color.WhiteSmoke;
+            //this.results.Dock = System.Windows.Forms.DockStyle.Fill;
+            //this.results.Location = new System.Drawing.Point(0, 0);
+            //this.results.Name = "results";
+            //this.results.Size = new System.Drawing.Size(850, 474);
+            //this.results.TabIndex = 7;
             // 
             // setting
             // 
