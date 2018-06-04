@@ -33,6 +33,7 @@ namespace Music
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fMusic));
             this.panelBottom = new System.Windows.Forms.Panel();
+            this.btnShutDownTimer = new Bunifu.Framework.UI.BunifuFlatButton();
             this.panelPlay = new System.Windows.Forms.Panel();
             this.btnPlay = new Bunifu.Framework.UI.BunifuImageButton();
             this.btnShuffle = new Bunifu.Framework.UI.BunifuFlatButton();
@@ -66,7 +67,7 @@ namespace Music
             this.bunifuFlatButton2 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.btnSearchMusic = new Bunifu.Framework.UI.BunifuFlatButton();
             this.txbSearchMusic = new Bunifu.Framework.UI.BunifuMetroTextbox();
-            this.labelTitle = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.bunifuDragControl2 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel = new System.Windows.Forms.Panel();
@@ -80,13 +81,14 @@ namespace Music
             this.menuItemRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemEditInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemProperties = new System.Windows.Forms.ToolStripMenuItem();
+            this.results = new Music.Results();
+            this.setting = new Music.Setting();
             this.about = new Music.About();
             this.lyrics = new Music.Lyrics();
             this.myMusic = new Music.MyMusic();
             this.nowPlaying = new Music.NowPlaying();
             this.playlistDetail = new Music.PlaylistDetail();
             this.playlist = new Music.Playlist();
-            this.setting = new Music.Setting();
             this.panelBottom.SuspendLayout();
             this.panelPlay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPlay)).BeginInit();
@@ -101,6 +103,7 @@ namespace Music
             // panelBottom
             // 
             this.panelBottom.BackColor = System.Drawing.Color.Gray;
+            this.panelBottom.Controls.Add(this.btnShutDownTimer);
             this.panelBottom.Controls.Add(this.panelPlay);
             this.panelBottom.Controls.Add(this.btnLyric);
             this.panelBottom.Controls.Add(this.btnVolume);
@@ -116,6 +119,41 @@ namespace Music
             this.panelBottom.Name = "panelBottom";
             this.panelBottom.Size = new System.Drawing.Size(1073, 90);
             this.panelBottom.TabIndex = 26;
+            // 
+            // btnShutDownTimer
+            // 
+            this.btnShutDownTimer.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
+            this.btnShutDownTimer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnShutDownTimer.BackColor = System.Drawing.Color.Transparent;
+            this.btnShutDownTimer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnShutDownTimer.BorderRadius = 0;
+            this.btnShutDownTimer.ButtonText = "";
+            this.btnShutDownTimer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnShutDownTimer.DisabledColor = System.Drawing.Color.Gray;
+            this.btnShutDownTimer.Iconcolor = System.Drawing.Color.Transparent;
+            this.btnShutDownTimer.Iconimage = ((System.Drawing.Image)(resources.GetObject("btnShutDownTimer.Iconimage")));
+            this.btnShutDownTimer.Iconimage_right = null;
+            this.btnShutDownTimer.Iconimage_right_Selected = null;
+            this.btnShutDownTimer.Iconimage_Selected = null;
+            this.btnShutDownTimer.IconMarginLeft = 0;
+            this.btnShutDownTimer.IconMarginRight = 0;
+            this.btnShutDownTimer.IconRightVisible = true;
+            this.btnShutDownTimer.IconRightZoom = 0D;
+            this.btnShutDownTimer.IconVisible = true;
+            this.btnShutDownTimer.IconZoom = 50D;
+            this.btnShutDownTimer.IsTab = false;
+            this.btnShutDownTimer.Location = new System.Drawing.Point(836, 39);
+            this.btnShutDownTimer.Name = "btnShutDownTimer";
+            this.btnShutDownTimer.Normalcolor = System.Drawing.Color.Transparent;
+            this.btnShutDownTimer.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnShutDownTimer.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
+            this.btnShutDownTimer.selected = false;
+            this.btnShutDownTimer.Size = new System.Drawing.Size(32, 32);
+            this.btnShutDownTimer.TabIndex = 54;
+            this.btnShutDownTimer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnShutDownTimer.Textcolor = System.Drawing.Color.White;
+            this.btnShutDownTimer.TextFont = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnShutDownTimer.Click += new System.EventHandler(this.btnShutDownTimer_Click);
             // 
             // panelPlay
             // 
@@ -301,7 +339,7 @@ namespace Music
             this.btnLyric.IconVisible = true;
             this.btnLyric.IconZoom = 50D;
             this.btnLyric.IsTab = false;
-            this.btnLyric.Location = new System.Drawing.Point(873, 38);
+            this.btnLyric.Location = new System.Drawing.Point(873, 39);
             this.btnLyric.Name = "btnLyric";
             this.btnLyric.Normalcolor = System.Drawing.Color.Transparent;
             this.btnLyric.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
@@ -336,7 +374,7 @@ namespace Music
             this.btnVolume.IconVisible = true;
             this.btnVolume.IconZoom = 35D;
             this.btnVolume.IsTab = false;
-            this.btnVolume.Location = new System.Drawing.Point(911, 38);
+            this.btnVolume.Location = new System.Drawing.Point(910, 39);
             this.btnVolume.Name = "btnVolume";
             this.btnVolume.Normalcolor = System.Drawing.Color.Transparent;
             this.btnVolume.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
@@ -754,7 +792,7 @@ namespace Music
             this.panelHeader.Controls.Add(this.bunifuFlatButton2);
             this.panelHeader.Controls.Add(this.btnSearchMusic);
             this.panelHeader.Controls.Add(this.txbSearchMusic);
-            this.panelHeader.Controls.Add(this.labelTitle);
+            this.panelHeader.Controls.Add(this.lblTitle);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(223, 0);
             this.panelHeader.Name = "panelHeader";
@@ -899,6 +937,7 @@ namespace Music
             this.btnSearchMusic.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearchMusic.Textcolor = System.Drawing.Color.White;
             this.btnSearchMusic.TextFont = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnSearchMusic.Click += new System.EventHandler(this.btnSearchMusic_Click);
             // 
             // txbSearchMusic
             // 
@@ -920,17 +959,17 @@ namespace Music
             this.txbSearchMusic.TabIndex = 33;
             this.txbSearchMusic.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
-            // labelTitle
+            // lblTitle
             // 
-            this.labelTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelTitle.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitle.ForeColor = System.Drawing.Color.White;
-            this.labelTitle.Location = new System.Drawing.Point(23, 16);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(173, 23);
-            this.labelTitle.TabIndex = 34;
-            this.labelTitle.Text = "My music";
+            this.lblTitle.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(23, 16);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(173, 23);
+            this.lblTitle.TabIndex = 34;
+            this.lblTitle.Text = "My music";
             // 
             // bunifuDragControl1
             // 
@@ -948,6 +987,7 @@ namespace Music
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.results);
             this.panel.Controls.Add(this.setting);
             this.panel.Controls.Add(this.about);
             this.panel.Controls.Add(this.lyrics);
@@ -1037,6 +1077,24 @@ namespace Music
             this.menuItemProperties.Text = "Properties";
             this.menuItemProperties.Click += new System.EventHandler(this.menuItemProperties_Click_1);
             // 
+            // results
+            // 
+            this.results.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.results.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.results.Location = new System.Drawing.Point(0, 0);
+            this.results.Name = "results";
+            this.results.Size = new System.Drawing.Size(850, 474);
+            this.results.TabIndex = 7;
+            // 
+            // setting
+            // 
+            this.setting.BackColor = System.Drawing.Color.White;
+            this.setting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.setting.Location = new System.Drawing.Point(0, 0);
+            this.setting.Name = "setting";
+            this.setting.Size = new System.Drawing.Size(850, 474);
+            this.setting.TabIndex = 6;
+            // 
             // about
             // 
             this.about.BackColor = System.Drawing.Color.White;
@@ -1068,7 +1126,6 @@ namespace Music
             this.myMusic.Name = "myMusic";
             this.myMusic.Size = new System.Drawing.Size(850, 474);
             this.myMusic.TabIndex = 0;
-            this.myMusic.Load += new System.EventHandler(this.myMusic_Load);
             // 
             // nowPlaying
             // 
@@ -1100,15 +1157,6 @@ namespace Music
             this.playlist.Size = new System.Drawing.Size(850, 474);
             this.playlist.TabIndex = 3;
             this.playlist.NewPlaylist_Click += new System.EventHandler(this.playlist_NewPlaylist_Click);
-            // 
-            // setting
-            // 
-            this.setting.BackColor = System.Drawing.Color.White;
-            this.setting.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.setting.Location = new System.Drawing.Point(0, 0);
-            this.setting.Name = "setting";
-            this.setting.Size = new System.Drawing.Size(850, 474);
-            this.setting.TabIndex = 6;
             // 
             // fMusic
             // 
@@ -1147,7 +1195,7 @@ namespace Music
         private System.Windows.Forms.Panel panelHeader;
         private Bunifu.Framework.UI.BunifuFlatButton btnSearchMusic;
         private Bunifu.Framework.UI.BunifuMetroTextbox txbSearchMusic;
-        private System.Windows.Forms.Label labelTitle;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel panelLeft;
         private System.Windows.Forms.Panel panel1;
         private Bunifu.Framework.UI.BunifuFlatButton btnAbout;
@@ -1205,6 +1253,8 @@ namespace Music
         private System.Windows.Forms.ToolStripMenuItem menuItemRemove;
         private About about;
         private Setting setting;
+        private Bunifu.Framework.UI.BunifuFlatButton btnShutDownTimer;
+        private Results results;
     }
 }
 

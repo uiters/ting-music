@@ -32,6 +32,10 @@
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.Songs = new System.Windows.Forms.TabPage();
             this.panelSongs = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnShuffleAllSongs = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.comboBoxSortBySongs = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.Artists = new System.Windows.Forms.TabPage();
             this.panelArtists = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -46,17 +50,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.comboBoxSortByAlbums = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBoxSortBySongs = new System.Windows.Forms.ComboBox();
-            this.btnShuffleAllSongs = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.metroTabControl1.SuspendLayout();
             this.Songs.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.Artists.SuspendLayout();
             this.panel2.SuspendLayout();
             this.Albums.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroTabControl1
@@ -67,7 +67,7 @@
             this.metroTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl1.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 2;
+            this.metroTabControl1.SelectedIndex = 0;
             this.metroTabControl1.ShowToolTips = true;
             this.metroTabControl1.Size = new System.Drawing.Size(850, 474);
             this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Orange;
@@ -80,6 +80,7 @@
             // 
             // Songs
             // 
+            this.Songs.BackColor = System.Drawing.Color.White;
             this.Songs.Controls.Add(this.panelSongs);
             this.Songs.Controls.Add(this.panel1);
             this.Songs.Location = new System.Drawing.Point(4, 38);
@@ -101,9 +102,80 @@
             this.panelSongs.Size = new System.Drawing.Size(842, 390);
             this.panelSongs.TabIndex = 6;
             // 
-
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btnShuffleAllSongs);
+            this.panel1.Controls.Add(this.comboBoxSortBySongs);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(842, 42);
+            this.panel1.TabIndex = 5;
+            // 
+            // btnShuffleAllSongs
+            // 
+            this.btnShuffleAllSongs.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
+            this.btnShuffleAllSongs.BackColor = System.Drawing.Color.Transparent;
+            this.btnShuffleAllSongs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnShuffleAllSongs.BorderRadius = 0;
+            this.btnShuffleAllSongs.ButtonText = "Shuffle all";
+            this.btnShuffleAllSongs.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnShuffleAllSongs.DisabledColor = System.Drawing.Color.Gray;
+            this.btnShuffleAllSongs.Iconcolor = System.Drawing.Color.Transparent;
+            this.btnShuffleAllSongs.Iconimage = ((System.Drawing.Image)(resources.GetObject("btnShuffleAllSongs.Iconimage")));
+            this.btnShuffleAllSongs.Iconimage_right = null;
+            this.btnShuffleAllSongs.Iconimage_right_Selected = null;
+            this.btnShuffleAllSongs.Iconimage_Selected = null;
+            this.btnShuffleAllSongs.IconMarginLeft = 0;
+            this.btnShuffleAllSongs.IconMarginRight = 0;
+            this.btnShuffleAllSongs.IconRightVisible = false;
+            this.btnShuffleAllSongs.IconRightZoom = 0D;
+            this.btnShuffleAllSongs.IconVisible = false;
+            this.btnShuffleAllSongs.IconZoom = 30D;
+            this.btnShuffleAllSongs.IsTab = false;
+            this.btnShuffleAllSongs.Location = new System.Drawing.Point(10, 7);
+            this.btnShuffleAllSongs.Name = "btnShuffleAllSongs";
+            this.btnShuffleAllSongs.Normalcolor = System.Drawing.Color.Transparent;
+            this.btnShuffleAllSongs.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnShuffleAllSongs.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnShuffleAllSongs.selected = false;
+            this.btnShuffleAllSongs.Size = new System.Drawing.Size(107, 29);
+            this.btnShuffleAllSongs.TabIndex = 50;
+            this.btnShuffleAllSongs.Text = "Shuffle all";
+            this.btnShuffleAllSongs.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnShuffleAllSongs.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnShuffleAllSongs.TextFont = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 
+            // comboBoxSortBySongs
+            // 
+            this.comboBoxSortBySongs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxSortBySongs.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.comboBoxSortBySongs.FormattingEnabled = true;
+            this.comboBoxSortBySongs.Items.AddRange(new object[] {
+            "None",
+            "A-Z",
+            "Z-A"});
+            this.comboBoxSortBySongs.Location = new System.Drawing.Point(197, 10);
+            this.comboBoxSortBySongs.Name = "comboBoxSortBySongs";
+            this.comboBoxSortBySongs.Size = new System.Drawing.Size(107, 25);
+            this.comboBoxSortBySongs.TabIndex = 45;
+            this.comboBoxSortBySongs.Text = "None";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.label1.Location = new System.Drawing.Point(140, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 17);
+            this.label1.TabIndex = 44;
+            this.label1.Text = "Sort by";
+            // 
             // Artists
             // 
+            this.Artists.BackColor = System.Drawing.Color.White;
             this.Artists.Controls.Add(this.panelArtists);
             this.Artists.Controls.Add(this.panel2);
             this.Artists.Location = new System.Drawing.Point(4, 38);
@@ -122,7 +194,6 @@
             this.panelArtists.Name = "panelArtists";
             this.panelArtists.Size = new System.Drawing.Size(842, 390);
             this.panelArtists.TabIndex = 7;
-
             // 
             // panel2
             // 
@@ -198,6 +269,7 @@
             // 
             // Albums
             // 
+            this.Albums.BackColor = System.Drawing.Color.White;
             this.Albums.Controls.Add(this.panelAlbums);
             this.Albums.Controls.Add(this.panel3);
             this.Albums.Location = new System.Drawing.Point(4, 38);
@@ -313,78 +385,6 @@
             this.label5.TabIndex = 44;
             this.label5.Text = "Sort by";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.label1.Location = new System.Drawing.Point(140, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 17);
-            this.label1.TabIndex = 44;
-            this.label1.Text = "Sort by";
-            // 
-            // comboBoxSortBySongs
-            // 
-            this.comboBoxSortBySongs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxSortBySongs.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.comboBoxSortBySongs.FormattingEnabled = true;
-            this.comboBoxSortBySongs.Items.AddRange(new object[] {
-            "None",
-            "A-Z",
-            "Z-A"});
-            this.comboBoxSortBySongs.Location = new System.Drawing.Point(197, 10);
-            this.comboBoxSortBySongs.Name = "comboBoxSortBySongs";
-            this.comboBoxSortBySongs.Size = new System.Drawing.Size(107, 25);
-            this.comboBoxSortBySongs.TabIndex = 45;
-            this.comboBoxSortBySongs.Text = "None";
-            //this.comboBoxSortBySongs.SelectionChangeCommitted += new System.EventHandler(this.comboBoxSortBySongs_SelectedIndexChanged);
-            // 
-            // btnShuffleAllSongs
-            // 
-            this.btnShuffleAllSongs.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.btnShuffleAllSongs.BackColor = System.Drawing.Color.Transparent;
-            this.btnShuffleAllSongs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnShuffleAllSongs.BorderRadius = 0;
-            this.btnShuffleAllSongs.ButtonText = "Shuffle all";
-            this.btnShuffleAllSongs.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnShuffleAllSongs.DisabledColor = System.Drawing.Color.Gray;
-            this.btnShuffleAllSongs.Iconcolor = System.Drawing.Color.Transparent;
-            this.btnShuffleAllSongs.Iconimage = ((System.Drawing.Image)(resources.GetObject("btnShuffleAllSongs.Iconimage")));
-            this.btnShuffleAllSongs.Iconimage_right = null;
-            this.btnShuffleAllSongs.Iconimage_right_Selected = null;
-            this.btnShuffleAllSongs.Iconimage_Selected = null;
-            this.btnShuffleAllSongs.IconMarginLeft = 0;
-            this.btnShuffleAllSongs.IconMarginRight = 0;
-            this.btnShuffleAllSongs.IconRightVisible = false;
-            this.btnShuffleAllSongs.IconRightZoom = 0D;
-            this.btnShuffleAllSongs.IconVisible = false;
-            this.btnShuffleAllSongs.IconZoom = 30D;
-            this.btnShuffleAllSongs.IsTab = false;
-            this.btnShuffleAllSongs.Location = new System.Drawing.Point(10, 7);
-            this.btnShuffleAllSongs.Name = "btnShuffleAllSongs";
-            this.btnShuffleAllSongs.Normalcolor = System.Drawing.Color.Transparent;
-            this.btnShuffleAllSongs.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnShuffleAllSongs.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnShuffleAllSongs.selected = false;
-            this.btnShuffleAllSongs.Size = new System.Drawing.Size(107, 29);
-            this.btnShuffleAllSongs.TabIndex = 50;
-            this.btnShuffleAllSongs.Text = "Shuffle all";
-            this.btnShuffleAllSongs.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnShuffleAllSongs.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnShuffleAllSongs.TextFont = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.btnShuffleAllSongs);
-            this.panel1.Controls.Add(this.comboBoxSortBySongs);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(842, 42);
-            this.panel1.TabIndex = 5;
-            // 
             // MyMusic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -396,14 +396,14 @@
             this.metroTabControl1.ResumeLayout(false);
             this.Songs.ResumeLayout(false);
             this.Songs.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.Artists.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.Albums.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }

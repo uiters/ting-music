@@ -37,6 +37,7 @@ namespace Music
         public fMusic()
         {
             InitializeComponent();
+            
             myMusic.Artist_Click += MyMusic_Artist_Click;
             myMusic.Album_Click += MyMusic_Album_Click;
             btnShuffle.Tag = "Off";
@@ -70,7 +71,7 @@ namespace Music
             btnVolume.Iconimage = volume_up;
             btnPlay.Image = play;
             myMusic.BringToFront();
-            labelTitle.Text = "My music";
+            lblTitle.Text = "My music";
             #endregion
             artists = myMusic.ListArtists;
             albums = myMusic.ListAlbums;
@@ -440,7 +441,7 @@ namespace Music
         {
             status = 0;
             isExchange = true;
-            labelTitle.Text = "My music";
+            lblTitle.Text = "My music";
             ChangeNormalColorOnPanelLeft(sender);
             int width = panel.Width - 25;
 
@@ -474,7 +475,7 @@ namespace Music
         }
         private void btnNowPlaying_Click_1(object sender, EventArgs e)
         {
-            labelTitle.Text = "Now playing";
+            lblTitle.Text = "Now playing";
             status = 2;
             isExchange = true;
             ChangeNormalColorOnPanelLeft(sender);
@@ -492,7 +493,7 @@ namespace Music
         private void btnPlayList_Click_1(object sender, EventArgs e)
         {
             status = 3;
-            labelTitle.Text = "Playlist";
+            lblTitle.Text = "Playlist";
             LoadListPlaylist();
             playlist.BringToFront();
             songsNowPlaying = playlistDetail.ListSong;
@@ -500,13 +501,15 @@ namespace Music
         }
         private void btnSetting_Click_1(object sender, EventArgs e)
         {
-            labelTitle.Text = "Setting";
+            lblTitle.Text = "Setting";
+            setting.lblWarning.Visible= setting.lblLanguage.Visible = setting.metroComboBox1.Visible = setting.btnLocalFiles.Visible = setting.btnUpdates.Visible = true;
+            setting.panel.Location = new Point(71,135);
             setting.BringToFront();
             ChangeNormalColorOnPanelLeft(sender);
         }
         private void btnAbout_Click_1(object sender, EventArgs e)
         {
-            labelTitle.Text = "About";
+            lblTitle.Text = "About";
             about.BringToFront();
             ChangeNormalColorOnPanelLeft(sender);
         }
@@ -802,6 +805,7 @@ namespace Music
         }
         private void btnLyric_Click(object sender, EventArgs e)
         {
+            lblTitle.Text = string.Empty;
             actionOpenLyric();
             imageSong = new Bitmap(lyrics.SongImage);
             angles = 0;
@@ -942,19 +946,17 @@ namespace Music
             songsSelected.Clear();
             ChangeColorLeftMouseButton();
         }
-
-        private void myMusic_Load(object sender, EventArgs e)
-        {
-
-        }
         bool isCtrl = false,isCtrlA=false;
         private void fMusic_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode==Keys.ControlKey)
+            if (e.KeyCode == Keys.Enter)
+                if (txbSearchMusic.Text != string.Empty )//&& txbSearchMusic.Focused)
+                    btnSearchMusic_Click(null, null);
+            if (e.KeyCode==Keys.ControlKey)
             {
                 isCtrl = isCtrlA ? false : true;      
             }
-            if (e.KeyCode == Keys.A)
+            if (e.KeyCode == Keys.A && isCtrl)
             {
                 isCtrlA = true;
                 isCtrl = false;
@@ -969,7 +971,17 @@ namespace Music
             this.KeyUp += FMusic_KeyUp;
            
         }
-
+        private void FMusic_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ControlKey)
+            {
+                isCtrl = false;
+            }
+            if (e.KeyCode == Keys.A && !isCtrl)
+            {
+                isCtrlA = false;
+            }
+        }
         private void contextMenuStripSong_Closing(object sender, ToolStripDropDownClosingEventArgs e)
         {
             isCtrl = isCtrlA = false;
@@ -1092,16 +1104,54 @@ namespace Music
 
             }
         }
-        private void FMusic_KeyUp(object sender, KeyEventArgs e)
+        bool checkSetting = true;
+        private void btnShutDownTimer_Click(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.ControlKey)
+            if (checkSetting)
             {
-                isCtrl = false;
+                lblTitle.Text = "Shut down timer";
+                setting.lblWarning.Visible=setting.lblLanguage.Visible = setting.metroComboBox1.Visible = setting.btnLocalFiles.Visible = setting.btnUpdates.Visible = false;
+                setting.panel.Location = new Point(71, 58);
+                setting.BringToFront();
+                checkSetting = !checkSetting;
             }
-            if (e.KeyCode == Keys.A)
+            else
             {
-                isCtrlA = false;
+                checkSetting = !checkSetting;
+                setting.SendToBack();
             }
         }
+        
+        public List<Song> Search(string keyword)
+        {
+            List<Song> songs = new List<Song>();
+            foreach (var item in songsFull)
+            {
+                if(item.SongName.ToLower().Contains(keyword.ToLower()))
+                {
+                    songs.Add(item);
+                }
+            }
+            return songs;
+        }
+        private void btnSearchMusic_Click(object sender, EventArgs e)
+        {
+            results.Clear();
+            lblTitle.Text = "Search songs";
+            results.BringToFront();
+
+            List<Song> songs = new List<Song>();
+            songs = Search(txbSearchMusic.Text);
+            songsNowPlaying.Clear();
+            songsNowPlaying.AddRange(songs);
+            indexNow = 0;
+
+            results.Title = txbSearchMusic.Text;
+            results.AddSongs(songs);
+
+            txbSearchMusic.Text = string.Empty;
+        }
+
+        
     }
 }

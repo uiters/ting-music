@@ -145,8 +145,7 @@ namespace Music
 
         private void pictureBoxSong_MouseDown(object sender, MouseEventArgs e)
         {
-            if (Mouse_Click != null)
-                Mouse_Click(this, e);
+            Mouse_Click?.Invoke(this, e);
         }
     }
 }

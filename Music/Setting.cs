@@ -15,28 +15,26 @@ namespace Music
         public Setting()
         {
             InitializeComponent();
+            
+            cbMinute.Text = "15";
+            lblTime.Text = fMusic.ConvertToMinute(15*60);
         }
-
-        private void Setting_Load(object sender, EventArgs e)
+        Timer ShutDownTimer;
+   
+        int i = 0;
+        private void ShutDownTimer_Tick(object sender, EventArgs e)
         {
-
-        }
-
-        private void bunifuiOSSwitch1_OnValueChange(object sender, EventArgs e)
-        {
-            if (btnShutDown.Value)
+            if(i>=0)
             {
-                //cbMinute.Text = "15";
-                lblStatus.Text = "On";
-                cbMinute.Enabled = true;
-                lblTime.ForeColor = Color.FromArgb(239, 108, 1);
+                lblTime.Text = fMusic.ConvertToMinute(i);
+                i--;
             }
             else
             {
-                lblStatus.Text = "Off";
-                lblTime.Text = "00:00";
-                cbMinute.Enabled = false;
-                lblTime.ForeColor = Color.FromArgb(92, 92, 92);
+                Timer timer = sender as Timer;
+                timer.Stop();
+                timer.Dispose();
+                Application.Exit();
             }
         }
 
@@ -44,6 +42,36 @@ namespace Music
         {
             fLocalFiles fLocalFiles = new fLocalFiles();
             fLocalFiles.ShowDialog();
+        }
+
+        private void btnShutDown_OnValueChange(object sender, EventArgs e)
+        {
+            if (btnShutDown.Value)
+            {
+
+                lblStatus.Text = "On";
+                cbMinute.Enabled = true;
+                lblTime.ForeColor = Color.FromArgb(239, 108, 1);
+                ShutDownTimer = new Timer();
+                ShutDownTimer.Interval = 1000;
+                ShutDownTimer.Start();
+                ShutDownTimer.Tick += ShutDownTimer_Tick;
+                i = int.Parse(cbMinute.Text) * 60;
+            }
+            else
+            {
+                lblStatus.Text = "Off";
+                lblTime.Text = "00:00";
+                cbMinute.Enabled = false;
+                lblTime.ForeColor = Color.FromArgb(92, 92, 92);
+                ShutDownTimer.Stop();
+                ShutDownTimer.Dispose();
+            }
+        }
+
+        private void cbMinute_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            i = int.Parse(cbMinute.Text) * 60;
         }
     }
 }

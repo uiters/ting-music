@@ -16,6 +16,7 @@ namespace Music
         {
             InitializeComponent();
         }
+        public event EventHandler LocalFiles_Click;
         public string Title
         {
             set
@@ -27,7 +28,7 @@ namespace Music
                 return title.Text;
             }
         }
-        public string TolderPath
+        public string FolderPath
         {
             set
             {
@@ -37,6 +38,26 @@ namespace Music
             {
                 return folderPath.Text;
             }
+        }
+
+        private void folderPath_Click(object sender, EventArgs e)
+        {
+            this.BackColor = Color.Gray;
+            Timer timer = new Timer();
+            timer.Interval = 100;
+            timer.Start();
+            timer.Tick += Timer_Tick;
+            if (LocalFiles_Click != null)
+                LocalFiles_Click(this,e);
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            this.BackColor = Color.Gainsboro;
+            Timer timer = sender as Timer;
+            timer.Stop();
+            timer.Dispose();
+            
         }
     }
 }

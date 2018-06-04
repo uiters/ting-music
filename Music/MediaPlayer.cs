@@ -92,13 +92,16 @@ namespace Music
         }
         #endregion
 
-        public string[] LoadLocalFile()//IWMPPlaylist playlist)
+        public string[] LoadLocalFile()
         {
-            //string path = @"E:\test";
-            //string path = @"G:\the nho\Zing MP3";
-            string path = @"C:\Users\ndc07\Music\Music";
-            string[] listFile = Directory.GetFiles(path, "*.mp3");
-            return listFile;
+            List<string> listFile = new List<string>();
+            string[] listPath = fLocalFiles.ShowLocalFiles();
+            if(listPath.Length>0)
+            for (int i = 0; i < listPath.Length; i++)
+            {
+                listFile.AddRange(Directory.GetFiles(listPath[i], "*.mp3"));
+            }
+            return listFile.ToArray();
         }
         public IWMPMedia GetCurrentMedia()
         {

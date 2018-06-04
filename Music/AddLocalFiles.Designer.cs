@@ -42,6 +42,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 92;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // AddLocalFiles
             // 
@@ -52,6 +53,8 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AddLocalFiles";
             this.Size = new System.Drawing.Size(361, 55);
+            //this.Load += new System.EventHandler(this.AddLocalFiles_Load);
+            this.Click += new System.EventHandler(this.AddLocalFiles_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

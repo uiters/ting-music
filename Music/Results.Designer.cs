@@ -31,13 +31,14 @@
             this.panelSongs = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.bunifuSeparator1 = new Bunifu.Framework.UI.BunifuSeparator();
-            this.lblSongName = new System.Windows.Forms.Label();
+            this.lblResults = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelSongs
             // 
             this.panelSongs.AutoScroll = true;
+            this.panelSongs.BackColor = System.Drawing.Color.White;
             this.panelSongs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSongs.Location = new System.Drawing.Point(0, 51);
             this.panelSongs.Name = "panelSongs";
@@ -46,8 +47,9 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.bunifuSeparator1);
-            this.panel2.Controls.Add(this.lblSongName);
+            this.panel2.Controls.Add(this.lblResults);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
@@ -66,17 +68,17 @@
             this.bunifuSeparator1.Transparency = 255;
             this.bunifuSeparator1.Vertical = false;
             // 
-            // lblSongName
+            // lblResults
             // 
-            this.lblSongName.AutoSize = true;
-            this.lblSongName.BackColor = System.Drawing.Color.Transparent;
-            this.lblSongName.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSongName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.lblSongName.Location = new System.Drawing.Point(16, 11);
-            this.lblSongName.Name = "lblSongName";
-            this.lblSongName.Size = new System.Drawing.Size(190, 25);
-            this.lblSongName.TabIndex = 67;
-            this.lblSongName.Text = "Results for \"ndc07\"";
+            this.lblResults.AutoSize = true;
+            this.lblResults.BackColor = System.Drawing.Color.Transparent;
+            this.lblResults.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblResults.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
+            this.lblResults.Location = new System.Drawing.Point(16, 11);
+            this.lblResults.Name = "lblResults";
+            this.lblResults.Size = new System.Drawing.Size(190, 25);
+            this.lblResults.TabIndex = 67;
+            this.lblResults.Text = "Results for \"ndc07\"";
             // 
             // Results
             // 
@@ -98,7 +100,7 @@
         private System.Windows.Forms.FlowLayoutPanel panelSongs;
         private System.Windows.Forms.Panel panel2;
         private Bunifu.Framework.UI.BunifuSeparator bunifuSeparator1;
-        private System.Windows.Forms.Label lblSongName;
+        private System.Windows.Forms.Label lblResults;
  
     }
 }

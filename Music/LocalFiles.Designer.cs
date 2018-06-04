@@ -47,19 +47,20 @@
             this.title.Size = new System.Drawing.Size(51, 18);
             this.title.TabIndex = 90;
             this.title.Text = "Music";
+            this.title.Click += new System.EventHandler(this.folderPath_Click);
             // 
             // folderPath
             // 
             this.folderPath.AutoEllipsis = true;
-            this.folderPath.AutoSize = true;
             this.folderPath.BackColor = System.Drawing.Color.Transparent;
             this.folderPath.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.folderPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
             this.folderPath.Location = new System.Drawing.Point(2, 31);
             this.folderPath.Name = "folderPath";
-            this.folderPath.Size = new System.Drawing.Size(158, 18);
+            this.folderPath.Size = new System.Drawing.Size(356, 18);
             this.folderPath.TabIndex = 91;
             this.folderPath.Text = "C:\\Users\\ndc07\\Music\"";
+            this.folderPath.Click += new System.EventHandler(this.folderPath_Click);
             // 
             // pictureBox1
             // 
@@ -83,6 +84,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LocalFiles";
             this.Size = new System.Drawing.Size(361, 55);
+            this.Click += new System.EventHandler(this.folderPath_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
