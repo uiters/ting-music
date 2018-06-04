@@ -16,15 +16,23 @@ namespace Music
         {
             InitializeComponent();
         }
-
-        private void btnSetting_Click(object sender, EventArgs e)
+        public string Title
         {
-
+            set
+            {
+                lblResults.Text = "Results for \"" + value + "\"";
+            }
         }
-
-        private void artist2_Load(object sender, EventArgs e)
+        public void AddSongs(List<Song> songs)
         {
-
+            foreach (var item in songs)
+            {
+                panelSongs.Controls.Add(item);
+            }
+        }
+        public void Clear()
+        {
+            panelSongs.Controls.Clear();
         }
     }
 }

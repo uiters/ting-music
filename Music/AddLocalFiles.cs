@@ -16,5 +16,35 @@ namespace Music
         {
             InitializeComponent();
         }
+        public event EventHandler LocalFiles_Click;
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.BackColor = Color.Gray;
+            Timer timer = new Timer();
+            timer.Interval = 100;
+            timer.Start();
+            timer.Tick += Timer_Tick;
+
+            LocalFiles_Click?.Invoke(this, e);
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            this.BackColor = Color.Gainsboro;
+            Timer timer = sender as Timer;
+            timer.Stop();
+            timer.Dispose();
+        }
+
+        private void AddLocalFiles_Click(object sender, EventArgs e)
+        {
+            this.BackColor = Color.Gray;
+            Timer timer = new Timer();
+            timer.Interval = 100;
+            timer.Start();
+            timer.Tick += Timer_Tick;
+
+            LocalFiles_Click?.Invoke(this, e);
+        }
     }
 }

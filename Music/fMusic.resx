@@ -118,6 +118,38 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnShutDownTimer.Iconimage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
   <data name="btnPlay.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -3811,7 +3843,7 @@
     <value>424, 17</value>
   </metadata>
   <metadata name="rotateTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>598, 17</value>
+    <value>572, 15</value>
   </metadata>
   <metadata name="contextMenuStripSong.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>685, 17</value>
@@ -4011,7 +4043,7 @@
 </value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>60</value>
+    <value>25</value>
   </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

@@ -66,7 +66,9 @@
             this.metroTabControl1.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl1.Margin = new System.Windows.Forms.Padding(0);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 1;
+
+            this.metroTabControl1.SelectedIndex = 0;
+
             this.metroTabControl1.ShowToolTips = true;
             this.metroTabControl1.Size = new System.Drawing.Size(850, 474);
             this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Orange;
@@ -80,6 +82,7 @@
             // 
             // Songs
             // 
+            this.Songs.BackColor = System.Drawing.Color.White;
             this.Songs.Controls.Add(this.panelSongs);
             this.Songs.Controls.Add(this.panel1);
             this.Songs.Location = new System.Drawing.Point(4, 38);
@@ -133,7 +136,9 @@
             this.btnShuffleAllSongs.IconVisible = false;
             this.btnShuffleAllSongs.IconZoom = 30D;
             this.btnShuffleAllSongs.IsTab = false;
-            this.btnShuffleAllSongs.Location = new System.Drawing.Point(18, 7);
+
+            this.btnShuffleAllSongs.Location = new System.Drawing.Point(10, 7);
+
             this.btnShuffleAllSongs.Name = "btnShuffleAllSongs";
             this.btnShuffleAllSongs.Normalcolor = System.Drawing.Color.Transparent;
             this.btnShuffleAllSongs.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
@@ -159,7 +164,10 @@
             this.comboBoxSortBySongs.Name = "comboBoxSortBySongs";
             this.comboBoxSortBySongs.Size = new System.Drawing.Size(107, 25);
             this.comboBoxSortBySongs.TabIndex = 45;
+
+
             this.comboBoxSortBySongs.SelectedIndexChanged += new System.EventHandler(this.ComboBoxSortBySongs_SelectedIndexChanged);
+
             // 
             // label1
             // 
@@ -173,6 +181,7 @@
             // 
             // Artists
             // 
+            this.Artists.BackColor = System.Drawing.Color.White;
             this.Artists.Controls.Add(this.panelArtists);
             this.Artists.Controls.Add(this.panel2);
             this.Artists.Location = new System.Drawing.Point(4, 38);
@@ -263,6 +272,7 @@
             // 
             // Albums
             // 
+            this.Albums.BackColor = System.Drawing.Color.White;
             this.Albums.Controls.Add(this.panelAlbums);
             this.Albums.Controls.Add(this.panel3);
             this.Albums.Location = new System.Drawing.Point(4, 38);
