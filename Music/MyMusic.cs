@@ -73,13 +73,13 @@ namespace Music
         #region Method artists
         private void Artists_Enter(object sender, EventArgs e)
         {
-            panelArtists.Controls.Clear();
-            panelArtists.Controls.AddRange(artists.ToArray());
+            Artists.Controls.Clear();
+            Artists.Controls.AddRange(artists.ToArray());
         }
 
         public void AddArtist(Myplaylist artist)
         {
-            panelArtists.Controls.Add(artist);
+            Artists.Controls.Add(artist);
             this.artists.Add(artist);
             artist.BtnImage_Click += Artist_BtnImage_Click;
         }
@@ -92,13 +92,13 @@ namespace Music
         }
         public void ShowArtits()
         {
-            panelArtists.Controls.Clear();
-            panelArtists.Controls.AddRange(artists.ToArray());
+            Artists.Controls.Clear();
+            Artists.Controls.AddRange(artists.ToArray());
         }
         private void ShowSongInArtist(Myplaylist artist)
         {
-            panelArtists.Controls.Clear();
-            panelArtists.Controls.AddRange(artist.Songs.ToArray());
+            Artists.Controls.Clear();
+            Artists.Controls.AddRange(artist.Songs.ToArray());
             for (int i = 0; i < artist.Songs.Count; i++)
             {
                 artist.Songs[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
@@ -106,7 +106,7 @@ namespace Music
         }
         public void SetScrollSongInArtists(Control value)
         {
-            panelArtists.ScrollControlIntoView(value);
+            Artists.ScrollControlIntoView(value);
         }
         #endregion
 
