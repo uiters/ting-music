@@ -12,12 +12,24 @@ namespace Music
 {
     public partial class Setting : UserControl
     {
+        private UpdateMusic update;
+        public event EventHandler CloseForm;
         public Setting()
         {
             InitializeComponent();
+
             
             cbMinute.Text = "15";
             lblTime.Text = fMusic.ConvertToMinute(15*60);
+
+            update = new UpdateMusic(label); ;
+            update.CloseForm += Update_CloseForm;
+        }
+
+        private void Update_CloseForm(object sender, EventArgs e)
+        {
+            this.CloseForm?.Invoke(null, null);
+
         }
         Timer ShutDownTimer;
    
@@ -72,6 +84,17 @@ namespace Music
         private void cbMinute_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             i = int.Parse(cbMinute.Text) * 60;
+        }
+
+        private void btnNowPlaying_Click(object sender, EventArgs e)
+        {
+            if (update.IsUpdating == false)
+            {
+                lbStatus.Visible = true;
+                label.Visible = true;
+                update.CheckInternet();
+            }
+            else return;
         }
     }
 }

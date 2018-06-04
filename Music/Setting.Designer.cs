@@ -40,8 +40,14 @@
             this.cbMinute = new MetroFramework.Controls.MetroComboBox();
             this.btnShutDown = new Bunifu.Framework.UI.BunifuiOSSwitch();
             this.bunifuFlatButton1 = new Bunifu.Framework.UI.BunifuFlatButton();
+
             this.lblWarning = new System.Windows.Forms.Label();
             this.panel.SuspendLayout();
+
+            this.btnMyMusic = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.lbStatus = new System.Windows.Forms.Label();
+            this.label = new System.Windows.Forms.Label();
+
             this.SuspendLayout();
             // 
             // metroComboBox1
@@ -244,7 +250,14 @@
             this.cbMinute.UseCustomForeColor = true;
             this.cbMinute.UseSelectable = true;
             this.cbMinute.UseStyleColors = true;
+
             this.cbMinute.SelectedIndexChanged += new System.EventHandler(this.cbMinute_SelectedIndexChanged_1);
+
+            // 
+         
+     
+            // 
+           
             // 
             // btnShutDown
             // 
@@ -309,15 +322,55 @@
             this.lblWarning.TabIndex = 94;
             this.lblWarning.Text = "* You must restart your app to apply.";
             // 
+            // lbStatus
+            // 
+            this.lbStatus.AutoEllipsis = true;
+            this.lbStatus.AutoSize = true;
+            this.lbStatus.BackColor = System.Drawing.Color.Transparent;
+            this.lbStatus.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.lbStatus.Location = new System.Drawing.Point(68, 329);
+            this.lbStatus.Name = "lbStatus";
+            this.lbStatus.Size = new System.Drawing.Size(53, 18);
+            this.lbStatus.TabIndex = 91;
+            this.lbStatus.Text = "Status:";
+            this.lbStatus.Visible = false;
+            // 
+            // label
+            // 
+            this.label.AutoEllipsis = true;
+            this.label.AutoSize = true;
+            this.label.BackColor = System.Drawing.Color.Transparent;
+            this.label.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.label.Location = new System.Drawing.Point(127, 329);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(69, 18);
+            this.label.TabIndex = 92;
+            this.label.Text = "Pedding";
+            this.label.Visible = false;
+            // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+
             this.Controls.Add(this.lblWarning);
             this.Controls.Add(this.panel);
             this.Controls.Add(this.btnLocalFiles);
             this.Controls.Add(this.btnUpdates);
+
+            this.Controls.Add(this.label);
+            this.Controls.Add(this.lbStatus);
+         
+          
+           
+           
+          
+           
+           
+
             this.Controls.Add(this.metroComboBox1);
             this.Controls.Add(this.lblLanguage);
             this.Name = "Setting";
@@ -336,11 +389,16 @@
         public Bunifu.Framework.UI.BunifuFlatButton btnLocalFiles;
         public System.Windows.Forms.Panel panel;
         private System.Windows.Forms.Label lblStatus;
+
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Label label3;
         private MetroFramework.Controls.MetroComboBox cbMinute;
         private Bunifu.Framework.UI.BunifuiOSSwitch btnShutDown;
         private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton1;
         public System.Windows.Forms.Label lblWarning;
+
+        private System.Windows.Forms.Label lbStatus;
+        private System.Windows.Forms.Label label;
+
     }
 }

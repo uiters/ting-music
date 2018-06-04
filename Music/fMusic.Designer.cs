@@ -71,6 +71,13 @@ namespace Music
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.bunifuDragControl2 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel = new System.Windows.Forms.Panel();
+            this.setting = new Music.Setting();
+            this.about = new Music.About();
+            this.lyrics = new Music.Lyrics();
+            this.myMusic = new Music.MyMusic();
+            this.nowPlaying = new Music.NowPlaying();
+            this.playlistDetail = new Music.PlaylistDetail();
+            this.playlist = new Music.Playlist();
             this.timeLine = new System.Windows.Forms.Timer(this.components);
             this.autoNextSongTimer = new System.Windows.Forms.Timer(this.components);
             this.rotateTimer = new System.Windows.Forms.Timer(this.components);
@@ -81,6 +88,7 @@ namespace Music
             this.menuItemRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemEditInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemProperties = new System.Windows.Forms.ToolStripMenuItem();
+
             this.results = new Music.Results();
             this.setting = new Music.Setting();
             this.about = new Music.About();
@@ -89,6 +97,7 @@ namespace Music
             this.nowPlaying = new Music.NowPlaying();
             this.playlistDetail = new Music.PlaylistDetail();
             this.playlist = new Music.Playlist();
+
             this.panelBottom.SuspendLayout();
             this.panelPlay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPlay)).BeginInit();
@@ -1002,6 +1011,79 @@ namespace Music
             this.panel.TabIndex = 29;
             this.panel.SizeChanged += new System.EventHandler(this.panel_SizeChanged);
             // 
+            // setting
+            // 
+            this.setting.BackColor = System.Drawing.Color.White;
+            this.setting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.setting.Location = new System.Drawing.Point(0, 0);
+            this.setting.Name = "setting";
+            this.setting.Size = new System.Drawing.Size(850, 474);
+            this.setting.TabIndex = 6;
+            // 
+            // about
+            // 
+            this.about.BackColor = System.Drawing.Color.White;
+            this.about.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.about.Location = new System.Drawing.Point(0, 0);
+            this.about.Name = "about";
+            this.about.Size = new System.Drawing.Size(850, 474);
+            this.about.TabIndex = 5;
+            // 
+            // lyrics
+            // 
+            this.lyrics.ArtistName = "Charlie Puth";
+            this.lyrics.BackColor = System.Drawing.Color.DimGray;
+            this.lyrics.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lyrics.Location = new System.Drawing.Point(0, 0);
+            this.lyrics.LyricsText = "ndc07";
+            this.lyrics.Name = "lyrics";
+            this.lyrics.Size = new System.Drawing.Size(850, 474);
+            this.lyrics.SongImage = ((System.Drawing.Image)(resources.GetObject("lyrics.SongImage")));
+            this.lyrics.SongName = "Attention";
+            this.lyrics.TabIndex = 2;
+            this.lyrics.btnBack_click += new System.EventHandler(this.lyrics_btnBack_click);
+            // 
+            // myMusic
+            // 
+            this.myMusic.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.myMusic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.myMusic.Location = new System.Drawing.Point(0, 0);
+            this.myMusic.Name = "myMusic";
+            this.myMusic.Size = new System.Drawing.Size(850, 474);
+            this.myMusic.TabIndex = 0;
+            this.myMusic.Load += new System.EventHandler(this.myMusic_Load);
+            // 
+            // nowPlaying
+            // 
+            this.nowPlaying.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.nowPlaying.Location = new System.Drawing.Point(0, 0);
+            this.nowPlaying.Name = "nowPlaying";
+            this.nowPlaying.Size = new System.Drawing.Size(850, 474);
+            this.nowPlaying.TabIndex = 1;
+            // 
+            // playlistDetail
+            // 
+            this.playlistDetail.BackColor = System.Drawing.Color.White;
+            this.playlistDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.playlistDetail.Location = new System.Drawing.Point(0, 0);
+            this.playlistDetail.Name = "playlistDetail";
+            this.playlistDetail.PlaylistImage = ((System.Drawing.Image)(resources.GetObject("playlistDetail.PlaylistImage")));
+            this.playlistDetail.PlaylistName = "ndc07";
+            this.playlistDetail.Size = new System.Drawing.Size(850, 474);
+            this.playlistDetail.TabIndex = 4;
+            this.playlistDetail.PlayAll_Click += new System.EventHandler(this.playlistDetail_PlayAll_Click);
+            this.playlistDetail.Rename_Click += new System.EventHandler(this.playlistDetail_Rename_Click);
+            this.playlistDetail.Delete_Click += new System.EventHandler(this.playlistDetail_Delete_Click);
+            // 
+            // playlist
+            // 
+            this.playlist.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.playlist.Location = new System.Drawing.Point(0, 0);
+            this.playlist.Name = "playlist";
+            this.playlist.Size = new System.Drawing.Size(850, 474);
+            this.playlist.TabIndex = 3;
+            this.playlist.NewPlaylist_Click += new System.EventHandler(this.playlist_NewPlaylist_Click);
+            // 
             // timeLine
             // 
             this.timeLine.Tick += new System.EventHandler(this.TimeLine_Tick);
@@ -1077,6 +1159,7 @@ namespace Music
             this.menuItemProperties.Text = "Properties";
             this.menuItemProperties.Click += new System.EventHandler(this.menuItemProperties_Click_1);
             // 
+
             // results
             // 
             this.results.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -1158,6 +1241,7 @@ namespace Music
             this.playlist.TabIndex = 3;
             this.playlist.NewPlaylist_Click += new System.EventHandler(this.playlist_NewPlaylist_Click);
             // 
+
             // fMusic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

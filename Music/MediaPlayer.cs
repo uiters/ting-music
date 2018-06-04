@@ -94,6 +94,7 @@ namespace Music
 
         public string[] LoadLocalFile()
         {
+
             List<string> listFile = new List<string>();
             string[] listPath = fLocalFiles.ShowLocalFiles();
             if(listPath.Length>0)
@@ -102,6 +103,7 @@ namespace Music
                 listFile.AddRange(Directory.GetFiles(listPath[i], "*.mp3"));
             }
             return listFile.ToArray();
+
         }
         public IWMPMedia GetCurrentMedia()
         {
@@ -114,21 +116,21 @@ namespace Music
         #region playlist
         public List<string> LoadListPlaylist()
         {
-            string path = @"C:\Users\ndc07\Music\Playlists\";
+            string path = @"D:\";
             var listFile = Directory.GetFiles(path,"*.wpl").ToList();
             return listFile;
         }
         public void CreatePlaylist(string fileName, string title, List<string> listMedia = null)
         {
-            string filePath = @"C:\Users\ndc07\Music\Playlists\" + fileName + ".wpl";
+            string filePath = @"D:\" + fileName + ".wpl";
             if(File.Exists(filePath))
             {
                 int i = 1;
-                while (File.Exists(@"C:\Users\ndc07\Music\Playlists\" + fileName +" ("+i+").wpl"))
+                while (File.Exists(@"D:\" + fileName +" ("+i+").wpl"))
                 {
                     i++;
                 }
-                filePath = @"C:\Users\ndc07\Music\Playlists\" + fileName + " (" + i + ").wpl";
+                filePath = @"D:\" + fileName + " (" + i + ").wpl";
             }
             FileStream fileStream = File.Create(filePath);
             using (StreamWriter streamWriter = new StreamWriter(fileStream))

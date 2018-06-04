@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Music
@@ -75,12 +72,10 @@ namespace Music
                 return panelSongs.Controls.Cast<Song>().ToList();
             }
         }
-        public Control ScrollControl
+
+        public void SetScrollControl(Control value)
         {
-            set
-            {
-                panelSongs.ScrollControlIntoView(value);
-            }
+            panelSongs.ScrollControlIntoView(value);
         }
         public List<Control> GetControls
         {
@@ -98,20 +93,17 @@ namespace Music
 
         private void btnPlayAll_Click_2(object sender, EventArgs e)
         {
-            if (PlayAll_Click != null)
-                PlayAll_Click(this, e);
+            PlayAll_Click?.Invoke(this, e);
         }
 
         private void btnRename_Click(object sender, EventArgs e)
         {
-            if (Rename_Click != null)
-                Rename_Click(this, e);
+            Rename_Click?.Invoke(this, e);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (Delete_Click != null)
-                Delete_Click(this, e);
+            Delete_Click?.Invoke(this, e);
         }
     }
 }
