@@ -1008,7 +1008,7 @@ namespace Music
                 }
                 MessageBox.Show("Remove song successfully!", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                playlistDetail.totalSong = MediaPlayer.Instance.ReadPlaylist(playlistPath).Count;
+                playlistDetail.TotalSong = MediaPlayer.Instance.ReadPlaylist(playlistPath).Count;
                 playlistDetail.Clear();
                 LoadPlaylistDetails(playlistPath);
             }
@@ -1029,7 +1029,7 @@ namespace Music
                                 songsLocalFile.Remove(item);
                             }
                             MessageBox.Show("Remove song successfully!", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            myMusic.Clear();
+                            myMusic.SongsClear();
                             int width = panel.Width - 25;
 
                             for (int i = 0; i < songsLocalFile.Count; i++)

@@ -115,13 +115,13 @@
             // 
             // panelArtists
             // 
-            this.flowLayoutPanelArtists.AutoScroll = true;
-            this.flowLayoutPanelArtists.BackColor = System.Drawing.Color.White;
-            this.flowLayoutPanelArtists.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelArtists.Location = new System.Drawing.Point(0, 42);
-            this.flowLayoutPanelArtists.Name = "flowLayoutPanelArtists";
-            this.flowLayoutPanelArtists.Size = new System.Drawing.Size(842, 390);
-            this.flowLayoutPanelArtists.TabIndex = 7;
+            this.panelArtists.AutoScroll = true;
+            this.panelArtists.BackColor = System.Drawing.Color.White;
+            this.panelArtists.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelArtists.Location = new System.Drawing.Point(0, 42);
+            this.panelArtists.Name = "panelArtists";
+            this.panelArtists.Size = new System.Drawing.Size(842, 390);
+            this.panelArtists.TabIndex = 7;
 
             // 
             // panel2
@@ -209,13 +209,13 @@
             // 
             // panelAlbums
             // 
-            this.flowLayoutPanelAlbum.AutoScroll = true;
-            this.flowLayoutPanelAlbum.BackColor = System.Drawing.Color.White;
-            this.flowLayoutPanelAlbum.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelAlbum.Location = new System.Drawing.Point(0, 42);
-            this.flowLayoutPanelAlbum.Name = "flowLayoutPanelAlbum";
-            this.flowLayoutPanelAlbum.Size = new System.Drawing.Size(842, 390);
-            this.flowLayoutPanelAlbum.TabIndex = 7;
+            this.panelAlbums.AutoScroll = true;
+            this.panelAlbums.BackColor = System.Drawing.Color.White;
+            this.panelAlbums.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelAlbums.Location = new System.Drawing.Point(0, 42);
+            this.panelAlbums.Name = "panelAlbums";
+            this.panelAlbums.Size = new System.Drawing.Size(842, 390);
+            this.panelAlbums.TabIndex = 7;
             // 
             // panel3
             // 
@@ -337,7 +337,7 @@
             this.comboBoxSortBySongs.Size = new System.Drawing.Size(107, 25);
             this.comboBoxSortBySongs.TabIndex = 45;
             this.comboBoxSortBySongs.Text = "None";
-            this.comboBoxSortBySongs.SelectionChangeCommitted += new System.EventHandler(this.comboBoxSortBySongs_SelectedIndexChanged);
+            //this.comboBoxSortBySongs.SelectionChangeCommitted += new System.EventHandler(this.comboBoxSortBySongs_SelectedIndexChanged);
             // 
             // btnShuffleAllSongs
             // 
@@ -414,7 +414,7 @@
         private System.Windows.Forms.TabPage Songs;
         private System.Windows.Forms.TabPage Artists;
         private System.Windows.Forms.TabPage Albums;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelArtists;
+        private System.Windows.Forms.FlowLayoutPanel panelArtists;
         private System.Windows.Forms.Panel panel2;
         private Bunifu.Framework.UI.BunifuFlatButton btnShuufleAllArtists;
         private System.Windows.Forms.ComboBox comboBoxSortByArtists;
