@@ -12,9 +12,18 @@ namespace Music
 {
     public partial class Setting : UserControl
     {
+        private UpdateMusic update;
+        public event EventHandler CloseForm;
         public Setting()
         {
             InitializeComponent();
+            update = new UpdateMusic(label); ;
+            update.CloseForm += Update_CloseForm;
+        }
+
+        private void Update_CloseForm(object sender, EventArgs e)
+        {
+            this.CloseForm?.Invoke(null, null);
         }
 
         private void Setting_Load(object sender, EventArgs e)
@@ -44,6 +53,17 @@ namespace Music
         {
             fLocalFiles fLocalFiles = new fLocalFiles();
             fLocalFiles.ShowDialog();
+        }
+
+        private void btnNowPlaying_Click(object sender, EventArgs e)
+        {
+            if (update.IsUpdating == false)
+            {
+                lbStatus.Visible = true;
+                label.Visible = true;
+                update.CheckInternet();
+            }
+            else return;
         }
     }
 }

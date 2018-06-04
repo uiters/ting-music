@@ -9,14 +9,22 @@ namespace Music
 {
     class UISort
     {
+        #region Properties static
         public static readonly ISortSongFromAToZ iCompareAToZ = new ISortSongFromAToZ();
         public static readonly ISortSongFromZToA iCompareZToA = new ISortSongFromZToA();
-        public static readonly ISortSongArtist iCompareArtist = new ISortSongArtist();
-        public static readonly ISortSongAlbum iCompareAlbum = new ISortSongAlbum();
-        //public static string pathSongPlay;
-        public static int index = 0;
+
+        public static readonly ISortArtistAtoZ iCompareArtistAtoZ = new ISortArtistAtoZ();
+        public static readonly ISortArtistZtoA iCompareArtistZtoA = new ISortArtistZtoA();
+
+        public static readonly ISortAlbumAtoZ iCompareAlbumAtoZ = new ISortAlbumAtoZ();
+        public static readonly ISortAlbumZtoA iCompareAlbumZtoA = new ISortAlbumZtoA();
+
         public static readonly ISortRanDom iRanDom = new ISortRanDom();
-        private static Random random = new Random();
+        private static readonly Random random = new Random();
+
+        #endregion
+
+
         #region Sort Songs
         public class ISortSongFromAToZ : IComparer<Song>
         {
@@ -32,21 +40,43 @@ namespace Music
                 return b.SongName.CompareTo(a.SongName);
             }
         }
-        public class ISortSongArtist : IComparer<Song>
+        #endregion
+
+        #region Artist
+        public class ISortArtistAtoZ : IComparer<Myplaylist>
         {
-            public int Compare(Song a, Song b)
+            public int Compare(Myplaylist a, Myplaylist b)
             {
-                return a.ArtistName.CompareTo(b.ArtistName);
+                return a.PlaylistName.CompareTo(b.PlaylistName);
             }
         }
-        public class ISortSongAlbum : IComparer<Song>
+        public class ISortArtistZtoA : IComparer<Myplaylist>
         {
-            public int Compare(Song a, Song b)
+            public int Compare(Myplaylist a, Myplaylist b)
             {
-                //return a.AlbumName.CompareTo(b.AlbumName);
-                return 0;
+                return b.PlaylistName.CompareTo(a.PlaylistName);
             }
         }
+        #endregion
+
+        #region Albums
+        public class ISortAlbumAtoZ : IComparer<Myplaylist>
+        {
+            public int Compare(Myplaylist a, Myplaylist b)
+            {
+                return a.PlaylistName.CompareTo(b.PlaylistName);
+            }
+        }
+        public class ISortAlbumZtoA : IComparer<Myplaylist>
+        {
+            public int Compare(Myplaylist a, Myplaylist b)
+            {
+                return b.PlaylistName.CompareTo(a.PlaylistName);
+            }
+        }
+        #endregion
+
+        #region Random
         public class ISortRanDom : IComparer<int>
         {
             public int Compare(int a, int b)
@@ -63,35 +93,5 @@ namespace Music
             }
         }
         #endregion
-
-        public static bool Rock(Song song)
-        {
-            return song.CategoryName.ToLower().Contains("rock");
-        }
-        public static bool Pop(Song song)
-        {
-            return song.CategoryName.ToLower().Contains("pop");
-        }
-        public static bool Other(Song song)
-        {
-            return !(song.CategoryName.ToLower().Contains("rock") || song.CategoryName.ToLower().Contains("pop"));
-        }
-
-        //public static bool FindSongNamePlay(Song song)
-        //{
-        //    bool ex = song.Path.Contains(pathSongPlay);
-
-        //    if (song.ImageButton != Properties.Resources.play && !ex) // ex == true // curent play next
-        //        song.ImageButton = Properties.Resources.play;
-        //    return ex;
-        //}
-        public static void SetNumberSong(Song song)
-        {
-            //song.Index = index;
-            //if (index++ % 2 == 0)
-            //    song.BackColor = Color.Silver;
-            //else
-            //    song.BackColor = Color.Gainsboro;
-        }
     }
 }

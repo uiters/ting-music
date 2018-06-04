@@ -21,12 +21,8 @@ namespace InstallUpdate
                     zip.ExtractAll(linkExtract, ExtractExistingFileAction.OverwriteSilently);
                 }
             }
-            else
-            {
-                if (File.Exists(linkExtract))
-                    Process.Start(linkExtract);
-                return;
-            }
+            //if (File.Exists(app))
+            //    Process.Start(app);
             return;
         }
     }

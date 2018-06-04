@@ -39,6 +39,8 @@
             this.btnShutDown = new Bunifu.Framework.UI.BunifuiOSSwitch();
             this.bunifuFlatButton1 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.btnMyMusic = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.lbStatus = new System.Windows.Forms.Label();
+            this.label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // metroComboBox1
@@ -193,6 +195,7 @@
             this.btnNowPlaying.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNowPlaying.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
             this.btnNowPlaying.TextFont = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNowPlaying.Click += new System.EventHandler(this.btnNowPlaying_Click);
             // 
             // btnShutDown
             // 
@@ -279,11 +282,41 @@
             this.btnMyMusic.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
             this.btnMyMusic.TextFont = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
+            // lbStatus
+            // 
+            this.lbStatus.AutoEllipsis = true;
+            this.lbStatus.AutoSize = true;
+            this.lbStatus.BackColor = System.Drawing.Color.Transparent;
+            this.lbStatus.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.lbStatus.Location = new System.Drawing.Point(68, 329);
+            this.lbStatus.Name = "lbStatus";
+            this.lbStatus.Size = new System.Drawing.Size(53, 18);
+            this.lbStatus.TabIndex = 91;
+            this.lbStatus.Text = "Status:";
+            this.lbStatus.Visible = false;
+            // 
+            // label
+            // 
+            this.label.AutoEllipsis = true;
+            this.label.AutoSize = true;
+            this.label.BackColor = System.Drawing.Color.Transparent;
+            this.label.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.label.Location = new System.Drawing.Point(127, 329);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(69, 18);
+            this.label.TabIndex = 92;
+            this.label.Text = "Pedding";
+            this.label.Visible = false;
+            // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.label);
+            this.Controls.Add(this.lbStatus);
             this.Controls.Add(this.bunifuFlatButton2);
             this.Controls.Add(this.btnNowPlaying);
             this.Controls.Add(this.lblStatus);
@@ -314,5 +347,7 @@
         private System.Windows.Forms.Label lblStatus;
         private Bunifu.Framework.UI.BunifuFlatButton btnNowPlaying;
         private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton2;
+        private System.Windows.Forms.Label lbStatus;
+        private System.Windows.Forms.Label label;
     }
 }

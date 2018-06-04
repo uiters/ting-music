@@ -59,5 +59,401 @@ namespace Music.Languge {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Album.
+        /// </summary>
+        internal static string Albums {
+            get {
+                return ResourceManager.GetString("Albums", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ca Sĩ.
+        /// </summary>
+        internal static string Artists {
+            get {
+                return ResourceManager.GetString("Artists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Giới Thiệu.
+        /// </summary>
+        internal static string btnAbout {
+            get {
+                return ResourceManager.GetString("btnAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Huỷ.
+        /// </summary>
+        internal static string btnCancel {
+            get {
+                return ResourceManager.GetString("btnCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Đóng.
+        /// </summary>
+        internal static string btnClose {
+            get {
+                return ResourceManager.GetString("btnClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xoá.
+        /// </summary>
+        internal static string btnDelete {
+            get {
+                return ResourceManager.GetString("btnDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ngôn ngữ.
+        /// </summary>
+        internal static string btnLanguge {
+            get {
+                return ResourceManager.GetString("btnLanguge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nhạc Của Tôi.
+        /// </summary>
+        internal static string btnMyMusic {
+            get {
+                return ResourceManager.GetString("btnMyMusic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tạo danh sách nhạc.
+        /// </summary>
+        internal static string btnNewPlaylist {
+            get {
+                return ResourceManager.GetString("btnNewPlaylist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Danh sách nhạc mới:.
+        /// </summary>
+        internal static string btnNewPlaylist1 {
+            get {
+                return ResourceManager.GetString("btnNewPlaylist1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Đang Phát.
+        /// </summary>
+        internal static string btnNowPlaying {
+            get {
+                return ResourceManager.GetString("btnNowPlaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chơi tất cả.
+        /// </summary>
+        internal static string btnPlayAll {
+            get {
+                return ResourceManager.GetString("btnPlayAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Danh Sách Nhạc.
+        /// </summary>
+        internal static string btnPlayList {
+            get {
+                return ResourceManager.GetString("btnPlayList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recent plays.
+        /// </summary>
+        internal static string btnRecentPlays {
+            get {
+                return ResourceManager.GetString("btnRecentPlays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Đổi tên danh sách nhạc.
+        /// </summary>
+        internal static string btnRename {
+            get {
+                return ResourceManager.GetString("btnRename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Đổi tên.
+        /// </summary>
+        internal static string btnRenamePlaylist {
+            get {
+                return ResourceManager.GetString("btnRenamePlaylist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cài Đặt.
+        /// </summary>
+        internal static string btnSetting {
+            get {
+                return ResourceManager.GetString("btnSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ngãu nhiên.
+        /// </summary>
+        internal static string btnShuffleAllAlbums {
+            get {
+                return ResourceManager.GetString("btnShuffleAllAlbums", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lưu.
+        /// </summary>
+        internal static string bunifuFlatButton2 {
+            get {
+                return ResourceManager.GetString("bunifuFlatButton2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tiếng Anh.
+        /// </summary>
+        internal static string English {
+            get {
+                return ResourceManager.GetString("English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tất cả các quyền..
+        /// </summary>
+        internal static string label_About {
+            get {
+                return ResourceManager.GetString("label_About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Build your collection from your local music files.
+        /// </summary>
+        internal static string label_Add {
+            get {
+                return ResourceManager.GetString("label_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Liên hệ chúng tôi:.
+        /// </summary>
+        internal static string label_Contact {
+            get {
+                return ResourceManager.GetString("label_Contact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tên bài hát     :.
+        /// </summary>
+        internal static string label1 {
+            get {
+                return ResourceManager.GetString("label1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right now, we&apos;re watching these folders:.
+        /// </summary>
+        internal static string label1_Add {
+            get {
+                return ResourceManager.GetString("label1_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tên ca sĩ    :.
+        /// </summary>
+        internal static string label2 {
+            get {
+                return ResourceManager.GetString("label2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tên Album   :.
+        /// </summary>
+        internal static string label3 {
+            get {
+                return ResourceManager.GetString("label3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Album artist :.
+        /// </summary>
+        internal static string label4 {
+            get {
+                return ResourceManager.GetString("label4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thể loại           :.
+        /// </summary>
+        internal static string label5 {
+            get {
+                return ResourceManager.GetString("label5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thời lượng     :.
+        /// </summary>
+        internal static string label6 {
+            get {
+                return ResourceManager.GetString("label6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Năm              :.
+        /// </summary>
+        internal static string label7 {
+            get {
+                return ResourceManager.GetString("label7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bản quyền    :.
+        /// </summary>
+        internal static string label8 {
+            get {
+                return ResourceManager.GetString("label8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Đường dẫn:.
+        /// </summary>
+        internal static string label9 {
+            get {
+                return ResourceManager.GetString("label9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sắp xếp theo: .
+        /// </summary>
+        internal static string labelSort {
+            get {
+                return ResourceManager.GetString("labelSort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nhạc của tôi.
+        /// </summary>
+        internal static string labelTitle {
+            get {
+                return ResourceManager.GetString("labelTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thông Tin.
+        /// </summary>
+        internal static string lblSongName {
+            get {
+                return ResourceManager.GetString("lblSongName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kết quả cho.
+        /// </summary>
+        internal static string lblSongSearch {
+            get {
+                return ResourceManager.GetString("lblSongSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phút.
+        /// </summary>
+        internal static string Minutes {
+            get {
+                return ResourceManager.GetString("Minutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your local music files.
+        /// </summary>
+        internal static string settingLocal {
+            get {
+                return ResourceManager.GetString("settingLocal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thời gian tắt.
+        /// </summary>
+        internal static string shutdown {
+            get {
+                return ResourceManager.GetString("shutdown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nhạc.
+        /// </summary>
+        internal static string Songs {
+            get {
+                return ResourceManager.GetString("Songs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tên của danh sách nhạc.
+        /// </summary>
+        internal static string txbNewPlaylist {
+            get {
+                return ResourceManager.GetString("txbNewPlaylist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kiểm tra cập nhật.
+        /// </summary>
+        internal static string Update {
+            get {
+                return ResourceManager.GetString("Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tiếng Việt.
+        /// </summary>
+        internal static string Vietnam {
+            get {
+                return ResourceManager.GetString("Vietnam", resourceCulture);
+            }
+        }
     }
 }
