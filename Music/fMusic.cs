@@ -63,7 +63,7 @@ namespace Music
                 ProcessStartInfo info = new ProcessStartInfo(UpdateMusic.installLink);
                 info.CreateNoWindow = true;
                 info.UseShellExecute = false;
-                info.Verb = "runAs";
+                info.Verb = "runas";
                 Process.Start(info);
             }
             else return;
@@ -351,8 +351,6 @@ namespace Music
                     songs[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
                 }
             }
-            if (songNow != null)
-                songNow.BackColor = Color.Gray;
             System.Windows.Forms.Timer timer = sender as System.Windows.Forms.Timer;
             timer.Stop();
         }
@@ -1112,17 +1110,7 @@ namespace Music
             this.KeyUp += FMusic_KeyUp;
            
         }
-        private void FMusic_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.ControlKey)
-            {
-                isCtrl = false;
-            }
-            if (e.KeyCode == Keys.A && !isCtrl)
-            {
-                isCtrlA = false;
-            }
-        }
+        
         private void contextMenuStripSong_Closing(object sender, ToolStripDropDownClosingEventArgs e)
         {
             isCtrl = isCtrlA = false;
