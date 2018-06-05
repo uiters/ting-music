@@ -1,20 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
+using System.Resources;
 using System.Windows.Forms;
 
 namespace Music
 {
     public partial class fNewPlaylist : Form
     {
+        private static string shinTxt = string.Empty;
+        private static string sbtnNew = string.Empty;
+        private static string sbtnCancel = string.Empty;
         public fNewPlaylist()
         {
             InitializeComponent();
+            txbNewPlaylist.HintText = shinTxt;
+            btnCancel.Text = sbtnCancel;
+            btnNewPlaylist.Text = sbtnNew;
         }
 
         public string playlistName;
@@ -23,10 +24,15 @@ namespace Music
         {
             this.Close();
         }
-
+        public static void ShowLanguage(ResourceManager resource, CultureInfo culture)
+        {
+            shinTxt = resource.GetString("txbNewPlaylist", culture);
+            sbtnNew = resource.GetString("btnNewPlaylist", culture);
+            sbtnCancel = resource.GetString("btnCancel", culture);
+        }
         private void btnNewPlaylist_Click(object sender, EventArgs e)
         {
-            if (txbNewPlaylist.Text != string.Empty)
+            if (!string.IsNullOrWhiteSpace(txbNewPlaylist.Text))
                 playlistName = txbNewPlaylist.Text;
             else
                 playlistName = "Playlist";

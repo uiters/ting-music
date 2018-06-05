@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Resources;
+using System.Globalization;
 
 namespace Music
 {
@@ -15,6 +11,11 @@ namespace Music
         public Playlist()
         {
             InitializeComponent();
+        }
+        public void ShowLanguage(ResourceManager resourceManager, CultureInfo cultureInfo)
+        {
+            btnNewPlaylist.Text = resourceManager.GetString("btnNewPlaylist", cultureInfo);
+            label1.Text = resourceManager.GetString("labelSort", cultureInfo);
         }
         public event EventHandler NewPlaylist_Click;
         public Myplaylist myplaylist

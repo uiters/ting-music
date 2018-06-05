@@ -32,13 +32,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fLocalFiles));
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.addLocalFiles = new Music.AddLocalFiles();
             this.panelLocalFiles = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.bunifuFlatButton1 = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.btnDone = new Bunifu.Framework.UI.BunifuFlatButton();
             this.bunifuDragControl2 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.bunifuDragControl3 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
-            this.addLocalFiles = new Music.AddLocalFiles();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,11 +59,21 @@
             this.panel1.Controls.Add(this.panelLocalFiles);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.bunifuFlatButton1);
+            this.panel1.Controls.Add(this.btnDone);
             this.panel1.Location = new System.Drawing.Point(2, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(401, 358);
             this.panel1.TabIndex = 0;
+            // 
+            // addLocalFiles
+            // 
+            this.addLocalFiles.BackColor = System.Drawing.Color.Gainsboro;
+            this.addLocalFiles.Location = new System.Drawing.Point(22, 69);
+            this.addLocalFiles.Margin = new System.Windows.Forms.Padding(2);
+            this.addLocalFiles.Name = "addLocalFiles";
+            this.addLocalFiles.Size = new System.Drawing.Size(361, 55);
+            this.addLocalFiles.TabIndex = 95;
+            this.addLocalFiles.LocalFiles_Click += new System.EventHandler(this.addLocalFiles1_LocalFiles_Click);
             // 
             // panelLocalFiles
             // 
@@ -99,41 +109,41 @@
             this.label2.TabIndex = 92;
             this.label2.Text = "Build your collection from your local music files";
             // 
-            // bunifuFlatButton1
+            // btnDone
             // 
-            this.bunifuFlatButton1.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.bunifuFlatButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bunifuFlatButton1.BackColor = System.Drawing.Color.Gainsboro;
-            this.bunifuFlatButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bunifuFlatButton1.BorderRadius = 0;
-            this.bunifuFlatButton1.ButtonText = "Done";
-            this.bunifuFlatButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuFlatButton1.DisabledColor = System.Drawing.Color.Gray;
-            this.bunifuFlatButton1.Iconcolor = System.Drawing.Color.Transparent;
-            this.bunifuFlatButton1.Iconimage = null;
-            this.bunifuFlatButton1.Iconimage_right = null;
-            this.bunifuFlatButton1.Iconimage_right_Selected = null;
-            this.bunifuFlatButton1.Iconimage_Selected = null;
-            this.bunifuFlatButton1.IconMarginLeft = 0;
-            this.bunifuFlatButton1.IconMarginRight = 0;
-            this.bunifuFlatButton1.IconRightVisible = false;
-            this.bunifuFlatButton1.IconRightZoom = 0D;
-            this.bunifuFlatButton1.IconVisible = true;
-            this.bunifuFlatButton1.IconZoom = 30D;
-            this.bunifuFlatButton1.IsTab = false;
-            this.bunifuFlatButton1.Location = new System.Drawing.Point(223, 315);
-            this.bunifuFlatButton1.Name = "bunifuFlatButton1";
-            this.bunifuFlatButton1.Normalcolor = System.Drawing.Color.Gainsboro;
-            this.bunifuFlatButton1.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.bunifuFlatButton1.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.bunifuFlatButton1.selected = false;
-            this.bunifuFlatButton1.Size = new System.Drawing.Size(160, 35);
-            this.bunifuFlatButton1.TabIndex = 91;
-            this.bunifuFlatButton1.Text = "Done";
-            this.bunifuFlatButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bunifuFlatButton1.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.bunifuFlatButton1.TextFont = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold);
-            this.bunifuFlatButton1.Click += new System.EventHandler(this.bunifuFlatButton1_Click_1);
+            this.btnDone.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
+            this.btnDone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDone.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnDone.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDone.BorderRadius = 0;
+            this.btnDone.ButtonText = "Done";
+            this.btnDone.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDone.DisabledColor = System.Drawing.Color.Gray;
+            this.btnDone.Iconcolor = System.Drawing.Color.Transparent;
+            this.btnDone.Iconimage = null;
+            this.btnDone.Iconimage_right = null;
+            this.btnDone.Iconimage_right_Selected = null;
+            this.btnDone.Iconimage_Selected = null;
+            this.btnDone.IconMarginLeft = 0;
+            this.btnDone.IconMarginRight = 0;
+            this.btnDone.IconRightVisible = false;
+            this.btnDone.IconRightZoom = 0D;
+            this.btnDone.IconVisible = true;
+            this.btnDone.IconZoom = 30D;
+            this.btnDone.IsTab = false;
+            this.btnDone.Location = new System.Drawing.Point(223, 315);
+            this.btnDone.Name = "btnDone";
+            this.btnDone.Normalcolor = System.Drawing.Color.Gainsboro;
+            this.btnDone.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnDone.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnDone.selected = false;
+            this.btnDone.Size = new System.Drawing.Size(160, 35);
+            this.btnDone.TabIndex = 91;
+            this.btnDone.Text = "Done";
+            this.btnDone.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnDone.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.btnDone.TextFont = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btnDone.Click += new System.EventHandler(this.bunifuFlatButton1_Click_1);
             // 
             // bunifuDragControl2
             // 
@@ -148,16 +158,6 @@
             this.bunifuDragControl3.Horizontal = true;
             this.bunifuDragControl3.TargetControl = this.label2;
             this.bunifuDragControl3.Vertical = true;
-            // 
-            // addLocalFiles
-            // 
-            this.addLocalFiles.BackColor = System.Drawing.Color.Gainsboro;
-            this.addLocalFiles.Location = new System.Drawing.Point(22, 69);
-            this.addLocalFiles.Margin = new System.Windows.Forms.Padding(2);
-            this.addLocalFiles.Name = "addLocalFiles";
-            this.addLocalFiles.Size = new System.Drawing.Size(361, 55);
-            this.addLocalFiles.TabIndex = 95;
-            this.addLocalFiles.LocalFiles_Click += new System.EventHandler(this.addLocalFiles1_LocalFiles_Click);
             // 
             // fLocalFiles
             // 
@@ -185,7 +185,7 @@
         private System.Windows.Forms.FlowLayoutPanel panelLocalFiles;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton1;
+        private Bunifu.Framework.UI.BunifuFlatButton btnDone;
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl2;
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl3;
         private AddLocalFiles addLocalFiles;

@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using WMPLib;
 
 namespace Music
@@ -14,11 +10,14 @@ namespace Music
     {
         static MediaPlayer instance = new MediaPlayer();
         WindowsMediaPlayer player = new WindowsMediaPlayer();
-        string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Playlist";
+        private readonly string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Playlist";
         MediaPlayer()
         {
             if (!Directory.Exists(path))
+            {
                 Directory.CreateDirectory(path);
+
+            }
         }
         public static MediaPlayer Instance
         {
@@ -123,15 +122,15 @@ namespace Music
         }
         public void CreatePlaylist(string fileName, string title, List<string> listMedia = null)
         {
-            string filePath = path + fileName + ".wpl";
+            string filePath = path + @"\" + fileName + ".wpl";
             if(File.Exists(filePath))
             {
                 int i = 1;
-                while (File.Exists(path + fileName +" ("+i+").wpl"))
+                while (File.Exists(path + @"\"+ fileName +" ("+i+").wpl"))
                 {
                     i++;
                 }
-                filePath = path + fileName + " (" + i + ").wpl";
+                filePath = path + @"\" + fileName + " (" + i + ").wpl";
             }
             FileStream fileStream = File.Create(filePath);
             using (StreamWriter streamWriter = new StreamWriter(fileStream))

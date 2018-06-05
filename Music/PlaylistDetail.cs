@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using System.Resources;
+using System.Globalization;
 
 namespace Music
 {
@@ -13,10 +15,18 @@ namespace Music
         {
             InitializeComponent();
         }
-        public event EventHandler PlayAll_Click;
-        
+        public event EventHandler PlayAll_Click;      
         public event EventHandler Rename_Click;
         public event EventHandler Delete_Click;
+
+        public void ShowLanguage(ResourceManager resource, CultureInfo culture)
+        {
+            label2.Text = resource.GetString("Songs", culture);
+            btnPlayAll.Text = resource.GetString("btnPlayAll", culture);
+            btnRename.Text = resource.GetString("btnRename", culture);
+            btnDelete.Text = resource.GetString("btnDelete", culture);
+        }
+
         public void AddSong(Song value)
         {
             panelSongs.Controls.Add(value);
@@ -62,7 +72,7 @@ namespace Music
         {
             set
             {
-                lblTotalSong.Text = value.ToString()+" songs";
+                lblTotalSong.Text = value.ToString();
             }
         }
         public List<Song> ListSong

@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System.Globalization;
+using System.Resources;
+using System.Windows.Forms;
 
 namespace Music
 {
@@ -13,6 +15,12 @@ namespace Music
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("mailto:ndc07.it@gmail.com");
+        }
+        public void ShowLanguage(ResourceManager resource, CultureInfo culture)
+        {
+            label1.Text =  resource.GetString("version", culture);
+            label3.Text = resource.GetString("label_About", culture);
+            label4.Text = resource.GetString("label_Contact", culture);
         }
     }
 }

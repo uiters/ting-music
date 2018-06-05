@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Resources;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -20,20 +22,32 @@ namespace Music
         public  static readonly string installLink = Application.StartupPath + @"\InstallUpdate.exe";
         public bool IsUpdating = false;
         private Label label;
-
-
+        private string lbupdate1 = string.Empty;//check version
+        private string lbupdate2 = string.Empty;// download
+        private string lbupdate3 = string.Empty;// install
+        private string lbupdate4 = string.Empty;// no update
+        private string noInternet = string.Empty; // no internet
+        private string error = string.Empty; // error
         public event EventHandler CloseForm;
         public UpdateMusic(Label label)
         {
             this.label = label;
         }
-
+        public void ShowLangugae(ResourceManager resource, CultureInfo culture)
+        {
+            lbupdate1 = resource.GetString("lbupdate1", culture);
+            lbupdate2 = resource.GetString("lbupdate2", culture);
+            lbupdate3 = resource.GetString("lbupdate3", culture);
+            lbupdate4 = resource.GetString("lbupdate4", culture);
+            noInternet = resource.GetString("noInternet", culture);
+            error = resource.GetString("error", culture);
+        }
 
         public void CheckInternet()
         {
             if (InternetConnection.IsConnectedToInternet() == false)
             {
-                MessageBox.Show("No Internet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(noInternet, error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else GetVersionAvailable();
         }
@@ -46,12 +60,12 @@ namespace Music
                 Directory.Delete(source, true);
             }
             Directory.CreateDirectory(source);
-            Thread.Sleep(200);
+            Thread.Sleep(100);
             using (WebClient web = new WebClient())
             {
                 web.DownloadStringCompleted += Web_DownloadStringCompleted;
                 label.Visible = true;
-                label.Text = "Check version";
+                label.Text = lbupdate1;
                 web.DownloadStringAsync(uriVersion);
             }
         }
@@ -60,9 +74,9 @@ namespace Music
         {
             if (e.Result != Properties.Settings.Default.version)
             {
-                label.Text = "Downloading...";
+                label.Text = lbupdate2;
                 Update_Click(sender, null);
-            } else label.Text = "No Update";
+            } else label.Text = lbupdate4;
         }
         private void Update_Click(object sender, EventArgs e)
         {
@@ -78,7 +92,7 @@ namespace Music
 
         private void Web_DownloadFileZipCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            label.Text = "Ting will automatically install update the next time";
+            label.Text = lbupdate3;
             CloseForm?.Invoke(null, null);
             IsUpdating = false;
         }

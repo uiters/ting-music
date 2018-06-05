@@ -163,6 +163,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
             this.Controls.Add(this.panelRight);
             this.Controls.Add(this.panelLeft);
+            this.DoubleBuffered = true;
             this.Name = "Lyrics";
             this.Size = new System.Drawing.Size(850, 474);
             this.panelLeft.ResumeLayout(false);

@@ -65,6 +65,7 @@
             this.metroComboBox1.UseCustomForeColor = true;
             this.metroComboBox1.UseSelectable = true;
             this.metroComboBox1.UseStyleColors = true;
+            this.metroComboBox1.SelectedIndexChanged += new System.EventHandler(this.metroComboBox1_SelectedIndexChanged);
             // 
             // btnLocalFiles
             // 
@@ -164,7 +165,7 @@
             this.lblLanguage.OnHovercolor = System.Drawing.Color.Transparent;
             this.lblLanguage.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
             this.lblLanguage.selected = false;
-            this.lblLanguage.Size = new System.Drawing.Size(131, 40);
+            this.lblLanguage.Size = new System.Drawing.Size(174, 40);
             this.lblLanguage.TabIndex = 34;
             this.lblLanguage.Text = "     Language";
             this.lblLanguage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -333,11 +334,10 @@
             this.label.BackColor = System.Drawing.Color.Transparent;
             this.label.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.label.Location = new System.Drawing.Point(142, 340);
+            this.label.Location = new System.Drawing.Point(151, 340);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(57, 16);
+            this.label.Size = new System.Drawing.Size(0, 16);
             this.label.TabIndex = 92;
-            this.label.Text = "Pedding";
             this.label.Visible = false;
             // 
             // Setting

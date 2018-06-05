@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,9 +17,26 @@ namespace Music
     {
         public static string Folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\PlayPlist";
         public static string Path = Folder + @"\LocalFiles.txt";
+        private static string slabel2 = string.Empty;
+        private static string slabel1 = string.Empty;
+        private static string sbtnDone = string.Empty;
+        private static string deleteFolder = string.Empty;
+        private static string captionDelete = string.Empty;
+        public static void ShowLanguage(ResourceManager resource, CultureInfo culture)
+        {
+            slabel2 = resource.GetString("label_Add", culture);
+            slabel1 = resource.GetString("label1_Add", culture);
+            sbtnDone = resource.GetString("btnDone", culture);
+            deleteFolder = resource.GetString("deleteFolder", culture);
+            captionDelete = resource.GetString("captionDelete", culture);
+
+        }
         public fLocalFiles()
         {
             InitializeComponent();
+            label1.Text = slabel1;
+            label2.Text = slabel2;
+            btnDone.Text = sbtnDone;
             if (!Directory.Exists(Folder))
                 Directory.CreateDirectory(Folder);
             if (!File.Exists(Path))
@@ -40,9 +59,10 @@ namespace Music
 
         private void LocalFiles_LocalFiles_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("If you remove the \"Music\" folder from Music, it won't appear in Music anymore, but won't be deleted.", "Remove this folder?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            LocalFiles localFiles = sender as LocalFiles;
+            string title = deleteFolder.Replace("\"Music\"", "\"" + localFiles.Title + "\"");
+            if (MessageBox.Show(title, captionDelete , MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                LocalFiles localFiles = sender as LocalFiles;
                 RemovePath(localFiles.FolderPath);
                 LoadLocalFiles();
             }
@@ -54,7 +74,9 @@ namespace Music
             if (!Directory.Exists(Folder))
                 Directory.CreateDirectory(Folder);
             if (!File.Exists(Path))
-                File.Create(Path);
+            {
+                File.Create(Path).Close();
+            }
             return File.ReadAllLines(filePath);
         }
         public bool IsPathExists(string path, string folderPath)
