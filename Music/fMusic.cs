@@ -4,9 +4,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -34,42 +37,136 @@ namespace Music
         private int status;
         private float angles = 0;
         private bool isExchange = false;
-        
+        private ResourceManager resource;
+        private CultureInfo culture;
+        private bool checkSetting = true;
+
 
         public fMusic()
         {
             InitializeComponent();
-
+            resource = new ResourceManager("Music.Language.Lang", typeof(fMusic).Assembly);
+            LoadSettingLanguage();
+            
             myMusic.SongsClick += MyMusic_SongsClick;
 
             myMusic.Artist_Click += MyMusic_Artist_Click;
             myMusic.Album_Click += MyMusic_Album_Click;
             myMusic.SongsSorted += MyMusic_SongsSorted;
             setting.CloseForm += Setting_CloseForm;
+            setting.ChangeLangue += Setting_ChangeLangue;
             btnShuffle.Tag = "Off";
             btnRepeat.Tag = "Off";
             InitializeData();
+        }
+
+
+        #region Callback for Setting
+        private void Setting_ChangeLangue(object sender, EventArgs e)
+        {
+            this.LoadSettingLanguage();
+            lblTitle.Text = btnSetting.Text.Trim();
+        }
+        private void LoadSettingLanguage()
+        {
+            switch (Properties.Settings.Default.languge)
+            {
+                case 0: // English
+                    culture = CultureInfo.CreateSpecificCulture("En");
+                    break;
+                case 1: // viet nam
+                    culture = CultureInfo.CreateSpecificCulture("Vi");
+                    break;
+                default:
+                    break;
+            }
+            ShowLanguage();
+        }
+
+        private void ShowLanguage()
+        {
+            #region Chang button
+            btnMyMusic.Text = "      " + resource.GetString("btnMyMusic", culture);
+            btnRecentPlays.Text = "      " + resource.GetString("btnRecentPlays", culture);
+            btnNowPlaying.Text = "      " + resource.GetString("btnNowPlaying", culture);
+            btnPlayList.Text = "      " + resource.GetString("btnPlayList", culture);
+            btnSetting.Text = "      " + resource.GetString("btnSetting", culture);
+            btnAbout.Text = "      " + resource.GetString("btnAbout", culture);
+            menuItemPlay.Text = resource.GetString("play", culture);
+            menuItemPlayNext.Text = resource.GetString("playNext", culture);
+            menuItemAddTo.Text = resource.GetString("Add to", culture);
+            menuItemRemove.Text = resource.GetString("Remove", culture);
+            menuItemEditInfo.Text = resource.GetString("Edit info", culture);
+            menuItemProperties.Text = resource.GetString("Properites", culture);
+
+            #endregion
+
+            #region Language in MyMusic
+            myMusic.ShowLanguage(resource, culture);
+            #endregion
+
+            #region Language in SongsDetail
+            AlbumDetails.ShowLanguage(resource, culture);
+
+            #endregion
+
+            #region Language in PlaylistDetail
+            playlistDetail.ShowLanguage(resource, culture);
+            #endregion
+
+            #region Language in PlayList
+
+            playlist.ShowLanguage(resource, culture);
+
+            #endregion
+
+            #region Language in Setting
+            setting.ShowLanguage(resource, culture);
+            #endregion
+
+            #region Language in About
+            about.ShowLanguage(resource, culture);
+            #endregion
+
+            #region Language in Results
+            results.ShowLanguage(resource, culture);
+            #endregion
+
+            #region Language in LocalFile
+            fLocalFiles.ShowLanguage(resource, culture);
+            #endregion
+
+            #region Language in Create Playlist
+            fNewPlaylist.ShowLanguage(resource, culture);
+            #endregion
+
+            #region Language in fEditInfo
+            fEditInfo.ShowLanguage(resource, culture);
+            #endregion
+
+            #region Language in Properties
+            fProperties.ShowLanguage(resource, culture);
+            #endregion
         }
 
         private void Setting_CloseForm(object sender, EventArgs e)
         {
             this.FormClosed += FMusic_FormClosed;
         }
-
         private void FMusic_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (File.Exists(UpdateMusic.installLink))
             {
-                ProcessStartInfo info = new ProcessStartInfo(UpdateMusic.installLink);
-                info.CreateNoWindow = true;
-                info.UseShellExecute = false;
-                info.Verb = "runas";
-                Process.Start(info);
+                try
+                {
+                    Process.Start(UpdateMusic.installLink);
+                }
+                catch { }
             }
             else return;
         }
 
-
+        #endregion
 
 
 
@@ -113,7 +210,7 @@ namespace Music
             btnVolume.Iconimage = volume_up;
             btnPlay.Image = play;
             myMusic.BringToFront();
-            lblTitle.Text = "My music";
+            lblTitle.Text = btnMyMusic.Text.Trim();
             #endregion
             artists = myMusic.ListArtists;
             albums = myMusic.ListAlbums;
@@ -130,7 +227,6 @@ namespace Music
             myMusic.SongsClear();
             string[] listFile = MediaPlayer.Instance.LoadLocalFile();
             int width = panel.Width - 25;
-
             SongInfo info = new SongInfo();
             for (int i = 0; i < listFile.Length; i++)
             {
@@ -190,23 +286,46 @@ namespace Music
             labelTimeFrom.Text = "00:00";
             labelTimeTo.Text = songNow.TotalTime;
         }
-        
+
         public void LoadLyrics()
         {
+            if (indexNow == -1) return;
             string path = songsNowPlaying[indexNow].Path;
 
             SongInfo info = new SongInfo(path);
 
-            lyrics.SongImage = info.LoadImageSong;
             lyrics.LyricsText = info.Lyrics;
             lyrics.ArtistName = info.Artist;
             lyrics.SongName = info.Song;
 
+
+            if (string.IsNullOrWhiteSpace(lyrics.LyricsText) && !string.IsNullOrWhiteSpace(lyrics.SongName))
+            {
+                lyrics.LyricsText = (string)Lyric.Lyric.Instance.GetLyric(lyrics.SongName, lyrics.ArtistName);
+                info.Lyrics = lyrics.LyricsText;
+                try
+                {
+                    info.Save();
+                }
+                catch
+                {
+
+                }
+                finally
+                {
+                    info = null;
+                }
+            }
+
+
+
+
+            lyrics.SongImage = songsNowPlaying[indexNow].ImageSong;
             info = null;
-            GC.Collect();
-            //if (lyrics.LyricsText == string.Empty)
             //    lyrics.LyricsText=(string)Lyric.LyricSong.Instance.GetLyric(lyrics.ArtistName, lyrics.SongName)?? "";
             //timer4.Start();
+            GC.Collect();
+
         }
         public void LoadNowPlaying()
         {
@@ -265,7 +384,6 @@ namespace Music
         public void LoadPlaylistDetails(string playlistPath)
         {
             List<string> listMediaPath = MediaPlayer.Instance.ReadPlaylist(playlistPath);
-
             SongInfo info = new SongInfo();
             for (int i = 0; i < listMediaPath.Count; i++)
             {
@@ -278,6 +396,7 @@ namespace Music
                     song.BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro; // change color
                 playlistDetail.AddSong(song);
             }
+            info = null;
             GC.Collect();
         }
         public void ChangeNormalColorOnPanelLeft(object sender)
@@ -504,7 +623,7 @@ namespace Music
             myMusic.HideSongs();
             nowPlaying.Visible = false;
             isExchange = true;
-            lblTitle.Text = "My music";
+            lblTitle.Text = btnMyMusic.Text.Trim();
             ChangeNormalColorOnPanelLeft(sender);
             int width = panel.Width - 25;
 
@@ -529,6 +648,7 @@ namespace Music
 
             status = 1;
             myMusic.HideSongs();
+            lblTitle.Text = btnRecentPlays.Text.Trim(); 
 
             isExchange = true;
             ChangeNormalColorOnPanelLeft(sender);
@@ -549,9 +669,9 @@ namespace Music
         private void btnNowPlaying_Click_1(object sender, EventArgs e)
         {
 
-            lblTitle.Text = "Now playing";
 
             CloseRotateTimer();
+            lblTitle.Text = btnNowPlaying.Text.Trim();
 
 
             status = 2;
@@ -577,7 +697,7 @@ namespace Music
         {
             CloseRotateTimer();
             status = 3;
-            lblTitle.Text = "Playlist";
+            lblTitle.Text = btnPlayList.Text.Trim();
             LoadListPlaylist();
             playlist.BringToFront();
             actionScroll = playlistDetail.SetScrollControl;
@@ -587,7 +707,7 @@ namespace Music
         private void btnSetting_Click_1(object sender, EventArgs e)
         {
 
-            lblTitle.Text = "Setting";
+            lblTitle.Text = btnSetting.Text.Trim();
             setting.lblWarning.Visible= setting.lblLanguage.Visible = setting.metroComboBox1.Visible = setting.btnLocalFiles.Visible = setting.btnUpdates.Visible = true;
             setting.panel.Location = new Point(71,135);
 
@@ -600,7 +720,7 @@ namespace Music
         private void btnAbout_Click_1(object sender, EventArgs e)
         {
 
-            lblTitle.Text = "About";
+            lblTitle.Text = btnAbout.Text.Trim();
 
             CloseRotateTimer();
 
@@ -752,8 +872,10 @@ namespace Music
             if (indexNow == -1) return;
             // song pre
             NextSong(); // set index song next
+            if (actionOpenLyric == CloseLyric)
+                LoadLyrics();
             SetSong();
-            LoadLyrics();
+
             autoNextSongTimer.Start();
             timeLine.Start();
             imageSong = new Bitmap(lyrics.SongImage);
@@ -765,8 +887,10 @@ namespace Music
             //MediaPlayer.Instance.Previous();
             if (indexNow == -1) return;
             PreviousSong(); // set index song next
+            if (actionOpenLyric == CloseLyric)
+                LoadLyrics();
             SetSong();
-            LoadLyrics();
+
             autoNextSongTimer.Start();
             timeLine.Start();
             imageSong = new Bitmap(lyrics.SongImage);
@@ -805,7 +929,7 @@ namespace Music
                 int indexPre = indexNow;
                 NextSong();
                 //ChangeColorPlaySong(songNow);
-                if ((string)btnRepeat.Tag == "Off" && indexNow < indexPre)
+                if ((string)btnRepeat.Tag == "Off" && indexNow < indexPre && (btnShuffle.Tag as string) == "Off")
                 {
                     songNow.ImageButton = play;
                     songNow = null;
@@ -900,10 +1024,11 @@ namespace Music
         #region Method
         private void OpenLyric()
         {
-            rotateTimer.Start();
             LoadLyrics();
             lyrics.BringToFront();
             actionOpenLyric = CloseLyric;
+            rotateTimer.Start();
+
         }
         private void CloseLyric()
         {
@@ -1052,7 +1177,8 @@ namespace Music
             // song pre
             NextSong(); // set index song next
             SetSong();
-            LoadLyrics();
+            if (actionOpenLyric == OpenLyric)
+                LoadLyrics();
             autoNextSongTimer.Start();
             timeLine.Start();
             imageSong = new Bitmap(lyrics.SongImage);
@@ -1238,7 +1364,8 @@ namespace Music
             }
         }
 
-        bool checkSetting = true;
+
+
         private void FMusic_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.ControlKey)
@@ -1272,26 +1399,37 @@ namespace Music
         
         public List<Song> Search(string keyword)
         {
+            keyword = ConvertString(keyword.Trim().ToLower());
             List<Song> songs = new List<Song>();
-            foreach (var item in songsFull)
+            int j = 0;
+            for (int i = 0; i < songsFull.Count; i++)
             {
-                if(item.SongName.ToLower().Contains(keyword.ToLower()))
+                if (ConvertString(songsFull[i].SongName.ToLower()).Contains(keyword))
                 {
-                    songs.Add(item);
+                    songs.Add(songsFull[i]);
+                    songsFull[i].BackColor = (j++ % 2 == 0) ? Color.Silver : Color.Gainsboro;
                 }
             }
             return songs;
         }
+        public static string ConvertString(string s)
+        {
+            Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
+            string temp = s.Normalize(NormalizationForm.FormD);
+            return regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
+        }
         private void btnSearchMusic_Click(object sender, EventArgs e)
         {
-            results.Clear();
-            lblTitle.Text = "Search songs";
+            if (string.IsNullOrWhiteSpace(txbSearchMusic.Text))
+                return;
             results.BringToFront();
 
-            List<Song> songs = new List<Song>();
+            results.Clear();
+            lblTitle.Text = resource.GetString("search", culture);
+
+            List<Song> songs;
             songs = Search(txbSearchMusic.Text);
-            songsNowPlaying.Clear();
-            songsNowPlaying.AddRange(songs);
+
             indexNow = 0;
 
             results.Title = txbSearchMusic.Text;
@@ -1300,6 +1438,6 @@ namespace Music
             txbSearchMusic.Text = string.Empty;
         }
 
-        
+
     }
 }

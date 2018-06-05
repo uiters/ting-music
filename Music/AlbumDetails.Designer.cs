@@ -31,6 +31,7 @@
             this.image = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.background = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.lblTotalSong = new System.Windows.Forms.Label();
             this.lblPlaylistName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.image)).BeginInit();
@@ -60,6 +61,7 @@
             // background
             // 
             this.background.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.background.Controls.Add(this.label2);
             this.background.Controls.Add(this.lblTotalSong);
             this.background.Controls.Add(this.lblPlaylistName);
             this.background.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -67,6 +69,20 @@
             this.background.Name = "background";
             this.background.Size = new System.Drawing.Size(692, 158);
             this.background.TabIndex = 82;
+            // 
+            // label2
+            // 
+            this.label2.AutoEllipsis = true;
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
+            this.label2.Location = new System.Drawing.Point(51, 67);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 14);
+            this.label2.TabIndex = 87;
+            this.label2.Text = "songs";
             // 
             // lblTotalSong
             // 
@@ -78,9 +94,9 @@
             this.lblTotalSong.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
             this.lblTotalSong.Location = new System.Drawing.Point(32, 67);
             this.lblTotalSong.Name = "lblTotalSong";
-            this.lblTotalSong.Size = new System.Drawing.Size(56, 14);
+            this.lblTotalSong.Size = new System.Drawing.Size(21, 14);
             this.lblTotalSong.TabIndex = 86;
-            this.lblTotalSong.Text = "69 songs";
+            this.lblTotalSong.Text = "69";
             // 
             // lblPlaylistName
             // 
@@ -121,5 +137,6 @@
         private System.Windows.Forms.Panel background;
         private System.Windows.Forms.Label lblTotalSong;
         public System.Windows.Forms.Label lblPlaylistName;
+        private System.Windows.Forms.Label label2;
     }
 }

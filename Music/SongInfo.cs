@@ -73,6 +73,7 @@ namespace Music
                 else
                     return file.Tag.Lyrics.Trim();
             }
+            set { file.Tag.Lyrics = value; }
         }
         public System.Drawing.Image LoadImageSong
         {
@@ -102,7 +103,9 @@ namespace Music
         }
         #endregion
 
+
         #region Method
+
         internal void SetPath(string filePath)
         {
             if (file != null)
@@ -113,6 +116,18 @@ namespace Music
         #endregion
 
         #region Method Static
+        public void Save()
+        {
+            file.Save();
+        }
+        public static void SaveLyrics(string path, string lyrics)
+        {
+            using (TagLib.File file = TagLib.File.Create(path))
+            {
+                file.Tag.Lyrics = lyrics;
+                file.Save();
+            }
+        }
 
         public static void Save(string filePath, string songTitle, string songArtist, string albumTitle, string albumArtist, string gerne, uint year)
         {

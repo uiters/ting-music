@@ -25,13 +25,25 @@ namespace Music.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1.0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.0.1")]
         public string version {
             get {
                 return ((string)(this["version"]));
             }
             set {
                 this["version"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int languge {
+            get {
+                return ((int)(this["languge"]));
+            }
+            set {
+                this["languge"] = value;
             }
         }
     }

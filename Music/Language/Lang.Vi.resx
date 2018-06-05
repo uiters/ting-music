@@ -118,135 +118,219 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Albums" xml:space="preserve">
-    <value>Albums</value>
+    <value>Album</value>
   </data>
   <data name="Artists" xml:space="preserve">
-    <value>Artists</value>
+    <value>Ca Sĩ</value>
   </data>
   <data name="btnAbout" xml:space="preserve">
-    <value>About</value>
-  </data>
-  <data name="btnMyMusic" xml:space="preserve">
-    <value>My music</value>
-  </data>
-  <data name="btnNowPlaying" xml:space="preserve">
-    <value>Now playing</value>
-  </data>
-  <data name="btnPlayList" xml:space="preserve">
-    <value>Playlist</value>
-  </data>
-  <data name="btnRecentPlays" xml:space="preserve">
-    <value>Recent plays</value>
-  </data>
-  <data name="btnSetting" xml:space="preserve">
-    <value>Setting</value>
-  </data>
-  <data name="btnShuffleAllAlbums" xml:space="preserve">
-    <value>Shuffle all</value>
-  </data>
-  <data name="labelTitle" xml:space="preserve">
-    <value>My music</value>
-  </data>
-  <data name="Songs" xml:space="preserve">
-    <value>Songs</value>
+    <value>Giới Thiệu</value>
   </data>
   <data name="btnCancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Huỷ</value>
   </data>
   <data name="btnClose" xml:space="preserve">
-    <value>Close</value>
+    <value>Đóng</value>
   </data>
   <data name="btnDelete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Xoá</value>
   </data>
   <data name="btnLanguge" xml:space="preserve">
-    <value>Language</value>
+    <value>Ngôn ngữ</value>
+  </data>
+  <data name="btnMyMusic" xml:space="preserve">
+    <value>Nhạc Của Tôi</value>
   </data>
   <data name="btnNewPlaylist" xml:space="preserve">
-    <value>Create playlist</value>
+    <value>Tạo danh sách</value>
   </data>
   <data name="btnNewPlaylist1" xml:space="preserve">
-    <value>New playlist</value>
+    <value>Danh sách nhạc mới:</value>
+  </data>
+  <data name="btnNowPlaying" xml:space="preserve">
+    <value>Đang Phát</value>
   </data>
   <data name="btnPlayAll" xml:space="preserve">
-    <value>Play all</value>
+    <value>Chơi tất cả</value>
+  </data>
+  <data name="btnPlayList" xml:space="preserve">
+    <value>Danh Sách Nhạc</value>
+  </data>
+  <data name="btnRecentPlays" xml:space="preserve">
+    <value>Lịch Sử Phát</value>
   </data>
   <data name="btnRename" xml:space="preserve">
-    <value>Rename playlist</value>
+    <value>Đổi tên</value>
   </data>
   <data name="btnRenamePlaylist" xml:space="preserve">
-    <value>Rename</value>
+    <value>Đổi tên</value>
   </data>
-  <data name="bunifuFlatButton2" xml:space="preserve">
-    <value>Save</value>
+  <data name="btnSetting" xml:space="preserve">
+    <value>Cài Đặt</value>
+  </data>
+  <data name="btnShuffleAllAlbums" xml:space="preserve">
+    <value>Ngãu nhiên</value>
+  </data>
+  <data name="btnSave" xml:space="preserve">
+    <value>Lưu</value>
   </data>
   <data name="English" xml:space="preserve">
-    <value>English</value>
+    <value>Tiếng Anh</value>
   </data>
   <data name="label1" xml:space="preserve">
-    <value>Song title      :</value>
+    <value>Tên bài hát     :</value>
   </data>
   <data name="label1_Add" xml:space="preserve">
-    <value>Right now, we're watching these folders:</value>
+    <value>Chúng tôi đang sử đụng các thư mục này.</value>
   </data>
   <data name="label2" xml:space="preserve">
-    <value>Song artist    :</value>
+    <value>Tên ca sĩ    :</value>
   </data>
   <data name="label3" xml:space="preserve">
-    <value>Album title   :</value>
+    <value>Tên Album   :</value>
   </data>
   <data name="label4" xml:space="preserve">
     <value>Album artist :</value>
   </data>
   <data name="label5" xml:space="preserve">
-    <value>Genre           :</value>
+    <value>Thể loại           :</value>
   </data>
   <data name="label6" xml:space="preserve">
-    <value>Length          :</value>
+    <value>Thời lượng     :</value>
   </data>
   <data name="label7" xml:space="preserve">
-    <value>Year              :</value>
+    <value>Năm              :</value>
   </data>
   <data name="label8" xml:space="preserve">
-    <value>Copyright    :</value>
+    <value>Bản quyền    :</value>
   </data>
   <data name="label9" xml:space="preserve">
-    <value>File location:</value>
+    <value>Đường dẫn:</value>
   </data>
   <data name="labelSort" xml:space="preserve">
-    <value>Sort by</value>
+    <value>Sắp xếp theo: </value>
+  </data>
+  <data name="labelTitle" xml:space="preserve">
+    <value>Nhạc của tôi</value>
   </data>
   <data name="label_About" xml:space="preserve">
-    <value>All right reserved.</value>
+    <value>Tất cả các quyền.</value>
   </data>
   <data name="label_Add" xml:space="preserve">
-    <value>Build your collection from your local music files</value>
+    <value>Tập hợp các bộ sưu tập của bạn tại đây</value>
   </data>
   <data name="label_Contact" xml:space="preserve">
-    <value>Contact us:</value>
+    <value>Hỗ trợ:</value>
   </data>
   <data name="lblSongName" xml:space="preserve">
-    <value>Properties</value>
+    <value>Thông Tin</value>
   </data>
   <data name="lblSongSearch" xml:space="preserve">
-    <value>Results for</value>
+    <value>Kết quả cho "</value>
   </data>
   <data name="Minutes" xml:space="preserve">
-    <value>Minutes</value>
+    <value>Phút</value>
   </data>
   <data name="settingLocal" xml:space="preserve">
-    <value>Your local music files</value>
+    <value>Thư mục phát nhạc</value>
   </data>
   <data name="shutdown" xml:space="preserve">
-    <value>Shut down timer</value>
+    <value>Thời gian tắt</value>
+  </data>
+  <data name="Songs" xml:space="preserve">
+    <value>Bài Hát</value>
   </data>
   <data name="txbNewPlaylist" xml:space="preserve">
-    <value>Name this playlist</value>
+    <value>Tên của danh sách nhạc</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>Check for Updates</value>
+    <value>Kiểm tra cập nhật</value>
   </data>
   <data name="Vietnam" xml:space="preserve">
-    <value>Vietnamese</value>
+    <value>Tiếng Việt</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Không</value>
+  </data>
+  <data name="lblStatusOff" xml:space="preserve">
+    <value>Tắt</value>
+  </data>
+  <data name="lblStatusOn" xml:space="preserve">
+    <value>Mở</value>
+  </data>
+  <data name="lblWarning" xml:space="preserve">
+    <value>* Thay đổi sẽ được áp dụng ở lần mở ứng dụng tiếp theo.</value>
+  </data>
+  <data name="lbStatus" xml:space="preserve">
+    <value>Trạng thái:</value>
+  </data>
+  <data name="version" xml:space="preserve">
+    <value>Phiên bản:</value>
+  </data>
+  <data name="btnDone" xml:space="preserve">
+    <value>Xong</value>
+  </data>
+  <data name="captionDelete" xml:space="preserve">
+    <value>Bạn có muốn xoá?</value>
+  </data>
+  <data name="deleteFolder" xml:space="preserve">
+    <value>Nếu bạn xoá thư mục "Music", nó sẽ không xuất hiện nữa. Nhưng bạn có thể huỷ thao tác này.</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Lỗi</value>
+  </data>
+  <data name="lbupdate1" xml:space="preserve">
+    <value>Kiểm tra phiên bản hiện tại</value>
+  </data>
+  <data name="lbupdate2" xml:space="preserve">
+    <value>Đang tải cập nhật...</value>
+  </data>
+  <data name="lbupdate3" xml:space="preserve">
+    <value>Cập nhật sẽ áp dụng sau khi bạn mở lại Ting Music.</value>
+  </data>
+  <data name="lbupdate4" xml:space="preserve">
+    <value>Không có cập nhật mới</value>
+  </data>
+  <data name="noInternet" xml:space="preserve">
+    <value>Không có kết nối mạng.</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Tìm kiếm bài hát</value>
+  </data>
+  <data name="Add to" xml:space="preserve">
+    <value>Thêm tới</value>
+  </data>
+  <data name="Edit info" xml:space="preserve">
+    <value>Chỉnh sủa thông tin</value>
+  </data>
+  <data name="edit1" xml:space="preserve">
+    <value>Chỉnh sủa thành công</value>
+  </data>
+  <data name="edit2" xml:space="preserve">
+    <value>Thông báo</value>
+  </data>
+  <data name="editerror" xml:space="preserve">
+    <value>Chỉnh sủa thất bại. Bạn phải chơi một bài nhạc khác và thủ lại.</value>
+  </data>
+  <data name="lblInfo" xml:space="preserve">
+    <value>Chỉnh sửa thông tin</value>
+  </data>
+  <data name="play" xml:space="preserve">
+    <value>Chơi</value>
+  </data>
+  <data name="playNext" xml:space="preserve">
+    <value>Bài kế tiếp</value>
+  </data>
+  <data name="Properites" xml:space="preserve">
+    <value>Thông Tin</value>
+  </data>
+  <data name="question1" xml:space="preserve">
+    <value>Bạn có muốn chỉnh sửa thông tin.</value>
+  </data>
+  <data name="question2" xml:space="preserve">
+    <value>Hỏi</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Xoá bỏ</value>
   </data>
 </root>

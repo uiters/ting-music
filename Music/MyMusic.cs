@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using System.Resources;
+using System.Globalization;
 
 namespace Music
 {
@@ -100,6 +102,21 @@ namespace Music
             {
                 return panelSongs.Controls.Cast<Song>().ToList();
             }
+        }
+        public void ShowLanguage(ResourceManager resource, CultureInfo culture)
+        {
+            Songs.Text = resource.GetString("Songs", culture);
+            Albums.Text = resource.GetString("Albums", culture);
+            Artists.Text = resource.GetString("Artists", culture);
+            label1.Text = resource.GetString("labelSort", culture);
+            label4.Text = resource.GetString("labelSort", culture);
+            label5.Text = resource.GetString("labelSort", culture);
+            comboBoxSortBySongs.Items.RemoveAt(0);
+            string none = resource.GetString("None", culture);
+            comboBoxSortBySongs.Items.Insert(0, none);
+            //label4.Text = resource.GetString("labelSort", culture);
+            //label4.Text = resource.GetString("labelSort", culture);
+
         }
 
         #endregion
@@ -327,5 +344,7 @@ namespace Music
             ChangeColor(panelArtists, artists.ToArray());
         }
         #endregion
+
+
     }
 }

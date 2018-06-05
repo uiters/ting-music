@@ -36,35 +36,42 @@ namespace Lyric
         {
             if (InternetConnection.IsConnectedToInternet() == false)
                 return string.Empty;
-            document = html.LoadFromBrowser("https://mp3.zing.vn/tim-kiem/bai-hat.html?q=" + songName);
+            if (string.IsNullOrWhiteSpace(artist))
+                document = html.LoadFromBrowser("https://mp3.zing.vn/tim-kiem/bai-hat.html?q=" + songName);
+            else
+                document = html.LoadFromBrowser("https://mp3.zing.vn/tim-kiem/bai-hat.html?q=" + songName + ' ' + artist);
             string link = null;
             try
             {
-                if (artist == null)
-                {
-                    var data = document.DocumentNode.QuerySelector(".fl .title-song h3 a");
-                    link = @"https://mp3.zing.vn" + data.Attributes["href"].DeEntitizeValue;
-                    document = html.LoadFromBrowser(link);
-                }
-                else
-                {
-                    var data = document.DocumentNode.QuerySelectorAll(".fl .title-song h3 a");
-                    foreach (var item in data)
-                    {
-                        if (item.InnerText.Contains(artist))
-                        {
-                            link = @"https://mp3.zing.vn" + item.Attributes["href"].DeEntitizeValue;
-                            document = html.LoadFromBrowser(link);
-                            break;
-                        }
-                    }
-                    if (link == null)
-                    {
-                        document = null;
-                        return string.Empty;
-                    }
+                var data = document.DocumentNode.QuerySelector(".fl .title-song h3 a");
+                link = @"https://mp3.zing.vn" + data.Attributes["href"].DeEntitizeValue;
+                document = html.LoadFromBrowser(link);
 
-                }
+                //if (string.IsNullOrWhiteSpace(artist))
+                //{
+                //    var data = document.DocumentNode.QuerySelector(".fl .title-song h3 a");
+                //    link = @"https://mp3.zing.vn" + data.Attributes["href"].DeEntitizeValue;
+                //    document = html.LoadFromBrowser(link);
+                //}
+                //else
+                //{
+                //    var data = document.DocumentNode.QuerySelectorAll(".fl .title-song h3 a");
+                //    foreach (var item in data)
+                //    {
+                //        if (item.InnerText.Contains(artist))
+                //        {
+                //            link = @"https://mp3.zing.vn" + item.Attributes["href"].DeEntitizeValue;
+                //            document = html.LoadFromBrowser(link);
+                //            break;
+                //        }
+                //    }
+                //    if (link == null)
+                //    {
+                //        document = null;
+                //        return string.Empty;
+                //    }
+
+                //}
                 var lyric = document.DocumentNode.QuerySelector(".fn-container [id] p");
                 document = null;
                 if (lyric == null)

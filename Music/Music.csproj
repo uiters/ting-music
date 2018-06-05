@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -53,6 +53,10 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\iconMusic.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bunifu_UI_v1.52">
@@ -159,16 +163,6 @@
     <Compile Include="LocalFiles.Designer.cs">
       <DependentUpon>LocalFiles.cs</DependentUpon>
     </Compile>
-    <Compile Include="Languge\El.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>El.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Languge\Vi.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Vi.resx</DependentUpon>
-    </Compile>
     <Compile Include="Lyrics.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -266,16 +260,10 @@
     <EmbeddedResource Include="fRenamePlaylist.resx">
       <DependentUpon>fRenamePlaylist.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Language\Lang.En.resx" />
+    <EmbeddedResource Include="Language\Lang.Vi.resx" />
     <EmbeddedResource Include="LocalFiles.resx">
       <DependentUpon>LocalFiles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Languge\El.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>El.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Languge\Vi.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Vi.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Lyrics.resx">
       <DependentUpon>Lyrics.cs</DependentUpon>
@@ -309,6 +297,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

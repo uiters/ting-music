@@ -42,7 +42,7 @@ namespace Music
         {
             get
             {
-                return pictureBoxSong.Image;
+                return (Image)pictureBoxSong.Image;
             }
             set
             {

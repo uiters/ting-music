@@ -15,7 +15,7 @@ namespace Music
         private List<Song> songs = new List<Song>();
         public List<Song> Songs { get => songs; }
         private AlbumDetails albumDetails = new AlbumDetails();
-        public AlbumDetails fDetails { get { albumDetails.totalSong = songs.Count; return albumDetails; } }
+        public AlbumDetails fDetails { get { albumDetails.TotalSong = songs.Count; return albumDetails; } }
 
         public Myplaylist()
         {
@@ -52,8 +52,8 @@ namespace Music
             artist.songs.Add(song);
             artist.labelPlaylistName.Text = song.ArtistName;
             artist.btnImage.BackgroundImage = song.ImageSong;
-            artist.albumDetails.PlaylistImage = song.ImageSong;
-            artist.albumDetails.PlaylistName = song.ArtistName;
+            artist.albumDetails.ImageShow = song.ImageSong;
+            artist.albumDetails.NameFull = song.ArtistName;
             
             return artist;
         }
@@ -64,8 +64,8 @@ namespace Music
             album.songs.Add(song);
             album.labelPlaylistName.Text = song.Album;
             album.btnImage.BackgroundImage = song.ImageSong;
-            album.albumDetails.PlaylistImage = song.ImageSong;
-            album.albumDetails.PlaylistName = song.ArtistName;
+            album.albumDetails.ImageShow = song.ImageSong;
+            album.albumDetails.NameFull = song.ArtistName;
             return album;
         }
 

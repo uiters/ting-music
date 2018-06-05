@@ -1,22 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
+using System.Resources;
+using System.Globalization;
 
 namespace Music
 {
     public partial class AlbumDetails : UserControl
     {
+        private static ResourceManager resource;
+        private static CultureInfo culture;
+        public static void ShowLanguage(ResourceManager resources, CultureInfo cultures)
+        {
+            culture = cultures;
+            resource = resources;
+        }
         public AlbumDetails()
         {
             InitializeComponent();
+            label2.Text = resource.GetString("Songs", culture);
+
         }
-        public Image PlaylistImage
+        public Image ImageShow
         {
             get
             {
@@ -28,7 +32,7 @@ namespace Music
                 background.BackgroundImage= new Bitmap(PlaylistDetail.CropImage(value));
             }
         }
-        public string PlaylistName
+        public string NameFull
         {
             get
             {
@@ -39,11 +43,11 @@ namespace Music
                 lblPlaylistName.Text = value;
             }
         }
-        public int totalSong
+        public int TotalSong
         {
             set
             {
-                lblTotalSong.Text = value.ToString() + " songs";
+                lblTotalSong.Text = value.ToString();
             }
         }
     }
