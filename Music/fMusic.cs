@@ -49,7 +49,7 @@ namespace Music
             LoadSettingLanguage();
             
             myMusic.SongsClick += MyMusic_SongsClick;
-
+            myMusic.Shuff_Click += MyMusic_Shuff_Click;
             myMusic.Artist_Click += MyMusic_Artist_Click;
             myMusic.Album_Click += MyMusic_Album_Click;
             myMusic.SongsSorted += MyMusic_SongsSorted;
@@ -59,6 +59,8 @@ namespace Music
             btnRepeat.Tag = "Off";
             InitializeData();
         }
+
+
 
 
         #region Callback for Setting
@@ -171,6 +173,10 @@ namespace Music
 
 
         #region CallBack For MyMusic
+        private void MyMusic_Shuff_Click(object sender, EventArgs e)
+        {
+            BtnShuffle_Click(sender, e);
+        }
         private void MyMusic_SongsClick(object sender, EventArgs e)
         {
             isExchange = true;
@@ -351,7 +357,7 @@ namespace Music
                 if (MediaPlayer.Instance.ReadPlaylist(item).Count > 0)
                     myplaylist.PlaylistImage = SongInfo.GetImageSong(MediaPlayer.Instance.ReadPlaylist(item)[0]);
 
-                playlist.myplaylist = myplaylist;
+                playlist.AddMyplaylist(myplaylist);
                 //ContextMenuStrip
                 (contextMenuStripSong.Items[2] as ToolStripMenuItem).DropDownItems.Add(myplaylist.PlaylistName,null, MenuItem_Click);
             }
@@ -419,13 +425,23 @@ namespace Music
                 songsNowPlaying[i].ImageButton = play;
             }
         }
-        public void ChangeColorLeftMouseButton(Song song=null)
+        public void ChangeColorLeftMouseButton(Song song = null)
         {
             if (status < 4)
             {
-                for (int i = 0; i < songsNowPlaying.Count; i++)
+                if (status != 1)
                 {
-                    songsNowPlaying[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
+                    for (int i = 0; i < songsNowPlaying.Count; i++)
+                    {
+                        songsNowPlaying[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < songsRecent.Count; i++)
+                    {
+                        songsRecent[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
+                    }
                 }
             }
             else
@@ -436,14 +452,14 @@ namespace Music
                     songs[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
                 }
             }
-                if (isCtrl || isCtrlA)
-                    foreach (var item in songsSelected)
-                    {
-                        item.BackColor = Color.Gray;
-                    }
-                if (!isCtrl)
-                    if (song != null)
-                        song.BackColor = Color.Gray;
+            if (isCtrl || isCtrlA)
+                foreach (var item in songsSelected)
+                {
+                    item.BackColor = Color.Gray;
+                }
+            if (!isCtrl)
+                if (song != null)
+                    song.BackColor = Color.Gray;
         }
         public void ChangeColorRightMouseButton(Song song)
         {
@@ -458,9 +474,18 @@ namespace Music
         {
             if (status < 4)
             {
-                for (int i = 0; i < songsNowPlaying.Count; i++)
+                if (status != 1)
                 {
-                    songsNowPlaying[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
+                    for (int i = 0; i < songsNowPlaying.Count; i++)
+                    {
+                        songsNowPlaying[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
+                    }
+                }else
+                {
+                    for (int i = 0; i < songsRecent.Count; i++)
+                    {
+                        songsRecent[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
+                    }
                 }
             }else
             {
@@ -625,15 +650,19 @@ namespace Music
             isExchange = true;
             lblTitle.Text = btnMyMusic.Text.Trim();
             ChangeNormalColorOnPanelLeft(sender);
-            int width = panel.Width - 25;
-
-            for (int i = 0; i < songsLocalFile.Count; i++)
+            if(myMusic.SelectIndexChange() == false)
             {
-                songsLocalFile[i].Width = width;
-                songsLocalFile[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
-                //myMusic.AddSong(songsLocalFile[i]);
+                int width = panel.Width - 25;
+
+                for (int i = 0; i < songsLocalFile.Count; i++)
+                {
+                    songsLocalFile[i].Width = width;
+                    songsLocalFile[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
+                    //myMusic.AddSong(songsLocalFile[i]);
+                }
+                myMusic.AddSongs(songsLocalFile.ToArray());
             }
-            myMusic.AddSongs(songsLocalFile.ToArray());
+
             actionScroll = myMusic.SetScrollSongInSongs;
             actionScroll(songNow);
             myMusic.ShowSongs();
@@ -1244,8 +1273,11 @@ namespace Music
 
         private void playlistDetail_PlayAll_Click(object sender, EventArgs e)
         {
+            if(playlistDetail.ListSong.Count == 0)
+            {
+                return;
+            }
             songsNowPlaying = playlistDetail.ListSong;
-
             ChangeIconListSong();
             songNow = songsNowPlaying[0];
             if (songNow is null) return;

@@ -196,8 +196,8 @@ namespace Music
             return null;
         }
         public void RenamePlaylist(string filePath,string newTitle)
-        {          
-           
+        {
+            
             string[] lines = File.ReadAllLines(filePath);
             for (int i = 0; i < lines.Length; i++)
             {
@@ -211,11 +211,11 @@ namespace Music
             if (File.Exists(filePath))
             {
                 int i = 1;
-                while (File.Exists(path + newTitle + " (" + i + ").wpl"))
+                while (File.Exists(path + @"\" + newTitle + " (" + i + ").wpl"))
                 {
                     i++;
                 }
-                string newFilePath =path + newTitle + " (" + i + ").wpl";
+                string newFilePath =path + @"\" + newTitle + " (" + i + ").wpl";
                 File.Move(filePath, newFilePath);
             }
         }

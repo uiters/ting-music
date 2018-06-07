@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Resources;
 using System.Globalization;
+using System.Linq;
 
 namespace Music
 {
@@ -18,13 +19,11 @@ namespace Music
             label1.Text = resourceManager.GetString("labelSort", cultureInfo);
         }
         public event EventHandler NewPlaylist_Click;
-        public Myplaylist myplaylist
+        public void AddMyplaylist(Myplaylist value)
         {
-            set
-            {
-                panelSongs.Controls.Add(value);
-            }
+            panelSongs.Controls.Add(value);
         }
+
         public Control ScrollControl
         {
             set
@@ -36,23 +35,42 @@ namespace Music
         {
             panelSongs.Controls.Clear();
         }
-        public List<Control> listControl
-        {
-            get
-            {
-                List<Control> listcontrol = new List<Control>();
-                foreach (Control item in panelSongs.Controls)
-                {
-                    listcontrol.Add(item);
-                }
-                return listcontrol;
-            }
-        }
 
         private void btnNewPlaylist_Click(object sender, EventArgs e)
         {
             if (NewPlaylist_Click != null)
                 NewPlaylist_Click(this, e);
+        }
+
+        private void ComboBoxSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox combo = sender as ComboBox;
+            switch (combo.SelectedIndex)
+            {
+                case 0:
+                    Sort_AtoZ();
+                    break;
+                case 1:
+                    Sort_ZtoA();
+                    break;
+                default:
+                    Sort_AtoZ();
+                    break;
+            }
+        }
+
+        private void Sort_ZtoA()
+        {
+            List<Myplaylist> controls = panelSongs.Controls.Cast<Myplaylist>().ToList();
+            controls.Sort(UISort.iCompareArtistZtoA);
+            MyMusic.ChangeColor(panelSongs, controls.ToArray());     
+        }
+
+        private void Sort_AtoZ()
+        {
+            List<Myplaylist> controls = panelSongs.Controls.Cast<Myplaylist>().ToList();
+            controls.Sort(UISort.iCompareArtistAtoZ);
+            MyMusic.ChangeColor(panelSongs, controls.ToArray());
         }
     }
 }

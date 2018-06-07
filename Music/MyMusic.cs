@@ -26,18 +26,51 @@ namespace Music
         public event EventHandler Artist_Click;
         public event EventHandler Album_Click;
         public event EventHandler SongsSorted;
-
+        public event EventHandler Shuff_Click;
 
         public MyMusic()
         {
             InitializeComponent();
-            btnShuffleAllAlbums.IconVisible = true;
+            bunifuFlatButton1.IconVisible = true;
             btnShuffleAllSongs.IconVisible = true;
             btnShuufleAllArtists.IconVisible = true;
         }
 
         #region Method
-        private void ChangeColor(FlowLayoutPanel panel, Control[] controls)
+        public void ShowLanguage(ResourceManager resource, CultureInfo culture)
+        {
+            Songs.Text = resource.GetString("Songs", culture);
+            Albums.Text = resource.GetString("Albums", culture);
+            Artists.Text = resource.GetString("Artists", culture);
+            label1.Text = resource.GetString("labelSort", culture);
+            label4.Text = resource.GetString("labelSort", culture);
+            label2.Text = resource.GetString("labelSort", culture);
+            comboBoxSortBySongs.Items.RemoveAt(0);
+            string none = resource.GetString("None", culture);
+            comboBoxSortBySongs.Items.Insert(0, none);
+            bunifuFlatButton1.Text =  resource.GetString("btnShuffleAllAlbums", culture);
+            btnShuffleAllSongs.Text = bunifuFlatButton1.Text;
+            btnShuufleAllArtists.Text = "      " + bunifuFlatButton1.Text;
+            bunifuFlatButton1.Text = btnShuufleAllArtists.Text;
+            //label4.Text = resource.GetString("labelSort", culture);
+            //label4.Text = resource.GetString("labelSort", culture);
+
+        }
+        public bool SelectIndexChange()
+        {
+            if (metroTabControl1.SelectedIndex == 0)
+                return false;
+            else
+            {
+                this.metroTabControl1.SelectedIndex = 0;
+                return true;
+            }
+        }
+        private void bunifuFlatButton1_Click(object sender, EventArgs e)
+        {
+            Shuff_Click?.Invoke(sender, e);
+        }
+        public static void ChangeColor(FlowLayoutPanel panel, Song[] controls)
         {
             //panel.contr;
             panel.Visible = false;
@@ -48,7 +81,17 @@ namespace Music
                 panel.Controls.Add(controls[i]);
             }
             panel.Visible = true;
-
+        }
+        public static void ChangeColor(FlowLayoutPanel panel, Myplaylist[] controls)
+        {
+            //panel.contr;
+            panel.Visible = false;
+            panel.Controls.Clear();
+            for (int i = 0; i < controls.Length; i++)
+            {
+                panel.Controls.Add(controls[i]);
+            }
+            panel.Visible = true;
         }
         public void SetSongs(List<Song> songs)
         {
@@ -103,21 +146,7 @@ namespace Music
                 return panelSongs.Controls.Cast<Song>().ToList();
             }
         }
-        public void ShowLanguage(ResourceManager resource, CultureInfo culture)
-        {
-            Songs.Text = resource.GetString("Songs", culture);
-            Albums.Text = resource.GetString("Albums", culture);
-            Artists.Text = resource.GetString("Artists", culture);
-            label1.Text = resource.GetString("labelSort", culture);
-            label4.Text = resource.GetString("labelSort", culture);
-            label5.Text = resource.GetString("labelSort", culture);
-            comboBoxSortBySongs.Items.RemoveAt(0);
-            string none = resource.GetString("None", culture);
-            comboBoxSortBySongs.Items.Insert(0, none);
-            //label4.Text = resource.GetString("labelSort", culture);
-            //label4.Text = resource.GetString("labelSort", culture);
 
-        }
 
         #endregion
 
@@ -343,6 +372,7 @@ namespace Music
             artists.Sort(UISort.iCompareArtistAtoZ);
             ChangeColor(panelArtists, artists.ToArray());
         }
+
         #endregion
 
 

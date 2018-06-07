@@ -28,17 +28,23 @@ namespace Music
         private void btnRename_Click(object sender, EventArgs e)
         {
             string newName="";
-            if (txbNewPlaylist.Text != string.Empty)
+            try
             {
-                newName = txbNewPlaylist.Text;
-                MediaPlayer.Instance.RenamePlaylist(PlaylistPath, newName);
-                MessageBox.Show("Rename playlist successfully", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
-                MediaPlayer.Instance.LoadListPlaylist();
-            }
-            else
+                if (txbNewPlaylist.Text != string.Empty)
+                {
+                    newName = txbNewPlaylist.Text;
+                    MediaPlayer.Instance.RenamePlaylist(PlaylistPath, newName);
+                    MessageBox.Show("Rename playlist successfully", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                    MediaPlayer.Instance.LoadListPlaylist();
+                }
+                else
+                    MessageBox.Show("This name is not valid.\nPlease retype!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }catch
+            {
                 MessageBox.Show("This name is not valid.\nPlease retype!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            
+            }
+
         }
     }
 }
