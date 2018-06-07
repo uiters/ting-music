@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Playlist));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnNewPlaylist = new Bunifu.Framework.UI.BunifuFlatButton();
             this.comboBoxSortBySongs = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panelSongs = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnNewPlaylist = new Bunifu.Framework.UI.BunifuFlatButton();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,41 +47,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(850, 42);
             this.panel1.TabIndex = 6;
-            // 
-            // comboBoxSortBySongs
-            // 
-            this.comboBoxSortBySongs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxSortBySongs.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.comboBoxSortBySongs.FormattingEnabled = true;
-            this.comboBoxSortBySongs.Items.AddRange(new object[] {
-            "A-Z",
-            "Z-A",
-            "Date added",
-            "Artist",
-            "Album"});
-            this.comboBoxSortBySongs.Location = new System.Drawing.Point(197, 10);
-            this.comboBoxSortBySongs.Name = "comboBoxSortBySongs";
-            this.comboBoxSortBySongs.Size = new System.Drawing.Size(107, 25);
-            this.comboBoxSortBySongs.TabIndex = 45;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.label1.Location = new System.Drawing.Point(140, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 17);
-            this.label1.TabIndex = 44;
-            this.label1.Text = "Sort by";
-            // 
-            // panelSongs
-            // 
-            this.panelSongs.AutoScroll = true;
-            this.panelSongs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelSongs.Location = new System.Drawing.Point(0, 42);
-            this.panelSongs.Name = "panelSongs";
-            this.panelSongs.Size = new System.Drawing.Size(850, 432);
-            this.panelSongs.TabIndex = 7;
             // 
             // btnNewPlaylist
             // 
@@ -117,6 +82,39 @@
             this.btnNewPlaylist.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnNewPlaylist.TextFont = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewPlaylist.Click += new System.EventHandler(this.btnNewPlaylist_Click);
+            // 
+            // comboBoxSortBySongs
+            // 
+            this.comboBoxSortBySongs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxSortBySongs.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.comboBoxSortBySongs.FormattingEnabled = true;
+            this.comboBoxSortBySongs.Items.AddRange(new object[] {
+            "A-Z",
+            "Z-A"});
+            this.comboBoxSortBySongs.Location = new System.Drawing.Point(235, 10);
+            this.comboBoxSortBySongs.Name = "comboBoxSortBySongs";
+            this.comboBoxSortBySongs.Size = new System.Drawing.Size(107, 25);
+            this.comboBoxSortBySongs.TabIndex = 45;
+            this.comboBoxSortBySongs.SelectedIndexChanged += new System.EventHandler(this.ComboBoxSort_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.label1.Location = new System.Drawing.Point(140, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 17);
+            this.label1.TabIndex = 44;
+            this.label1.Text = "Sort by";
+            // 
+            // panelSongs
+            // 
+            this.panelSongs.AutoScroll = true;
+            this.panelSongs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelSongs.Location = new System.Drawing.Point(0, 42);
+            this.panelSongs.Name = "panelSongs";
+            this.panelSongs.Size = new System.Drawing.Size(850, 432);
+            this.panelSongs.TabIndex = 7;
             // 
             // Playlist
             // 

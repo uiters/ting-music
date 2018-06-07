@@ -59,6 +59,7 @@
             this.metroComboBox1.Location = new System.Drawing.Point(84, 100);
             this.metroComboBox1.Name = "metroComboBox1";
             this.metroComboBox1.Size = new System.Drawing.Size(242, 29);
+            this.metroComboBox1.Style = MetroFramework.MetroColorStyle.Orange;
             this.metroComboBox1.TabIndex = 36;
             this.metroComboBox1.Theme = MetroFramework.MetroThemeStyle.Light;
             this.metroComboBox1.UseCustomBackColor = true;
