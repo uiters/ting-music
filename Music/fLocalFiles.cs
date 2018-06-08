@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Music
 {
     public partial class fLocalFiles : Form
     {
+        #region Properties static
+
         public static string Folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\PlayPlist";
         public static string Path = Folder + @"\LocalFiles.txt";
         private static string slabel2 = string.Empty;
@@ -31,6 +27,9 @@ namespace Music
             captionDelete = resource.GetString("captionDelete", culture);
 
         }
+        #endregion
+
+        #region Method
         public fLocalFiles()
         {
             InitializeComponent();
@@ -49,7 +48,7 @@ namespace Music
             string[] arrLocalFile = ShowLocalFiles();
             for (int i = 0; i < arrLocalFile.Length; i++)
             {
-                LocalFiles localFiles = new LocalFiles();
+                uLocalFiles localFiles = new uLocalFiles();
                 localFiles.FolderPath = arrLocalFile[i];
                 localFiles.Title = GetTitle(arrLocalFile[i]);
                 panelLocalFiles.Controls.Add(localFiles);
@@ -59,15 +58,15 @@ namespace Music
 
         private void LocalFiles_LocalFiles_Click(object sender, EventArgs e)
         {
-            LocalFiles localFiles = sender as LocalFiles;
+            uLocalFiles localFiles = sender as uLocalFiles;
             string title = deleteFolder.Replace("\"Music\"", "\"" + localFiles.Title + "\"");
-            if (MessageBox.Show(title, captionDelete , MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (MessageBox.Show(title, captionDelete, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 RemovePath(localFiles.FolderPath);
                 LoadLocalFiles();
             }
         }
-        
+
         public static string[] ShowLocalFiles()
         {
             string filePath = Path;
@@ -89,9 +88,9 @@ namespace Music
             }
             return false;
         }
-        public void  SaveLocalFiles(string path)
+        public void SaveLocalFiles(string path)
         {
-            string folderPath =fLocalFiles.Path;
+            string folderPath = fLocalFiles.Path;
             var lines = File.ReadAllLines(folderPath).ToList();
             if (lines.Count() > 0)
             {
@@ -100,8 +99,8 @@ namespace Music
                 File.WriteAllLines(folderPath, lines);
             }
             else
-                File.WriteAllLines(folderPath,new string[] { path});
-            
+                File.WriteAllLines(folderPath, new string[] { path });
+
         }
         public void RemovePath(string path)
         {
@@ -109,7 +108,7 @@ namespace Music
             var lines = File.ReadAllLines(folderPath).ToList();
             foreach (var item in lines)
             {
-                if (item==path)
+                if (item == path)
                 {
                     lines.Remove(item);
                     break;
@@ -124,7 +123,7 @@ namespace Music
         }
         private void bunifuFlatButton1_Click_1(object sender, EventArgs e)
         {
-            
+
             Close();
         }
         private void addLocalFiles_AddLocalFiles_Click(object sender, EventArgs e)
@@ -133,7 +132,7 @@ namespace Music
             folder.ShowNewFolderButton = false;
             if (folder.ShowDialog() == DialogResult.OK)
             {
-                LocalFiles localFiles = new LocalFiles();
+                uLocalFiles localFiles = new uLocalFiles();
                 localFiles.FolderPath = folder.SelectedPath;
                 localFiles.LocalFiles_Click += LocalFiles_LocalFiles_Click;
                 localFiles.Title = GetTitle(folder.SelectedPath);
@@ -141,14 +140,13 @@ namespace Music
                 SaveLocalFiles(folder.SelectedPath);
             }
         }
-
         private void addLocalFiles1_LocalFiles_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folder = new FolderBrowserDialog();
             folder.ShowNewFolderButton = false;
             if (folder.ShowDialog() == DialogResult.OK)
             {
-                LocalFiles localFiles = new LocalFiles();
+                uLocalFiles localFiles = new uLocalFiles();
                 localFiles.FolderPath = folder.SelectedPath;
                 localFiles.LocalFiles_Click += LocalFiles_LocalFiles_Click;
                 localFiles.Title = GetTitle(folder.SelectedPath);
@@ -156,5 +154,6 @@ namespace Music
                 SaveLocalFiles(folder.SelectedPath);
             }
         }
+        #endregion
     }
 }

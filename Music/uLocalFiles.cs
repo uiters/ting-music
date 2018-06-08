@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Music
 {
-    public partial class LocalFiles : UserControl
+    public partial class uLocalFiles : UserControl
     {
-        public LocalFiles()
+        public uLocalFiles()
         {
             InitializeComponent();
         }

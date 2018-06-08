@@ -8,6 +8,7 @@ namespace Music
 {
     class MediaPlayer
     {
+        #region Properties
         static MediaPlayer instance = new MediaPlayer();
         WindowsMediaPlayer player = new WindowsMediaPlayer();
         private readonly string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Playlist";
@@ -24,9 +25,10 @@ namespace Music
             get { return instance; }
             private set => instance = value;
         }
-        public WindowsMediaPlayer Player { get => player; }
 
-        #region Method
+        #endregion
+
+        #region Method meadia
         public double GetCurrentPosition()
         {
             return player.controls.currentPosition;
@@ -63,24 +65,9 @@ namespace Music
         {
             player.controls.stop();
         }
-        public void Next()
-        {
-            player.controls.next();
-        }
-        public void Previous()
-        {
-            player.controls.previous();
-        }
-        public void Shuffle()
-        {
-            player.settings.setMode("shuffle", !player.settings.getMode("shuffle"));
-        }
         public void Repeat()
         {
             player.settings.setMode("loop", true);
-            //if (player.settings.getMode("loop") == false)
-            //    player.settings.setMode("loop", true);
-            //else player.settings.setMode("loop", false);
         }
         public void RepeatOff()
         {
@@ -96,37 +83,35 @@ namespace Music
         }
         #endregion
 
+        #region Load
         public string[] LoadLocalFile()
         {
-
             List<string> listFile = new List<string>();
             string[] listPath = fLocalFiles.ShowLocalFiles();
-            if(listPath.Length>0)
-            for (int i = 0; i < listPath.Length; i++)
-            {
-                listFile.AddRange(Directory.GetFiles(listPath[i], "*.mp3"));
-            }
+            if (listPath.Length > 0)
+                for (int i = 0; i < listPath.Length; i++)
+                {
+                    listFile.AddRange(Directory.GetFiles(listPath[i], "*.mp3"));
+                }
             return listFile.ToArray();
 
         }
-
-        public void PlayUrl(string url)
-        {
-            player.URL = url;
-        }
-        #region playlist
         public List<string> LoadListPlaylist()
         {
-            var listFile = Directory.GetFiles(path,"*.wpl").ToList();
+            var listFile = Directory.GetFiles(path, "*.wpl").ToList();
             return listFile;
         }
+
+        #endregion
+
+        #region playlist
         public void CreatePlaylist(string fileName, string title, List<string> listMedia = null)
         {
             string filePath = path + @"\" + fileName + ".wpl";
-            if(File.Exists(filePath))
+            if (File.Exists(filePath))
             {
                 int i = 1;
-                while (File.Exists(path + @"\"+ fileName +" ("+i+").wpl"))
+                while (File.Exists(path + @"\" + fileName + " (" + i + ").wpl"))
                 {
                     i++;
                 }
@@ -168,6 +153,7 @@ namespace Music
             }
             fileStream.Close();
         }
+
         public List<string> ReadPlaylist(string filePath)
         {
             
@@ -183,6 +169,7 @@ namespace Music
             }
             return listMedia;
         }
+
         public string GetTitlePlaylist(string filePath)
         {
             string[] lines = File.ReadAllLines(filePath);
@@ -195,6 +182,7 @@ namespace Music
             }
             return null;
         }
+
         public void RenamePlaylist(string filePath,string newTitle)
         {
             
@@ -219,6 +207,7 @@ namespace Music
                 File.Move(filePath, newFilePath);
             }
         }
+
         public bool IsMediaExists(string filePath, string mediaPath)
         {
             List<string> listMedia = ReadPlaylist(filePath);
@@ -229,9 +218,9 @@ namespace Music
             }
             return false;
         }
+
         public void AddMediaOnPlayList(string filePath, string mediaPath)
         {
-
             if (!IsMediaExists(filePath, mediaPath))
             {
               
@@ -250,6 +239,7 @@ namespace Music
                 File.WriteAllLines(filePath, lines);
             }
         }
+
         public void RemoveMediaOnPlayList(string filePath, string mediaPath)
         {
             if (IsMediaExists(filePath, mediaPath))
@@ -266,6 +256,7 @@ namespace Music
                 File.WriteAllLines(filePath, lines);
             }
         }
+
         public string GetPlaylistPath(string title,List<string> listPlaylist)
         {
             foreach (var item in listPlaylist)
@@ -275,6 +266,7 @@ namespace Music
             }
             return null;
         }
+
         public void DeletePlaylist(string filePath)
         {
             File.Delete(filePath);

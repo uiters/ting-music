@@ -1,6 +1,6 @@
 ﻿namespace Music
 {
-    partial class Lyrics
+    partial class uLyrics
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Lyrics));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uLyrics));
             this.panelLeft = new System.Windows.Forms.Panel();
             this.btnBack = new Bunifu.Framework.UI.BunifuFlatButton();
             this.lblSongName = new System.Windows.Forms.Label();
@@ -100,7 +100,6 @@
             this.lblSongName.Name = "lblSongName";
             this.lblSongName.Size = new System.Drawing.Size(381, 19);
             this.lblSongName.TabIndex = 42;
-            this.lblSongName.Text = "Attention";
             this.lblSongName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblArtistName
@@ -113,7 +112,6 @@
             this.lblArtistName.Name = "lblArtistName";
             this.lblArtistName.Size = new System.Drawing.Size(324, 22);
             this.lblArtistName.TabIndex = 41;
-            this.lblArtistName.Text = "Charlie Puth";
             this.lblArtistName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // pictureBoxSong
@@ -146,9 +144,8 @@
             this.lblLyrics.ForeColor = System.Drawing.Color.White;
             this.lblLyrics.Location = new System.Drawing.Point(2, 12);
             this.lblLyrics.Name = "lblLyrics";
-            this.lblLyrics.Size = new System.Drawing.Size(47, 17);
+            this.lblLyrics.Size = new System.Drawing.Size(0, 17);
             this.lblLyrics.TabIndex = 0;
-            this.lblLyrics.Text = "ndc07";
             this.lblLyrics.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // bunifuElipse1

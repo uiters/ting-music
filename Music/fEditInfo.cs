@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
 using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Music
 {
     public partial class fEditInfo : Form
     {
+        #region Properties & method static
         private string _mediaPath;
         private static string slblInfo = string.Empty; // edit info
         private static string slabel1 = string.Empty;// song title
@@ -30,7 +24,6 @@ namespace Music
         private static string editerror = string.Empty;// error
         private static string sbtnSave = string.Empty;//save
         private static string sbtnClose = string.Empty;//close
-        //private static string slabel5 = string.Empty;
 
         public static void ShowLanguage(ResourceManager resource, CultureInfo culture)
         {
@@ -50,8 +43,9 @@ namespace Music
             sbtnSave = resource.GetString("btnSave", culture);// error
             sbtnClose = resource.GetString("btnClose", culture);// error
         }
+        #endregion
 
-
+        #region Method
         public fEditInfo(string mediaPath)
         {
             InitializeComponent();
@@ -110,5 +104,6 @@ namespace Music
             if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
                 e.Handled = true;
         }
+        #endregion
     }
 }

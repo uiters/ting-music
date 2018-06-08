@@ -1,6 +1,6 @@
 ﻿namespace Music
 {
-    partial class Setting
+    partial class uSetting
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Setting));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uSetting));
             this.metroComboBox1 = new MetroFramework.Controls.MetroComboBox();
             this.btnLocalFiles = new Bunifu.Framework.UI.BunifuFlatButton();
             this.btnUpdates = new Bunifu.Framework.UI.BunifuFlatButton();

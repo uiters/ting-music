@@ -1,42 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Resources;
 using System.Globalization;
 
 namespace Music
 {
-    public partial class Setting : UserControl
+    public partial class uSetting : UserControl
     {
+        #region Properties
         private string on;
         private string off;
         private UpdateMusic update;
         public event EventHandler CloseForm;
         public event EventHandler ChangeLangue;
-        public Setting()
+        private Timer ShutDownTimer;
+        private int i = 0;
+
+        public uSetting()
         {
             InitializeComponent();
 
-            
+
             cbMinute.Text = "15";
-            lblTime.Text = fMusic.ConvertToMinute(15*60);
+            lblTime.Text = fMusic.ConvertToMinute(15 * 60);
             update = new UpdateMusic(label); ;
             update.CloseForm += Update_CloseForm;
         }
+        #endregion
 
-
+        #region Method
         public void ShowLanguage(ResourceManager resource, CultureInfo culture)
         {
             lblLanguage.Text = "     " + resource.GetString("btnLanguge", culture);
             bunifuFlatButton1.Text = "     " + resource.GetString("shutdown", culture);
             label3.Text = resource.GetString("Minutes", culture);
-            btnLocalFiles.Text = "     " +  resource.GetString("settingLocal", culture);
+            btnLocalFiles.Text = "     " + resource.GetString("settingLocal", culture);
             btnUpdates.Text = "     " + resource.GetString("Update", culture);
             lbStatus.Text = resource.GetString("lbStatus", culture);
             metroComboBox1.Items.Clear();
@@ -50,18 +49,15 @@ namespace Music
             update.ShowLangugae(resource, culture);
         }
 
-
         private void Update_CloseForm(object sender, EventArgs e)
         {
             this.CloseForm?.Invoke(null, null);
 
         }
-        Timer ShutDownTimer;
-   
-        int i = 0;
+
         private void ShutDownTimer_Tick(object sender, EventArgs e)
         {
-            if(i>=0)
+            if (i >= 0)
             {
                 lblTime.Text = fMusic.ConvertToMinute(i);
                 i--;
@@ -132,5 +128,6 @@ namespace Music
             }
 
         }
+        #endregion
     }
 }

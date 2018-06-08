@@ -1,6 +1,6 @@
 ﻿namespace Music
 {
-    partial class AlbumDetails
+    partial class uAlbumDetails
     {
         /// <summary> 
         /// Required designer variable.
@@ -40,7 +40,6 @@
             // 
             // image
             // 
-            this.image.Image = global::Music.Properties.Resources.myMusic;
             this.image.Location = new System.Drawing.Point(3, 3);
             this.image.Name = "image";
             this.image.Size = new System.Drawing.Size(152, 152);

@@ -1,6 +1,6 @@
 ﻿namespace Music
 {
-    partial class Myplaylist
+    partial class uMyplaylist
     {
         /// <summary> 
         /// Required designer variable.
@@ -48,7 +48,6 @@
             // 
             // btnImage
             // 
-            this.btnImage.BackgroundImage = global::Music.Properties.Resources.myMusic;
             this.btnImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnImage.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -58,6 +57,7 @@
             this.btnImage.TabIndex = 64;
             this.btnImage.UseVisualStyleBackColor = true;
             this.btnImage.Click += new System.EventHandler(this.btnImage_Click);
+            this.btnImage.BackgroundImage = SongInfo.ImageDefault;
             // 
             // Myplaylist
             // 

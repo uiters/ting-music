@@ -204,7 +204,6 @@
             this.label6.Size = new System.Drawing.Size(101, 18);
             this.label6.TabIndex = 64;
             this.label6.Text = "Length          :";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label7
             // 
@@ -217,7 +216,6 @@
             this.label7.Size = new System.Drawing.Size(102, 18);
             this.label7.TabIndex = 65;
             this.label7.Text = "Year              :";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label8
             // 

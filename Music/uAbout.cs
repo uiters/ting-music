@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace Music
 {
-    public partial class About : UserControl
+    public partial class uAbout : UserControl
     {
-        public About()
+        public uAbout()
         {
             InitializeComponent();
             label5.Text = Properties.Settings.Default.version;
@@ -15,6 +15,7 @@ namespace Music
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("mailto:ndc07.it@gmail.com");
+            System.Diagnostics.Process.Start("https://www.facebook.com/profile.php?id=100010577220674");
         }
         public void ShowLanguage(ResourceManager resource, CultureInfo culture)
         {

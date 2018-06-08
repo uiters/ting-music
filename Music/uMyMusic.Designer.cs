@@ -2,7 +2,7 @@
 
 namespace Music
 {
-    partial class MyMusic
+    partial class uMyMusic
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace Music
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MyMusic));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uMyMusic));
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.Songs = new System.Windows.Forms.TabPage();
             this.panelSongs = new System.Windows.Forms.FlowLayoutPanel();

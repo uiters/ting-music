@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
 using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Music
 {
     public partial class fProperties : Form
     {
+        #region Method static
         private static string slbProperites = string.Empty; // Properties
         private static string slabel1 = string.Empty;// song title
         private static string slabel2 = string.Empty;//song artist
@@ -39,6 +33,9 @@ namespace Music
             slabel9 = resource.GetString("label9", culture);//file location
             sbtnClose = resource.GetString("btnClose", culture);// error
         }
+        #endregion
+
+        #region Method
         public fProperties(string mediaPath)
         {
             InitializeComponent();
@@ -71,15 +68,6 @@ namespace Music
         {
             this.Close();
         }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
+        #endregion
     }
 }

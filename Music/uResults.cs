@@ -1,22 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Resources;
 using System.Globalization;
 
 namespace Music
 {
-    public partial class Results : UserControl
+    public partial class uResults : UserControl
     {
         private string text = string.Empty;
 
-        public Results()
+        public uResults()
         {
             InitializeComponent();
         }
@@ -31,7 +24,7 @@ namespace Music
                 lblResults.Text = text + value + "\"";
             }
         }
-        public void AddSongs(List<Song> songs)
+        public void AddSongs(List<uSong> songs)
         {
             foreach (var item in songs)
             {
