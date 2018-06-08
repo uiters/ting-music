@@ -1,25 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Resources;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Music
 {
     public class UpdateMusic
     {
+        #region Properties
         private static readonly Uri uriVersion = new Uri("https://drive.google.com/uc?export=download&id=1hCCUwe6QJijZXF-viQ7tWgn85QibDVeX");
         private static readonly Uri uriUpdate = new Uri("https://drive.google.com/uc?export=download&id=1g4rgesTuGIDkDVvr2DnL7W0DNeKHI97I");
         private static readonly string source = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Music";
         private static readonly string zipFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Music\Music.zip";
-        public  static readonly string installLink = Application.StartupPath + @"\InstallUpdate.exe";
+        public static readonly string installLink = Application.StartupPath + @"\InstallUpdate.exe";
         public bool IsUpdating = false;
         private Label label;
         private string lbupdate1 = string.Empty;//check version
@@ -29,6 +25,9 @@ namespace Music
         private string noInternet = string.Empty; // no internet
         private string error = string.Empty; // error
         public event EventHandler CloseForm;
+        #endregion
+
+        #region Method
         public UpdateMusic(Label label)
         {
             this.label = label;
@@ -42,7 +41,6 @@ namespace Music
             noInternet = resource.GetString("noInternet", culture);
             error = resource.GetString("error", culture);
         }
-
         public void CheckInternet()
         {
             if (InternetConnection.IsConnectedToInternet() == false)
@@ -51,7 +49,6 @@ namespace Music
             }
             else GetVersionAvailable();
         }
-
         public void GetVersionAvailable()
         {
             IsUpdating = true;
@@ -69,14 +66,14 @@ namespace Music
                 web.DownloadStringAsync(uriVersion);
             }
         }
-
         private void Web_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
             if (e.Result != Properties.Settings.Default.version)
             {
                 label.Text = lbupdate2;
                 Update_Click(sender, null);
-            } else label.Text = lbupdate4;
+            }
+            else label.Text = lbupdate4;
         }
         private void Update_Click(object sender, EventArgs e)
         {
@@ -89,24 +86,12 @@ namespace Music
                 web.DownloadFileAsync(uriUpdate, zipFile);
             }
         }
-
         private void Web_DownloadFileZipCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
             label.Text = lbupdate3;
             CloseForm?.Invoke(null, null);
             IsUpdating = false;
         }
-
+        #endregion
     }
-
-    public class InternetConnection
-    {
-        [DllImport("wininet.dll")]
-        private extern static bool InternetGetConnectedState(out int description, int reservedValuine);
-        public static bool IsConnectedToInternet()
-        {
-            return InternetGetConnectedState(out int desc, 0);
-        }
-    }
-
 }

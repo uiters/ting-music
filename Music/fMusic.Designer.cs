@@ -71,6 +71,14 @@ namespace Music
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.bunifuDragControl2 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel = new System.Windows.Forms.Panel();
+            this.myMusic = new Music.uMyMusic();
+            this.nowPlaying = new Music.uNowPlaying();
+            this.playlistDetail = new Music.uPlaylistDetail();
+            this.playlist = new Music.uPlaylist();
+            this.setting = new Music.uSetting();
+            this.results = new Music.uResults();
+            this.about = new Music.uAbout();
+            this.lyrics = new Music.uLyrics();
             this.timeLine = new System.Windows.Forms.Timer(this.components);
             this.autoNextSongTimer = new System.Windows.Forms.Timer(this.components);
             this.rotateTimer = new System.Windows.Forms.Timer(this.components);
@@ -81,14 +89,6 @@ namespace Music
             this.menuItemRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemEditInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemProperties = new System.Windows.Forms.ToolStripMenuItem();
-            this.myMusic = new Music.MyMusic();
-            this.nowPlaying = new Music.NowPlaying();
-            this.playlistDetail = new Music.PlaylistDetail();
-            this.playlist = new Music.Playlist();
-            this.setting = new Music.Setting();
-            this.results = new Music.Results();
-            this.about = new Music.About();
-            this.lyrics = new Music.Lyrics();
             this.panelBottom.SuspendLayout();
             this.panelPlay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPlay)).BeginInit();
@@ -413,7 +413,7 @@ namespace Music
             this.labelTimeTo.Name = "labelTimeTo";
             this.labelTimeTo.Size = new System.Drawing.Size(45, 18);
             this.labelTimeTo.TabIndex = 41;
-            this.labelTimeTo.Text = "03:20";
+            this.labelTimeTo.Text = "00:00";
             // 
             // lblSongName
             // 
@@ -425,7 +425,6 @@ namespace Music
             this.lblSongName.Name = "lblSongName";
             this.lblSongName.Size = new System.Drawing.Size(461, 19);
             this.lblSongName.TabIndex = 40;
-            this.lblSongName.Text = "Attention";
             // 
             // lblArtistName
             // 
@@ -437,7 +436,6 @@ namespace Music
             this.lblArtistName.Name = "lblArtistName";
             this.lblArtistName.Size = new System.Drawing.Size(461, 22);
             this.lblArtistName.TabIndex = 39;
-            this.lblArtistName.Text = "Charlie Puth";
             // 
             // labelTimeFrom
             // 
@@ -470,7 +468,6 @@ namespace Music
             // pictureBoxSong
             // 
             this.pictureBoxSong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.pictureBoxSong.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSong.Image")));
             this.pictureBoxSong.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxSong.Name = "pictureBoxSong";
             this.pictureBoxSong.Size = new System.Drawing.Size(90, 90);
@@ -1002,81 +999,6 @@ namespace Music
             this.panel.TabIndex = 29;
             this.panel.SizeChanged += new System.EventHandler(this.panel_SizeChanged);
             // 
-            // timeLine
-            // 
-            this.timeLine.Tick += new System.EventHandler(this.TimeLine_Tick);
-            // 
-            // autoNextSongTimer
-            // 
-            this.autoNextSongTimer.Tick += new System.EventHandler(this.Timer2_Tick);
-            // 
-            // rotateTimer
-            // 
-            this.rotateTimer.Interval = 40;
-            this.rotateTimer.Tick += new System.EventHandler(this.timer4_Tick);
-            // 
-            // contextMenuStripSong
-            // 
-            this.contextMenuStripSong.BackColor = System.Drawing.Color.Gainsboro;
-            this.contextMenuStripSong.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.contextMenuStripSong.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemPlay,
-            this.menuItemPlayNext,
-            this.menuItemAddTo,
-            this.menuItemRemove,
-            this.menuItemEditInfo,
-            this.menuItemProperties});
-            this.contextMenuStripSong.Name = "contextMenuStripSong";
-            this.contextMenuStripSong.Size = new System.Drawing.Size(140, 136);
-            this.contextMenuStripSong.Closing += new System.Windows.Forms.ToolStripDropDownClosingEventHandler(this.contextMenuStripSong_Closing);
-            // 
-            // menuItemPlay
-            // 
-            this.menuItemPlay.Image = ((System.Drawing.Image)(resources.GetObject("menuItemPlay.Image")));
-            this.menuItemPlay.Name = "menuItemPlay";
-            this.menuItemPlay.Size = new System.Drawing.Size(139, 22);
-            this.menuItemPlay.Text = "Play";
-            this.menuItemPlay.Click += new System.EventHandler(this.menuItemPlay_Click);
-            // 
-            // menuItemPlayNext
-            // 
-            this.menuItemPlayNext.Image = ((System.Drawing.Image)(resources.GetObject("menuItemPlayNext.Image")));
-            this.menuItemPlayNext.Name = "menuItemPlayNext";
-            this.menuItemPlayNext.Size = new System.Drawing.Size(139, 22);
-            this.menuItemPlayNext.Text = "Play next";
-            this.menuItemPlayNext.Click += new System.EventHandler(this.menuItemSelectAll_Click);
-            // 
-            // menuItemAddTo
-            // 
-            this.menuItemAddTo.Image = ((System.Drawing.Image)(resources.GetObject("menuItemAddTo.Image")));
-            this.menuItemAddTo.Name = "menuItemAddTo";
-            this.menuItemAddTo.Size = new System.Drawing.Size(139, 22);
-            this.menuItemAddTo.Text = "Add to";
-            // 
-            // menuItemRemove
-            // 
-            this.menuItemRemove.Image = ((System.Drawing.Image)(resources.GetObject("menuItemRemove.Image")));
-            this.menuItemRemove.Name = "menuItemRemove";
-            this.menuItemRemove.Size = new System.Drawing.Size(139, 22);
-            this.menuItemRemove.Text = "Remove";
-            this.menuItemRemove.Click += new System.EventHandler(this.menuItemRemove_Click);
-            // 
-            // menuItemEditInfo
-            // 
-            this.menuItemEditInfo.Image = ((System.Drawing.Image)(resources.GetObject("menuItemEditInfo.Image")));
-            this.menuItemEditInfo.Name = "menuItemEditInfo";
-            this.menuItemEditInfo.Size = new System.Drawing.Size(139, 22);
-            this.menuItemEditInfo.Text = "Edit info";
-            this.menuItemEditInfo.Click += new System.EventHandler(this.menuItemProperties_Click);
-            // 
-            // menuItemProperties
-            // 
-            this.menuItemProperties.Image = ((System.Drawing.Image)(resources.GetObject("menuItemProperties.Image")));
-            this.menuItemProperties.Name = "menuItemProperties";
-            this.menuItemProperties.Size = new System.Drawing.Size(139, 22);
-            this.menuItemProperties.Text = "Properties";
-            this.menuItemProperties.Click += new System.EventHandler(this.menuItemProperties_Click_1);
-            // 
             // myMusic
             // 
             this.myMusic.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -1157,6 +1079,81 @@ namespace Music
             this.lyrics.TabIndex = 2;
             this.lyrics.btnBack_click += new System.EventHandler(this.lyrics_btnBack_click);
             // 
+            // timeLine
+            // 
+            this.timeLine.Tick += new System.EventHandler(this.TimeLine_Tick);
+            // 
+            // autoNextSongTimer
+            // 
+            this.autoNextSongTimer.Tick += new System.EventHandler(this.Timer2_Tick);
+            // 
+            // rotateTimer
+            // 
+            this.rotateTimer.Interval = 40;
+            this.rotateTimer.Tick += new System.EventHandler(this.Timer4_Tick);
+            // 
+            // contextMenuStripSong
+            // 
+            this.contextMenuStripSong.BackColor = System.Drawing.Color.Gainsboro;
+            this.contextMenuStripSong.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.contextMenuStripSong.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemPlay,
+            this.menuItemPlayNext,
+            this.menuItemAddTo,
+            this.menuItemRemove,
+            this.menuItemEditInfo,
+            this.menuItemProperties});
+            this.contextMenuStripSong.Name = "contextMenuStripSong";
+            this.contextMenuStripSong.Size = new System.Drawing.Size(140, 136);
+            this.contextMenuStripSong.Closing += new System.Windows.Forms.ToolStripDropDownClosingEventHandler(this.contextMenuStripSong_Closing);
+            // 
+            // menuItemPlay
+            // 
+            this.menuItemPlay.Image = ((System.Drawing.Image)(resources.GetObject("menuItemPlay.Image")));
+            this.menuItemPlay.Name = "menuItemPlay";
+            this.menuItemPlay.Size = new System.Drawing.Size(139, 22);
+            this.menuItemPlay.Text = "Play";
+            this.menuItemPlay.Click += new System.EventHandler(this.menuItemPlay_Click);
+            // 
+            // menuItemPlayNext
+            // 
+            this.menuItemPlayNext.Image = ((System.Drawing.Image)(resources.GetObject("menuItemPlayNext.Image")));
+            this.menuItemPlayNext.Name = "menuItemPlayNext";
+            this.menuItemPlayNext.Size = new System.Drawing.Size(139, 22);
+            this.menuItemPlayNext.Text = "Play next";
+            this.menuItemPlayNext.Click += new System.EventHandler(this.menuItemSelectAll_Click);
+            // 
+            // menuItemAddTo
+            // 
+            this.menuItemAddTo.Image = ((System.Drawing.Image)(resources.GetObject("menuItemAddTo.Image")));
+            this.menuItemAddTo.Name = "menuItemAddTo";
+            this.menuItemAddTo.Size = new System.Drawing.Size(139, 22);
+            this.menuItemAddTo.Text = "Add to";
+            // 
+            // menuItemRemove
+            // 
+            this.menuItemRemove.Image = ((System.Drawing.Image)(resources.GetObject("menuItemRemove.Image")));
+            this.menuItemRemove.Name = "menuItemRemove";
+            this.menuItemRemove.Size = new System.Drawing.Size(139, 22);
+            this.menuItemRemove.Text = "Remove";
+            this.menuItemRemove.Click += new System.EventHandler(this.menuItemRemove_Click);
+            // 
+            // menuItemEditInfo
+            // 
+            this.menuItemEditInfo.Image = ((System.Drawing.Image)(resources.GetObject("menuItemEditInfo.Image")));
+            this.menuItemEditInfo.Name = "menuItemEditInfo";
+            this.menuItemEditInfo.Size = new System.Drawing.Size(139, 22);
+            this.menuItemEditInfo.Text = "Edit info";
+            this.menuItemEditInfo.Click += new System.EventHandler(this.menuItemProperties_Click);
+            // 
+            // menuItemProperties
+            // 
+            this.menuItemProperties.Image = ((System.Drawing.Image)(resources.GetObject("menuItemProperties.Image")));
+            this.menuItemProperties.Name = "menuItemProperties";
+            this.menuItemProperties.Size = new System.Drawing.Size(139, 22);
+            this.menuItemProperties.Text = "Properties";
+            this.menuItemProperties.Click += new System.EventHandler(this.menuItemProperties_Click_1);
+            // 
             // fMusic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1229,20 +1226,20 @@ namespace Music
         private Bunifu.Framework.UI.BunifuFlatButton btnRepeat;
         private Bunifu.Framework.UI.BunifuFlatButton btnForward;
         private Bunifu.Framework.UI.BunifuFlatButton btnBack;
-        private MyMusic myMusic;
+        private uMyMusic myMusic;
         private System.Windows.Forms.Timer timeLine;
         private System.Windows.Forms.Timer autoNextSongTimer;
-        private NowPlaying nowPlaying;
-        private Lyrics lyrics;
+        private uNowPlaying nowPlaying;
+        private uLyrics lyrics;
         private System.Windows.Forms.Timer rotateTimer;
-        private Playlist playlist;
+        private uPlaylist playlist;
         internal static readonly Image pause = Properties.Resources.pause;
         internal static readonly Image play = Properties.Resources.play;
         private static readonly Image repeat = Properties.Resources.repeat;
         private static readonly Image repeat_one = Properties.Resources.repeat_one;
         private static readonly Image volume_off = Properties.Resources.volume_off;
         private static readonly Image volume_up = Properties.Resources.volume_up;
-        public PlaylistDetail playlistDetail;
+        public uPlaylistDetail playlistDetail;
         private System.Windows.Forms.ToolStripMenuItem menuItemPlay;
         private System.Windows.Forms.ToolStripMenuItem menuItemPlayNext;
         private System.Windows.Forms.ToolStripMenuItem menuItemAddTo;
@@ -1250,10 +1247,10 @@ namespace Music
         public System.Windows.Forms.ContextMenuStrip contextMenuStripSong;
         private System.Windows.Forms.ToolStripMenuItem menuItemProperties;
         private System.Windows.Forms.ToolStripMenuItem menuItemRemove;
-        private About about;
-        private Setting setting;
+        private uAbout about;
+        private uSetting setting;
         private Bunifu.Framework.UI.BunifuFlatButton btnShutDownTimer;
-        private Results results;
+        private uResults results;
     }
 }
 

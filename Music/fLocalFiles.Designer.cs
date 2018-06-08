@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fLocalFiles));
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.addLocalFiles = new Music.AddLocalFiles();
+            this.addLocalFiles = new Music.uAddLocalFiles();
             this.panelLocalFiles = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -188,6 +188,6 @@
         private Bunifu.Framework.UI.BunifuFlatButton btnDone;
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl2;
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl3;
-        private AddLocalFiles addLocalFiles;
+        private uAddLocalFiles addLocalFiles;
     }
 }

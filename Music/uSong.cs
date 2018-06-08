@@ -4,10 +4,10 @@ using System.Windows.Forms;
 
 namespace Music
 {
-    public partial class Song : UserControl
+    public partial class uSong : UserControl
     {
         #region Construtor
-        internal Song()
+        internal uSong()
         {
             InitializeComponent();
             btnPlay.Image = play;
@@ -111,9 +111,9 @@ namespace Music
         #endregion
 
         #region Method Static
-        internal static Song CreateSong(MediaFile file, SongInfo info, EventHandler click, int i,ContextMenuStrip menuStripSong,MouseEventHandler mouseClick)
+        internal static uSong CreateSong(MediaFile file, SongInfo info, EventHandler click, int i,ContextMenuStrip menuStripSong,MouseEventHandler mouseClick)
         {
-            Song song = new Song();
+            uSong song = new uSong();
             info.SetPath(file.FilePath);
             song.Path = file.FilePath;
             info.SetPath(file.FilePath);
@@ -133,19 +133,12 @@ namespace Music
 
         #endregion
 
-        #region Destructor
-        ~Song()
-        {
-
-        }
-
-
-
-        #endregion
-
+        #region Mouse
         private void pictureBoxSong_MouseDown(object sender, MouseEventArgs e)
         {
             Mouse_Click?.Invoke(this, e);
         }
+        #endregion
+
     }
 }

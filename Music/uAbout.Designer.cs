@@ -1,6 +1,6 @@
 ﻿namespace Music
 {
-    partial class About
+    partial class uAbout
     {
         /// <summary> 
         /// Required designer variable.

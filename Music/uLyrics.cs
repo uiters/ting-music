@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Music
 {
-    public partial class Lyrics : UserControl
+    public partial class uLyrics : UserControl
     {
-        public Lyrics()
+        public uLyrics()
         {
             InitializeComponent();
         }

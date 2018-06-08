@@ -2,7 +2,7 @@
 
 namespace Music
 {
-    partial class Song
+    partial class uSong
     {
         /// <summary> 
         /// Required designer variable.
@@ -97,7 +97,6 @@ namespace Music
             // btnPlay
             // 
             this.btnPlay.BackColor = System.Drawing.Color.Transparent;
-            this.btnPlay.Image = global::Music.Properties.Resources.play;
             this.btnPlay.ImageActive = null;
             this.btnPlay.Location = new System.Drawing.Point(68, 11);
             this.btnPlay.Name = "btnPlay";
@@ -112,7 +111,6 @@ namespace Music
             // pictureBoxSong
             // 
             this.pictureBoxSong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.pictureBoxSong.Image = global::Music.Properties.Resources.myMusic;
             this.pictureBoxSong.Location = new System.Drawing.Point(3, 3);
             this.pictureBoxSong.Name = "pictureBoxSong";
             this.pictureBoxSong.Size = new System.Drawing.Size(55, 55);
@@ -125,7 +123,6 @@ namespace Music
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Silver;
             this.Controls.Add(this.lblCategory);
             this.Controls.Add(this.lblTotalTime);
             this.Controls.Add(this.lblArtistName);

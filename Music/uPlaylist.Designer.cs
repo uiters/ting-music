@@ -1,6 +1,6 @@
 ﻿namespace Music
 {
-    partial class Playlist
+    partial class uPlaylist
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Playlist));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uPlaylist));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnNewPlaylist = new Bunifu.Framework.UI.BunifuFlatButton();
             this.comboBoxSortBySongs = new System.Windows.Forms.ComboBox();

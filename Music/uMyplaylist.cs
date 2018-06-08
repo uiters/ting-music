@@ -1,26 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Music
 {
-    public partial class Myplaylist : UserControl
+    public partial class uMyplaylist : UserControl
     {
-        private List<Song> songs = new List<Song>();
-        public List<Song> Songs { get => songs; }
-        private AlbumDetails albumDetails = new AlbumDetails();
-        public AlbumDetails fDetails { get { albumDetails.TotalSong = songs.Count; return albumDetails; } }
-
-        public Myplaylist()
+        #region Propeties
+        private List<uSong> songs = new List<uSong>();
+        public List<uSong> Songs { get => songs; }
+        private uAlbumDetails albumDetails = new uAlbumDetails();
+        public uAlbumDetails fDetails { get { albumDetails.TotalSong = songs.Count; return albumDetails; } }
+        public uMyplaylist()
         {
             InitializeComponent();
         }
+        #endregion
+
+        #region Method
         public event EventHandler BtnImage_Click;
         public Image PlaylistImage
         {
@@ -44,23 +42,28 @@ namespace Music
                 labelPlaylistName.Text = value;
             }
         }
-
-
-        public static Myplaylist CreateArtist(Song song)
+        private void btnImage_Click(object sender, EventArgs e)
         {
-            Myplaylist artist = new Myplaylist();
+            BtnImage_Click?.Invoke(this, e);
+        }
+        #endregion
+
+        #region Method static
+        public static uMyplaylist CreateArtist(uSong song)
+        {
+            uMyplaylist artist = new uMyplaylist();
             artist.songs.Add(song);
             artist.labelPlaylistName.Text = song.ArtistName;
             artist.btnImage.BackgroundImage = song.ImageSong;
             artist.albumDetails.ImageShow = song.ImageSong;
             artist.albumDetails.NameFull = song.ArtistName;
-            
+
             return artist;
         }
 
-        public static Myplaylist CreateAlbum(Song song)
+        public static uMyplaylist CreateAlbum(uSong song)
         {
-            Myplaylist album = new Myplaylist();
+            uMyplaylist album = new uMyplaylist();
             album.songs.Add(song);
             album.labelPlaylistName.Text = song.Album;
             album.btnImage.BackgroundImage = song.ImageSong;
@@ -68,10 +71,6 @@ namespace Music
             album.albumDetails.NameFull = song.ArtistName;
             return album;
         }
-
-        private void btnImage_Click(object sender, EventArgs e)
-        {
-            BtnImage_Click?.Invoke(this, e);
-        }
+        #endregion
     }
 }

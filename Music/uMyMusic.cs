@@ -9,16 +9,17 @@ using System.Globalization;
 
 namespace Music
 {
-    public partial class MyMusic : UserControl
+    public partial class uMyMusic : UserControl
     {
-        private List<Song> songs;
-        private List<Myplaylist> artists = new List<Myplaylist>();
-        private List<Myplaylist> albums = new List<Myplaylist>();
-        public List<Myplaylist> ListAlbums
+        #region Properties
+        private List<uSong> songs;
+        private List<uMyplaylist> artists = new List<uMyplaylist>();
+        private List<uMyplaylist> albums = new List<uMyplaylist>();
+        public List<uMyplaylist> ListAlbums
         {
             get => albums;
         }
-        public List<Myplaylist> ListArtists
+        public List<uMyplaylist> ListArtists
         {
             get => artists;
         }
@@ -27,14 +28,14 @@ namespace Music
         public event EventHandler Album_Click;
         public event EventHandler SongsSorted;
         public event EventHandler Shuff_Click;
-
-        public MyMusic()
+        public uMyMusic()
         {
             InitializeComponent();
             bunifuFlatButton1.IconVisible = true;
             btnShuffleAllSongs.IconVisible = true;
             btnShuufleAllArtists.IconVisible = true;
         }
+        #endregion
 
         #region Method
         public void ShowLanguage(ResourceManager resource, CultureInfo culture)
@@ -70,7 +71,7 @@ namespace Music
         {
             Shuff_Click?.Invoke(sender, e);
         }
-        public static void ChangeColor(FlowLayoutPanel panel, Song[] controls)
+        public static void ChangeColor(FlowLayoutPanel panel, uSong[] controls)
         {
             //panel.contr;
             panel.Visible = false;
@@ -82,7 +83,7 @@ namespace Music
             }
             panel.Visible = true;
         }
-        public static void ChangeColor(FlowLayoutPanel panel, Myplaylist[] controls)
+        public static void ChangeColor(FlowLayoutPanel panel, uMyplaylist[] controls)
         {
             //panel.contr;
             panel.Visible = false;
@@ -93,7 +94,7 @@ namespace Music
             }
             panel.Visible = true;
         }
-        public void SetSongs(List<Song> songs)
+        public void SetSongs(List<uSong> songs)
         {
             this.songs = songs;
             panelSongs.Tag = songs;
@@ -122,11 +123,11 @@ namespace Music
             panel1.Visible = true;
 
         }
-        public void AddSong(Song value)
+        public void AddSong(uSong value)
         {
             panelSongs.Controls.Add(value);
         }
-        public void AddSongs(Song[] value)
+        public void AddSongs(uSong[] value)
         {
             panelSongs.Controls.Clear();
             panelSongs.Controls.AddRange(value);
@@ -139,11 +140,11 @@ namespace Music
         {
             panelSongs.Controls.Clear();
         }
-        public List<Song> ListSongs
+        public List<uSong> ListSongs
         {
             get
             {
-                return panelSongs.Controls.Cast<Song>().ToList();
+                return panelSongs.Controls.Cast<uSong>().ToList();
             }
         }
 
@@ -155,7 +156,7 @@ namespace Music
         {
             ShowArtits();
         }
-        public void AddArtist(Myplaylist artist)
+        public void AddArtist(uMyplaylist artist)
         {
             if (artist.Songs.Count < 2)
             {
@@ -168,7 +169,7 @@ namespace Music
         
         private void Artist_BtnImage_Click(object sender, EventArgs e)
         {
-            Myplaylist artist = sender as Myplaylist;
+            uMyplaylist artist = sender as uMyplaylist;
             ShowSongInArtist(artist);
             Artist_Click?.Invoke(sender, e);
 
@@ -182,7 +183,7 @@ namespace Music
             panelArtists.Visible = true;
 
         }
-        private void ShowSongInArtist(Myplaylist artist)
+        private void ShowSongInArtist(uMyplaylist artist)
         {
             panel2.Visible = false;
             panelArtists.Visible = false;
@@ -218,7 +219,7 @@ namespace Music
         {
             ShowAlbums();
         }
-        public void AddAlbum(Myplaylist album)
+        public void AddAlbum(uMyplaylist album)
         {
             if (album.Songs.Count < 2)
             {
@@ -230,11 +231,11 @@ namespace Music
         }
         private void Album_BtnImage_Click(object sender, EventArgs e)
         {
-            Myplaylist album = sender as Myplaylist;
+            uMyplaylist album = sender as uMyplaylist;
             ShowSongInAlbum(album);
             Album_Click?.Invoke(sender, e);
         }
-        private void ShowSongInAlbum(Myplaylist album)
+        private void ShowSongInAlbum(uMyplaylist album)
         {
             panelAlbums.Visible = false;
             panel3.Visible = false;
@@ -289,21 +290,21 @@ namespace Music
 
         private void SortNone()
         {
-            songs = (List<Song>)panelSongs.Tag;
+            songs = (List<uSong>)panelSongs.Tag;
             ChangeColor(panelSongs, songs.ToArray());
             SongsSorted?.Invoke(songs, null);
         }
 
         private void SortSongsZtoA()
         {
-            songs?.Sort(UISort.iCompareZToA);
+            songs?.Sort(Sort.iCompareZToA);
             ChangeColor(panelSongs, songs.ToArray());
             SongsSorted?.Invoke(songs, null);
         }
 
         private void SortSongsAtoZ()
         {
-            songs?.Sort(UISort.iCompareAToZ);
+            songs?.Sort(Sort.iCompareAToZ);
             ChangeColor(panelSongs, songs.ToArray());
             SongsSorted?.Invoke(songs, null);
 
@@ -332,13 +333,13 @@ namespace Music
 
         private void SortAblums_ZtoA()
         {
-            albums.Sort(UISort.iCompareAlbumZtoA);
+            albums.Sort(Sort.iCompareAlbumZtoA);
             ChangeColor(panelAlbums, albums.ToArray());
         }
 
         private void SortAlbums_AtoZ()
         {
-            albums.Sort(UISort.iCompareAlbumAtoZ);
+            albums.Sort(Sort.iCompareAlbumAtoZ);
             ChangeColor(panelAlbums, albums.ToArray());
         }
         #endregion
@@ -363,18 +364,16 @@ namespace Music
 
         private void SortArtists_ZtoA()
         {
-            artists.Sort(UISort.iCompareArtistZtoA);
+            artists.Sort(Sort.iCompareArtistZtoA);
             ChangeColor(panelArtists, artists.ToArray());
         }
 
         private void SortArtists_AtoZ()
         {
-            artists.Sort(UISort.iCompareArtistAtoZ);
+            artists.Sort(Sort.iCompareArtistAtoZ);
             ChangeColor(panelArtists, artists.ToArray());
         }
 
         #endregion
-
-
     }
 }

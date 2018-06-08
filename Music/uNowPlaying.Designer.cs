@@ -1,6 +1,6 @@
 ﻿namespace Music
 {
-    partial class NowPlaying
+    partial class uNowPlaying
     {
         /// <summary> 
         /// Required designer variable.

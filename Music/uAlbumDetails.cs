@@ -5,7 +5,7 @@ using System.Globalization;
 
 namespace Music
 {
-    public partial class AlbumDetails : UserControl
+    public partial class uAlbumDetails : UserControl
     {
         private static ResourceManager resource;
         private static CultureInfo culture;
@@ -14,7 +14,7 @@ namespace Music
             culture = cultures;
             resource = resources;
         }
-        public AlbumDetails()
+        public uAlbumDetails()
         {
             InitializeComponent();
             label2.Text = resource.GetString("Songs", culture);
@@ -29,7 +29,7 @@ namespace Music
             set
             {
                 image.Image = value;
-                background.BackgroundImage= new Bitmap(PlaylistDetail.CropImage(value));
+                background.BackgroundImage= new Bitmap(uPlaylistDetail.CropImage(value));
             }
         }
         public string NameFull

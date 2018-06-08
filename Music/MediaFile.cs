@@ -1,4 +1,6 @@
-﻿namespace Music
+﻿using System.IO;
+
+namespace Music
 {
     class MediaFile
     {
@@ -8,7 +10,7 @@
             this.filePath = filePath;
         }
 
-        internal string FileName { get => filePath.Substring(filePath.LastIndexOf("\\") + 1); }
+        internal string FileName { get => Path.GetFileName(filePath); }
         internal string FilePath { get => filePath; }
     }
 }

@@ -103,23 +103,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About.cs">
+    <Compile Include="uAbout.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="About.Designer.cs">
-      <DependentUpon>About.cs</DependentUpon>
+    <Compile Include="uAbout.Designer.cs">
+      <DependentUpon>uAbout.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddLocalFiles.cs">
+    <Compile Include="uAddLocalFiles.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AddLocalFiles.Designer.cs">
-      <DependentUpon>AddLocalFiles.cs</DependentUpon>
+    <Compile Include="uAddLocalFiles.Designer.cs">
+      <DependentUpon>uAddLocalFiles.cs</DependentUpon>
     </Compile>
-    <Compile Include="AlbumDetails.cs">
+    <Compile Include="uAlbumDetails.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AlbumDetails.Designer.cs">
-      <DependentUpon>AlbumDetails.cs</DependentUpon>
+    <Compile Include="uAlbumDetails.Designer.cs">
+      <DependentUpon>uAlbumDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="fEditInfo.cs">
       <SubType>Form</SubType>
@@ -157,90 +157,88 @@
     <Compile Include="fRenamePlaylist.Designer.cs">
       <DependentUpon>fRenamePlaylist.cs</DependentUpon>
     </Compile>
-    <Compile Include="LocalFiles.cs">
+    <Compile Include="InternetConnection.cs" />
+    <Compile Include="uLocalFiles.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="LocalFiles.Designer.cs">
-      <DependentUpon>LocalFiles.cs</DependentUpon>
+    <Compile Include="uLocalFiles.Designer.cs">
+      <DependentUpon>uLocalFiles.cs</DependentUpon>
     </Compile>
-    <Compile Include="Lyrics.cs">
+    <Compile Include="uLyrics.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Lyrics.Designer.cs">
-      <DependentUpon>Lyrics.cs</DependentUpon>
+    <Compile Include="uLyrics.Designer.cs">
+      <DependentUpon>uLyrics.cs</DependentUpon>
     </Compile>
     <Compile Include="LyricSong.cs" />
     <Compile Include="MediaFile.cs" />
     <Compile Include="MediaPlayer.cs" />
-    <Compile Include="MyMusic.cs">
+    <Compile Include="uMyMusic.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MyMusic.Designer.cs">
-      <DependentUpon>MyMusic.cs</DependentUpon>
+    <Compile Include="uMyMusic.Designer.cs">
+      <DependentUpon>uMyMusic.cs</DependentUpon>
     </Compile>
-    <Compile Include="Myplaylist.cs">
+    <Compile Include="uMyplaylist.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Myplaylist.Designer.cs">
-      <DependentUpon>Myplaylist.cs</DependentUpon>
+    <Compile Include="uMyplaylist.Designer.cs">
+      <DependentUpon>uMyplaylist.cs</DependentUpon>
     </Compile>
-    <Compile Include="NowPlaying.cs">
+    <Compile Include="uNowPlaying.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="NowPlaying.Designer.cs">
-      <DependentUpon>NowPlaying.cs</DependentUpon>
+    <Compile Include="uNowPlaying.Designer.cs">
+      <DependentUpon>uNowPlaying.cs</DependentUpon>
     </Compile>
-    <Compile Include="Playlist.cs">
+    <Compile Include="uPlaylist.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Playlist.Designer.cs">
-      <DependentUpon>Playlist.cs</DependentUpon>
+    <Compile Include="uPlaylist.Designer.cs">
+      <DependentUpon>uPlaylist.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlaylistDetail.cs">
+    <Compile Include="uPlaylistDetail.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PlaylistDetail.Designer.cs">
-      <DependentUpon>PlaylistDetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PlaySong.cs">
-      <SubType>Form</SubType>
+    <Compile Include="uPlaylistDetail.Designer.cs">
+      <DependentUpon>uPlaylistDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Results.cs">
+    <Compile Include="uResults.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Results.Designer.cs">
-      <DependentUpon>Results.cs</DependentUpon>
+    <Compile Include="uResults.Designer.cs">
+      <DependentUpon>uResults.cs</DependentUpon>
     </Compile>
-    <Compile Include="Setting.cs">
+    <Compile Include="uSetting.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Setting.Designer.cs">
-      <DependentUpon>Setting.cs</DependentUpon>
+    <Compile Include="uSetting.Designer.cs">
+      <DependentUpon>uSetting.cs</DependentUpon>
     </Compile>
-    <Compile Include="Song.cs">
+    <Compile Include="uSong.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Song.Designer.cs">
-      <DependentUpon>Song.cs</DependentUpon>
+    <Compile Include="uSong.Designer.cs">
+      <DependentUpon>uSong.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SongInfo.cs" />
-    <Compile Include="UISort.cs" />
+    <Compile Include="Sort.cs" />
     <Compile Include="UpdateMusic.cs" />
-    <EmbeddedResource Include="About.resx">
-      <DependentUpon>About.cs</DependentUpon>
+    <EmbeddedResource Include="uAbout.resx">
+      <DependentUpon>uAbout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddLocalFiles.resx">
-      <DependentUpon>AddLocalFiles.cs</DependentUpon>
+    <EmbeddedResource Include="uAddLocalFiles.resx">
+      <DependentUpon>uAddLocalFiles.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AlbumDetails.resx">
-      <DependentUpon>AlbumDetails.cs</DependentUpon>
+    <EmbeddedResource Include="uAlbumDetails.resx">
+      <DependentUpon>uAlbumDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fEditInfo.resx">
       <DependentUpon>fEditInfo.cs</DependentUpon>
@@ -262,35 +260,35 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Language\Lang.En.resx" />
     <EmbeddedResource Include="Language\Lang.Vi.resx" />
-    <EmbeddedResource Include="LocalFiles.resx">
-      <DependentUpon>LocalFiles.cs</DependentUpon>
+    <EmbeddedResource Include="uLocalFiles.resx">
+      <DependentUpon>uLocalFiles.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Lyrics.resx">
-      <DependentUpon>Lyrics.cs</DependentUpon>
+    <EmbeddedResource Include="uLyrics.resx">
+      <DependentUpon>uLyrics.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MyMusic.resx">
-      <DependentUpon>MyMusic.cs</DependentUpon>
+    <EmbeddedResource Include="uMyMusic.resx">
+      <DependentUpon>uMyMusic.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Myplaylist.resx">
-      <DependentUpon>Myplaylist.cs</DependentUpon>
+    <EmbeddedResource Include="uMyplaylist.resx">
+      <DependentUpon>uMyplaylist.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NowPlaying.resx">
-      <DependentUpon>NowPlaying.cs</DependentUpon>
+    <EmbeddedResource Include="uNowPlaying.resx">
+      <DependentUpon>uNowPlaying.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Playlist.resx">
-      <DependentUpon>Playlist.cs</DependentUpon>
+    <EmbeddedResource Include="uPlaylist.resx">
+      <DependentUpon>uPlaylist.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PlaylistDetail.resx">
-      <DependentUpon>PlaylistDetail.cs</DependentUpon>
+    <EmbeddedResource Include="uPlaylistDetail.resx">
+      <DependentUpon>uPlaylistDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Results.resx">
-      <DependentUpon>Results.cs</DependentUpon>
+    <EmbeddedResource Include="uResults.resx">
+      <DependentUpon>uResults.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Setting.resx">
-      <DependentUpon>Setting.cs</DependentUpon>
+    <EmbeddedResource Include="uSetting.resx">
+      <DependentUpon>uSetting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Song.resx">
-      <DependentUpon>Song.cs</DependentUpon>
+    <EmbeddedResource Include="uSong.resx">
+      <DependentUpon>uSong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

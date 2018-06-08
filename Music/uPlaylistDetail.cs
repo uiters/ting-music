@@ -9,16 +9,19 @@ using System.Globalization;
 
 namespace Music
 {
-    public partial class PlaylistDetail : UserControl
+    public partial class uPlaylistDetail : UserControl
     {
-        public PlaylistDetail()
+        #region Properties
+        public uPlaylistDetail()
         {
             InitializeComponent();
         }
-        public event EventHandler PlayAll_Click;      
+        public event EventHandler PlayAll_Click;
         public event EventHandler Rename_Click;
         public event EventHandler Delete_Click;
+        #endregion
 
+        #region Method 
         public void ShowLanguage(ResourceManager resource, CultureInfo culture)
         {
             label2.Text = resource.GetString("Songs", culture);
@@ -26,16 +29,15 @@ namespace Music
             btnRename.Text = resource.GetString("btnRename", culture);
             btnDelete.Text = resource.GetString("btnDelete", culture);
         }
-
-        public void AddSong(Song value)
+        public void AddSong(uSong value)
         {
             panelSongs.Controls.Add(value);
         }
         public static Image CropImage(Image img)
         {
-            Rectangle cropArea = new Rectangle(Point.Empty,new Size(img.Size.Width, img.Size.Height/4));
+            Rectangle cropArea = new Rectangle(Point.Empty, new Size(img.Size.Width, img.Size.Height / 4));
             Bitmap bmpImage = new Bitmap(img);
-            Bitmap bmpCrop = bmpImage.Clone(cropArea,bmpImage.PixelFormat);
+            Bitmap bmpCrop = bmpImage.Clone(cropArea, bmpImage.PixelFormat);
             return (Image)(bmpCrop);
         }
         public Image PlaylistImage
@@ -47,7 +49,7 @@ namespace Music
             set
             {
                 image.Image = value;
-                background.BackgroundImage =new Bitmap(CropImage(value));
+                background.BackgroundImage = new Bitmap(CropImage(value));
             }
         }
         public string PlaylistName
@@ -61,7 +63,7 @@ namespace Music
                 lblPlaylistName.Text = value;
             }
         }
-        public Song Song
+        public uSong Song
         {
             set
             {
@@ -75,14 +77,13 @@ namespace Music
                 lblTotalSong.Text = value.ToString();
             }
         }
-        public List<Song> ListSong
+        public List<uSong> ListSong
         {
             get
             {
-                return panelSongs.Controls.Cast<Song>().ToList();
+                return panelSongs.Controls.Cast<uSong>().ToList();
             }
         }
-
         public void SetScrollControl(Control value)
         {
             panelSongs.ScrollControlIntoView(value);
@@ -99,7 +100,6 @@ namespace Music
             panelSongs.Controls.Clear();
         }
 
-        
 
         private void btnPlayAll_Click_2(object sender, EventArgs e)
         {
@@ -115,5 +115,6 @@ namespace Music
         {
             Delete_Click?.Invoke(this, e);
         }
+        #endregion
     }
 }

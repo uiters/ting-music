@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Music
 {
-    class UISort
+    class Sort
     {
         #region Properties static
         public static readonly ISortSongFromAToZ iCompareAToZ = new ISortSongFromAToZ();
@@ -26,16 +22,16 @@ namespace Music
 
 
         #region Sort Songs
-        public class ISortSongFromAToZ : IComparer<Song>
+        public class ISortSongFromAToZ : IComparer<uSong>
         {
-            public int Compare(Song x, Song y)
+            public int Compare(uSong x, uSong y)
             {
                 return x.SongName.CompareTo(y.SongName);
             }
         }
-        public class ISortSongFromZToA : IComparer<Song>
+        public class ISortSongFromZToA : IComparer<uSong>
         {
-            public int Compare(Song a, Song b)
+            public int Compare(uSong a, uSong b)
             {
                 return b.SongName.CompareTo(a.SongName);
             }
@@ -43,16 +39,16 @@ namespace Music
         #endregion
 
         #region Artist
-        public class ISortArtistAtoZ : IComparer<Myplaylist>
+        public class ISortArtistAtoZ : IComparer<uMyplaylist>
         {
-            public int Compare(Myplaylist a, Myplaylist b)
+            public int Compare(uMyplaylist a, uMyplaylist b)
             {
                 return a.PlaylistName.CompareTo(b.PlaylistName);
             }
         }
-        public class ISortArtistZtoA : IComparer<Myplaylist>
+        public class ISortArtistZtoA : IComparer<uMyplaylist>
         {
-            public int Compare(Myplaylist a, Myplaylist b)
+            public int Compare(uMyplaylist a, uMyplaylist b)
             {
                 return b.PlaylistName.CompareTo(a.PlaylistName);
             }
@@ -60,16 +56,16 @@ namespace Music
         #endregion
 
         #region Albums
-        public class ISortAlbumAtoZ : IComparer<Myplaylist>
+        public class ISortAlbumAtoZ : IComparer<uMyplaylist>
         {
-            public int Compare(Myplaylist a, Myplaylist b)
+            public int Compare(uMyplaylist a, uMyplaylist b)
             {
                 return a.PlaylistName.CompareTo(b.PlaylistName);
             }
         }
-        public class ISortAlbumZtoA : IComparer<Myplaylist>
+        public class ISortAlbumZtoA : IComparer<uMyplaylist>
         {
-            public int Compare(Myplaylist a, Myplaylist b)
+            public int Compare(uMyplaylist a, uMyplaylist b)
             {
                 return b.PlaylistName.CompareTo(a.PlaylistName);
             }

@@ -8,7 +8,6 @@ namespace Music
 {
     static class Program
     {
-        public static fMusic fMusicCurent;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -17,9 +16,7 @@ namespace Music
         {          
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            fMusicCurent = new fMusic();
-            Application.Run(fMusicCurent);
-           
+            Application.Run(new fMusic());         
         }
     }
 }
