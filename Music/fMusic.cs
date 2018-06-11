@@ -25,7 +25,7 @@ namespace Music
         private List<uMyplaylist> artists;
         private List<uMyplaylist> albums;
         private Action actionOpenLyric;
-        private Action<uSong> actionScroll;
+        private Action<uSong> ActionScroll;
         private Bitmap imageSong;
         private uSong songNow = null;
         private uSong preSong = null;
@@ -55,6 +55,7 @@ namespace Music
             myMusic.Artist_Click += MyMusic_Artist_Click;
             myMusic.Album_Click += MyMusic_Album_Click;
             myMusic.SongsSorted += MyMusic_SongsSorted;
+            myMusic.PlayAll_Click += MyMusic_PlayAll_Click;
             setting.CloseForm += Setting_CloseForm;
             setting.ChangeLangue += Setting_ChangeLangue;
             btnShuffle.Tag = "Off";
@@ -192,7 +193,7 @@ namespace Music
         {
             status = 5;
             isExchange = true;
-            actionScroll = myMusic.SetScrollSongInAlbums;
+            ActionScroll = myMusic.SetScrollSongInAlbums;
             myMusic.Tag = sender;
         }
 
@@ -200,7 +201,7 @@ namespace Music
         {
             status = 4;
             isExchange = true;
-            actionScroll = myMusic.SetScrollSongInArtists;
+            ActionScroll = myMusic.SetScrollSongInArtists;
             myMusic.Tag = sender;
         }
         #endregion
@@ -250,7 +251,7 @@ namespace Music
                 indexNow = 0;
                 ShowInfoMeadia(songsNowPlaying[0]);
             }
-            actionScroll = myMusic.SetScrollSongInSongs;
+            ActionScroll = myMusic.SetScrollSongInSongs;
             info = null;
             GC.Collect();
         }
@@ -268,6 +269,7 @@ namespace Music
             }
             return uMyplaylist.CreateArtist(song);
         }
+
 
         private uMyplaylist GetOrCreateAlbum(uSong song)
         {
@@ -605,6 +607,25 @@ namespace Music
         #endregion
 
         #region Click
+        private void MyMusic_PlayAll_Click(object sender, EventArgs e)
+        {
+            songsNowPlaying = sender as List<uSong>;
+            if (songsNowPlaying.Count < 1)
+            {
+                return;
+            }
+            else
+            {
+                if (songNow != null)
+                    songNow.ImageButton = play;
+                Shuff();
+                NextSong();
+                PreviousSong();
+                songNow = songsNowPlaying[indexNow];
+                PlaySongNow(songNow);
+                ActionScroll(songNow);
+            }
+        }
         private void Myplaylist_BtnImage_Click1(object sender, EventArgs e)
         {
             uMyplaylist myplaylist = sender as uMyplaylist;
@@ -681,12 +702,12 @@ namespace Music
                             Shuff();
                             break;
                         case 4:
-                            actionScroll = myMusic.SetScrollSongInArtists;
+                            ActionScroll = myMusic.SetScrollSongInArtists;
                             songsNowPlaying = (myMusic.Tag as uMyplaylist)?.Songs;
                             Shuff();
                             break;
                         case 5:
-                            actionScroll = myMusic.SetScrollSongInAlbums;
+                            ActionScroll = myMusic.SetScrollSongInAlbums;
                             songsNowPlaying = (myMusic.Tag as uMyplaylist)?.Songs;
                             Shuff();
                             break;
@@ -708,14 +729,8 @@ namespace Music
             ShowInfoMeadia(song);
             timeLine.Start();
             autoNextSongTimer.Start();
-            //ChangeColorPlaySong(song);
         }
-        public static string ConvertToMinute(double Second)
-        {
-            int minute = (int)Second / 60;
-            int second = (int)Second % 60;
-            return minute.ToString("00") + ":" + second.ToString("00");
-        }
+
         private void btnNavigationPanel_Click_1(object sender, EventArgs e)
         {
             if (panelLeft.Width == 223)
@@ -749,8 +764,8 @@ namespace Music
                 myMusic.AddSongs(songsLocalFile.ToArray());
             }
 
-            actionScroll = myMusic.SetScrollSongInSongs;
-            actionScroll(songNow);
+            ActionScroll = myMusic.SetScrollSongInSongs;
+            ActionScroll(songNow);
             myMusic.ShowSongs();
             nowPlaying.Visible = true;
 
@@ -774,8 +789,8 @@ namespace Music
                 songsRecent[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
             }
             nowPlaying.AddSongs(songsRecent.ToArray());
-            actionScroll = nowPlaying.SetScrollControl;
-            actionScroll(songNow);
+            ActionScroll = nowPlaying.SetScrollControl;
+            ActionScroll(songNow);
             myMusic.ShowSongs();
 
             nowPlaying.BringToFront();
@@ -801,8 +816,8 @@ namespace Music
                 songsNowPlaying[i].Width = width;
             }
             nowPlaying.AddSongs(songsNowPlaying.ToArray());
-            actionScroll = nowPlaying.SetScrollControl;
-            actionScroll(songNow);
+            ActionScroll = nowPlaying.SetScrollControl;
+            ActionScroll(songNow);
             myMusic.ShowSongs();
             nowPlaying.Visible = true;
 
@@ -815,7 +830,7 @@ namespace Music
             lblTitle.Text = btnPlayList.Text.Trim();
             LoadListPlaylist();
             playlist.BringToFront();
-            actionScroll = playlistDetail.SetScrollControl;
+            ActionScroll = playlistDetail.SetScrollControl;
             //songsNowPlaying = playlistDetail.ListSong;
             ChangeNormalColorOnPanelLeft(sender);
         }
@@ -1018,7 +1033,7 @@ namespace Music
             MediaPlayer.Instance.Play(songNow.Path);
             ShowInfoMeadia(songNow);
             RecentAdd(songNow);
-            actionScroll(songNow);
+            ActionScroll(songNow);
         }
         #endregion
 
@@ -1042,7 +1057,7 @@ namespace Music
                     songNow.ImageButton = play;
                     songNow = null;
                     ShowInfoMeadia(songsNowPlaying[indexNow]);
-                    actionScroll(songsNowPlaying[indexNow]);
+                    ActionScroll(songsNowPlaying[indexNow]);
                     btnPlay.Image = play;
                     timeLine.Stop();
                     autoNextSongTimer.Stop();
@@ -1155,172 +1170,26 @@ namespace Music
         #endregion
 
         #region Method playlist
-        private void pictureBoxSong_Click(object sender, EventArgs e)
-        {
-            actionOpenLyric();
-            imageSong = new Bitmap(lyrics.SongImage);
-            angles = 0;
-        }
-
-        private void playlistDetail_Rename_Click(object sender, EventArgs e)
-        {
-            fRenamePlaylist fRenamePlaylist = new fRenamePlaylist(playlistDetail.Tag.ToString());
-            fRenamePlaylist.ShowDialog();
-            playlistDetail.PlaylistName = fRenamePlaylist.txbNewPlaylist.Text;
-
-        }
-
-        private void playlistDetail_Delete_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Do you want to delete this playlist?", "Quesition", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                MediaPlayer.Instance.DeletePlaylist(playlistDetail.Tag.ToString());
-                MessageBox.Show("Delete playlist successfully!", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                playlist.BringToFront();
-                LoadListPlaylist();
-            }
-
-        }
-
-        private void menuItemPlay_Click(object sender, EventArgs e)
-        {
-            ChangeIconListSong();
-            songNow = contextMenuStripSong.Tag as uSong;
-            if (isExchange)
-            {
-                switch (status)
-                {
-                    case 0:
-                        songsNowPlaying = songsLocalFile;
-                        Shuff();
-                        break;
-                    case 1:
-                        PlaySongNow(songNow);
-                        return;
-                    case 3:
-                        songsNowPlaying = playlistDetail.ListSong;
-                        Shuff();
-                        break;
-                    case 4:
-                        actionScroll = myMusic.SetScrollSongInArtists;
-                        songsNowPlaying = (myMusic.Tag as uMyplaylist)?.Songs;
-                        Shuff();
-                        break;
-                    case 5:
-                        actionScroll = myMusic.SetScrollSongInAlbums;
-                        songsNowPlaying = (myMusic.Tag as uMyplaylist)?.Songs;
-                        Shuff();
-                        break;
-                    default:
-                        break;
-                }
-                isExchange = false;
-            }
-
-            indexNow = songsNowPlaying.IndexOf(songNow);
-            RecentAdd(songNow);
-            ShowInfoMeadia(songNow);
-            MediaPlayer.Instance.Play(songNow.Path);
-            btnPlay.Image = pause;
-            songNow.ImageButton = pause;
-            timeLine.Start();
-            autoNextSongTimer.Start();
-            songsSelected.Clear();
-            ChangeColorLeftMouseButton();
-        }
-
-        private void menuItemSelectAll_Click(object sender, EventArgs e)
-        {
-            if (indexNow == -1) return;
-            // song pre
-            NextSong(); // set index song next
-            SetSong();
-            if (actionOpenLyric == OpenLyric)
-                LoadLyrics();
-            autoNextSongTimer.Start();
-            timeLine.Start();
-            imageSong = new Bitmap(lyrics.SongImage);
-            angles = 0;
-            //ChangeColorPlaySong(songNow);
-            songsSelected.Clear();
-            ChangeColorLeftMouseButton();
-        }
-        public void LoadInfoSong(uSong song)
-        {
-            song.SongName = SongInfo.GetTitle(song.Path);
-            song.ArtistName = SongInfo.GetArtist(song.Path);
-            song.CategoryName = SongInfo.GetGenrne(song.Path);
-        }
-        private void menuItemProperties_Click(object sender, EventArgs e)
-        {
-            uSong song = contextMenuStripSong.Tag as uSong;
-            fEditInfo fEditInfo = new fEditInfo(song.Path);
-            fEditInfo.ShowDialog();
-            LoadInfoSong(song);
-            songsSelected.Clear();
-            ChangeColorLeftMouseButton();
-        }
-
-        private void menuItemProperties_Click_1(object sender, EventArgs e)
-        {
-            uSong song = contextMenuStripSong.Tag as uSong;
-            fProperties fProperties = new fProperties(song.Path);
-            fProperties.ShowDialog();
-            songsSelected.Clear();
-            ChangeColorLeftMouseButton();
-        }
-        private void fMusic_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-                if (txbSearchMusic.Text != string.Empty)//&& txbSearchMusic.Focused)
-                    btnSearchMusic_Click(null, null);
-            if (e.KeyCode == Keys.ControlKey)
-            {
-                isCtrl = isCtrlA ? false : true;
-            }
-            if (e.KeyCode == Keys.A && isCtrl)
-            {
-                isCtrlA = true;
-                isCtrl = false;
-                if (songsSelected.Count != songsNowPlaying.Count)
-                {
-                    songsSelected.Clear();
-                    songsSelected.AddRange(songsNowPlaying);
-                    ChangeColorLeftMouseButton();
-                }
-            }
-
-            this.KeyUp += FMusic_KeyUp;
-
-        }
-
-        #endregion
-
-        #region Mouse & key
-        private void contextMenuStripSong_Closing(object sender, ToolStripDropDownClosingEventArgs e)
-        {
-            isCtrl = isCtrlA = false;
-        }
         private void playlistDetail_PlayAll_Click(object sender, EventArgs e)
         {
             if (playlistDetail.ListSong.Count == 0)
             {
                 return;
             }
-            songsNowPlaying = playlistDetail.ListSong;
-            ChangeIconListSong();
-            songNow = songsNowPlaying[0];
-            if (songNow is null) return;
-            indexNow = 0;
-            RecentAdd(songNow);
-            ShowInfoMeadia(songNow);
-            MediaPlayer.Instance.Play(songNow.Path);
-            btnPlay.Image = pause;
-            songNow.ImageButton = pause;
-            timeLine.Start();
-            autoNextSongTimer.Start();
-            songsSelected.Clear();
-            ChangeColorLeftMouseButton();
+            else
+            {
+                songsNowPlaying = playlistDetail.ListSong;
+                if (songNow != null) songNow.ImageButton = play;
+                ChangeIconListSong();
+                Shuff();
+                NextSong();
+                PreviousSong();
+                songNow = songsNowPlaying[indexNow];
+                PlaySongNow(songNow);
+                songsSelected.Clear();
+                ChangeColorLeftMouseButton();
+                ActionScroll(songNow);
+            }
         }
         private void menuItemRemove_Click(object sender, EventArgs e)
         {
@@ -1424,6 +1293,129 @@ namespace Music
 
             }
         }
+
+        private void pictureBoxSong_Click(object sender, EventArgs e)
+        {
+            actionOpenLyric();
+            imageSong = new Bitmap(lyrics.SongImage);
+            angles = 0;
+        }
+
+        private void playlistDetail_Rename_Click(object sender, EventArgs e)
+        {
+            fRenamePlaylist fRenamePlaylist = new fRenamePlaylist(playlistDetail.Tag.ToString());
+            fRenamePlaylist.ShowDialog();
+            playlistDetail.PlaylistName = fRenamePlaylist.txbNewPlaylist.Text;
+
+        }
+
+        private void playlistDetail_Delete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you want to delete this playlist?", "Quesition", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                MediaPlayer.Instance.DeletePlaylist(playlistDetail.Tag.ToString());
+                MessageBox.Show("Delete playlist successfully!", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                playlist.BringToFront();
+                LoadListPlaylist();
+            }
+
+        }
+
+        private void menuItemPlay_Click(object sender, EventArgs e)
+        {
+            ChangeIconListSong();
+            songNow = contextMenuStripSong.Tag as uSong;
+            if (isExchange)
+            {
+                switch (status)
+                {
+                    case 0:
+                        songsNowPlaying = songsLocalFile;
+                        Shuff();
+                        break;
+                    case 1:
+                        PlaySongNow(songNow);
+                        return;
+                    case 3:
+                        songsNowPlaying = playlistDetail.ListSong;
+                        Shuff();
+                        break;
+                    case 4:
+                        ActionScroll = myMusic.SetScrollSongInArtists;
+                        songsNowPlaying = (myMusic.Tag as uMyplaylist)?.Songs;
+                        Shuff();
+                        break;
+                    case 5:
+                        ActionScroll = myMusic.SetScrollSongInAlbums;
+                        songsNowPlaying = (myMusic.Tag as uMyplaylist)?.Songs;
+                        Shuff();
+                        break;
+                    default:
+                        break;
+                }
+                isExchange = false;
+            }
+
+            indexNow = songsNowPlaying.IndexOf(songNow);
+            RecentAdd(songNow);
+            ShowInfoMeadia(songNow);
+            MediaPlayer.Instance.Play(songNow.Path);
+            btnPlay.Image = pause;
+            songNow.ImageButton = pause;
+            timeLine.Start();
+            autoNextSongTimer.Start();
+            songsSelected.Clear();
+            ChangeColorLeftMouseButton();
+        }
+
+        private void menuItemSelectAll_Click(object sender, EventArgs e)
+        {
+            if (indexNow == -1) return;
+            // song pre
+            NextSong(); // set index song next
+            SetSong();
+            if (actionOpenLyric == OpenLyric)
+                LoadLyrics();
+            autoNextSongTimer.Start();
+            timeLine.Start();
+            imageSong = new Bitmap(lyrics.SongImage);
+            angles = 0;
+            //ChangeColorPlaySong(songNow);
+            songsSelected.Clear();
+            ChangeColorLeftMouseButton();
+        }
+        public void LoadInfoSong(uSong song)
+        {
+            song.SongName = SongInfo.GetTitle(song.Path);
+            song.ArtistName = SongInfo.GetArtist(song.Path);
+            song.CategoryName = SongInfo.GetGenrne(song.Path);
+        }
+        private void menuItemProperties_Click(object sender, EventArgs e)
+        {
+            uSong song = contextMenuStripSong.Tag as uSong;
+            fEditInfo fEditInfo = new fEditInfo(song.Path);
+            fEditInfo.ShowDialog();
+            LoadInfoSong(song);
+            songsSelected.Clear();
+            ChangeColorLeftMouseButton();
+        }
+
+        private void menuItemProperties_Click_1(object sender, EventArgs e)
+        {
+            uSong song = contextMenuStripSong.Tag as uSong;
+            fProperties fProperties = new fProperties(song.Path);
+            fProperties.ShowDialog();
+            songsSelected.Clear();
+            ChangeColorLeftMouseButton();
+        }
+
+        #endregion
+
+        #region Mouse & key
+        private void contextMenuStripSong_Closing(object sender, ToolStripDropDownClosingEventArgs e)
+        {
+            isCtrl = isCtrlA = false;
+        }
         private void FMusic_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.ControlKey)
@@ -1435,6 +1427,60 @@ namespace Music
                 isCtrlA = false;
             }
         }
+        private void fMusic_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ControlKey)
+            {
+                isCtrl = isCtrlA ? false : true;
+            }
+            if (e.KeyCode == Keys.A && isCtrl)
+            {
+                isCtrlA = true;
+                isCtrl = false;
+                if(isExchange == true)
+                switch (status)
+                {
+                        case 0: // local file
+                            songsSelected.Clear();
+                            songsSelected.AddRange(songsLocalFile);
+                            ChangeColorLeftMouseButton();
+                            break;
+                        case 1: // recent
+                            songsSelected.Clear();
+                            songsSelected.AddRange(songsRecent);
+                            ChangeColorLeftMouseButton();
+                            break;
+                        case 3:
+                            songsSelected.Clear();
+                            songsSelected.AddRange(songsNowPlaying);
+                            ChangeColorLeftMouseButton();
+                            break;
+                        default:
+                            songsSelected.Clear();
+                            songsSelected.AddRange(songsLocalFile);
+                            ChangeColorLeftMouseButton();
+                        break;
+                }
+                else
+                if (songsSelected.Count != songsNowPlaying.Count)
+                {
+                    songsSelected.Clear();
+                    songsSelected.AddRange(songsNowPlaying);
+                    ChangeColorLeftMouseButton();
+                }
+            }
+            this.KeyUp += FMusic_KeyUp;
+        }
+        private void txbSearchMusic_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                if (txbSearchMusic.Text != string.Empty)//&& txbSearchMusic.Focused)
+                    btnSearchMusic_Click(null, null);
+        }
+        #endregion
+
+
+        #region Method search songs
         public List<uSong> Search(string keyword)
         {
             keyword = ConvertString(keyword.Trim().ToLower());
@@ -1449,12 +1495,6 @@ namespace Music
                 }
             }
             return songs;
-        }
-        public static string ConvertString(string s)
-        {
-            Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
-            string temp = s.Normalize(NormalizationForm.FormD);
-            return regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
         }
         private void btnSearchMusic_Click(object sender, EventArgs e)
         {
@@ -1476,5 +1516,22 @@ namespace Music
             txbSearchMusic.Text = string.Empty;
         }
         #endregion
+
+        #region Method static
+        public static string ConvertString(string s)
+        {
+            Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
+            string temp = s.Normalize(NormalizationForm.FormD);
+            return regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
+        }
+        public static string ConvertToMinute(double Second)
+        {
+            int minute = (int)Second / 60;
+            int second = (int)Second % 60;
+            return minute.ToString("00") + ":" + second.ToString("00");
+        }
+        #endregion
+
+
     }
 }

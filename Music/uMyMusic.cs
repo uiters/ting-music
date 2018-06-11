@@ -28,12 +28,13 @@ namespace Music
         public event EventHandler Album_Click;
         public event EventHandler SongsSorted;
         public event EventHandler Shuff_Click;
+        public event EventHandler PlayAll_Click;
         public uMyMusic()
         {
             InitializeComponent();
-            bunifuFlatButton1.IconVisible = true;
-            btnShuffleAllSongs.IconVisible = true;
             btnShuufleAllArtists.IconVisible = true;
+            btnShuffAlbum.IconVisible = true;
+            btnShuffleAllSongs.IconVisible = true;
         }
         #endregion
 
@@ -49,10 +50,10 @@ namespace Music
             comboBoxSortBySongs.Items.RemoveAt(0);
             string none = resource.GetString("None", culture);
             comboBoxSortBySongs.Items.Insert(0, none);
-            bunifuFlatButton1.Text =  resource.GetString("btnShuffleAllAlbums", culture);
-            btnShuffleAllSongs.Text = bunifuFlatButton1.Text;
-            btnShuufleAllArtists.Text = "      " + bunifuFlatButton1.Text;
-            bunifuFlatButton1.Text = btnShuufleAllArtists.Text;
+            btnShuffAlbum.Text =  resource.GetString("btnShuffleAllAlbums", culture);
+            btnShuffleAllSongs.Text = btnShuffAlbum.Text;
+            btnShuufleAllArtists.Text = "      " + btnShuffAlbum.Text;
+            btnShuffAlbum.Text = btnShuufleAllArtists.Text;
             //label4.Text = resource.GetString("labelSort", culture);
             //label4.Text = resource.GetString("labelSort", culture);
 
@@ -163,10 +164,20 @@ namespace Music
                 panelArtists.Controls.Add(artist);
                 this.artists.Add(artist);
                 artist.BtnImage_Click += Artist_BtnImage_Click;
+                artist.fDetails.Back_Click += Artists_Enter;
+                artist.fDetails.PlayALl_Click += FDetails_PlayALl_Click_Artist;
             }
             else return;
         }
-        
+        private void FDetails_PlayALl_Click_Artist(object sender, EventArgs e)
+        {
+
+            PlayAll_Click?.Invoke(GetSongsInArtist(), e);
+        }
+        private List<uSong> GetSongsInArtist()
+        {
+            return panelArtists.Controls.Cast<uSong>().ToList();
+        }
         private void Artist_BtnImage_Click(object sender, EventArgs e)
         {
             uMyplaylist artist = sender as uMyplaylist;
@@ -178,8 +189,18 @@ namespace Music
         {
             panel2.Visible = true;
             panelArtists.Visible = false;
+            Artists.Controls.Clear();
             panelArtists.Controls.Clear();
+
             panelArtists.Controls.AddRange(artists.ToArray());
+
+            Artists.Controls.Add(panel2);
+            panel2.Dock = DockStyle.Top;
+            panel2.BringToFront();
+
+            Artists.Controls.Add(panelArtists);
+            panelArtists.Dock = DockStyle.Fill;
+            panelArtists.BringToFront();
             panelArtists.Visible = true;
 
         }
@@ -188,12 +209,25 @@ namespace Music
             panel2.Visible = false;
             panelArtists.Visible = false;
             panelArtists.Controls.Clear();
-            panelArtists.Controls.Add(artist.fDetails);
+            Artists.Controls.Clear();
+
+
             panelArtists.Controls.AddRange(artist.Songs.ToArray());
             for (int i = 0; i < artist.Songs.Count; i++)
             {
                 artist.Songs[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
             }
+
+            #region clear tab artist // add details
+            Artists.Controls.Add(artist.fDetails);
+            artist.fDetails.Dock = DockStyle.Top;
+            artist.fDetails.BringToFront();
+
+            Artists.Controls.Add(panelArtists);
+            panelArtists.Dock = DockStyle.Fill;
+            panelArtists.BringToFront();
+            #endregion
+
             panelArtists.Visible = true;
         }
         public void SetScrollSongInArtists(Control value)
@@ -226,8 +260,19 @@ namespace Music
                 panelAlbums.Controls.Add(album);
                 this.albums.Add(album);
                 album.BtnImage_Click += Album_BtnImage_Click;
+                album.fDetails.Back_Click += Albums_Enter;
+                album.fDetails.PlayALl_Click += FDetails_PlayALl_Click_Album;
             }
             else return;
+        }
+
+        private void FDetails_PlayALl_Click_Album(object sender, EventArgs e)
+        {
+            PlayAll_Click?.Invoke(GetSongsInAlbum(), e);
+        }
+        private List<uSong> GetSongsInAlbum()
+        {
+            return panelAlbums.Controls.Cast<uSong>().ToList();
         }
         private void Album_BtnImage_Click(object sender, EventArgs e)
         {
@@ -239,21 +284,37 @@ namespace Music
         {
             panelAlbums.Visible = false;
             panel3.Visible = false;
+            Albums.Controls.Clear();
             panelAlbums.Controls.Clear();
-            panelAlbums.Controls.Add(album.fDetails);
+            panelAlbums.Controls.AddRange(album.Songs.ToArray());
             for (int i = 0; i < album.Songs.Count; i++)
             {
                 album.Songs[i].BackColor = (i % 2 == 0) ? Color.Silver : Color.Gainsboro;
             }
-            panelAlbums.Controls.AddRange(album.Songs.ToArray());
+            Albums.Controls.Add(album.fDetails);
+            album.fDetails.Dock = DockStyle.Top;
+            album.fDetails.BringToFront();
+
+            Albums.Controls.Add(panelAlbums);
+            panelAlbums.Dock = DockStyle.Fill;
+            panelAlbums.BringToFront();
+
             panelAlbums.Visible = true;
         }
         public void ShowAlbums()
         {
             panel3.Visible = true;
             panelAlbums.Visible = false;
+            Albums.Controls.Clear();
             panelAlbums.Controls.Clear();
             panelAlbums.Controls.AddRange(albums.ToArray());
+
+            Albums.Controls.Add(panel3);
+            panel3.Dock = DockStyle.Top;
+            panel3.BringToFront();
+            Albums.Controls.Add(panelAlbums);
+            panelAlbums.Dock = DockStyle.Fill;
+            panelAlbums.BringToFront();
             panelAlbums.Visible = true;
 
         }
@@ -270,7 +331,6 @@ namespace Music
         #region Sort Songs
         private void ComboBoxSortBySongs_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             switch (comboBoxSortBySongs.SelectedIndex)
             {
                 case 0:

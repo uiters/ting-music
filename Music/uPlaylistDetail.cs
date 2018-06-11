@@ -19,6 +19,7 @@ namespace Music
         public event EventHandler PlayAll_Click;
         public event EventHandler Rename_Click;
         public event EventHandler Delete_Click;
+        public event EventHandler Back_Click;
         #endregion
 
         #region Method 
@@ -115,6 +116,12 @@ namespace Music
         {
             Delete_Click?.Invoke(this, e);
         }
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.SendToBack();
+        }
         #endregion
+
+
     }
 }
