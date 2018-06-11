@@ -354,7 +354,9 @@
     <None Include="Resources\myMusic.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\back.png" />
     <Content Include="Resources\iconMusic.ico" />
+    <None Include="Resources\left-arrow.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InstallUpdate\InstallUpdate.csproj">

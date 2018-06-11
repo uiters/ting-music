@@ -955,6 +955,7 @@ namespace Music
             this.txbSearchMusic.Size = new System.Drawing.Size(462, 27);
             this.txbSearchMusic.TabIndex = 33;
             this.txbSearchMusic.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txbSearchMusic.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbSearchMusic_KeyDown);
             // 
             // lblTitle
             // 
