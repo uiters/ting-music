@@ -69,5 +69,10 @@ namespace Music
                 btnBack_click(this, e);
             
         }
+
+        private void bunifuFlatButton1_Click(object sender, EventArgs e)
+        {
+            btnBack_click?.Invoke(this, e);
+        }
     }
 }

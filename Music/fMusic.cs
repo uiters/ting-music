@@ -304,9 +304,23 @@ namespace Music
             lyrics.LyricsText = info.Lyrics;
             lyrics.ArtistName = info.Artist;
             lyrics.SongName = info.Song;
+            lyrics.SongImage = songsNowPlaying[indexNow].ImageSong;
 
 
             if (string.IsNullOrWhiteSpace(lyrics.LyricsText) && !string.IsNullOrWhiteSpace(lyrics.SongName))
+            {
+                Thread thread = new Thread(DownloadLyrics);
+                thread.IsBackground = true;
+                thread.Start(info);
+            }        
+
+        }
+        private void DownloadLyrics(object sender)
+        {
+            SongInfo info = sender as SongInfo;
+            if (lyrics.InvokeRequired)
+                lyrics.Invoke(new Action<object>(DownloadLyrics), sender);
+            else
             {
                 lyrics.LyricsText = (string)Lyric.Lyric.Instance.GetLyric(lyrics.SongName, lyrics.ArtistName);
                 info.Lyrics = lyrics.LyricsText;
@@ -321,20 +335,10 @@ namespace Music
                 finally
                 {
                     info = null;
+                    GC.Collect();
                 }
             }
-
-
-
-
-            lyrics.SongImage = songsNowPlaying[indexNow].ImageSong;
-            info = null;
-            //    lyrics.LyricsText=(string)Lyric.LyricSong.Instance.GetLyric(lyrics.ArtistName, lyrics.SongName)?? "";
-            //timer4.Start();
-            GC.Collect();
-
         }
-
         public void LoadListPlaylist()
         {
             (contextMenuStripSong.Items[2] as ToolStripMenuItem).DropDownItems.Clear();

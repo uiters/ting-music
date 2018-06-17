@@ -32,15 +32,15 @@
             this.panelHead = new System.Windows.Forms.Panel();
             this.background = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.lblTotalSong = new System.Windows.Forms.Label();
-            this.lblPlaylistName = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panelSongs = new System.Windows.Forms.FlowLayoutPanel();
             this.btnDelete = new Bunifu.Framework.UI.BunifuFlatButton();
             this.btnRename = new Bunifu.Framework.UI.BunifuFlatButton();
             this.btnPlayAll = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.lblTotalSong = new System.Windows.Forms.Label();
+            this.lblPlaylistName = new System.Windows.Forms.Label();
             this.image = new System.Windows.Forms.PictureBox();
-            this.btnBack = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panelSongs = new System.Windows.Forms.FlowLayoutPanel();
+            this.bunifuFlatButton1 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.panelHead.SuspendLayout();
             this.background.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.image)).BeginInit();
@@ -61,7 +61,7 @@
             // background
             // 
             this.background.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.background.Controls.Add(this.btnBack);
+            this.background.Controls.Add(this.bunifuFlatButton1);
             this.background.Controls.Add(this.label2);
             this.background.Controls.Add(this.btnDelete);
             this.background.Controls.Add(this.btnRename);
@@ -87,53 +87,6 @@
             this.label2.Size = new System.Drawing.Size(38, 14);
             this.label2.TabIndex = 92;
             this.label2.Text = "songs";
-            // 
-            // lblTotalSong
-            // 
-            this.lblTotalSong.AutoEllipsis = true;
-            this.lblTotalSong.AutoSize = true;
-            this.lblTotalSong.BackColor = System.Drawing.Color.Transparent;
-            this.lblTotalSong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblTotalSong.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalSong.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.lblTotalSong.Location = new System.Drawing.Point(34, 69);
-            this.lblTotalSong.Name = "lblTotalSong";
-            this.lblTotalSong.Size = new System.Drawing.Size(21, 14);
-            this.lblTotalSong.TabIndex = 88;
-            this.lblTotalSong.Text = "69";
-            // 
-            // lblPlaylistName
-            // 
-            this.lblPlaylistName.AutoEllipsis = true;
-            this.lblPlaylistName.AutoSize = true;
-            this.lblPlaylistName.BackColor = System.Drawing.Color.Transparent;
-            this.lblPlaylistName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblPlaylistName.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlaylistName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.lblPlaylistName.Location = new System.Drawing.Point(31, 20);
-            this.lblPlaylistName.Name = "lblPlaylistName";
-            this.lblPlaylistName.Size = new System.Drawing.Size(104, 36);
-            this.lblPlaylistName.TabIndex = 87;
-            this.lblPlaylistName.Text = "ndc07";
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.ForeColor = System.Drawing.Color.Chocolate;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(158, 158);
-            this.label1.TabIndex = 80;
-            // 
-            // panelSongs
-            // 
-            this.panelSongs.AutoScroll = true;
-            this.panelSongs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelSongs.Location = new System.Drawing.Point(0, 158);
-            this.panelSongs.Name = "panelSongs";
-            this.panelSongs.Size = new System.Drawing.Size(850, 316);
-            this.panelSongs.TabIndex = 8;
             // 
             // btnDelete
             // 
@@ -243,6 +196,34 @@
             this.btnPlayAll.TextFont = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPlayAll.Click += new System.EventHandler(this.btnPlayAll_Click_2);
             // 
+            // lblTotalSong
+            // 
+            this.lblTotalSong.AutoEllipsis = true;
+            this.lblTotalSong.AutoSize = true;
+            this.lblTotalSong.BackColor = System.Drawing.Color.Transparent;
+            this.lblTotalSong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblTotalSong.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalSong.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
+            this.lblTotalSong.Location = new System.Drawing.Point(34, 69);
+            this.lblTotalSong.Name = "lblTotalSong";
+            this.lblTotalSong.Size = new System.Drawing.Size(21, 14);
+            this.lblTotalSong.TabIndex = 88;
+            this.lblTotalSong.Text = "69";
+            // 
+            // lblPlaylistName
+            // 
+            this.lblPlaylistName.AutoEllipsis = true;
+            this.lblPlaylistName.AutoSize = true;
+            this.lblPlaylistName.BackColor = System.Drawing.Color.Transparent;
+            this.lblPlaylistName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblPlaylistName.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlaylistName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
+            this.lblPlaylistName.Location = new System.Drawing.Point(31, 20);
+            this.lblPlaylistName.Name = "lblPlaylistName";
+            this.lblPlaylistName.Size = new System.Drawing.Size(104, 36);
+            this.lblPlaylistName.TabIndex = 87;
+            this.lblPlaylistName.Text = "ndc07";
+            // 
             // image
             // 
             this.image.Image = global::Music.Properties.Resources.myMusic;
@@ -253,39 +234,58 @@
             this.image.TabIndex = 69;
             this.image.TabStop = false;
             // 
-            // btnBack
+            // label1
             // 
-            this.btnBack.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
-            this.btnBack.BackColor = System.Drawing.Color.Transparent;
-            this.btnBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnBack.BorderRadius = 0;
-            this.btnBack.ButtonText = "";
-            this.btnBack.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBack.DisabledColor = System.Drawing.Color.Gray;
-            this.btnBack.Iconcolor = System.Drawing.Color.Transparent;
-            this.btnBack.Iconimage = global::Music.Properties.Resources.back;
-            this.btnBack.Iconimage_right = null;
-            this.btnBack.Iconimage_right_Selected = null;
-            this.btnBack.Iconimage_Selected = null;
-            this.btnBack.IconMarginLeft = 0;
-            this.btnBack.IconMarginRight = 0;
-            this.btnBack.IconRightVisible = true;
-            this.btnBack.IconRightZoom = 0D;
-            this.btnBack.IconVisible = true;
-            this.btnBack.IconZoom = 45D;
-            this.btnBack.IsTab = false;
-            this.btnBack.Location = new System.Drawing.Point(3, 118);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Normalcolor = System.Drawing.Color.Transparent;
-            this.btnBack.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnBack.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.btnBack.selected = false;
-            this.btnBack.Size = new System.Drawing.Size(47, 40);
-            this.btnBack.TabIndex = 93;
-            this.btnBack.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBack.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.btnBack.TextFont = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label1.ForeColor = System.Drawing.Color.Chocolate;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(158, 158);
+            this.label1.TabIndex = 80;
+            // 
+            // panelSongs
+            // 
+            this.panelSongs.AutoScroll = true;
+            this.panelSongs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelSongs.Location = new System.Drawing.Point(0, 158);
+            this.panelSongs.Name = "panelSongs";
+            this.panelSongs.Size = new System.Drawing.Size(850, 316);
+            this.panelSongs.TabIndex = 8;
+            // 
+            // bunifuFlatButton1
+            // 
+            this.bunifuFlatButton1.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
+            this.bunifuFlatButton1.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuFlatButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bunifuFlatButton1.BorderRadius = 0;
+            this.bunifuFlatButton1.ButtonText = "";
+            this.bunifuFlatButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuFlatButton1.DisabledColor = System.Drawing.Color.Gray;
+            this.bunifuFlatButton1.Iconcolor = System.Drawing.Color.Transparent;
+            this.bunifuFlatButton1.Iconimage = global::Music.Properties.Resources.back;
+            this.bunifuFlatButton1.Iconimage_right = null;
+            this.bunifuFlatButton1.Iconimage_right_Selected = null;
+            this.bunifuFlatButton1.Iconimage_Selected = null;
+            this.bunifuFlatButton1.IconMarginLeft = 0;
+            this.bunifuFlatButton1.IconMarginRight = 0;
+            this.bunifuFlatButton1.IconRightVisible = true;
+            this.bunifuFlatButton1.IconRightZoom = 0D;
+            this.bunifuFlatButton1.IconVisible = true;
+            this.bunifuFlatButton1.IconZoom = 42D;
+            this.bunifuFlatButton1.IsTab = false;
+            this.bunifuFlatButton1.Location = new System.Drawing.Point(12, 120);
+            this.bunifuFlatButton1.Name = "bunifuFlatButton1";
+            this.bunifuFlatButton1.Normalcolor = System.Drawing.Color.Transparent;
+            this.bunifuFlatButton1.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.bunifuFlatButton1.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.bunifuFlatButton1.selected = false;
+            this.bunifuFlatButton1.Size = new System.Drawing.Size(35, 35);
+            this.bunifuFlatButton1.TabIndex = 94;
+            this.bunifuFlatButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bunifuFlatButton1.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.bunifuFlatButton1.TextFont = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuFlatButton1.Click += new System.EventHandler(this.bunifuFlatButton1_Click);
             // 
             // uPlaylistDetail
             // 
@@ -317,6 +317,6 @@
         private System.Windows.Forms.Label lblTotalSong;
         public System.Windows.Forms.Label lblPlaylistName;
         private System.Windows.Forms.Label label2;
-        public Bunifu.Framework.UI.BunifuFlatButton btnBack;
+        public Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton1;
     }
 }

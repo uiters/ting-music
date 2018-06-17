@@ -120,8 +120,12 @@ namespace Music
         {
             this.SendToBack();
         }
+
         #endregion
 
-
+        private void bunifuFlatButton1_Click(object sender, EventArgs e)
+        {
+            this.SendToBack();
+        }
     }
 }
