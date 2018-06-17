@@ -25,7 +25,7 @@ namespace Music.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1.0.4")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.0.5")]
         public string version {
             get {
                 return ((string)(this["version"]));

@@ -50,7 +50,7 @@
             // 
             // btnNewPlaylist
             // 
-            this.btnNewPlaylist.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(108)))), ((int)(((byte)(1)))));
+            this.btnNewPlaylist.Activecolor = System.Drawing.Color.Transparent;
             this.btnNewPlaylist.BackColor = System.Drawing.Color.Transparent;
             this.btnNewPlaylist.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnNewPlaylist.BorderRadius = 0;
@@ -75,7 +75,7 @@
             this.btnNewPlaylist.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.btnNewPlaylist.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnNewPlaylist.selected = false;
-            this.btnNewPlaylist.Size = new System.Drawing.Size(107, 29);
+            this.btnNewPlaylist.Size = new System.Drawing.Size(169, 29);
             this.btnNewPlaylist.TabIndex = 48;
             this.btnNewPlaylist.Text = "New playlist";
             this.btnNewPlaylist.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -91,7 +91,7 @@
             this.comboBoxSortBySongs.Items.AddRange(new object[] {
             "A-Z",
             "Z-A"});
-            this.comboBoxSortBySongs.Location = new System.Drawing.Point(235, 10);
+            this.comboBoxSortBySongs.Location = new System.Drawing.Point(276, 10);
             this.comboBoxSortBySongs.Name = "comboBoxSortBySongs";
             this.comboBoxSortBySongs.Size = new System.Drawing.Size(107, 25);
             this.comboBoxSortBySongs.TabIndex = 45;
@@ -101,7 +101,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.label1.Location = new System.Drawing.Point(140, 13);
+            this.label1.Location = new System.Drawing.Point(177, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 17);
             this.label1.TabIndex = 44;
@@ -116,13 +116,13 @@
             this.panelSongs.Size = new System.Drawing.Size(850, 432);
             this.panelSongs.TabIndex = 7;
             // 
-            // Playlist
+            // uPlaylist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panelSongs);
             this.Controls.Add(this.panel1);
-            this.Name = "Playlist";
+            this.Name = "uPlaylist";
             this.Size = new System.Drawing.Size(850, 474);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
