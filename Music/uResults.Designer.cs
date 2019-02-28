@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelSongs = new System.Windows.Forms.FlowLayoutPanel();
+            this.panelSongs = new TFlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.bunifuSeparator1 = new Bunifu.Framework.UI.BunifuSeparator();
             this.lblResults = new System.Windows.Forms.Label();
@@ -97,7 +97,7 @@
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel panelSongs;
+        private TFlowLayoutPanel panelSongs;
         private System.Windows.Forms.Panel panel2;
         private Bunifu.Framework.UI.BunifuSeparator bunifuSeparator1;
         private System.Windows.Forms.Label lblResults;

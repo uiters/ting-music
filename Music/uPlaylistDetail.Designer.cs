@@ -39,7 +39,7 @@
             this.lblPlaylistName = new System.Windows.Forms.Label();
             this.image = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.panelSongs = new System.Windows.Forms.FlowLayoutPanel();
+            this.panelSongs = new TFlowLayoutPanel();
             this.bunifuFlatButton1 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.panelHead.SuspendLayout();
             this.background.SuspendLayout();
@@ -308,7 +308,7 @@
 
         private System.Windows.Forms.Panel panelHead;
         private System.Windows.Forms.PictureBox image;
-        private System.Windows.Forms.FlowLayoutPanel panelSongs;
+        private TFlowLayoutPanel panelSongs;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel background;
         private Bunifu.Framework.UI.BunifuFlatButton btnDelete;

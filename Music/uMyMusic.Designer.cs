@@ -33,7 +33,7 @@ namespace Music
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uMyMusic));
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.Songs = new System.Windows.Forms.TabPage();
-            this.panelSongs = new System.Windows.Forms.FlowLayoutPanel();
+            this.panelSongs = new TFlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnShuffleAllSongs = new Bunifu.Framework.UI.BunifuFlatButton();
             this.comboBoxSortBySongs = new System.Windows.Forms.ComboBox();
@@ -391,7 +391,7 @@ namespace Music
         private System.Windows.Forms.Panel panel2;
         private Bunifu.Framework.UI.BunifuFlatButton btnShuufleAllArtists;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.FlowLayoutPanel panelSongs;
+        private TFlowLayoutPanel panelSongs;
         private System.Windows.Forms.Panel panel1;
         private Bunifu.Framework.UI.BunifuFlatButton btnShuffleAllSongs;
         private System.Windows.Forms.Label label1;

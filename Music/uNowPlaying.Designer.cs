@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelSongs = new System.Windows.Forms.FlowLayoutPanel();
+            this.panelSongs = new TFlowLayoutPanel();
             this.SuspendLayout();
             // 
             // panelSongs
@@ -56,6 +56,6 @@
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel panelSongs;
+        private TFlowLayoutPanel panelSongs;
     }
 }

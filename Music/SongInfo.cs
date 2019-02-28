@@ -109,7 +109,13 @@ namespace Music
         {
             if (file != null)
                 file.Dispose();
-            this.file = TagLib.File.Create(filePath);
+            try
+            {
+                this.file = TagLib.File.Create(filePath);
+            }catch
+            {
+
+            }
         }
 
         #endregion

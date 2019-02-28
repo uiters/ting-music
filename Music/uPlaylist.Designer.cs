@@ -33,7 +33,7 @@
             this.btnNewPlaylist = new Bunifu.Framework.UI.BunifuFlatButton();
             this.comboBoxSortBySongs = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.panelSongs = new System.Windows.Forms.FlowLayoutPanel();
+            this.panelSongs = new TFlowLayoutPanel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -136,6 +136,6 @@
         private Bunifu.Framework.UI.BunifuFlatButton btnNewPlaylist;
         private System.Windows.Forms.ComboBox comboBoxSortBySongs;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.FlowLayoutPanel panelSongs;
+        private TFlowLayoutPanel panelSongs;
     }
 }
