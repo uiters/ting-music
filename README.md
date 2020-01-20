@@ -60,9 +60,8 @@ For help getting started with C#, view our online [documentation](https://docs.m
 Have a bug or an issue with this project? [Open a new issue](https://github.com/cuongw/ting-music/issues) here on GitHub.
 ## Team
 
-| [![Cuong Duy Nguyen](https://github.com/cuongw.png?size=120)](https://github.com/cuongw) | [![Thien Chi Vi](https://github.com/tvc12.png?size=120)](https://github.com/tvc12) |
-| :---: | :---: |
-| [Cuong Duy Nguyen](https://github.com/cuongw) | [Thien Chi Vi](https://github.com/tvc12) |
+[![](https://sourcerer.io/fame/tvc12/uiters/ting-music/images/0)](https://sourcerer.io/fame/tvc12/uiters/ting-music/links/0)[![](https://sourcerer.io/fame/tvc12/uiters/ting-music/images/1)](https://sourcerer.io/fame/tvc12/uiters/ting-music/links/1)[![](https://sourcerer.io/fame/tvc12/uiters/ting-music/images/2)](https://sourcerer.io/fame/tvc12/uiters/ting-music/links/2)[![](https://sourcerer.io/fame/tvc12/uiters/ting-music/images/3)](https://sourcerer.io/fame/tvc12/uiters/ting-music/links/3)[![](https://sourcerer.io/fame/tvc12/uiters/ting-music/images/4)](https://sourcerer.io/fame/tvc12/uiters/ting-music/links/4)[![](https://sourcerer.io/fame/tvc12/uiters/ting-music/images/5)](https://sourcerer.io/fame/tvc12/uiters/ting-music/links/5)[![](https://sourcerer.io/fame/tvc12/uiters/ting-music/images/6)](https://sourcerer.io/fame/tvc12/uiters/ting-music/links/6)[![](https://sourcerer.io/fame/tvc12/uiters/ting-music/images/7)](https://sourcerer.io/fame/tvc12/uiters/ting-music/links/7)
+
 ## License
 
 Apache © [cuongw](https://github.com/cuongw) 🐢
