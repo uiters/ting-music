@@ -3,7 +3,7 @@
 </h1>
 
 <h4 align="center">
-  <a href="https://github.com/cuongw/ting-music" target="_blank"><code>A Music App</code></a> with C#.
+  Friendly 🎶 music player for Windows OS.
 </h4> 
 
 <div align="center">
